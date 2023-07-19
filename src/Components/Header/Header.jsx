@@ -1,6 +1,6 @@
 import "./Styles/Header.css"
 
-import logo from "./Images/logo.png"
+import logo from "./Images/logo.webp"
 import HeaderNavDesktop from "./Header-nav-desktop"
 import HeaderNavMobile from "./HeaderNavMobile/Header-nav-mobile"
 
