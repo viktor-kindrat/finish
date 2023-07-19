@@ -11,25 +11,38 @@ import { gsap } from "gsap"
 function Header() {
     let [navOpen, setNavOpen] = useState(false);
     let [screenWidth, setScreenWidht] = useState(window.innerWidth);
-    
-    useEffect(()=>{
-        let handle = ()=> {
+
+    useEffect(() => {
+        let handle = () => {
             setNavOpen(false);
             document.querySelector(".Header__nav-open-btn").classList.remove("Header__nav-open-btn_close");
-            setScreenWidht(window.innerWidth)
+            setScreenWidht(window.innerWidth);
+            let timeline = gsap.timeline();
+            timeline.fromTo(".HeaderNavMobile", {
+                yPercent: 0
+            }, {
+                yPercent: -150,
+                duration: 0.3
+            })
+            timeline.set(".HeaderNavMobile", {
+                display: "none"
+            })
         }
         window.addEventListener("resize", handle)
-        return (()=>{
+        return (() => {
             window.removeEventListener("resize", handle)
         })
     }, [])
 
-    let openMenuMobileHandler = (e)=>{
+    let openMenuMobileHandler = (e) => {
         if (parseInt(screenWidth) <= 919) {
             setNavOpen(!navOpen)
             document.querySelector(".Header__nav-open-btn").classList.toggle("Header__nav-open-btn_close");
             let timeline = gsap.timeline()
             if (!navOpen) {
+                timeline.set(".HeaderNavMobile", {
+                    display: "flex"
+                })
                 timeline.fromTo(".HeaderNavMobile", {
                     yPercent: -150
                 }, {
@@ -43,15 +56,16 @@ function Header() {
                     yPercent: -150,
                     duration: 0.3
                 })
+                timeline.set(".HeaderNavMobile", {
+                    display: "none"
+                })
             }
         }
     }
     return (
         <header className="Header">
             <img height={50} src={logo} alt="logo" className="Header__logo" />
-            {
-                (screenWidth <= 919) ? "" : <HeaderNavDesktop />
-            }
+            {(screenWidth <= 919) ? "" : <HeaderNavDesktop />}
             <HeaderNavMobile />
             <button onClick={openMenuMobileHandler} className="Header__nav-open-btn"><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div></button>
         </header>

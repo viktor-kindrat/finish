@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 15px 400px 15px 150px;
+  padding: 15px 385px 15px 150px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,7 +33,7 @@
 }
 .Header .Header__nav-wrap .Header__nav .Header__nav-list {
   display: flex;
-  gap: 25px;
+  gap: 24px;
   align-items: center;
   justify-content: center;
   list-style: none;
@@ -194,6 +194,7 @@
 }
 @media screen and (max-width: 919px) {
   .Header {
+    height: 50px;
     padding: 25px;
     background: #FFCB46;
     justify-content: flex-end;

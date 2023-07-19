@@ -8,19 +8,22 @@
 
 @media screen and (max-width: 919px) {
     .HeaderNavMobile {
-        display: flex;
+        display: none;
         flex-direction: column;
         gap: 25px;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         position: absolute;
-        top: 70px;
+        top: 50px;
         left: 0;
         background: #FFCB46;
         width: 100%;
-        height: calc(100vh - 70px);
+        height: calc(100vh - 50px);
         z-index: 10;
-        padding: 20px;
+        padding: 30px 20px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-bottom: 145px;
 
         .HeaderNavMobile__section {
             width: 100%;
@@ -40,7 +43,7 @@
             -o-border-radius: 5px;
 
             .HeaderNavMobile__headline {
-                font-size: 27px;
+                font-size: 24px;
                 font-style: normal;
                 font-weight: 700;
                 line-height: normal;
@@ -49,6 +52,7 @@
             }
 
             .HeaderNavMobile__info {
+                width: 100%;
                 display: flex;
                 gap: 15px;
                 flex-direction: column;
@@ -58,7 +62,7 @@
                 .HeaderNavMobile__info-data {
                     color: #353535;
                     text-align: center;
-                    font-size: 20px;
+                    font-size: 17px;
                     font-style: normal;
                     font-weight: 500;
                     line-height: normal;
@@ -66,20 +70,21 @@
 
                     &_bold {
                         font-weight: 700;
-                        font-size: 17px;
+                        font-size: 15px;
                         line-height: 100%;
                     }
                 }
 
                 .HeaderNavMobile__info-caption {
                     color: #353535;
-                    font-size: 14px;
+                    font-size: 12px;
                     font-style: normal;
                     font-weight: 300;
                     line-height: normal;
                 }
 
                 .HeaderNavMobile__input {
+                    width: 100%;
                     padding: 10px 15px;
                     border-radius: 5px;
                     outline: none;
@@ -129,6 +134,8 @@
             align-items: center;
             justify-content: center;
             gap: 50px;
+            position: absolute;
+            bottom: 40px;
 
             .HeaderNavMobile__socials-item {
                 display: flex;
@@ -168,33 +175,6 @@
                     aspect-ratio: 1/1;
                     object-fit: contain;
                 }
-            }
-        }
-
-        .HeaderNavMobile__footer {
-            width: 100%;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            bottom: 0;
-            padding: 5px;
-            background: #DEA207;
-            color: #ffffff84;
-            text-align: center;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-            
-            a {
-                color: #ffffff84;
-                text-align: center;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: normal;
             }
         }
     }
