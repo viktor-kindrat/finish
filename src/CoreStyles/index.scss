@@ -1,8 +1,11 @@
 @import "_reset";
+@import "../Fonts/Arial/style.css";
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #141414;
+    font-family: "Arial", serif;
 }
 

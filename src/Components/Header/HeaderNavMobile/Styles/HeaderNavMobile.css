@@ -1,0 +1,23 @@
+.HeaderNavMobile {
+  display: none;
+}
+.HeaderNavMobile a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 919px) {
+  .HeaderNavMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #FFCB46;
+    width: 100%;
+    height: calc(100vh - 70px);
+    z-index: 10;
+  }
+}

@@ -1,4 +1,5 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+@import "../Fonts/Arial/style.css";
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -183,4 +184,6 @@ template {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: #141414;
+  font-family: "Arial", serif;
 }
