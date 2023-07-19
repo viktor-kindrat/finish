@@ -6,6 +6,8 @@ import HeaderNavMobile from "./HeaderNavMobile/Header-nav-mobile"
 
 import { useState, useEffect } from "react"
 
+import { gsap } from "gsap"
+
 function Header() {
     let [navOpen, setNavOpen] = useState(false);
     let [screenWidth, setScreenWidht] = useState(window.innerWidth);
@@ -25,7 +27,23 @@ function Header() {
     let openMenuMobileHandler = (e)=>{
         if (parseInt(screenWidth) <= 919) {
             setNavOpen(!navOpen)
-            document.querySelector(".Header__nav-open-btn").classList.toggle("Header__nav-open-btn_close")
+            document.querySelector(".Header__nav-open-btn").classList.toggle("Header__nav-open-btn_close");
+            let timeline = gsap.timeline()
+            if (!navOpen) {
+                timeline.fromTo(".HeaderNavMobile", {
+                    yPercent: -150
+                }, {
+                    yPercent: 0,
+                    duration: 0.3
+                })
+            } else {
+                timeline.fromTo(".HeaderNavMobile", {
+                    yPercent: 0
+                }, {
+                    yPercent: -150,
+                    duration: 0.3
+                })
+            }
         }
     }
     return (
