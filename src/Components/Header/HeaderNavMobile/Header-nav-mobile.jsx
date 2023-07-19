@@ -15,14 +15,16 @@ function HeaderNavMobile() {
         const cvLength = currentValue.length;
         if (cvLength >= 12) currentValue = currentValue.slice(0, 12);
         let formattedValue = '+';
-        if (cvLength < 4) {
+        if (cvLength < 5) {
             formattedValue += currentValue;
         } else if (cvLength < 7) {
-            formattedValue += `${currentValue.slice(0, 3)} (${currentValue.slice(3)})`;
+            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2)})`;
         } else if (cvLength < 10) {
-            formattedValue += `${currentValue.slice(0, 3)} (${currentValue.slice(3, 6)}) ${currentValue.slice(6)}`;
+            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5)}`;
+        } else if (cvLength < 12) {
+            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5, 8)}-${currentValue.slice(8)}`;
         } else {
-            formattedValue += `${currentValue.slice(0, 3)} (${currentValue.slice(3, 6)}) ${currentValue.slice(6, 9)}-${currentValue.slice(9)}`;
+            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5, 8)}-${currentValue.slice(8, 10)}-${currentValue.slice(10)}`;
         }
         return formattedValue;
     };
@@ -48,7 +50,7 @@ function HeaderNavMobile() {
                 <h2 className="HeaderNavMobile__headline">Треба допомога?</h2>
                 <div className="HeaderNavMobile__info">
                     <div className="HeaderNavMobile__info-caption">Вкажіть свій контактний телефон і наш спеціаліст зв'яжеться з Вами</div>
-                    <input value={phone} onChange={handleChange} type="text" placeholder="+380 (__) ___-___" className="HeaderNavMobile__input" />
+                    <input value={phone} onChange={handleChange} type="text" placeholder="+38( _ _ _ ) - _ _ _ - _ _ - _ _ " className="HeaderNavMobile__input" />
                     <button className="HeaderNavMobile__btn">Відправити</button>
                 </div>
             </div>
