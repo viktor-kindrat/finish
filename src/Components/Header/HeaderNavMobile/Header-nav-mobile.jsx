@@ -17,11 +17,11 @@ function HeaderNavMobile() {
         let formattedValue = '+';
         if (cvLength < 5) {
             formattedValue += currentValue;
-        } else if (cvLength < 7) {
+        } else if (cvLength < 6) {
             formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2)})`;
-        } else if (cvLength < 10) {
+        } else if (cvLength < 9) {
             formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5)}`;
-        } else if (cvLength < 12) {
+        } else if (cvLength < 11) {
             formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5, 8)}-${currentValue.slice(8)}`;
         } else {
             formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5, 8)}-${currentValue.slice(8, 10)}-${currentValue.slice(10)}`;
