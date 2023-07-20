@@ -17,6 +17,10 @@ function SearchingResult () {
         <section className="SearchingResult">
             <div className="SearchingResult__container">
                 <FlightCard />
+                <FlightCard />
+                <FlightCard />
+                <FlightCard />
+                <FlightCard />
             </div>
         </section>
     )

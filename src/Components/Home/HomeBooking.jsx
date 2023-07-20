@@ -118,7 +118,7 @@ function HomeBooking({searching, setSearching, places, peoples, setPeoples, from
             <div className="Home__booking-group">
                 <p className="Home__booking-caption">Пасажири</p>
                 <div className="Home__booking-passangers-select">
-                    <div className="Home__booking-select-label">{`${peoples.adults} дорослий ${peoples.children !== 0 ? `, ${peoples.children} дитячий` : ""}`} <button onClick={handleOpenPassanger} className="Home__booking-select-open-btn"><img src={selectIcon} alt="select" /></button></div>
+                    <div className="Home__booking-select-label" onClick={handleOpenPassanger}>{`${peoples.adults} дорослий ${peoples.children !== 0 ? `, ${peoples.children} дитячий` : ""}`} <button className="Home__booking-select-open-btn"><img src={selectIcon} alt="select" /></button></div>
                     <div className="Home__booking-select-options">
                         <div className="Home__booking-select-option" data-type="adults">
                             <button className="Home__booking-select-btn" onClick={handleDecrement}>
