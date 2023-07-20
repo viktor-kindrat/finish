@@ -18,7 +18,7 @@ const places = {
 
 function Home() {
     let [peoples, setPeoples] = useState({ adults: 1, children: 0 })
-    let [from, setFrom] = useState({ country: "Початкове місце", place: "" });
+    let [from, setFrom] = useState({ country: "Пункт відправлення", place: "" });
     let [to, setTo] = useState({ country: "Місце прибуття", place: "" });
     let [passangerOpened, setPassangerOpened] = useState(false);
 
@@ -89,7 +89,7 @@ function Home() {
                             onChange={(e) => setFrom({ place: e.target.value.split("-")[1], country: e.target.value.split("-")[0] })}
                             value={`${from.country}-${from.place}`}
                         >
-                            <option value="Початкове місце">Початкове місце</option>
+                            <option value="Пункт відправлення">Пункт відправлення</option>
                             {Object.keys(places).map((placeGroup) => (
                                 <optgroup key={placeGroup} label={placeGroup}>
                                     {places[placeGroup].map((place) => (
@@ -101,13 +101,13 @@ function Home() {
                             ))}
                         </select>
                     </div>
-                    <button onClick={((from !== "Початкове місце" && from.country !== "Початкове місце") && (to.country !== "Місце прибуття" && to !== "Місце прибуття")) ? handleSwitch : () => { return false }} className="Home__booking-places-switch">
+                    <button onClick={((from !== "Пункт відправлення" && from.country !== "Пункт відправлення") && (to.country !== "Місце прибуття" && to !== "Місце прибуття")) ? handleSwitch : () => { return false }} className="Home__booking-places-switch">
                         <img src={switchIcon} alt="switch" className="Home__booking-switch-icon" />
                     </button>
                     <div className="Home__booking-place-item">
                         <p className="Home__booking-caption">Куди</p>
                         <select
-                            disabled={from === "Початкове місце" || from.country === "Початкове місце"}
+                            disabled={from === "Пункт відправлення" || from.country === "Пункт відправлення"}
                             style={{ backgroundImage: `url(${placeIcon}), url(${selectIcon})` }}
                             name="to"
                             id="Home__to-select"
