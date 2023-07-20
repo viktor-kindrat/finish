@@ -16,7 +16,7 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 125%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,10 +24,9 @@
 }
 .FlightCard .FlightCard__info_bold {
   color: #141414;
-  font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: 16px;
+  line-height: 125%;
 }
 .FlightCard .FlightCard__info_bigBold {
   color: #353535;
@@ -64,6 +63,13 @@
   justify-content: center;
   gap: 10px;
 }
+.FlightCard .FlightCard__locations .FlightCard__arrow {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+}
 .FlightCard .FlightCard__locations .FlightCard__location-column {
   width: 270px;
   display: flex;
@@ -72,7 +78,7 @@
   align-items: flex-start;
   justify-content: center;
 }
-.FlightCard .FlightCard__details-btn {
+.FlightCard .FlightCard__book-btn {
   padding: 13px;
   border-radius: 5px;
   border: 1px solid #FFCB46;
@@ -80,8 +86,134 @@
   outline: none;
   cursor: pointer;
 }
-.FlightCard .FlightCard__details-btn img {
+.FlightCard .FlightCard__book-btn p {
+  display: none;
+}
+.FlightCard .FlightCard__book-btn img {
   height: 24px;
   aspect-ratio: 1/1;
   object-fit: contain;
+}
+.FlightCard .FlightCard__summary {
+  display: none;
+}
+
+@media screen and (max-width: 1104px) {
+  .FlightCard {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 15px;
+    gap: 20px;
+  }
+  .FlightCard .FlightCard__group {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .FlightCard .FlightCard__group::after {
+    display: none;
+  }
+  .FlightCard .FlightCard__group.FlightCard__group_uderlineonmobile::after {
+    top: auto;
+    display: block;
+    bottom: -20px;
+    right: 0;
+    width: 100%;
+    height: 1px;
+  }
+  .FlightCard .FlightCard__locations {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .FlightCard .FlightCard__locations .FlightCard__arrow {
+    transform: rotate(90deg);
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    /* 66.667% */
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+  }
+  .FlightCard .FlightCard__book-btn {
+    align-self: center;
+    padding: 5px 30px;
+    background: #25A904;
+    border: none;
+  }
+  .FlightCard .FlightCard__book-btn p {
+    display: block;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 200%;
+  }
+  .FlightCard .FlightCard__book-btn img {
+    display: none;
+  }
+  .FlightCard .FlightCard__summary {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+  }
+  .FlightCard .FlightCard__summary .FlightCard__summary-raw {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+  .FlightCard .FlightCard__summary .FlightCard__summary-raw .FlightCard__summary-sum {
+    color: #353535;
+    text-align: right;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .FlightCard .FlightCard__summary .FlightCard__summary-raw .FlightCard__summary-sum sup {
+    color: #353535;
+    text-align: right;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    align-self: flex-start;
+    position: relative;
+    top: -15px;
+  }
+  .FlightCard .FlightCard__summary .FlightCard__summary-raw .FlightCard__summary-currency {
+    color: #353535;
+    text-align: right;
+    font-family: Arial;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    /* 77.778% */
+  }
+  .FlightCard .FlightCard__summary .FlightCard__summary-info {
+    color: #000000;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+  }
 }
