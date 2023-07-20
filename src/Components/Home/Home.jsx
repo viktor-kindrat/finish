@@ -7,6 +7,9 @@ import dateIcon from "./SVG/date.svg";
 import selectIcon from "./SVG/select.svg";
 import addIcon from "./SVG/add.svg";
 import removeIcon from "./SVG/remove.svg"
+
+import { gsap } from "gsap";
+
 const places = {
     "Україна": ["Київ", "Чернівці", "Коломия", "Франківськ", "Стрий", "Львів", "Мукачево"],
     "Франція": ["Канни", "Ніцці", "Антіб", "Монако", "Ментон"],
@@ -17,6 +20,29 @@ function Home() {
     let [peoples, setPeoples] = useState({ adults: 1, children: 0 })
     let [from, setFrom] = useState({ country: "Початкове місце", place: "" });
     let [to, setTo] = useState({ country: "Місце прибуття", place: "" });
+    let [passangerOpened, setPassangerOpened] = useState(false);
+
+    let handleOpenPassanger = (e) => {
+        setPassangerOpened(!passangerOpened);
+        let timeline = gsap.timeline();
+        if (passangerOpened) {
+            timeline.fromTo(".Home__booking-select-options", {
+                opacity: 1
+            }, {
+                opacity: 0,
+                duration: 0.3
+            })
+            timeline.set(".Home__booking-select-options", { display: "none" })
+        } else {
+            timeline.set(".Home__booking-select-options", { display: "flex", opacity: 0 })
+            timeline.fromTo(".Home__booking-select-options", {
+                opacity: 0
+            }, {
+                opacity: 1,
+                duration: 0.3
+            })
+        }
+    }
 
     let handleSwitch = async () => {
         await setTo(from)
@@ -114,7 +140,7 @@ function Home() {
                 <div className="Home__booking-group">
                     <p className="Home__booking-caption">Пасажири</p>
                     <div className="Home__booking-passangers-select">
-                        <div className="Home__booking-select-label">{`${peoples.adults} дорослий ${peoples.children !== 0 ? `, ${peoples.children} дитячий` : ""}`} <button className="Home__booking-select-open-btn"><img src={selectIcon} alt="select" /></button></div>
+                        <div className="Home__booking-select-label">{`${peoples.adults} дорослий ${peoples.children !== 0 ? `, ${peoples.children} дитячий` : ""}`} <button onClick={handleOpenPassanger} className="Home__booking-select-open-btn"><img src={selectIcon} alt="select" /></button></div>
                         <div className="Home__booking-select-options">
                             <div className="Home__booking-select-option" data-type="adults">
                                 <button className="Home__booking-select-btn" onClick={handleDecrement}>
