@@ -135,7 +135,7 @@ function Home() {
                 </div>
                 <div className="Home__booking-group">
                     <p className="Home__booking-caption">Відправлення</p>
-                    <input style={{ backgroundImage: `url(${dateIcon})` }} type="date" className="Home__booking-date" />
+                    <input min={`${new Date().getFullYear()}-${new Date().getMonth() < 10 ? "0" + (new Date().getMonth() + 1) : new Date().getMonth() + 1}-${new Date().getDate() < 10 ? "0" + (new Date().getDate()) : new Date().getDate()}`} style={{ backgroundImage: `url(${dateIcon})` }} type="date" className="Home__booking-date" />
                 </div>
                 <div className="Home__booking-group">
                     <p className="Home__booking-caption">Пасажири</p>
@@ -163,6 +163,7 @@ function Home() {
                         </div>
                     </div>
                 </div>
+                <button className="Home__booking-search">Пошук</button>
             </div>
         </section>
     );
