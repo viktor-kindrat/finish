@@ -13,6 +13,12 @@ function FlightCard({ id }) {
     }, [])
 
     let handleOpenBookingMenu = (e) => {
+        document.querySelectorAll(".FlightCard__book-btn").forEach(el=>{
+            el.style.display = "flex"
+            el.parentElement.classList.remove("FlightCard_opened")
+        })
+        e.target.style.display = "none"
+        e.target.parentElement.classList.add("FlightCard_opened")
         let timeline = gsap.timeline();
         timeline.to(".BookingMenu", { y: -100, opacity: 0 })
         timeline.set(".BookingMenu", { display: "none" })
@@ -52,6 +58,26 @@ function FlightCard({ id }) {
                 </div>
                 <button onClick={handleOpenBookingMenu} className="FlightCard__book-btn"><p>Забронювати</p><img src={detailsIcon} alt="details" /></button>
             </article>
+            <div className="FlightCard__opened">
+                <div className="FlightCard__group">
+                    <div className="FlightCard__text">2 Дорослий</div>
+                    <div className="FlightCard__text FlightCard__text_bigBold">10 096 <span className="FlightCard__text_bold">грн</span></div>
+                </div>
+                <div className="FlightCard__group">
+                    <div className="FlightCard__text FlightCard__text_mediumBold">+</div>
+                </div>
+                <div className="FlightCard__group">
+                    <div className="FlightCard__text">1 Дитячий</div>
+                    <div className="FlightCard__text FlightCard__text_bigBold">3 048 <span className="FlightCard__text_bold">грн</span></div>
+                </div>
+                <div className="FlightCard__group">
+                    <div className="FlightCard__text FlightCard__text_mediumBold">=</div>
+                </div>
+                <div className="FlightCard__group">
+                    <div className="FlightCard__text">Всього</div>
+                    <div className="FlightCard__text FlightCard__text_bigBold">13 114 <span className="FlightCard__text_bold">грн</span></div>
+                </div>
+            </div>
             <BookingMenu id={id} />
         </>
     )
