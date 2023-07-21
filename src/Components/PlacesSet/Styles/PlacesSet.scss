@@ -1,4 +1,9 @@
 .PlacesSet {
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     .PlacesSet__headline {
         color: #0F0F0F;
         font-size: 20px;

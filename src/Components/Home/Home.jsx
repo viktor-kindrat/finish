@@ -21,7 +21,7 @@ function Home({change, triggerChange}) {
     
     useEffect (()=>{
         triggerChange(!change)
-    }, [location])
+    }, [location, change, triggerChange])
     return (
         <section className="Home">
             <Routes>

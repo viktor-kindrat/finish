@@ -5,6 +5,7 @@
 @media screen and (max-width: 919px) {
   .PhoneMenu {
     height: 60px;
+    z-index: 9;
     width: 100%;
     position: fixed;
     bottom: 0;

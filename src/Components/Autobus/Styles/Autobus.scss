@@ -1,0 +1,102 @@
+.Autobus {
+    width: fit-content;
+    border-radius: 5px;
+    background: #D9D9D9;
+    padding: 10px;
+
+    .Autobus__container {
+        width: fit-content;
+        padding: 15px 20px;
+        border: 2px solid #353535;
+        border-radius: 2px;
+        background: #ffffff;
+        display: flex;
+        gap: 20px;
+        align-items: flex-end;
+        justify-content: space-between;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+
+        .Autobus__column {
+            height: 100%;
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+
+            .Autobus__group {
+                display: flex;
+                flex-direction: row-reverse;
+                gap: 20px;
+
+                .Autobus__place {
+                    width: 30px;
+                    aspect-ratio: 1/1;
+                    text-align: center;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid #000;
+                    background: #FFF;
+
+                    &_red {
+                        background: rgba(255, 61, 0, 0.60);
+                    }
+
+                    &_green {
+                        background: rgba(48, 184, 0, 0.59);
+                    }
+                }
+
+                .Autobus__tech-space {
+                    width: 80px;
+                    height: 30px;
+                    color: #FFF;
+                    text-align: center;
+                    font-size: 14.4px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 100%;
+                    letter-spacing: 2.88px;
+                    border: 1px solid #000;
+                    background: #353535;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-transform: uppercase;
+                    padding: 4px 7px;
+                }
+
+                .Autobus__entrance {
+                    height: 30px;
+                    width: 134px;
+                    border-top: 1px solid #000;
+                    border-bottom: 1px solid #000;
+                    background: linear-gradient(90deg, #353535 0%, #FFF 99.99%, rgba(53, 53, 53, 0.00) 100%);
+                    margin-left: -54px;
+                    position: relative;
+                    left: 54px;
+                    color: #FFF;
+                    text-align: center;
+                    font-size: 14.4px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 100%;
+                    letter-spacing: 2.88px;
+                    text-transform: uppercase;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding: 7px 12px;
+                }
+            }
+        }
+    }
+}
