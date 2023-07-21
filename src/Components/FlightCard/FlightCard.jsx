@@ -10,6 +10,7 @@ import { useEffect } from "react"
 function FlightCard({ id }) {
     useEffect(() => {
         gsap.set(".BookingMenu", { y: -100, opacity: 0, display: "none" })
+        gsap.set(".FlightCard__opened", { y: -100, opacity: 0, display: "none" })
     }, [])
 
     let handleOpenBookingMenu = (e) => {
@@ -22,6 +23,10 @@ function FlightCard({ id }) {
         let timeline = gsap.timeline();
         timeline.to(".BookingMenu", { y: -100, opacity: 0 })
         timeline.set(".BookingMenu", { display: "none" })
+        timeline.to(".FlightCard__opened", { y: -100, opacity: 0 })
+        timeline.set(".FlightCard__opened", { display: "none" })
+        timeline.set(`.FlightCard__opened[data-id="${id}"]`, { display: "flex" })
+        timeline.to(`.FlightCard__opened[data-id="${id}"]`, { y: 0, opacity: 1, duration: 0.3 })
         timeline.set(`.BookingMenu[data-id="${id}"]`, { display: "flex" })
         timeline.to(`.BookingMenu[data-id="${id}"]`, { y: 0, opacity: 1, duration: 0.3 })
     }
@@ -58,7 +63,7 @@ function FlightCard({ id }) {
                 </div>
                 <button onClick={handleOpenBookingMenu} className="FlightCard__book-btn"><p>Забронювати</p><img src={detailsIcon} alt="details" /></button>
             </article>
-            <div className="FlightCard__opened">
+            <div className="FlightCard__opened" data-id={id}>
                 <div className="FlightCard__group">
                     <div className="FlightCard__text">2 Дорослий</div>
                     <div className="FlightCard__text FlightCard__text_bigBold">10 096 <span className="FlightCard__text_bold">грн</span></div>
