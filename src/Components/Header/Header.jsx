@@ -63,12 +63,14 @@ function Header() {
         }
     }
     return (
-        <header className="Header">
-            <img height={50} src={logo} alt="logo" className="Header__logo" />
-            {(screenWidth <= 919) ? "" : <HeaderNavDesktop />}
+        <>
+            <header className="Header">
+                <img height={50} src={logo} alt="logo" className="Header__logo" />
+                {(screenWidth <= 919) ? "" : <HeaderNavDesktop />}
+                <button onClick={openMenuMobileHandler} className="Header__nav-open-btn"><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div></button>
+            </header>
             <HeaderNavMobile />
-            <button onClick={openMenuMobileHandler} className="Header__nav-open-btn"><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div></button>
-        </header>
+        </>
     )
 }
 

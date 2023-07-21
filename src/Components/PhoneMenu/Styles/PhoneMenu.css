@@ -1,0 +1,44 @@
+.PhoneMenu {
+  display: none;
+}
+
+@media screen and (max-width: 919px) {
+  .PhoneMenu {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 6px 30px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    background: #FFCB46;
+  }
+  .PhoneMenu .PhoneMenu-btn {
+    border: none;
+    outline: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .PhoneMenu .PhoneMenu-btn .PhoneMenu-icon {
+    height: 25px;
+    width: auto;
+    object-fit: contain;
+  }
+  .PhoneMenu .PhoneMenu-btn .PhoneMenu-text {
+    color: #353535;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+  }
+  .PhoneMenu a {
+    text-decoration: none;
+  }
+}

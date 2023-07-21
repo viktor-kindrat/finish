@@ -4,6 +4,8 @@ import mainImage from "./Images/main.webp";
 import HomeBooking from "./HomeBooking"
 import SearchingResult from "../SearchingResult/SearchingResult";
 
+import { Routes, Route } from "react-router-dom"
+
 const places = {
     "Україна": ["Київ", "Чернівці", "Коломия", "Франківськ", "Стрий", "Львів", "Мукачево"],
     "Франція": ["Канни", "Ніцці", "Антіб", "Монако", "Ментон"],
@@ -15,16 +17,27 @@ function Home() {
     let [from, setFrom] = useState({ country: "Пункт відправлення", place: "" });
     let [to, setTo] = useState({ country: "Місце прибуття", place: "" });
     let [passangerOpened, setPassangerOpened] = useState(false);
-    let [searching, setSearching] = useState(false)
 
     return (
         <section className="Home">
-            <div className="Home__head-group">
-                <img className="Home__bgImage" src={mainImage} alt="main" />
-                <h1 className="Home__headline">Бронювання білетів</h1>
-            </div>
-            <HomeBooking {...{searching, setSearching, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened}} />
-            {searching ? <SearchingResult {...{peoples}} /> : ""}
+            <Routes>
+                <Route path="/" element={
+                    <>
+                        <div className="Home__head-group">
+                            <img className="Home__bgImage" src={mainImage} alt="main" />
+                            <h1 className="Home__headline">Бронювання білетів</h1>
+                        </div>
+                        <HomeBooking {...{ places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
+                    </>
+                } />
+                <Route path="/search" element={
+                    <>
+                        <HomeBooking {...{ places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
+                        <SearchingResult {...{ peoples }} />
+                    </>
+                } />
+            </Routes>
+
         </section>
     );
 }

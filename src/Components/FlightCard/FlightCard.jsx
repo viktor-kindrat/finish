@@ -18,11 +18,11 @@ function FlightCard() {
             </div>
             <div className="FlightCard__group">
                 <p className="FlightCard__info">Доросилий</p>
-                <p className="FlightCard__info FlightCard__info_bigBold">5 048 <div className="FlightCard__info_bold">грн</div></p>
+                <p className="FlightCard__info FlightCard__info_bigBold">5 048 <span className="FlightCard__info_bold">грн</span></p>
             </div>
             <div className="FlightCard__group FlightCard__group_uderlineonmobile">
                 <p className="FlightCard__info">Дитячий</p>
-                <p className="FlightCard__info FlightCard__info_bigBold">3 048 <div className="FlightCard__info_bold">грн</div></p>
+                <p className="FlightCard__info FlightCard__info_bigBold">3 048 <span className="FlightCard__info_bold">грн</span></p>
             </div>
             <div className="FlightCard__summary">
                 <div className="FlightCard__summary-raw">
