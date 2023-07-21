@@ -16,11 +16,11 @@ function SearchingResult () {
     return (
         <section className="SearchingResult">
             <div className="SearchingResult__container">
-                <FlightCard />
-                <FlightCard />
-                <FlightCard />
-                <FlightCard />
-                <FlightCard />
+                <FlightCard id={0} />
+                <FlightCard id={1} />
+                <FlightCard id={2} />
+                <FlightCard id={3} />
+                <FlightCard id={4} />
             </div>
         </section>
     )

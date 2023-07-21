@@ -8,6 +8,7 @@
   border-radius: 6px;
   border: 1px solid #AEAEAE;
   background: #FBFBFB;
+  z-index: 3;
 }
 .FlightCard .FlightCard__info {
   white-space: pre-wrap;

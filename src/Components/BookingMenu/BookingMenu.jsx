@@ -4,9 +4,9 @@ import PassangersList from "../PassangersList/PassangersList"
 import PlacesSet from "../PlacesSet/PlacesSet"
 import ContactsField from "../ContactsField/ContactsField"
 
-function BookingMenu (){
+function BookingMenu ({id}){
     return (
-        <div className="BookingMenu">
+        <div className="BookingMenu" data-id={id}>
             <PassangersList />
             <PlacesSet />
             <ContactsField />

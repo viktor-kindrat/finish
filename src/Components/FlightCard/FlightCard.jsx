@@ -4,7 +4,21 @@ import detailsIcon from "./SVG/details.svg"
 
 import BookingMenu from "../BookingMenu/BookingMenu"
 
-function FlightCard() {
+import { gsap } from "gsap"
+import { useEffect } from "react"
+
+function FlightCard({ id }) {
+    useEffect(() => {
+        gsap.set(".BookingMenu", { y: -100, opacity: 0, display: "none" })
+    }, [])
+
+    let handleOpenBookingMenu = (e) => {
+        let timeline = gsap.timeline();
+        timeline.to(".BookingMenu", { y: -100, opacity: 0 })
+        timeline.set(".BookingMenu", { display: "none" })
+        timeline.set(`.BookingMenu[data-id="${id}"]`, { display: "flex" })
+        timeline.to(`.BookingMenu[data-id="${id}"]`, { y: 0, opacity: 1, duration: 0.3 })
+    }
     return (
         <>
             <article className="FlightCard">
@@ -36,9 +50,9 @@ function FlightCard() {
                         Доросилий: 2, Дитячий: 1
                     </div>
                 </div>
-                <button className="FlightCard__book-btn"><p>Забронювати</p><img src={detailsIcon} alt="details" /></button>
+                <button onClick={handleOpenBookingMenu} className="FlightCard__book-btn"><p>Забронювати</p><img src={detailsIcon} alt="details" /></button>
             </article>
-            <BookingMenu />
+            <BookingMenu id={id} />
         </>
     )
 }
