@@ -7,7 +7,7 @@ import removeIcon from "./SVG/remove.svg"
 
 import { gsap } from "gsap";
 
-function HomeBooking({searching, setSearching, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened}) {
+function HomeBooking({ searching, setSearching, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }) {
     let handleOpenPassanger = (e) => {
         setPassangerOpened(!passangerOpened);
         let timeline = gsap.timeline();
@@ -57,24 +57,38 @@ function HomeBooking({searching, setSearching, places, peoples, setPeoples, from
         }
     }
 
-    let searchHandler = (e)=>{
+    let searchHandler = (e) => {
         let timeline = gsap.timeline();
-        timeline.to(".Home__head-group", {opacity: 0, duration: 0.3})
-        timeline.to(".App", {background: "#ECECEC", duration: 0.3})
-        timeline.set(".Home__head-group", {display: "none"});
-        timeline.set(".Home", {justifyContent: "flex-start", padding: "25px"});
-        timeline.to(".Home__booking", {boxShadow: "none", duration: 0.2})
-        timeline.then(async ()=>{
+        timeline.to(".Home__head-group", { opacity: 0, duration: 0.3 })
+        timeline.to(".App", { background: "#ECECEC", duration: 0.3 })
+        timeline.set(".Home__head-group", { display: "none" });
+        timeline.set(".Home", { justifyContent: "flex-start", padding: "25px" });
+        timeline.to(".Home__booking", { boxShadow: "none", duration: 0.2 })
+        timeline.then(async () => {
             await setSearching(true)
         })
     }
+
+    let passangersReadyHandler = () => {
+        setPassangerOpened(false)
+        let timeline = gsap.timeline();
+        timeline.fromTo(".Home__booking-select-options", {
+            opacity: 1
+        }, {
+            opacity: 0,
+            duration: 0.3
+        })
+        timeline.set(".Home__booking-select-options", { display: "none" })
+    }
+    
+    let passangersResetHandler = ()=> setPeoples({ adults: 1, children: 0 })
     return (
         <div className="Home__booking">
             <div className="Home__booking-place">
                 <div className="Home__booking-place-item">
                     <p className="Home__booking-caption">Звідки</p>
                     <select style={{ backgroundImage: `url(${placeIcon}), url(${selectIcon})` }} name="from" id="Home__from-select" className="Home__booking-select" onChange={(e) => setFrom({ place: e.target.value.split("-")[1], country: e.target.value.split("-")[0] })} value={`${from.country}-${from.place}`}>
-                        <option value="Пункт відправлення">Пункт відправлення</option>
+                        <option value="Пункт відправлення" selected hidden>Пункт відправлення</option>
                         {Object.keys(places).map((placeGroup) => (
                             <optgroup key={placeGroup} label={placeGroup}>
                                 {places[placeGroup].map((place) => (
@@ -92,20 +106,34 @@ function HomeBooking({searching, setSearching, places, peoples, setPeoples, from
                 <div className="Home__booking-place-item">
                     <p className="Home__booking-caption">Куди</p>
                     <select disabled={from === "Пункт відправлення" || from.country === "Пункт відправлення"} style={{ backgroundImage: `url(${placeIcon}), url(${selectIcon})` }} name="to" id="Home__to-select" className="Home__booking-select" onChange={(e) => setTo({ place: e.target.value.split("-")[1], country: e.target.value.split("-")[0] })}>
-                        <option value="Місце прибуття">Місце прибуття</option>
+                        <option value="Місце прибуття" selected hidden>Місце прибуття</option>
                         {Object.keys(places).map((placeGroup) => {
-                            if (placeGroup !== from.country) {
-                                return (
-                                    <optgroup key={placeGroup} label={placeGroup}>
-                                        {places[placeGroup].map((place) => (
-                                            <option key={place} value={`${placeGroup}-${place}`}>
-                                                {`${placeGroup} - ${place}`}
-                                            </option>
-                                        ))}
-                                    </optgroup>
-                                )
+                            if (from.country === "Україна") {
+                                if (placeGroup !== from.country) {
+                                    return (
+                                        <optgroup key={placeGroup} label={placeGroup}>
+                                            {places[placeGroup].map((place) => (
+                                                <option key={place} value={`${placeGroup}-${place}`}>
+                                                    {`${placeGroup} - ${place}`}
+                                                </option>
+                                            ))}
+                                        </optgroup>
+                                    )
+                                } else {
+                                    return ""
+                                }
                             } else {
-                                return ""
+                                if (placeGroup === "Україна") {
+                                    return (
+                                        <optgroup key={placeGroup} label={placeGroup}>
+                                            {places[placeGroup].map((place) => (
+                                                <option key={place} value={`${placeGroup}-${place}`}>
+                                                    {`${placeGroup} - ${place}`}
+                                                </option>
+                                            ))}
+                                        </optgroup>
+                                    )
+                                }
                             }
                         })}
                     </select>
@@ -137,6 +165,10 @@ function HomeBooking({searching, setSearching, places, peoples, setPeoples, from
                             <button className="Home__booking-select-btn" onClick={handleIncrement}>
                                 <img src={addIcon} alt="+" />
                             </button>
+                        </div>
+                        <div className="Home__booking-passangers-controll">
+                            <button onClick={passangersResetHandler} className="Home__booking-passangers-controll-btn">Скинути</button>
+                            <button onClick={passangersReadyHandler} className="Home__booking-passangers-controll-btn">Готово</button>
                         </div>
                     </div>
                 </div>

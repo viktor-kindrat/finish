@@ -14,11 +14,11 @@ function HeaderNavDesktop() {
                 </ul>
             </nav>
             <div className="Header__contacts">
-                <a href="/" className="Header__contacts-item"><img height={35} src={viberIcon} alt="viber" className="Header__contacts-item-image" /></a>
-                <a href="/" className="Header__contacts-item"><img height={35} src={whatsappIcon} alt="whatsapp" /></a>
+                <a href="/" className="Header__contacts-item"><img height={38} src={viberIcon} alt="viber" className="Header__contacts-item-image" /></a>
+                <a href="/" className="Header__contacts-item"><img height={38} src={whatsappIcon} alt="whatsapp" /></a>
                 <a href="tel:+380666990301" className="Header__phone">
                     <div className="Header__phone-icon-wrapper">
-                        <img height={25} src={phoneIcon} alt="" className="Header__phone-icon" />
+                        <img height={15} src={phoneIcon} alt="" className="Header__phone-icon" />
                     </div>
                     <div className="Header__phone-info-wrapper">
                         <h3 className="Header__headline">Допомога</h3>
