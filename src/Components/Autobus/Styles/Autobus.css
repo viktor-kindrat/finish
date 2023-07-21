@@ -45,6 +45,7 @@
   justify-content: center;
   border: 1px solid #000;
   background: #FFF;
+  cursor: pointer;
 }
 .Autobus .Autobus__container .Autobus__column .Autobus__group .Autobus__place_red {
   background: rgba(255, 61, 0, 0.6);
