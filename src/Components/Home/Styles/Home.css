@@ -28,7 +28,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
   padding: 25px;
 }
 .Home:has(.SearchingResult) {
-  padding: 50px 150px;
+  padding: 25px 150px;
 }
 .Home .Home__bgImage {
   width: 100%;

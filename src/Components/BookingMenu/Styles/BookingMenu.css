@@ -1,0 +1,11 @@
+.BookingMenu {
+  width: 100%;
+  padding: 25px;
+  border-radius: 5px;
+  border: 1px solid #AEAEAE;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: -14px;
+}
