@@ -2,15 +2,25 @@ import viberIcon from "./Images/viber.webp"
 import whatsappIcon from "./Images/whatsapp.webp"
 import phoneIcon from "./SVG/phone.svg"
 
+import { Link } from "react-router-dom"
+
 function HeaderNavDesktop() {
     return (
         <div className="Header__nav-wrap">
             <nav className="Header__nav">
                 <ul className="Header__nav-list">
-                    <li className="Header__nav-list-item Header__nav-list-item_selected">Головна</li>
-                    <li className="Header__nav-list-item">Пошук</li>
-                    <li className="Header__nav-list-item">Як забронювати?</li>
-                    <li className="Header__nav-list-item">Мій акаунт</li>
+                    <li className="Header__nav-list-item Header__nav-list-item_selected">
+                        <Link to={"/"}>Головна</Link>
+                    </li>
+                    <li className="Header__nav-list-item">
+                        <Link to={"/search"}>Пошук</Link>
+                    </li>
+                    <li className="Header__nav-list-item">
+                        <Link to={"/instructions"}>Як забронювати?</Link>
+                    </li>
+                    <li className="Header__nav-list-item">
+                        <Link to={"/account"}>Мій акаунт</Link>
+                    </li>
                 </ul>
             </nav>
             <div className="Header__contacts">

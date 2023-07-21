@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Styles/Home.css";
 import mainImage from "./Images/main.webp";
 import HomeBooking from "./HomeBooking"
 import SearchingResult from "../SearchingResult/SearchingResult";
 
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 
 const places = {
     "Україна": ["Київ", "Чернівці", "Коломия", "Франківськ", "Стрий", "Львів", "Мукачево"],
@@ -12,12 +12,16 @@ const places = {
     "Італія": ["Санремо", "Імперія", "Аласіо", "Альбенга", "Вентимілія неділя", "Лоано", "Петра", "Фінале", "Савона", "Верона", "Мілан"],
 };
 
-function Home() {
+function Home({change, triggerChange}) {
+    let location = useLocation();
     let [peoples, setPeoples] = useState({ adults: 1, children: 0 })
     let [from, setFrom] = useState({ country: "Пункт відправлення", place: "" });
     let [to, setTo] = useState({ country: "Місце прибуття", place: "" });
     let [passangerOpened, setPassangerOpened] = useState(false);
-
+    
+    useEffect (()=>{
+        triggerChange(!change)
+    }, [location])
     return (
         <section className="Home">
             <Routes>

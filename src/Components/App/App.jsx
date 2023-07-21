@@ -6,19 +6,21 @@ import Footer from '../Footer/Footer';
 import PhoneMenu from '../PhoneMenu/PhoneMenu';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from "react"
 
 function App() {
+  let [change, triggerChange] = useState(false)
   return (
-    <div className="App">
-      <Header />
-      <Router>
+    <Router>
+      <div className="App" style={{ backgroundColor: window.location.href.includes("/search") ? "#ECECEC" : "#FFFFFF" }}>
+        <Header />
         <Routes>
-          <Route path='/*' element={<Home />} />
+          <Route path='/*' element={<Home {...{change, triggerChange}} />} />
         </Routes>
-      </Router>
-      <PhoneMenu />
-      <Footer />
-    </div>
+        <PhoneMenu />
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

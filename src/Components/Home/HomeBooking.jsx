@@ -60,21 +60,7 @@ function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, pa
         }
     }
 
-    let searchHandler = (e) => {
-        let timeline = gsap.timeline();
-        if (document.querySelector(".Home__head-group")) {
-            timeline.to(".Home__head-group", { opacity: 0, duration: 0.3 })
-            timeline.set(".Home__head-group", { display: "none" })
-            if (window.innerWidth >= 919) {
-                timeline.to(".App", { background: "#ECECEC", duration: 0.3 })
-            }
-        }
-        timeline.set(".Home", { justifyContent: "flex-start", padding: "25px" });
-        timeline.to(".Home__booking", { boxShadow: "none", duration: 0.2 })
-        timeline.then(() => {
-            navigate("/search")
-        })
-    }
+    let searchHandler = (e) => navigate("/search")
 
     let passangersReadyHandler = () => {
         setPassangerOpened(false)
