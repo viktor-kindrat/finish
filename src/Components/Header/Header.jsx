@@ -8,6 +8,8 @@ import { useState, useEffect } from "react"
 
 import { gsap } from "gsap"
 
+import { Link } from "react-router-dom"
+
 function Header() {
     let [navOpen, setNavOpen] = useState(false);
     let [screenWidth, setScreenWidht] = useState(window.innerWidth);
@@ -65,7 +67,9 @@ function Header() {
     return (
         <>
             <header className="Header">
-                <img height={50} src={logo} alt="logo" className="Header__logo" />
+                <Link to={"/"}>
+                    <img height={50} src={logo} alt="logo" className="Header__logo" />
+                </Link>
                 {(screenWidth <= 919) ? "" : <HeaderNavDesktop />}
                 <button onClick={openMenuMobileHandler} className="Header__nav-open-btn"><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div></button>
             </header>

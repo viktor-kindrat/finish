@@ -13,7 +13,12 @@
   background: #ffffff;
 }
 .Header a {
+  width: fit-content;
+  height: fit-content;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .Header .Header__logo {
   height: 50px;

@@ -76,7 +76,7 @@ function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, pa
 
     let passangersResetHandler = () => setPeoples({ adults: 1, children: 0 })
     return (
-        <div className="Home__booking">
+        <div className={"Home__booking" + (window.location.href.includes("/search") ? " Home__booking_full" : "")}>
             <div className="Home__booking-place">
                 <div className="Home__booking-place-item">
                     <p className="Home__booking-caption">Звідки</p>

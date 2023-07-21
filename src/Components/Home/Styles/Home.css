@@ -18,12 +18,17 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 .Home {
+  width: 100%;
   min-height: calc(100vh - 70px);
   margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding: 25px;
+}
+.Home:has(.SearchingResult) {
+  padding: 50px 150px;
 }
 .Home .Home__bgImage {
   width: 100%;
@@ -41,7 +46,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 .Home .Home__head-group .Home__headline {
   z-index: 2;
@@ -53,7 +58,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
   line-height: normal;
 }
 .Home .Home__booking {
-  width: 100%;
+  width: auto;
   z-index: 2;
   display: flex;
   align-items: flex-end;
@@ -64,6 +69,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 8px 15px;
+}
+.Home .Home__booking_full {
+  width: 100%;
 }
 .Home .Home__booking .Home__booking-caption {
   color: #646464;
@@ -354,6 +362,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
     margin-top: 50px;
     justify-content: flex-start;
     align-items: flex-start;
+  }
+  .Home:has(.SearchingResult) {
+    padding: 25px;
   }
   .Home .Home__bgImage {
     height: min(750px, 100vh - 50px);
