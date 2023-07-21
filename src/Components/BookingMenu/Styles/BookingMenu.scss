@@ -5,7 +5,12 @@
     border: 1px solid #AEAEAE;
     background: #FFF;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: space-between;
     margin-top: -14px;
+    gap: 50px;
+
+    > div {
+        width: 33%;
+    }
 }
