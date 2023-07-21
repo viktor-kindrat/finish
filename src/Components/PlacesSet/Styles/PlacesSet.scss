@@ -2,9 +2,10 @@
     display: flex;
     gap: 25px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     .PlacesSet__headline {
+        width: 100%;
         color: #0F0F0F;
         font-size: 20px;
         font-style: normal;
@@ -12,7 +13,7 @@
         line-height: 100%;
         display: inline-flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 10px;
 
         .PlacesSet__headline_number {

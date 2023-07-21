@@ -326,6 +326,11 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin-left: 40px;
 }
 
+@media screen and (max-width: 1488px) {
+  .Home:has(.SearchingResult) {
+    padding: 25px;
+  }
+}
 @media screen and (max-width: 1178px) {
   .Home .Home__head-group {
     margin-top: 0;

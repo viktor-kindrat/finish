@@ -366,6 +366,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
+@media screen and (max-width: 1488px) {
+    .Home:has(.SearchingResult) {
+        padding: 25px;
+    }
+}
+
 @media screen and (max-width: 1178px) {
     .Home {
         .Home__head-group {

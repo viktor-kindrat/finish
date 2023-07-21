@@ -13,3 +13,12 @@
 .BookingMenu > div {
   width: 33%;
 }
+
+@media screen and (max-width: 919px) {
+  .BookingMenu {
+    flex-direction: column;
+  }
+  .BookingMenu > div {
+    width: 100%;
+  }
+}
