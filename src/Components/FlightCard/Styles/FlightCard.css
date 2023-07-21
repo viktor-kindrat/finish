@@ -256,6 +256,8 @@
     font-style: normal;
     font-weight: 700;
     line-height: 200%;
+    pointer-events: none;
+    user-select: none;
   }
   .FlightCard .FlightCard__book-btn img {
     display: none;

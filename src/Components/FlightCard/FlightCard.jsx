@@ -25,8 +25,10 @@ function FlightCard({ id }) {
         timeline.set(".BookingMenu", { display: "none" })
         timeline.to(".FlightCard__opened", { y: -100, opacity: 0 })
         timeline.set(".FlightCard__opened", { display: "none" })
-        timeline.set(`.FlightCard__opened[data-id="${id}"]`, { display: "flex" })
-        timeline.to(`.FlightCard__opened[data-id="${id}"]`, { y: 0, opacity: 1, duration: 0.3 })
+        if (window.innerWidth >= 919) {
+            timeline.set(`.FlightCard__opened[data-id="${id}"]`, { display: "flex" })
+            timeline.to(`.FlightCard__opened[data-id="${id}"]`, { y: 0, opacity: 1, duration: 0.3 })    
+        }
         timeline.set(`.BookingMenu[data-id="${id}"]`, { display: "flex" })
         timeline.to(`.BookingMenu[data-id="${id}"]`, { y: 0, opacity: 1, duration: 0.3 })
     }
