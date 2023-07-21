@@ -1,3 +1,85 @@
+.FlightCard__opened {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+  background: #FBFBFB;
+  border: 1px solid #AEAEAE;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 30px 60px;
+  margin-top: -26px;
+  z-index: 4;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  -ms-border-radius: 0 0 6px 6px;
+  -o-border-radius: 0 0 6px 6px;
+}
+.FlightCard__opened .FlightCard__group {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.FlightCard__opened .FlightCard__group:nth-child(2n)::after {
+  display: none;
+}
+.FlightCard__opened .FlightCard__group:nth-child(2n)::before {
+  display: none;
+}
+.FlightCard__opened .FlightCard__group::after {
+  content: "";
+  height: 80px;
+  width: 1px;
+  border-radius: 2px;
+  background: #D9D9D9;
+  position: absolute;
+  right: -25px;
+}
+.FlightCard__opened .FlightCard__group::before {
+  content: "";
+  height: 80px;
+  width: 1px;
+  border-radius: 2px;
+  background: #D9D9D9;
+  position: absolute;
+  left: -25px;
+}
+.FlightCard__opened .FlightCard__group .FlightCard__text {
+  color: #000;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+.FlightCard__opened .FlightCard__group .FlightCard__text_bold {
+  color: #353535;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+.FlightCard__opened .FlightCard__group .FlightCard__text_bigBold {
+  color: #353535;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+.FlightCard__opened .FlightCard__group .FlightCard__text_mediumBold {
+  color: #353535;
+  text-align: center;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  /* 77.778% */
+}
+
 .FlightCard {
   width: 100%;
   display: flex;
@@ -105,6 +187,9 @@
 }
 
 @media screen and (max-width: 1104px) {
+  .FlightCard__opened {
+    display: none;
+  }
   .FlightCard {
     width: 100%;
     flex-direction: column;
