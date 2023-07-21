@@ -23,8 +23,8 @@ function ContactsField () {
             </div>
             <div className="ContactsField__checkbox-group">
                 <div className="ContactsField__checkbox-box-group">
-                    <label htmlFor="ContactField-create-account" className="ContactField__custom-checkbox"><img src={checkIcon} alt="check" /></label>
                     <input className="ContactField__origin-checkbox" type="checkbox" id="ContactField-create-account" />
+                    <label htmlFor="ContactField-create-account" className="ContactField__custom-checkbox"><img src={checkIcon} alt="check" /></label>
                 </div>
                 <div className="ContactsField__checkbox-label">Зарееструвати аккаунт </div>
             </div>

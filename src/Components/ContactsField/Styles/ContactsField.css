@@ -70,3 +70,67 @@
   -ms-transform: translate(0, -50%);
   -o-transform: translate(0, -50%);
 }
+.ContactsField .ContactsField__checkbox-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.ContactsField .ContactsField__checkbox-group .ContactsField__checkbox-box-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ContactsField .ContactsField__checkbox-group .ContactsField__checkbox-box-group .ContactField__origin-checkbox {
+  display: none;
+}
+.ContactsField .ContactsField__checkbox-group .ContactsField__checkbox-box-group .ContactField__origin-checkbox:checked + .ContactField__custom-checkbox {
+  background: #ffcb46;
+  border-color: transparent;
+  outline: 3px solid rgba(255, 203, 70, 0.3137254902);
+}
+.ContactsField .ContactsField__checkbox-group .ContactsField__checkbox-box-group .ContactField__custom-checkbox {
+  height: 20px;
+  aspect-ratio: 1/1;
+  border-radius: 4px;
+  border: 1px solid #8B8B8B;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border 0.3s, outline 0.3s, background 0.3s;
+  -webkit-transition: border 0.3s, outline 0.3s, background 0.3s;
+  -moz-transition: border 0.3s, outline 0.3s, background 0.3s;
+  -ms-transition: border 0.3s, outline 0.3s, background 0.3s;
+  -o-transition: border 0.3s, outline 0.3s, background 0.3s;
+}
+.ContactsField .ContactsField__checkbox-group .ContactsField__checkbox-box-group .ContactField__custom-checkbox img {
+  height: 80%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+.ContactsField .ContactsField__checkbox-group .ContactsField__checkbox-label {
+  color: #646464;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  /* 240% */
+}
+.ContactsField .ContactsField__btn {
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid #FFCB46;
+  background: #FFCB46;
+  color: #353535;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  cursor: pointer;
+}
