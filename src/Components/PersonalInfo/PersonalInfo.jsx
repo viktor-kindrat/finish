@@ -31,32 +31,34 @@ function PersonalInfo() {
     return (
         <div className="PersonalInfo">
             <h2 className="PersonalInfo__headline">Персональні дані</h2>
-            <div className="PersonalInfo__raw">
-                <div className="PersonalInfo__input-group">
-                    <p className="PersonalInfo__input-label">Прізвище</p>
-                    <input defaultValue={"Шевченко"} type="text" className="PersonalInfo__input" />
+            <div className="PersonalInfo__fields">
+                <div className="PersonalInfo__raw">
+                    <div className="PersonalInfo__input-group">
+                        <p className="PersonalInfo__input-label">Прізвище</p>
+                        <input defaultValue={"Шевченко"} type="text" className="PersonalInfo__input" />
+                    </div>
+                    <div className="PersonalInfo__input-group">
+                        <p className="PersonalInfo__input-label">Ім’я</p>
+                        <input defaultValue={"Андрій"} type="text" className="PersonalInfo__input" />
+                    </div>
+                    <div className="PersonalInfo__input-group">
+                        <p className="PersonalInfo__input-label">E-Mail</p>
+                        <input defaultValue={"mail@gmail.com"} type="text" className="PersonalInfo__input" />
+                    </div>
                 </div>
-                <div className="PersonalInfo__input-group">
-                    <p className="PersonalInfo__input-label">Ім’я</p>
-                    <input defaultValue={"Андрій"} type="text" className="PersonalInfo__input" />
-                </div>
-                <div className="PersonalInfo__input-group">
-                    <p className="PersonalInfo__input-label">E-Mail</p>
-                    <input defaultValue={"mail@gmail.com"} type="text" className="PersonalInfo__input" />
-                </div>
-            </div>
-            <div className="PersonalInfo__raw">
-                <div className="PersonalInfo__input-group">
-                    <p className="PersonalInfo__input-label"> Номер телефону</p>
-                    <input onChange={handlePhoneChange} value={phone} type="text" className="PersonalInfo__input" />
-                </div>
-                <div className="PersonalInfo__input-group">
-                    <p className="PersonalInfo__input-label">Пароль</p>
-                    <input type="password" className="PersonalInfo__input" />
-                </div>
-                <div className="PersonalInfo__input-group">
-                    <p className="PersonalInfo__input-label">Повторити пароль</p>
-                    <input type="password" className="PersonalInfo__input" />
+                <div className="PersonalInfo__raw">
+                    <div className="PersonalInfo__input-group">
+                        <p className="PersonalInfo__input-label"> Номер телефону</p>
+                        <input onChange={handlePhoneChange} value={phone} type="text" className="PersonalInfo__input" />
+                    </div>
+                    <div className="PersonalInfo__input-group">
+                        <p className="PersonalInfo__input-label">Пароль</p>
+                        <input type="password" className="PersonalInfo__input" />
+                    </div>
+                    <div className="PersonalInfo__input-group">
+                        <p className="PersonalInfo__input-label">Повторити пароль</p>
+                        <input type="password" className="PersonalInfo__input" />
+                    </div>
                 </div>
             </div>
             <button className="PersonalInfo__btn">Зберегти</button>

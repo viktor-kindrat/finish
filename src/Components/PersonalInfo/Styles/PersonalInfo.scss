@@ -1,4 +1,5 @@
 .PersonalInfo {
+    min-width: min(919px, 100%);
     width: auto;
     display: flex;
     gap: 20px;
@@ -19,42 +20,51 @@
         line-height: normal;
     }
 
-    .PersonalInfo__raw {
+    .PersonalInfo__fields {
+        width: 100%;
         display: flex;
+        gap: 20px;
+        flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        column-gap: 30px;
-
-        .PersonalInfo__input-group {
+        .PersonalInfo__raw {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
             align-items: flex-start;
             justify-content: flex-start;
-
-            .PersonalInfo__input-label {
-                color: #646464;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 16px;
-            }
-
-            .PersonalInfo__input {
-                height: 40px;
-                padding: 10px 15px;
-                border-radius: 10px;
-                border: 1px solid #D9D9D9;
-                background: #FFFFFF;
-                outline: none;
-                color: #353535;
-                font-size: 18px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: normal;
+            column-gap: 30px;
+    
+            .PersonalInfo__input-group {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+                justify-content: flex-start;
+    
+                .PersonalInfo__input-label {
+                    color: #646464;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 16px;
+                }
+    
+                .PersonalInfo__input {
+                    height: 40px;
+                    padding: 10px 15px;
+                    border-radius: 10px;
+                    border: 1px solid #D9D9D9;
+                    background: #FFFFFF;
+                    outline: none;
+                    color: #353535;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                }
             }
         }
     }
+
 
     .PersonalInfo__btn {
         width: 200px;
@@ -74,5 +84,24 @@
         line-height: 36px;
         text-transform: uppercase;
         margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 1370px) {
+    .PersonalInfo {
+        min-width: auto;
+
+        .PersonalInfo__fields {
+            flex-direction: row;
+
+            .PersonalInfo__raw {
+                flex-direction: column;
+                row-gap: 10px;
+
+                .PersonalInfo__input {
+                    width: 250px;
+                }
+            }
+        }
     }
 }
