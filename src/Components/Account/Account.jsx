@@ -1,6 +1,6 @@
 import "./Styles/Account.css"
 
-import { Link, Routes, Route, useLocation } from "react-router-dom"
+import { Link, Routes, Route, useLocation, useNavigate } from "react-router-dom"
 
 import profileIcon from "./SVG/profile.svg"
 import ticketIcon from "./SVG/tickets.svg"
@@ -9,10 +9,17 @@ import ticketActiveIcon from "./SVG/tickets-active.svg"
 
 import PersonalInfo from "../PersonalInfo/PersonalInfo"
 import Tickets from "../Tickets/Tickets"
+import { useEffect } from "react"
 
 function Account() {
-    let location = useLocation()
-    console.log(location)
+    let location = useLocation();
+    let navigate = useNavigate();
+
+    useEffect(()=>{
+        if ((localStorage.getItem("logined") || "") !== "true") {
+            navigate("/authorization")
+        }
+    }, [navigate])
     return (
         <section className="Account">
             <div className="Account__menu">

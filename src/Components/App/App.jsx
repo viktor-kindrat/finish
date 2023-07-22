@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import PhoneMenu from '../PhoneMenu/PhoneMenu';
 import Account from '../Account/Account';
+import Authorization from '../Authorization/Authorization';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from "react"
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/*' element={<Home {...{change, triggerChange}} />} />
           <Route path='account/*' element={<Account />} />
+          <Route path='authorization/*' element={<Authorization />} />
         </Routes>
         <PhoneMenu />
         <Footer />
