@@ -1,11 +1,15 @@
 import "./Styles/Account.css"
 
-import { Link, Routes, Route } from "react-router-dom"
+import { Link, Routes, Route, useLocation } from "react-router-dom"
 
 import profileIcon from "./SVG/profile.svg"
 import ticketIcon from "./SVG/tickets.svg"
+import profileActiveIcon from "./SVG/profile-active.svg"
+import ticketActiveIcon from "./SVG/tickets-active.svg"
 
-function Account () {
+function Account() {
+    let location = useLocation()
+    console.log(location)
     return (
         <section className="Account">
             <div className="Account__menu">
@@ -14,13 +18,13 @@ function Account () {
                 </div>
                 <nav className="Account__menu-nav">
                     <Link to="/account">
-                        <button className="Account__menu-btn Account__menu-btn_selected">
-                            <img height={30} src={profileIcon} alt="Профіль" /> Профіль
+                        <button className={`Account__menu-btn ${location.pathname === "/account" ? "Account__menu-btn_selected" : ""}`}>
+                            <img height={30} src={location.pathname === "/account" ? profileActiveIcon : profileIcon} alt="Профіль" /> Профіль
                         </button>
                     </Link>
                     <Link to="/account/tickets">
-                        <button className="Account__menu-btn">
-                            <img height={30} src={ticketIcon} alt="Мої білети" /> Мої білети
+                        <button className={`Account__menu-btn ${location.pathname === "/account/tickets" ? "Account__menu-btn_selected" : ""}`}>
+                            <img height={30} src={location.pathname === "/account/tickets" ? ticketActiveIcon : ticketIcon} alt="Мої білети" /> Мої білети
                         </button>
                     </Link>
                 </nav>
