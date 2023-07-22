@@ -8,6 +8,7 @@ import profileActiveIcon from "./SVG/profile-active.svg"
 import ticketActiveIcon from "./SVG/tickets-active.svg"
 
 import PersonalInfo from "../PersonalInfo/PersonalInfo"
+import Tickets from "../Tickets/Tickets"
 
 function Account() {
     let location = useLocation()
@@ -33,7 +34,7 @@ function Account() {
             </div>
             <Routes>
                 <Route path="/" element={<PersonalInfo />} />
-                <Route path="/tickets" element={<div>tickets</div>} />
+                <Route path="/tickets" element={<Tickets />} />
             </Routes>
         </section>
     )
