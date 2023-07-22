@@ -111,9 +111,13 @@
         width: 100%;
         min-width: auto;
         align-items: center;
+        padding: 20px;
+        gap: 20px;
 
         .PersonalInfo__headline {
             text-align: center;
+            font-size: 24px;
+            margin-bottom: 0;
         }
 
         .PersonalInfo__fields {
@@ -133,6 +137,12 @@
                 }
 
             }
+        }
+        .PersonalInfo__btn {
+            height: 35px;
+            margin-top: 5px;
+            font-size: 16px;
+            font-weight: 600;
         }
     }
 }
