@@ -7,6 +7,8 @@ import ticketIcon from "./SVG/tickets.svg"
 import profileActiveIcon from "./SVG/profile-active.svg"
 import ticketActiveIcon from "./SVG/tickets-active.svg"
 
+import PersonalInfo from "../PersonalInfo/PersonalInfo"
+
 function Account() {
     let location = useLocation()
     console.log(location)
@@ -30,7 +32,7 @@ function Account() {
                 </nav>
             </div>
             <Routes>
-                <Route path="/" element={<div>account</div>} />
+                <Route path="/" element={<PersonalInfo />} />
                 <Route path="/tickets" element={<div>tickets</div>} />
             </Routes>
         </section>
