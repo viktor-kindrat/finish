@@ -1,0 +1,11 @@
+.Account {
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 70px;
+}
+
+@media screen and (max-width: 919px) {
+  .Account {
+    margin-top: 50px;
+  }
+}

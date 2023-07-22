@@ -4,6 +4,7 @@ import Home from "../Home/Home"
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import PhoneMenu from '../PhoneMenu/PhoneMenu';
+import Account from '../Account/Account';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from "react"
@@ -16,6 +17,7 @@ function App() {
         <Header />
         <Routes>
           <Route path='/*' element={<Home {...{change, triggerChange}} />} />
+          <Route path='account/*' element={<Account />} />
         </Routes>
         <PhoneMenu />
         <Footer />
