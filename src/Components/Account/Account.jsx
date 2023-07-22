@@ -12,16 +12,18 @@ function Account () {
                 <div className="Account__menu-head">
                     <h2 className="Account__menu-headline">Андрій <br /> Шевченко</h2>
                 </div>
-                <Link to="/account">
-                    <button className="Account__menu-btn">
-                        <img src={profileIcon} alt="Профіль" /> Профіль
-                    </button>
-                </Link>
-                <Link to="/account/tickets">
-                    <button className="Account__menu-btn">
-                        <img src={ticketIcon} alt="Мої білети" /> Мої білети
-                    </button>
-                </Link>
+                <nav className="Account__menu-nav">
+                    <Link to="/account">
+                        <button className="Account__menu-btn Account__menu-btn_selected">
+                            <img height={30} src={profileIcon} alt="Профіль" /> Профіль
+                        </button>
+                    </Link>
+                    <Link to="/account/tickets">
+                        <button className="Account__menu-btn">
+                            <img height={30} src={ticketIcon} alt="Мої білети" /> Мої білети
+                        </button>
+                    </Link>
+                </nav>
             </div>
             <Routes>
                 <Route path="/" element={<div>account</div>} />
