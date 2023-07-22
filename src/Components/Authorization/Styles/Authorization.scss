@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 100vh;
     margin-top: 70px;
-    padding: 50px;
+    padding: 80px 50px 50px 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,6 +158,6 @@
 @media screen and (max-width: 919px) {
     .Authorization {
         margin-top: 50px;
-        padding: 15px 20px;
+        padding: 60px 20px 15px 20px;
     }
 }

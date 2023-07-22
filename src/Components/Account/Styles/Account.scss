@@ -106,9 +106,32 @@
 @media screen and (max-width: 919px) {
     .Account {
         margin-top: 50px;
+        padding: 20px;
+        min-height: auto;
+        background: #FFFFFF;
+        flex-direction: column;
 
         .Account__menu {
-            display: none;
+            width: 100%;
+            background: transparent;
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 20px;
+
+            .Account__menu-head {
+                .Account__menu-headline {
+                    color: #353535;
+                    text-align: center;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 150%;
+                }
+            }
+
+            .Account__menu-nav {
+                display: none;
+            }
         }
     }
 }

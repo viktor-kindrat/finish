@@ -9,11 +9,11 @@
 
     &_active {
         border: 1px solid #FFCB46;
-        
+
         .Ticket__action {
             background: rgba(255, 10, 10, 0.75);
             border: none;
-            color: #FFF;    
+            color: #FFF;
             cursor: pointer;
         }
     }
@@ -30,6 +30,7 @@
 
     &_canceled {
         border: 1px solid #FF0A0A;
+
         .Ticket__action {
             border: 1px solid #FF0A0A;
             background: rgba(255, 255, 255, 0.75);
@@ -121,5 +122,55 @@
         font-style: normal;
         font-weight: 700;
         line-height: 100%;
+    }
+}
+
+@media screen and (max-width: 919px) {
+    .Ticket {
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px 15px;
+
+        .Ticket__locations {
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+
+            .Ticket__group {
+                width: 100%;
+                align-items: flex-start;
+            }
+
+            .Ticket__sign {
+                transform: rotate(90deg);
+                -webkit-transform: rotate(90deg);
+                -moz-transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                -o-transform: rotate(90deg);
+            }
+        }
+
+        .Ticket__group {
+            align-items: center;
+
+            .Ticket__info {
+                &_bold {}
+
+                &_bigBold {
+                    font-size: 36px;
+                }
+
+                &_sup {
+                    top: -28px;
+                }
+
+                &_small {}
+            }
+
+            .Ticket__sign {}
+        }
+
+        .Ticket__action {}
     }
 }

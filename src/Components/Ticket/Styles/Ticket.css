@@ -109,3 +109,37 @@
   font-weight: 700;
   line-height: 100%;
 }
+
+@media screen and (max-width: 919px) {
+  .Ticket {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 15px;
+  }
+  .Ticket .Ticket__locations {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .Ticket .Ticket__locations .Ticket__group {
+    width: 100%;
+    align-items: flex-start;
+  }
+  .Ticket .Ticket__locations .Ticket__sign {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+  }
+  .Ticket .Ticket__group {
+    align-items: center;
+  }
+  .Ticket .Ticket__group .Ticket__info_bigBold {
+    font-size: 36px;
+  }
+  .Ticket .Ticket__group .Ticket__info_sup {
+    top: -28px;
+  }
+}

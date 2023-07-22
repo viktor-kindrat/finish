@@ -105,3 +105,34 @@
         }
     }
 }
+
+@media screen and (max-width: 919px) {
+    .PersonalInfo {
+        width: 100%;
+        min-width: auto;
+        align-items: center;
+
+        .PersonalInfo__headline {
+            text-align: center;
+        }
+
+        .PersonalInfo__fields {
+            width: 100%;
+            flex-direction: column;
+
+            .PersonalInfo__raw {
+                width: 100%;
+                flex-direction: column;
+                row-gap: 10px;
+
+                .PersonalInfo__input-group {
+                    width: 100%;
+                    .PersonalInfo__input {
+                        width: 100%;
+                    }
+                }
+
+            }
+        }
+    }
+}
