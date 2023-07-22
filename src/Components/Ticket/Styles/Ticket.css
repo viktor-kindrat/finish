@@ -3,13 +3,109 @@
   padding: 15px;
   border-radius: 6px;
   background: #FBFBFB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .Ticket_active {
   border: 1px solid #FFCB46;
 }
+.Ticket_active .Ticket__action {
+  background: rgba(255, 10, 10, 0.75);
+  border: none;
+  color: #FFF;
+}
 .Ticket_done {
   border: 1px solid #27C100;
 }
+.Ticket_done .Ticket__action {
+  border: 1px solid #27C100;
+  background: rgba(255, 255, 255, 0.75);
+  color: #27C100;
+}
 .Ticket_canceled {
   border: 1px solid #FF0A0A;
+}
+.Ticket_canceled .Ticket__action {
+  border: 1px solid #FF0A0A;
+  background: rgba(255, 255, 255, 0.75);
+  color: #FF0A0A;
+}
+.Ticket .Ticket__locations {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.Ticket .Ticket__group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+}
+.Ticket .Ticket__group .Ticket__info {
+  color: #353535;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 133%;
+}
+.Ticket .Ticket__group .Ticket__info_bold {
+  color: #000;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+.Ticket .Ticket__group .Ticket__info_bigBold {
+  color: #353535;
+  text-align: right;
+  font-family: Arial;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+.Ticket .Ticket__group .Ticket__info_sup {
+  color: #353535;
+  text-align: right;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  position: relative;
+  top: -14px;
+}
+.Ticket .Ticket__group .Ticket__info_small {
+  color: #000;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+.Ticket .Ticket__group .Ticket__sign {
+  color: #000;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  /* 50% */
+}
+.Ticket .Ticket__action {
+  height: 40px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  cursor: pointer;
 }

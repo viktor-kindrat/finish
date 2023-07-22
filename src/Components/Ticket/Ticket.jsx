@@ -29,8 +29,8 @@ function Ticket({ arrivalDate, canceled }) {
                 </div>
             </div>
             <div className="Ticket__group">
-                <div className="Ticket__info_bigBold">10 048 <sup className="Ticket__info_sup">,00</sup></div>
-                <div className="Ticket__info"> Дорослий: 1, Дитячий: 1</div>
+                <div className="Ticket__info_bigBold">10 048<sup className="Ticket__info_sup">,00</sup> грн</div>
+                <div className="Ticket__info Ticket__info_small"> Дорослий: 1, Дитячий: 1</div>
             </div>
             <button disabled={status !== "active"} className="Ticket__action">{status === "canceled" ? "Скасовано" : status === "done" ? "Виконано" : status === "active" ? "Скасувати" : "Помилка"}</button>
         </article>
