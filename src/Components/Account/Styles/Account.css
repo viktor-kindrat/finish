@@ -98,4 +98,7 @@
   .Account {
     margin-top: 50px;
   }
+  .Account .Account__menu {
+    display: none;
+  }
 }

@@ -106,5 +106,9 @@
 @media screen and (max-width: 919px) {
     .Account {
         margin-top: 50px;
+
+        .Account__menu {
+            display: none;
+        }
     }
 }

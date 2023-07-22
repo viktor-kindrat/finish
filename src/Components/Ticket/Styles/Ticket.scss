@@ -1,0 +1,18 @@
+.Ticket {
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    background: #FBFBFB;
+
+    &_active {
+        border: 1px solid #FFCB46;
+    }
+
+    &_done {
+        border: 1px solid #27C100;
+    }
+
+    &_canceled {
+        border: 1px solid #FF0A0A;
+    }
+}
