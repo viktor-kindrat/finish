@@ -187,3 +187,7 @@ template {
   color: #141414;
   font-family: "Arial", serif;
 }
+
+body {
+  overflow-x: hidden;
+}

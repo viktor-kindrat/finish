@@ -74,6 +74,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         background: rgba(255, 255, 255, 0.80);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         padding: 8px 15px;
+        z-index: 6;
 
         &_full {
             width: 100%;
@@ -447,11 +448,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         }
 
         .Home__booking {
-            width: 100%;
+            width: calc(100% + 50px);
             border: none;
             box-shadow: none;
             background: transparent;
             align-items: flex-start;
+            background: #ffffff;
+            margin-top: -25px;
+            position: relative;
+            left: -25px;
 
             .Home__booking-place {
                 width: 100%;
