@@ -13,7 +13,7 @@ function App() {
   let [change, triggerChange] = useState(false)
   return (
     <Router>
-      <div className="App" style={{ backgroundColor: window.location.href.includes("/home") ? "#FFFFFF" : "#ECECEC" }}>
+      <div className="App" style={{ backgroundColor: window.location.pathname === "/" ? "#FFFFFF" : "#ECECEC" }}>
         <Header />
         <Routes>
           <Route path='/*' element={<Home {...{change, triggerChange}} />} />

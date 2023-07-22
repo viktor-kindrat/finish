@@ -423,10 +423,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         }
 
         .Home__bgImage {
-            height: min(750px, calc(100vh - 50px));
-            position: static;
-            width: 100%;
+            width: calc(100% + 100px);
             height: 200px;
+            position: relative;
+            top: -25px;
+            left: -25px;
         }
 
         .Home__head-group {
