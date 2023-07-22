@@ -47,8 +47,7 @@
                 list-style: none;
 
                 .Header__nav-list-item {
-                    font-size: 16px;
-                    line-height: 100%;
+
                     cursor: pointer;
                     user-select: none;
                     text-align: center;
@@ -56,9 +55,22 @@
                     align-items: center;
                     justify-content: center;
 
+                    a {
+                        color: #000000;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 100%; 
+                    }
+
                     &_selected {
                         font-weight: 700;
                         color: #FFCB46;
+
+                        a {
+                            font-weight: 700;
+                            color: #FFCB46;
+                        }
                     }
                 }
             }
@@ -257,6 +269,7 @@
         -moz-transition: background 0.3s, box-shadow 0.3s;
         -ms-transition: background 0.3s, box-shadow 0.3s;
         -o-transition: background 0.3s, box-shadow 0.3s;
+
         &:has(.Header__nav-open-btn_close) {
             background: #ffffff;
             box-shadow: 0 5px 15px #14141450;

@@ -39,6 +39,12 @@
     line-height: normal;
     text-align: center;
   }
+  .PhoneMenu .PhoneMenu-btn_selected {
+    font-weight: 600;
+  }
+  .PhoneMenu .PhoneMenu-btn_selected .PhoneMenu-text {
+    font-weight: 600;
+  }
   .PhoneMenu a {
     text-decoration: none;
   }

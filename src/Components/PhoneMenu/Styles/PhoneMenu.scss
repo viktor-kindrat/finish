@@ -26,6 +26,7 @@
             align-items: center;
             gap: 4px;
 
+            
             .PhoneMenu-icon {
                 height: 25px;
                 width: auto;
@@ -39,6 +40,13 @@
                 font-weight: 400;
                 line-height: normal;
                 text-align: center;
+            }
+
+            &_selected {
+                font-weight: 600;
+                .PhoneMenu-text {
+                    font-weight: 600;
+                }
             }
         }
 

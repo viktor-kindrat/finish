@@ -14,6 +14,7 @@
   background: rgba(255, 10, 10, 0.75);
   border: none;
   color: #FFF;
+  cursor: pointer;
 }
 .Ticket_done {
   border: 1px solid #27C100;
@@ -107,5 +108,4 @@
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
-  cursor: pointer;
 }

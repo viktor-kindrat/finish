@@ -2,23 +2,25 @@ import viberIcon from "./Images/viber.webp"
 import whatsappIcon from "./Images/whatsapp.webp"
 import phoneIcon from "./SVG/phone.svg"
 
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 function HeaderNavDesktop() {
+    let location = useLocation();
+    console.log(location.pathname.includes("/account"))
     return (
         <div className="Header__nav-wrap">
             <nav className="Header__nav">
                 <ul className="Header__nav-list">
-                    <li className="Header__nav-list-item Header__nav-list-item_selected">
+                    <li className={`Header__nav-list-item ${location.pathname === "/" ? "Header__nav-list-item_selected" : ""}`}>
                         <Link to={"/"}>Головна</Link>
                     </li>
-                    <li className="Header__nav-list-item">
+                    <li className={`Header__nav-list-item ${location.pathname === "/search" ? "Header__nav-list-item_selected" : ""}`}>
                         <Link to={"/search"}>Пошук</Link>
                     </li>
-                    <li className="Header__nav-list-item">
+                    <li className={`Header__nav-list-item ${location.pathname === "/instructions" ? "Header__nav-list-item_selected" : ""}`}>
                         <Link to={"/instructions"}>Як забронювати?</Link>
                     </li>
-                    <li className="Header__nav-list-item">
+                    <li className={`Header__nav-list-item ${location.pathname.includes("/account") ? "Header__nav-list-item_selected" : ""}`}>
                         <Link to={"/account"}>Мій акаунт</Link>
                     </li>
                 </ul>

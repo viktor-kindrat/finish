@@ -45,8 +45,6 @@
   list-style: none;
 }
 .Header .Header__nav-wrap .Header__nav .Header__nav-list .Header__nav-list-item {
-  font-size: 16px;
-  line-height: 100%;
   cursor: pointer;
   user-select: none;
   text-align: center;
@@ -54,7 +52,18 @@
   align-items: center;
   justify-content: center;
 }
+.Header .Header__nav-wrap .Header__nav .Header__nav-list .Header__nav-list-item a {
+  color: #000000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+}
 .Header .Header__nav-wrap .Header__nav .Header__nav-list .Header__nav-list-item_selected {
+  font-weight: 700;
+  color: #FFCB46;
+}
+.Header .Header__nav-wrap .Header__nav .Header__nav-list .Header__nav-list-item_selected a {
   font-weight: 700;
   color: #FFCB46;
 }
