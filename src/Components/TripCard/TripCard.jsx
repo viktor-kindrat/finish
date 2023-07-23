@@ -1,6 +1,6 @@
 import "./Styles/TripCard.css"
 
-function TripCard({ editOpened, setEditOpened, viewOpened, setViewOpened }) {
+function TripCard({ editorOpened, setEditorOpened, viewOpened, setViewOpened }) {
     return (
         <article className="TripCard">
             <div className="TripCard__locations">

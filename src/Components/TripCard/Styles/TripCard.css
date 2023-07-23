@@ -95,6 +95,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn_red {
   background: rgba(255, 10, 10, 0.75);
