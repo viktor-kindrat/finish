@@ -1,0 +1,107 @@
+.TripCard {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 6px;
+  border: 1px solid #AEAEAE;
+  background: #FBFBFB;
+  padding: 10px;
+}
+.TripCard .TripCard__locations {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.TripCard .TripCard__locations .TripCard__group {
+  max-width: 270px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.TripCard .TripCard__locations .TripCard__group .TripCard__info {
+  color: #353535;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+.TripCard .TripCard__locations .TripCard__group .TripCard__info_bold {
+  color: #000;
+  font-weight: 700;
+}
+.TripCard .TripCard__locations .TripCard__group .TripCard__sign {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+}
+.TripCard .TripCard__controll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.TripCard .TripCard__controll .TripCard__headline {
+  color: #353535;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.TripCard .TripCard__controll .TripCard__places-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.TripCard .TripCard__controll .TripCard__places-info_red {
+  color: #DE6107;
+}
+.TripCard .TripCard__controll .TripCard__places-info_green {
+  color: #19760A;
+}
+.TripCard .TripCard__controll .TripCard__controll-btn-place {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn {
+  height: 40px;
+  padding: 13px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn_red {
+  background: rgba(255, 10, 10, 0.75);
+}
+.TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn_orange {
+  background: #FFCB46;
+}
+.TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn_green {
+  background: rgba(48, 184, 0, 0.59);
+}
