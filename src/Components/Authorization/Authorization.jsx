@@ -1,18 +1,25 @@
 import "./Styles/Authorization.css"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 import { useNavigate } from "react-router-dom"
 
 function Authorization() {
     let [state, setState] = useState("login");
     let navigate = useNavigate();
+    let input = useRef(null)
 
-    let actionHandler = (e)=>{
-        if (state === "login" || state === "signup") {
+    let actionHandler = (e) => {
+        if (input.current.value === "admin") {
+            localStorage.setItem("isAdmin", "true")
             localStorage.setItem("logined", "true")
             navigate("/account")
         } else {
-            navigate("/")
+            if (state === "login" || state === "signup") {
+                localStorage.setItem("logined", "true")
+                navigate("/account")
+            } else {
+                navigate("/")
+            }
         }
     }
     return (
@@ -39,7 +46,7 @@ function Authorization() {
                 }
                 <div className="Authorization__input-wrap">
                     <div className="Authorization__input-label">E-Mail</div>
-                    <input type="text" className="Authorization__input" />
+                    <input ref={input} type="text" className="Authorization__input" />
                 </div>
                 {
                     state !== "recover" ? <div className="Authorization__input-wrap">
@@ -55,7 +62,7 @@ function Authorization() {
                         </div>
                     </> : ""
                 }
-                <button onClick={actionHandler} className="Authorization__action">{state === "login" ? "Вхід" : state=== "signUp" ? "Зареєструватися" : "Відправити"}</button>
+                <button onClick={actionHandler} className="Authorization__action">{state === "login" ? "Вхід" : state === "signUp" ? "Зареєструватися" : "Відправити"}</button>
                 <div onClick={(e) => setState("recover")} className="Authorization__recover">Забули пароль?</div>
             </div>
         </section>
