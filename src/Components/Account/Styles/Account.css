@@ -6,7 +6,7 @@
   display: flex;
   gap: 30px;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .Account a {
   text-decoration: none;

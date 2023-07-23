@@ -6,10 +6,10 @@ import TripEditorCard from "./TripEditorCard"
 
 import { useState } from "react"
 function TripEditor({ editOpened, setEditOpened }) {
-    let [states, setStates] = useState([]);
+    let [states, setStates] = useState([{country: "", city: "", location: "", arrivalDate: "", adultPrice: "", childPrice: ""}]);
 
     let handlePushNewState = (e) => {
-        setStates([...states, {}])
+        setStates([...states, {country: "", city: "", location: "", arrivalDate: "", adultPrice: "", childPrice: ""}])
     }
     return (
         <div className="TripEditor">
@@ -31,15 +31,15 @@ function TripEditor({ editOpened, setEditOpened }) {
                 </div>
             </div>
             <div className="TripEditor__wrap">
-                <TripEditorCard finish={false} id={0} />
+                <TripEditorCard {...{...states[0]}} {...{states, setStates}} finish={false} id={1} />
                 <div className="TripEditor__container">
                     {
                         states.map((el, id) =>
-                            <TripEditorCard key={id} id={id + 1} />
+                            id === 0 ? "" : <TripEditorCard {...{...el}} {...{states, setStates}} finish={false} key={id} id={id + 1} />
                         )
                     }
                 </div>
-                <button onClick={handlePushNewState} className="TripEditor__add-btn"> Додати зупинку <img src={addIcon} alt="" /></button>
+                <button onClick={handlePushNewState} className="TripEditor__add-btn"> Додати зупинку <img height={12} src={addIcon} alt="" /></button>
                 <TripEditorCard finish={true} />
             </div>
             <button className="TripEditor__save-btn">Зберегти</button>

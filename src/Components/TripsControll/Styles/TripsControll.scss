@@ -8,6 +8,10 @@
     flex-direction: column;
     gap: 15px;
 
+    &:has(.TripEditor) {
+        min-width: auto;
+    }
+
     .TripsControll__head {
         width: 100%;
         display: flex;
