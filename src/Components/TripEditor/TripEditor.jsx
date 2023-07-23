@@ -34,14 +34,15 @@ function TripEditor({ editOpened, setEditOpened }) {
                 <TripEditorCard finish={false} id={0} />
                 <div className="TripEditor__container">
                     {
-                        states.map((el, id)=>
-                        <TripEditorCard key={id} id={id + 1} />    
+                        states.map((el, id) =>
+                            <TripEditorCard key={id} id={id + 1} />
                         )
                     }
                 </div>
                 <button onClick={handlePushNewState} className="TripEditor__add-btn"> Додати зупинку <img src={addIcon} alt="" /></button>
                 <TripEditorCard finish={true} />
             </div>
+            <button className="TripEditor__save-btn">Зберегти</button>
         </div>
     )
 }
