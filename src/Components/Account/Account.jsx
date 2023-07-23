@@ -53,7 +53,7 @@ function Account() {
                         </Routes>
                     </section>
                     :
-                    <section className="Account">
+                    <section className="Account Account_admin">
                         <div className="Account__menu">
                             <div className="Account__menu-head">
                                 <h2 className="Account__menu-headline">Admin</h2>

@@ -93,6 +93,9 @@
   aspect-ratio: 1/1;
   object-fit: contain;
 }
+.Account_admin .Account__menu .Account__menu-nav {
+  align-items: center;
+}
 
 @media screen and (max-width: 919px) {
   .Account {
