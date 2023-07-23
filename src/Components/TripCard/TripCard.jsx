@@ -20,8 +20,8 @@ function TripCard({ editorOpened, setEditorOpened, viewOpened, setViewOpened }) 
                 <h3 className="TripCard__headline">Україна - Італія</h3>
                 <div className="TripCard__places-info"><span className="TripCard__places-info_green">8</span>/<span className="TripCard__places-info_red">32</span></div>
                 <div className="TripCard__controll-btn-place">
-                    <button className="TripCard__controll-btn TripCard__controll-btn_green">Подробиці</button>
-                    <button className="TripCard__controll-btn TripCard__controll-btn_orange">Редагувати</button>
+                    <button onClick={() => setViewOpened(true)} className="TripCard__controll-btn TripCard__controll-btn_green">Подробиці</button>
+                    <button onClick={() => setEditorOpened(true)} className="TripCard__controll-btn TripCard__controll-btn_orange">Редагувати</button>
                     <button className="TripCard__controll-btn TripCard__controll-btn_red">Видалити</button>
                 </div>
             </div>

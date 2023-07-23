@@ -5,7 +5,7 @@ import addIcon from "./SVG/plus.svg"
 import TripEditorCard from "./TripEditorCard"
 
 import { useState } from "react"
-function TripEditor({ editOpened, setEditOpened }) {
+function TripEditor({ editorOpened, setEditorOpened }) {
     let [states, setStates] = useState([{country: "", city: "", location: "", arrivalDate: "", adultPrice: "", childPrice: ""}]);
 
     let handlePushNewState = (e) => {
@@ -42,7 +42,7 @@ function TripEditor({ editOpened, setEditOpened }) {
                 <button onClick={handlePushNewState} className="TripEditor__add-btn"> Додати зупинку <img height={12} src={addIcon} alt="" /></button>
                 <TripEditorCard finish={true} />
             </div>
-            <button className="TripEditor__save-btn">Зберегти</button>
+            <button onClick={()=>setEditorOpened(false)} className="TripEditor__save-btn">Зберегти</button>
         </div>
     )
 }

@@ -8,7 +8,7 @@
     flex-direction: column;
     gap: 15px;
 
-    &:has(.TripEditor) {
+    &:has(.TripEditor), &:has(.ViewTrip) {
         min-width: auto;
     }
 

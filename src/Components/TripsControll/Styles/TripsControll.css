@@ -8,7 +8,7 @@
   flex-direction: column;
   gap: 15px;
 }
-.TripsControll:has(.TripEditor) {
+.TripsControll:has(.TripEditor), .TripsControll:has(.ViewTrip) {
   min-width: auto;
 }
 .TripsControll .TripsControll__head {

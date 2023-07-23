@@ -93,3 +93,10 @@
   justify-content: flex-start;
   padding: 7px 12px;
 }
+
+@media screen and (max-width: 919px) {
+  .Autobus .Autobus__container .Autobus__column .Autobus__group .Autobus__entrance {
+    width: 112px;
+    left: 43px;
+  }
+}

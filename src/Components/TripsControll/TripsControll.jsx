@@ -5,6 +5,7 @@ import { useState } from "react"
 
 import TripCard from '../TripCard/TripCard'
 import TripEditor from "../TripEditor/TripEditor"
+import ViewTrip from "../ViewTrip/ViewTrip"
 
 function TripsControll() {
     let [editorOpened, setEditorOpened] = useState(false);
@@ -23,7 +24,7 @@ function TripsControll() {
                         <TripCard {...{ editorOpened, setEditorOpened, viewOpened, setViewOpened }} />
                         <TripCard {...{ editorOpened, setEditorOpened, viewOpened, setViewOpened }} />
                     </div>
-                </> : editorOpened ? <TripEditor {...{editorOpened, setEditorOpened}}/> : viewOpened ? "" : "ERROR"
+                </> : editorOpened ? <TripEditor {...{editorOpened, setEditorOpened}}/> : viewOpened ? <ViewTrip {...{viewOpened, setViewOpened}}/> : "ERROR"
             }
         </section>
     )
