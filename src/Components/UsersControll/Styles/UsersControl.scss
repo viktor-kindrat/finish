@@ -1,0 +1,120 @@
+.UsersControl {
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background: #FFF;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+
+  .Authorization {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: static;
+
+    .Authorization__input-wrap {
+      width: 100%;
+
+      .Authorization__input {
+        width: 100%;
+      }
+    }
+  }
+
+  .UsersControl__headline {
+    width: 100%;
+    color: #353535;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .UsersControll__search {
+    width: 100%;
+    padding: 8px 50px;
+    background-size: 31px 23px;
+    background-color: #FFF;
+    background-position: 12px center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    border: 1px solid #818181;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .UsersControl__results {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .UsersControl__user {
+      width: 100%;
+      padding: 8px;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      justify-content: space-between;
+      color: #353535;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      border-radius: 5px;
+      border: 1px solid #8B8B8B;
+      background: #FFF;
+    }
+
+    .UsersControl__edit-button {
+      aspect-ratio: 1/1;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #EFEFEF;
+      border: none;
+      outline: none;
+      border-radius: 50%;
+      cursor: pointer;
+
+      img {
+        height: 18px;
+        width: auto;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .UsersControl__pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #797979;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    .UsersControl__pagination-btn {
+      cursor: pointer;
+      color: #797979;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+
+      &_active {
+        color: #FFCB46;
+      }
+    }
+  }
+}
