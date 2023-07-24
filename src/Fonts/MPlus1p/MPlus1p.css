@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Mplus 1p';
+    src: url('./MPLUS1p-Black.ttf') format('truetype');
+    font-weight: 900; /* Some fonts use numeric values for font-weight, 900 is black in this case */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mplus 1p';
+    src: url('./MPLUS1p-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mplus 1p';
+    src: url('./MPLUS1p-ExtraBold.ttf') format('truetype');
+    font-weight: 800; /* Some fonts use numeric values for font-weight, 800 is extra-bold in this case */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mplus 1p';
+    src: url('./MPLUS1p-Light.ttf') format('truetype');
+    font-weight: 300; /* Some fonts use numeric values for font-weight, 300 is light in this case */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mplus 1p';
+    src: url('./MPLUS1p-Medium.ttf') format('truetype');
+    font-weight: 500; /* Some fonts use numeric values for font-weight, 500 is medium in this case */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mplus 1p';
+    src: url('./MPLUS1p-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mplus 1p';
+    src: url('./MPLUS1p-Thin.ttf') format('truetype');
+    font-weight: 100; /* Some fonts use numeric values for font-weight, 100 is thin in this case */
+    font-style: normal;
+}

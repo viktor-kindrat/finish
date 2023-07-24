@@ -17,6 +17,7 @@ function Header() {
     useEffect(() => {
         let handle = () => {
             setNavOpen(false);
+            document.body.style.overflowY = "auto";
             document.querySelector(".Header__nav-open-btn").classList.remove("Header__nav-open-btn_close");
             setScreenWidht(window.innerWidth);
             let timeline = gsap.timeline();
@@ -51,6 +52,9 @@ function Header() {
                     yPercent: 0,
                     duration: 0.3
                 })
+                timeline.then(()=>{
+                    document.body.style.overflowY = "hidden"
+                })
             } else {
                 timeline.fromTo(".HeaderNavMobile", {
                     yPercent: 0
@@ -60,6 +64,9 @@ function Header() {
                 })
                 timeline.set(".HeaderNavMobile", {
                     display: "none"
+                })
+                timeline.then(()=>{
+                    document.body.style.overflowY = "auto"
                 })
             }
         }

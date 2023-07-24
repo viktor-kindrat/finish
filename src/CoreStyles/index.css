@@ -1,5 +1,13 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-@import "../Fonts/Arial/style.css";
+@import "../Fonts/Arial/Arial.css";
+@import "../Fonts/Barlow/Barlow.css";
+@import "../Fonts/CrimsonText/CrismonText.css";
+@import "../Fonts/Heebo/Heebo.css";
+@import "../Fonts/Montserrat/Montserrat.css";
+@import "../Fonts/MPlus1p/MPlus1p.css";
+@import "../Fonts/Quando/Quando.css";
+@import "../Fonts/Roboto/Roboto.css";
+@import "../Fonts/NixieOne/NixieOne.css";
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;

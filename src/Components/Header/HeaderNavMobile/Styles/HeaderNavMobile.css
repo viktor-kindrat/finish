@@ -12,41 +12,38 @@
     gap: 25px;
     align-items: center;
     justify-content: flex-start;
-    position: absolute;
+    position: fixed;
     top: 50px;
     left: 0;
     background: #FFCB46;
     width: 100%;
     height: calc(100vh - 50px);
     z-index: 10;
-    padding: 30px 20px;
+    padding: 30px 20px 50px 20px;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-bottom: 145px;
   }
   .HeaderNavMobile .HeaderNavMobile__section {
     width: 100%;
     display: flex;
-    gap: 25px;
+    gap: 15px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid rgba(217, 217, 217, 0.5);
-    background: rgba(255, 255, 255, 0.8);
+    border: 0px solid #CECECE;
+    background: #F8F8F8;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
   }
   .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__headline {
-    font-size: 24px;
+    color: #353535;
+    text-align: center;
+    font-family: "CrimsonText", sans-serif;
+    font-size: 26px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    color: #353535;
     text-transform: uppercase;
   }
   .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info {
@@ -60,50 +57,80 @@
   .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__info-data {
     color: #353535;
     text-align: center;
-    font-size: 17px;
+    font-family: Quando, serif;
+    font-size: 22px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: normal;
-    letter-spacing: 0.595px;
+    letter-spacing: 0.77px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__info-data:hover {
+    color: #1E6FB8;
+    text-decoration: underline;
   }
   .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__info-data_bold {
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 100%;
-  }
-  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__info-caption {
     color: #353535;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-  }
-  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__input {
-    width: 100%;
-    padding: 10px 15px;
-    border-radius: 5px;
-    outline: none;
-    border: 1px solid rgba(217, 217, 217, 0.5);
-    background: rgba(255, 255, 255, 0.8);
-    color: #141414;
-    font-size: 14px;
+    text-align: center;
+    font-family: "Mplus 1p", sans-serif;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__info-caption {
+    color: #353535;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: -5px;
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__input {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #8B8B8B;
+    background: rgba(255, 255, 255, 0.8);
+    color: #353535;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    letter-spacing: 6px;
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__input::placeholder {
+    color: #646464;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 6px;
+  }
   .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__btn {
     width: 100%;
     padding: 10px 25px;
-    color: #FFFFFF;
+    border-radius: 5px;
+    background: #8EBA43;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #FFF;
     text-align: center;
-    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: 0.72px;
+    letter-spacing: 0.64px;
     text-transform: uppercase;
-    border-radius: 5px;
-    background: rgba(48, 184, 0, 0.75);
     border: none;
     outline: none;
     cursor: pointer;
@@ -114,18 +141,25 @@
     -o-transition: 0.3s;
   }
   .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__btn:hover {
-    color: rgba(48, 184, 0, 0.75);
-    background: #ffffff;
-    box-shadow: 0 0 5px rgba(49, 184, 0, 0.2);
+    background: #4B7447;
   }
   .HeaderNavMobile .HeaderNavMobile__socials {
     width: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 50px;
-    position: absolute;
-    bottom: 40px;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 15px;
+    margin-top: 10px;
+  }
+  .HeaderNavMobile .HeaderNavMobile__socials .HeaderNavMobile__socials-separator {
+    width: 1px;
+    height: 50px;
+    background: #909090;
+    display: block;
+    color: transparent;
+    user-select: none;
   }
   .HeaderNavMobile .HeaderNavMobile__socials .HeaderNavMobile__socials-item {
     display: flex;
@@ -138,18 +172,6 @@
     -ms-transition: transform 0.3s;
     -o-transition: transform 0.3s;
   }
-  .HeaderNavMobile .HeaderNavMobile__socials .HeaderNavMobile__socials-item::after {
-    content: "";
-    display: block;
-    width: 1px;
-    height: 50px;
-    background: #909090;
-    position: absolute;
-    right: -25px;
-  }
-  .HeaderNavMobile .HeaderNavMobile__socials .HeaderNavMobile__socials-item:last-child::after {
-    display: none;
-  }
   .HeaderNavMobile .HeaderNavMobile__socials .HeaderNavMobile__socials-item:hover {
     transform: translate(0, -3px);
     -webkit-transform: translate(0, -3px);
@@ -161,5 +183,23 @@
     height: 80px;
     aspect-ratio: 1/1;
     object-fit: contain;
+  }
+  .HeaderNavMobile .HeaderNavMobile__footer {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #353535;
+    text-align: center;
+    font-family: "Nixie One", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 }

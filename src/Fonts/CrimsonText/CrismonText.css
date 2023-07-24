@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'CrimsonText';
+    font-weight: normal;
+    font-style: normal;
+    src: url('./CrimsonText-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'CrimsonText';
+    font-weight: bold;
+    font-style: normal;
+    src: url('./CrimsonText-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'CrimsonText';
+    font-weight: normal;
+    font-style: italic;
+    src: url('./CrimsonText-Italic.ttf');
+}
+
+@font-face {
+    font-family: 'CrimsonText';
+    font-weight: bold;
+    font-style: italic;
+    src: url('./CrimsonText-BoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'CrimsonText';
+    font-weight: 600; /* Some fonts use numeric values for font-weight, 600 is semi-bold in this case */
+    font-style: normal;
+    src: url('./CrimsonText-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'CrimsonText';
+    font-weight: 600; /* Some fonts use numeric values for font-weight, 600 is semi-bold in this case */
+    font-style: italic;
+    src: url('./CrimsonText-SemiBoldItalic.ttf');
+}

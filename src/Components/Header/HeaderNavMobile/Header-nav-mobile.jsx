@@ -43,27 +43,32 @@ function HeaderNavMobile() {
                 <div className="HeaderNavMobile__info">
                     <p className="HeaderNavMobile__info-data">+38 (065) 641-48-46</p>
                     <p className="HeaderNavMobile__info-data">+38 (065) 641-48-46</p>
-                    <p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">help@mail.com</p>
+                    <p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">mail@group-alliance.com</p>
                 </div>
             </div>
             <div className="HeaderNavMobile__section">
-                <h2 className="HeaderNavMobile__headline">Треба допомога?</h2>
+                <h2 className="HeaderNavMobile__headline">ПОТРІБНА ДОПОМОГА ?</h2>
                 <div className="HeaderNavMobile__info">
-                    <div className="HeaderNavMobile__info-caption">Вкажіть свій контактний телефон і наш спеціаліст зв'яжеться з Вами</div>
-                    <input value={phone} onChange={handleChange} type="text" placeholder="+38( _ _ _ ) - _ _ _ - _ _ - _ _ " className="HeaderNavMobile__input" />
+                    <div className="HeaderNavMobile__info-caption">Замовити зворотній дзвінок від менеджера</div>
+                    <input value={phone} onChange={handleChange} type="text" placeholder="+38(___)-___-__-__" className="HeaderNavMobile__input" />
                     <button className="HeaderNavMobile__btn">Відправити</button>
                 </div>
             </div>
-            <div className="HeaderNavMobile__socials">
+            <div className="HeaderNavMobile__section HeaderNavMobile__socials">
                 <a href="/" className="HeaderNavMobile__socials-item">
                     <img height={80} className="HeaderNavMobile__socials-icon" src={tgIcon} alt="telegram" />
                 </a>
+                <div className="HeaderNavMobile__socials-separator">|</div>
                 <a href="/" className="HeaderNavMobile__socials-item">
                     <img height={80} className="HeaderNavMobile__socials-icon" src={whatsappIcon} alt="whatsapp" />
                 </a>
+                <div className="HeaderNavMobile__socials-separator">|</div>
                 <a href="/" className="HeaderNavMobile__socials-item">
                     <img height={80} className="HeaderNavMobile__socials-icon" src={viberIcon} alt="viber" />
                 </a>
+            </div>
+            <div className="HeaderNavMobile__footer">
+                GROUP ALLIANCE  - {new Date().getFullYear()}
             </div>
         </div>
     )
