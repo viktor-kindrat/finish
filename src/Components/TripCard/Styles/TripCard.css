@@ -34,6 +34,9 @@
   color: #000;
   font-weight: 700;
 }
+.TripCard .TripCard__locations .TripCard__group .TripCard__info_city {
+  color: #353535;
+}
 .TripCard .TripCard__locations .TripCard__group .TripCard__sign {
   color: #000;
   font-size: 24px;
@@ -105,4 +108,58 @@
 }
 .TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn_green {
   background: rgba(48, 184, 0, 0.59);
+}
+
+@media screen and (max-width: 919px) {
+  .TripCard {
+    flex-direction: column;
+    border-radius: 0 0 5px 5px;
+    position: relative;
+    top: 34px;
+    gap: 25px;
+  }
+  .TripCard .TripCard__locations {
+    align-items: flex-start;
+  }
+  .TripCard .TripCard__locations .TripCard__group {
+    width: auto;
+    max-width: none;
+    align-items: flex-start;
+  }
+  .TripCard .TripCard__locations .TripCard__group .TripCard__info {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .TripCard .TripCard__locations .TripCard__group .TripCard__info:nth-child(2) {
+    overflow: hidden;
+    height: 24px;
+    order: -1;
+    font-size: 24px;
+    text-align: left;
+    line-height: 100%;
+  }
+  .TripCard .TripCard__locations .TripCard__group .TripCard__info .TripCard__info_city {
+    display: inline;
+  }
+  .TripCard .TripCard__controll .TripCard__headline {
+    height: 34px;
+    width: 100%;
+    position: absolute;
+    top: -33px;
+    left: 0;
+    right: 0;
+    border-radius: 5px 5px 0px 0px;
+    background: #353535;
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
 }

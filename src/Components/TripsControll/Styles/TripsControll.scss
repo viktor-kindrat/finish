@@ -65,5 +65,26 @@
 @media screen and (max-width: 919px) {
     .TripsControll {
         min-width: auto;
+        width: 100%;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+
+        .TripsControll__head {
+            .TripsControll__headline {
+                display: none;
+            }
+            .TripsControll__head-btn {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .TripsControll__container {
+            gap: 54px;
+            margin-bottom: 34px;
+        }
     }
 }

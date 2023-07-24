@@ -120,3 +120,12 @@
   outline: none;
   cursor: pointer;
 }
+
+@media screen and (max-width: 919px) {
+  .TripEditor {
+    width: 100%;
+  }
+  .TripEditor .TripEditor__card {
+    width: 100%;
+  }
+}
