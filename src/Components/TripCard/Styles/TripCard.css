@@ -9,6 +9,9 @@
   background: #FBFBFB;
   padding: 10px;
 }
+.TripCard * {
+  font-family: "Roboto", sans-serif;
+}
 .TripCard .TripCard__locations {
   display: flex;
   align-items: center;
@@ -59,6 +62,7 @@
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
 }
 .TripCard .TripCard__controll .TripCard__places-info {
   display: flex;
@@ -66,10 +70,11 @@
   justify-content: center;
   gap: 5px;
   color: #000;
-  font-size: 20px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  font-family: "Montserrat", sans-serif;
 }
 .TripCard .TripCard__controll .TripCard__places-info_red {
   color: #DE6107;
@@ -99,6 +104,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-family: "Arial", sans-serif;
 }
 .TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn_red {
   background: rgba(255, 10, 10, 0.75);

@@ -27,6 +27,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: flex-start;
     padding: 25px;
 
+    * {
+        font-family: "Roboto", sans-serif;
+    }
+
     &:has(.SearchingResult) {
         padding: 25px 150px;
     }
@@ -51,7 +55,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin-top: 25px;
 
         .Home__headline {
-            z-index: 2;
+            z-index: 3;
             color: #FFFFFF;
             text-align: center;
             font-size: 40px;
@@ -444,7 +448,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
                 font-weight: 700;
                 line-height: normal;
                 position: relative;
-                top: -75px;
+                top: -125px;
             }
         }
 

@@ -27,6 +27,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
   justify-content: flex-start;
   padding: 25px;
 }
+.Home * {
+  font-family: "Roboto", sans-serif;
+}
 .Home:has(.SearchingResult) {
   padding: 25px 150px;
 }
@@ -49,7 +52,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin-top: 25px;
 }
 .Home .Home__head-group .Home__headline {
-  z-index: 2;
+  z-index: 3;
   color: #FFFFFF;
   text-align: center;
   font-size: 40px;
@@ -393,7 +396,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     font-weight: 700;
     line-height: normal;
     position: relative;
-    top: -75px;
+    top: -125px;
   }
   .Home .Home__booking {
     width: calc(100% + 50px);

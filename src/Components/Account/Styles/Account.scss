@@ -12,6 +12,10 @@
         text-decoration: none;
     }
 
+    * {
+        font-family: "Montserrat", sans-serif;
+    }
+
     .Account__menu {
         min-width: 272px;
         width: auto;
@@ -34,7 +38,7 @@
 
             .Account__menu-headline {
                 text-align: center;
-                color: #353535;
+                color: #00274A;
                 text-align: center;
                 font-size: 24px;
                 font-style: normal;
@@ -91,6 +95,7 @@
 
                 &_selected {
                     font-weight: 600;
+                    color: #00274A;
                 }
 
                 img {

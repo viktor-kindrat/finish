@@ -62,7 +62,7 @@
 .Ticket .Ticket__group .Ticket__info_bigBold {
   color: #353535;
   text-align: right;
-  font-family: Arial;
+  font-family: "Arial", sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
@@ -108,6 +108,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
+  font-family: "Arial", sans-serif;
 }
 
 @media screen and (max-width: 919px) {

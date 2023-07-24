@@ -17,6 +17,9 @@
   -ms-border-radius: 0 0 6px 6px;
   -o-border-radius: 0 0 6px 6px;
 }
+.FlightCard__opened * {
+  font-family: "Roboto", sans-serif;
+}
 .FlightCard__opened::before {
   content: "";
   height: 1px;
@@ -126,7 +129,7 @@
 }
 .FlightCard .FlightCard__info_bigBold {
   color: #353535;
-  font-family: Arial;
+  font-family: "Arial", sans-serif;
   font-size: 36px;
   font-style: normal;
   font-weight: 700;

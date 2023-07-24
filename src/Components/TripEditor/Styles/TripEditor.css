@@ -1,5 +1,5 @@
 .TripEditor {
-  width: 100%;
+  width: 364px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -42,6 +42,7 @@
   object-fit: contain;
 }
 .TripEditor .TripEditor__card {
+  width: 100%;
   padding: 20px;
   border-radius: 5px;
   border: 2px solid #AEAEAE;
@@ -119,13 +120,12 @@
   border: none;
   outline: none;
   cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 919px) {
   .TripEditor {
-    width: 100%;
-  }
-  .TripEditor .TripEditor__card {
     width: 100%;
   }
 }

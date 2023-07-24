@@ -19,6 +19,9 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
 }
+.Autobus .Autobus__container * {
+  font-family: "Roboto", sans-serif;
+}
 .Autobus .Autobus__container .Autobus__column {
   height: 100%;
   display: flex;

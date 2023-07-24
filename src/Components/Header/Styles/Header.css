@@ -59,6 +59,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 100%;
+  font-family: "Heebo", sans-serif;
 }
 .Header .Header__nav-wrap .Header__nav .Header__nav-list .Header__nav-list-item_selected {
   font-weight: 700;
@@ -132,6 +133,7 @@
   color: #ffffff;
   line-height: 100%;
   text-align: center;
+  font-family: "Barlow", sans-serif;
 }
 .Header .Header__nav-wrap .Header__contacts .Header__phone .Header__phone-info-wrapper .Header__phone-text {
   font-size: 14px;
@@ -139,6 +141,7 @@
   font-weight: 400;
   color: #ffffff;
   text-align: center;
+  font-family: "Heebo", sans-serif;
 }
 .Header .Header__nav-open-btn {
   width: 35px;

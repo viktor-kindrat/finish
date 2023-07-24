@@ -10,6 +10,9 @@
   align-items: flex-start;
   gap: 35px;
 }
+.Tickets * {
+  font-family: "Roboto", sans-serif;
+}
 .Tickets .Tickets__headline {
   color: #00274A;
   text-align: center;

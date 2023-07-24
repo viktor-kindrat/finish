@@ -8,8 +8,11 @@
   align-items: center;
   justify-content: flex-start;
 }
+.Authorization * {
+  font-family: "Montserrat", sans-serif;
+}
 .Authorization .Authorization__container {
-  width: auto;
+  width: 333px;
   padding: 15px 20px;
   border-radius: 0 0 20px 20px;
   background: #FFF;
@@ -58,7 +61,8 @@
   color: #ffffff;
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option:first-child {
-  width: 45%;
+  width: 40%;
+  justify-content: flex-start;
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option:first-child.Authorization__option_selected::after {
   content: "";
@@ -71,7 +75,8 @@
   clip-path: polygon(100% 0, 0 0, 0 100%);
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option:last-child {
-  width: 55%;
+  width: 60%;
+  justify-content: flex-end;
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option:last-child.Authorization__option_selected::before {
   content: "";
@@ -92,6 +97,7 @@
   justify-content: flex-start;
 }
 .Authorization .Authorization__container .Authorization__input-wrap .Authorization__input-label {
+  width: 100%;
   color: #00274A;
   font-size: 18px;
   font-style: normal;
@@ -99,6 +105,7 @@
   line-height: normal;
 }
 .Authorization .Authorization__container .Authorization__input-wrap .Authorization__input {
+  width: 100%;
   height: 43px;
   border-radius: 10px;
   padding: 5px 15px;
@@ -146,5 +153,8 @@
   .Authorization {
     margin-top: 50px;
     padding: 60px 20px 15px 20px;
+  }
+  .Authorization .Authorization__container {
+    width: 100%;
   }
 }

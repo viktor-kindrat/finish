@@ -16,6 +16,10 @@
     -moz-border-radius: 0 0 6px 6px;
     -ms-border-radius: 0 0 6px 6px;
     -o-border-radius: 0 0 6px 6px;
+
+    * {
+        font-family: "Roboto", sans-serif;
+    }
     
     &::before {
         content: "";
@@ -143,7 +147,7 @@
 
         &_bigBold {
             color: #353535;
-            font-family: Arial;
+            font-family: "Arial", sans-serif;
             font-size: 36px;
             font-style: normal;
             font-weight: 700;

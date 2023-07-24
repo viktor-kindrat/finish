@@ -11,6 +11,9 @@
 .Account a {
   text-decoration: none;
 }
+.Account * {
+  font-family: "Montserrat", sans-serif;
+}
 .Account .Account__menu {
   min-width: 272px;
   width: auto;
@@ -33,7 +36,7 @@
 }
 .Account .Account__menu .Account__menu-head .Account__menu-headline {
   text-align: center;
-  color: #353535;
+  color: #00274A;
   text-align: center;
   font-size: 24px;
   font-style: normal;
@@ -87,6 +90,7 @@
 }
 .Account .Account__menu .Account__menu-nav .Account__menu-btn_selected {
   font-weight: 600;
+  color: #00274A;
 }
 .Account .Account__menu .Account__menu-nav .Account__menu-btn img {
   width: 30px;

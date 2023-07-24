@@ -5,6 +5,9 @@
   justify-content: flex-start;
   gap: 25px;
 }
+.PassangersList * {
+  font-family: "Roboto", sans-serif;
+}
 .PassangersList .PassangersList__headline {
   color: #0F0F0F;
   font-size: 20px;
