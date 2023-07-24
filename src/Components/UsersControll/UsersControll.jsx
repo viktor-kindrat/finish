@@ -95,7 +95,7 @@ function UsersControll() {
                         <div className="Authorization__input-label">Пароль ще раз</div>
                         <input type="password" className="Authorization__input"/>
                     </div>
-                    <button className="Authorization__action">Зберегти</button>
+                    <button onClick={()=>setOpenedEdit(false)} className="Authorization__action">Зберегти</button>
                 </div>
             </div>
         </>}

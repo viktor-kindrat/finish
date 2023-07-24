@@ -16,6 +16,7 @@
     align-items: flex-end;
     justify-content: space-between;
     background: #FFCB46;
+    box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.1450980392);
   }
   .PhoneMenu .PhoneMenu-btn {
     border: none;

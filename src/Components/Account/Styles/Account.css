@@ -105,6 +105,13 @@
     background: #FFFFFF;
     flex-direction: column;
   }
+  .Account_admin {
+    width: 100%;
+    background: transparent;
+  }
+  .Account_admin .Account__menu {
+    display: none;
+  }
   .Account .Account__menu {
     width: 100%;
     background: transparent;

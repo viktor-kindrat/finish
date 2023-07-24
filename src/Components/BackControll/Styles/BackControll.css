@@ -131,3 +131,15 @@
   font-weight: 600;
   line-height: normal;
 }
+
+@media screen and (max-width: 919px) {
+  .BackControll {
+    width: 100%;
+  }
+  .BackControll .BackControll__container {
+    width: 100%;
+  }
+  .BackControll .BackControll__container .BackControll__item {
+    width: 100%;
+  }
+}

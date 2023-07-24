@@ -15,13 +15,17 @@
     padding: 0;
     position: static;
 
-    .Authorization__input-wrap {
-      width: 100%;
-
-      .Authorization__input {
+    .Authorization__container {
+      border-radius: 20px;
+      .Authorization__input-wrap {
         width: 100%;
+
+        .Authorization__input {
+          width: 100%;
+        }
       }
     }
+
   }
 
   .UsersControl__headline {
@@ -116,5 +120,36 @@
         color: #FFCB46;
       }
     }
+  }
+}
+
+@media screen and (max-width: 919px) {
+  .UsersControl {
+    width: 100%;
+    min-height: calc(100vh - 50px);
+    justify-content: flex-start;
+    background: transparent;
+    box-shadow: none;
+
+    .Authorization {
+      width: 100%;
+      .Authorization__container {
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+
+    .UsersControl__headline {
+      display: none;
+    }
+
+    .UsersControl__results {
+      .UsersControl__user {
+        height: auto;
+        padding: 5px;
+        font-size: 20px;
+      }
+    }
+
   }
 }

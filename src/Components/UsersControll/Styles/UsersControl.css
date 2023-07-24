@@ -15,10 +15,13 @@
   padding: 0;
   position: static;
 }
-.UsersControl .Authorization .Authorization__input-wrap {
+.UsersControl .Authorization .Authorization__container {
+  border-radius: 20px;
+}
+.UsersControl .Authorization .Authorization__container .Authorization__input-wrap {
   width: 100%;
 }
-.UsersControl .Authorization .Authorization__input-wrap .Authorization__input {
+.UsersControl .Authorization .Authorization__container .Authorization__input-wrap .Authorization__input {
   width: 100%;
 }
 .UsersControl .UsersControl__headline {
@@ -105,4 +108,29 @@
 }
 .UsersControl .UsersControl__pagination .UsersControl__pagination-btn_active {
   color: #FFCB46;
+}
+
+@media screen and (max-width: 919px) {
+  .UsersControl {
+    width: 100%;
+    min-height: calc(100vh - 50px);
+    justify-content: flex-start;
+    background: transparent;
+    box-shadow: none;
+  }
+  .UsersControl .Authorization {
+    width: 100%;
+  }
+  .UsersControl .Authorization .Authorization__container {
+    width: 100%;
+    border-radius: 5px;
+  }
+  .UsersControl .UsersControl__headline {
+    display: none;
+  }
+  .UsersControl .UsersControl__results .UsersControl__user {
+    height: auto;
+    padding: 5px;
+    font-size: 20px;
+  }
 }

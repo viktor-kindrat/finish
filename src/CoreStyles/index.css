@@ -191,3 +191,9 @@ template {
 body {
   overflow-x: hidden;
 }
+
+@media screen and (max-width: 919px) {
+  .App {
+    margin-bottom: 60px;
+  }
+}
