@@ -1,22 +1,3 @@
-input[type="date"]::-webkit-inner-spin-button {
-    display: none;
-    -webkit-appearance: none;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    width: 100%;
-    aspect-ratio: 1/1;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    left: 15px;
-    -webkit-transform: translate(0, -50%);
-    -moz-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%);
-    -o-transform: translate(0, -50%);
-    opacity: 0;
-}
-
 .Home {
     width: 100%;
     min-height: calc(100vh - 70px);
@@ -26,6 +7,89 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
     justify-content: flex-start;
     padding: 25px;
+
+    /* Style the calendar container */
+    .react-datepicker__month-container {
+        border-radius: 5px;
+        border: 1px solid #CECECE;
+        border-radius: 4px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        padding: 10px;
+
+        * {
+            font-family: "Montserrat", sans-serif;
+        }
+    }
+
+    /* Style the calendar header */
+    .react-datepicker__header {
+        background-color: #ffffff;
+        padding: 10px;
+    }
+
+    /* Style the month and year dropdowns */
+    .react-datepicker__current-month,
+    .react-datepicker__navigation {
+        font-size: 16px;
+        color: #333;
+    }
+
+    /* Style the days of the week */
+    .react-datepicker__day-name {
+        color: #666;
+        font-weight: 700;
+    }
+
+    /* Style the individual days in the calendar */
+    .react-datepicker__day {
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .react-datepicker__day:hover {
+        background-color: #f0f0f0;
+    }
+
+    .react-datepicker__day--today {
+        font-weight: bold;
+    }
+
+    /* Style the selected day */
+    .react-datepicker__day--selected {
+        background-color: transparent;
+        border: 3px solid #FFCB46;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+    }
+
+    /* Style the date input icon */
+    .react-datepicker-wrapper>.react-datepicker__input-container {
+        position: relative;
+    }
+
+    /* Additional styles for better alignment of the date input icon */
+    .react-datepicker__input-container>input {
+        padding-right: 30px;
+        /* Add space for the icon */
+    }
+
+    .react-datepicker__input-container::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        // background-image: url('./path/to/your/customIcon.png');s
+        /* Replace with your custom icon */
+        background-size: cover;
+    }
 
     * {
         font-family: "Roboto", sans-serif;
@@ -201,7 +265,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             justify-content: flex-end;
             gap: 9px;
 
-            .Home__booking-date {
+            .react-datepicker-wrapper {
+                width: 100%;
+
+                .react-datepicker__input-container {
+                    width: 100%;
+                }
+            }
+
+            .Home__booking-datepiacker-wrapper {
+                width: 100%;
+            }
+
+            div .react-datepicker-wrapper .react-datepicker__input-container .Home__booking-date {
                 color-scheme: only light;
                 accent-color: #ffcb46;
                 background-repeat: no-repeat;
@@ -381,7 +457,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .Home {
         .Home__head-group {
             margin-top: 0;
+
+            .Home__bgImage {
+                height: 160px;
+            }
         }
+
         .Home__booking {
             margin: 25px 0;
             flex-direction: column;
@@ -392,8 +473,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
             .Home__booking-group {
                 width: 100%;
 
-                .Home__booking-date {
+                div .react-datepicker-wrapper .react-datepicker__input-container .Home__booking-date {
                     width: 100%;
+
+                    &:placeholder {
+                        color: #141414;
+                    }
                 }
 
                 .Home__booking-passangers-select {
@@ -541,7 +626,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
                     padding: 0 5px;
                 }
 
-                .Home__booking-date {
+                div .react-datepicker-wrapper .react-datepicker__input-container .Home__booking-date {
                     height: 44px;
                 }
 

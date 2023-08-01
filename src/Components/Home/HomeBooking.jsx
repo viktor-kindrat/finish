@@ -1,3 +1,5 @@
+import 'react-datepicker/dist/react-datepicker.css';
+
 import switchIcon from "./SVG/switch.svg";
 import placeIcon from "./SVG/place.svg";
 import dateIcon from "./SVG/date.svg";
@@ -5,11 +7,19 @@ import selectIcon from "./SVG/select.svg";
 import addIcon from "./SVG/add.svg";
 import removeIcon from "./SVG/remove.svg"
 
+import { useState } from 'react';
 import { gsap } from "gsap";
 import { useNavigate } from "react-router-dom";
 
+import DatePicker, { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk'; // Import the Ukrainian locale from date-fns library
+
+registerLocale('uk', uk);
+
 function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }) {
     let navigate = useNavigate();
+
+    let [date, setDate] = useState("")
 
     let handleOpenPassanger = (e) => {
         setPassangerOpened(!passangerOpened);
@@ -74,6 +84,10 @@ function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, pa
         timeline.set(".Home__booking-select-options", { display: "none" })
     }
 
+    const getCurrentDate = () => {
+        return new Date();
+    };
+
     let passangersResetHandler = () => setPeoples({ adults: 1, children: 0 })
     return (
         <div className={"Home__booking" + (window.location.href.includes("/search") ? " Home__booking_full" : "")}>
@@ -136,7 +150,31 @@ function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, pa
             </div>
             <div className="Home__booking-group">
                 <p className="Home__booking-caption">Відправлення</p>
-                <input min={`${new Date().getFullYear()}-${new Date().getMonth() < 10 ? "0" + (new Date().getMonth() + 1) : new Date().getMonth() + 1}-${new Date().getDate() < 10 ? "0" + (new Date().getDate()) : new Date().getDate()}`} style={{ backgroundImage: `url(${dateIcon})` }} type="date" className="Home__booking-date" />
+                <div className="Home__booking-datepiacker-wrapper">
+                    <DatePicker
+                        id="myDateInput"
+                        selected={date} 
+                        dateFormat="dd.MM.yyyy"
+                        placeholderText="дд.мм.рррр"
+                        minDate={getCurrentDate()}
+                        className="Home__booking-date"
+                        onChange={(selectedDate) => setDate(selectedDate)} 
+                        customInput={
+                            <input
+                                type="text"
+                                style={{ backgroundImage: `url(${dateIcon})`, paddingRight: '30px' }}
+                                className="Home__booking-date"
+                            />
+                        }
+                        popperModifiers={{
+                            offset: {
+                            enabled: true,
+                            offset: '0, 10px', // Adjust the offset as needed
+                            },
+                        }}
+                        locale="uk"
+                    />
+                </div>
             </div>
             <div className="Home__booking-group">
                 <p className="Home__booking-caption">Пасажири</p>
