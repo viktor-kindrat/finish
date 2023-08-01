@@ -58,7 +58,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #353535;
+  color: #ffffff;
+  background: #FFCB46;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -67,12 +68,16 @@
   cursor: pointer;
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option.Authorization__option_selected {
-  background-color: #FFCB46;
-  color: #ffffff;
+  background-color: #FFFFFF;
+  color: #353535;
+  z-index: 0;
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option:first-child {
   width: 40%;
   justify-content: flex-start;
+}
+.Authorization .Authorization__container .Authorization__select .Authorization__option:first-child.Authorization__option_selected {
+  z-index: 1;
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option:first-child.Authorization__option_selected::after {
   content: "";
@@ -80,7 +85,7 @@
   height: 100%;
   position: absolute;
   width: 45px;
-  background: #FFCB46;
+  background: #FFFFFF;
   left: 100%;
   clip-path: polygon(100% 0, 0 0, 0 100%);
 }
@@ -88,13 +93,16 @@
   width: 60%;
   justify-content: flex-end;
 }
+.Authorization .Authorization__container .Authorization__select .Authorization__option:last-child.Authorization__option_selected {
+  z-index: 1;
+}
 .Authorization .Authorization__container .Authorization__select .Authorization__option:last-child.Authorization__option_selected::before {
   content: "";
   display: block;
   height: 100%;
   position: absolute;
   width: 45px;
-  background: #FFCB46;
+  background: #FFFFFF;
   right: calc(100% - 1px);
   clip-path: polygon(100% 100%, 0 0, 100% 0);
 }
