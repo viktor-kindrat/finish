@@ -8,6 +8,16 @@
   align-items: center;
   justify-content: flex-start;
 }
+.Authorization .Authorization__headline {
+  width: 100%;
+  text-align: center;
+  color: #353535;
+  font-family: "Montserrat";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 .Authorization * {
   font-family: "Montserrat", sans-serif;
 }
@@ -156,5 +166,6 @@
   }
   .Authorization .Authorization__container {
     width: 100%;
+    background: #ffffff;
   }
 }

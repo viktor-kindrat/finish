@@ -246,6 +246,14 @@
             flex-direction: row;
             justify-content: space-between;
 
+            .FlightCard__info {
+                &:first-child {
+                    &:not(.FlightCard__info_bold)::after {
+                        content: ":"
+                    }
+                }
+            }
+
             &::after {
                 display: none;
             }
@@ -330,19 +338,6 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-
-                    sup {
-                        color: #353535;
-                        text-align: right;
-                        font-family: Arial;
-                        font-size: 14px;
-                        font-style: normal;
-                        font-weight: 700;
-                        line-height: 28px;
-                        align-self: flex-start;
-                        position: relative;
-                        top: -15px;
-                    }
                 }
 
                 .FlightCard__summary-currency {

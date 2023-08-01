@@ -6,7 +6,7 @@ import TripEditorCard from "./TripEditorCard"
 
 import { useState } from "react"
 function TripEditor({ editorOpened, setEditorOpened }) {
-    let [states, setStates] = useState([{country: "", city: "", location: "", arrivalDate: "", adultPrice: "", childPrice: ""}]);
+    let [states, setStates] = useState([{country: "", city: "", location: "", arrivalDate: "", adultPrice: "", childPrice: ""}, {country: "", city: "", location: "", arrivalDate: "", adultPrice: "", childPrice: ""}]);
 
     let handlePushNewState = (e) => {
         setStates([...states, {country: "", city: "", location: "", arrivalDate: "", adultPrice: "", childPrice: ""}])
@@ -31,11 +31,11 @@ function TripEditor({ editorOpened, setEditorOpened }) {
                 </div>
             </div>
             <div className="TripEditor__wrap">
-                <TripEditorCard {...{...states[0]}} {...{states, setStates}} finish={false} id={1} />
+                <TripEditorCard {...{...states[0]}} {...{states, setStates}} finish={false} id={0} />
                 <div className="TripEditor__container">
                     {
                         states.map((el, id) =>
-                            id === 0 ? "" : <TripEditorCard {...{...el}} {...{states, setStates}} finish={false} key={id} id={id + 1} />
+                            id === 0 ? "" : <TripEditorCard {...{...el}} {...{states, setStates}} finish={false} key={id} id={id} />
                         )
                     }
                 </div>

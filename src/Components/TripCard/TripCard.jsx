@@ -6,14 +6,14 @@ function TripCard({ editorOpened, setEditorOpened, viewOpened, setViewOpened }) 
             <div className="TripCard__locations">
                 <div className="TripCard__group">
                     <div className="TripCard__info TripCard__info_bold">20:45 пт, 3 лист.</div>
-                    <div className="TripCard__info">Україна - <span className="TripCard__info_city">Київ</span> (Центральний автовокзал)</div>
+                    <div className="TripCard__info">Україна - <span className="TripCard__info_city">Київ</span> <br />(Центральний автовокзал)</div>
                 </div>
                 <div className="TripCard__sign">
                     &#8594;
                 </div>
                 <div className="TripCard__group">
                     <div className="TripCard__info TripCard__info_bold">сб, 4 лист.</div>
-                    <div className="TripCard__info">Італія - <span className="TripCard__info_city">Санремо</span> (Центральний автовокзал)</div>
+                    <div className="TripCard__info">Італія - <span className="TripCard__info_city">Санремо</span> <br />(Центральний автовокзал)</div>
                 </div>
             </div>
             <div className="TripCard__controll">

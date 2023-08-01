@@ -38,12 +38,12 @@ function FlightCard({ id }) {
                 <div className="FlightCard__locations FlightCard__group">
                     <div className="FlightCard__location-column">
                         <p className="FlightCard__info FlightCard__info_bold">20:45 пт, 3 лист.</p>
-                        <p className="FlightCard__info">Україна - Київ (Центральний автовокзал)</p>
+                        <p className="FlightCard__info">Україна - Київ <br />(Центральний автовокзал)</p>
                     </div>
                     <div className="FlightCard__arrow">&#8594;</div>
                     <div className="FlightCard__location-column">
                         <p className="FlightCard__info FlightCard__info_bold">20:45 пт, 3 лист.</p>
-                        <p className="FlightCard__info">Україна - Київ (Центральний автовокзал)</p>
+                        <p className="FlightCard__info">Україна - Київ <br />(Центральний автовокзал)</p>
                     </div>
                 </div>
                 <div className="FlightCard__group">
@@ -56,7 +56,7 @@ function FlightCard({ id }) {
                 </div>
                 <div className="FlightCard__summary">
                     <div className="FlightCard__summary-raw">
-                        <div className="FlightCard__summary-sum">14 048 <sup>,00</sup></div>
+                        <div className="FlightCard__summary-sum">14 048</div>
                         <div className="FlightCard__summary-currency">грн</div>
                     </div>
                     <div className="FlightCard__summary-info">

@@ -117,9 +117,15 @@
     justify-content: flex-start;
     background: transparent;
     box-shadow: none;
+    padding: 0;
   }
   .UsersControl .Authorization {
     width: 100%;
+    height: auto;
+    min-height: auto;
+    border-radius: 5px;
+    border: 1px solid #353535;
+    background: #FFF;
   }
   .UsersControl .Authorization .Authorization__container {
     width: 100%;

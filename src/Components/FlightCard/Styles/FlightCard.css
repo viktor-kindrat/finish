@@ -215,6 +215,9 @@
     flex-direction: row;
     justify-content: space-between;
   }
+  .FlightCard .FlightCard__group .FlightCard__info:first-child:not(.FlightCard__info_bold)::after {
+    content: ":";
+  }
   .FlightCard .FlightCard__group::after {
     display: none;
   }
@@ -291,18 +294,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .FlightCard .FlightCard__summary .FlightCard__summary-raw .FlightCard__summary-sum sup {
-    color: #353535;
-    text-align: right;
-    font-family: Arial;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 28px;
-    align-self: flex-start;
-    position: relative;
-    top: -15px;
   }
   .FlightCard .FlightCard__summary .FlightCard__summary-raw .FlightCard__summary-currency {
     color: #353535;

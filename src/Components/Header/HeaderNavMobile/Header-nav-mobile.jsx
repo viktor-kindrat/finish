@@ -41,9 +41,9 @@ function HeaderNavMobile() {
             <div className="HeaderNavMobile__section">
                 <h2 className="HeaderNavMobile__headline">Контакти</h2>
                 <div className="HeaderNavMobile__info">
-                    <p className="HeaderNavMobile__info-data">+38 (065) 641-48-46</p>
-                    <p className="HeaderNavMobile__info-data">+38 (065) 641-48-46</p>
-                    <p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">mail@group-alliance.com</p>
+                    <a href="tel:+380666990301"><p className="HeaderNavMobile__info-data">+38 (066) 699-03-01</p></a>
+                    <a href="tel:+380666990301"><p className="HeaderNavMobile__info-data">+38 (066) 699-03-01</p></a>
+                    <a href="mail:mail@group-alliance.com"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">mail@group-alliance.com</p></a>
                 </div>
             </div>
             <div className="HeaderNavMobile__section">

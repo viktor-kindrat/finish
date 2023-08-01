@@ -18,14 +18,14 @@ function Ticket({ arrivalDate, canceled }) {
             <div className="Ticket__locations">
                 <div className="Ticket__group">
                     <div className="Ticket__info_bold Ticket__info">{`${timeArrival[0]}:${timeArrival[1]} ${dateArrival[0]}, ${dateArrival[2]} ${dateArrival[1]}`}</div>
-                    <div className="Ticket__info">Київ (Центральний автовокзал)</div>
+                    <div className="Ticket__info">Київ  <br />(Центральний автовокзал)</div>
                 </div>
                 <div className="Ticket__group">
                     <div className="Ticket__sign">&#8594;</div>
                 </div>
                 <div className="Ticket__group">
                     <div className="Ticket__info_bold Ticket__info">{`${timeArrival[0]}:${timeArrival[1]} ${dateArrival[0]}, ${dateArrival[2]} ${dateArrival[1]}`}</div>
-                    <div className="Ticket__info">Італія-Зюдкройц</div>
+                    <div className="Ticket__info">Італія-Зюдкройц <br /></div>
                 </div>
             </div>
             <div className="Ticket__group">

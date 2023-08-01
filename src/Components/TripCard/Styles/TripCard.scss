@@ -154,10 +154,11 @@
                     font-weight: 600;
 
                     &:nth-child(2) {
-                        overflow: hidden;
-                        height: 24px;
+                        overflow-y: hidden;
+                        overflow-x: visible;
+                        height: 18px;
                         order: -1;
-                        font-size: 24px;
+                        font-size: 18px;
                         text-align: left;
                         line-height: 100%;
                     }
@@ -171,6 +172,11 @@
         }
 
         .TripCard__controll {
+
+            .TripCard__controll-btn-place {
+                flex-wrap: wrap;
+            }
+
             .TripCard__headline {
                 height: 34px;
                 width: 100%;
@@ -191,6 +197,57 @@
                 align-items: center;
                 justify-content: center;
                 padding: 5px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 364px) {
+    .TripCard {
+        flex-direction: column;
+        border-radius: 0 0 5px 5px;
+        position: relative;
+        top: 34px;
+        gap: 25px;
+
+        .TripCard__locations {
+            width: 100%;
+            align-items: flex-start;
+            flex-direction: column;
+
+            .TripCard__sign {
+                transform: rotate(90deg);
+                -webkit-transform: rotate(90deg);
+                -moz-transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                -o-transform: rotate(90deg);
+            }
+
+            .TripCard__group {
+                width: 100%;
+                max-width: none;
+                align-items: flex-start;
+
+
+                .TripCard__info {
+                    font-size: 16px;
+                    font-weight: 600;
+
+                    &:nth-child(2) {
+                        overflow-y: visible;
+                        overflow-x: visible;
+                        height: auto;
+                        order: -1;
+                        font-size: 18px;
+                        text-align: left;
+                        line-height: 100%;
+                    }
+
+                    .TripCard__info_city {
+                        display: inline;
+                    }
+                }
+
             }
         }
     }

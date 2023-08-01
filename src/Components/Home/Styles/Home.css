@@ -17,6 +17,7 @@
   /* Additional styles for better alignment of the date input icon */
 }
 .Home .react-datepicker__month-container {
+  z-index: 11;
   border-radius: 5px;
   border: 1px solid #CECECE;
   border-radius: 4px;
@@ -135,6 +136,10 @@
   font-weight: 400;
   line-height: 124%;
   margin-left: 10px;
+  z-index: 4;
+}
+.Home .Home__booking .react-datepicker-wrapper {
+  position: relative;
 }
 .Home .Home__booking .Home__booking-place {
   display: flex;
@@ -288,6 +293,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 0;
 }
 .Home .Home__booking .Home__booking-group .Home__booking-passangers-select .Home__booking-select-label .Home__booking-select-open-btn {
   background: transparent;
@@ -352,7 +358,8 @@
   cursor: pointer;
 }
 .Home .Home__booking .Home__booking-group .Home__booking-passangers-select .Home__booking-select-options .Home__booking-select-option .Home__booking-select-btn img {
-  height: 15px;
+  height: 30px;
+  aspect-ratio: 1/1;
   width: auto;
   pointer-events: none;
   user-select: none;

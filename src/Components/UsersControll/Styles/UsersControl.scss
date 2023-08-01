@@ -17,6 +17,7 @@
 
     .Authorization__container {
       border-radius: 20px;
+
       .Authorization__input-wrap {
         width: 100%;
 
@@ -130,9 +131,16 @@
     justify-content: flex-start;
     background: transparent;
     box-shadow: none;
+    padding: 0;
 
     .Authorization {
       width: 100%;
+      height: auto;
+      min-height: auto;
+      border-radius: 5px;
+      border: 1px solid #353535;
+      background: #FFF;
+
       .Authorization__container {
         width: 100%;
         border-radius: 5px;

@@ -32,6 +32,7 @@ function Authorization() {
                             <div onClick={(e) => setState("signup")} className={`Authorization__option ${state === "signup" ? "Authorization__option_selected" : ""}`}>Реєстрація</div>
                         </div> : ""
                 }
+                {state === "recover" ? <h2 className="Authorization__headline">Відновлення паролю</h2> : ""}
                 {
                     state === "signup" ? <>
                         <div className="Authorization__input-wrap">

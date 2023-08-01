@@ -7,14 +7,15 @@ import PhoneMenu from '../PhoneMenu/PhoneMenu';
 import Account from '../Account/Account';
 import Authorization from '../Authorization/Authorization';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState } from "react"
 
 function App() {
-  let [change, triggerChange] = useState(false)
+  let [change, triggerChange] = useState(false);
+  let location = useLocation();
   return (
-    <Router>
-      <div className="App" style={{ backgroundColor: window.location.pathname === "/" ? "#FFFFFF" : "#ECECEC" }}>
+    
+      <div className="App" style={{ backgroundColor: location.path === "/" ? "#FFFFFF" : "#ECECEC" }}>
         <Header />
         <Routes>
           <Route path='/*' element={<Home {...{change, triggerChange}} />} />
@@ -24,7 +25,7 @@ function App() {
         <PhoneMenu />
         <Footer />
       </div>
-    </Router>
+    
   );
 }
 

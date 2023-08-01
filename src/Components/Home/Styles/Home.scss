@@ -10,6 +10,7 @@
 
     /* Style the calendar container */
     .react-datepicker__month-container {
+        z-index: 11;
         border-radius: 5px;
         border: 1px solid #CECECE;
         border-radius: 4px;
@@ -155,7 +156,12 @@
             font-weight: 400;
             line-height: 124%;
             margin-left: 10px;
+            z-index: 4;
+            
         }
+        .react-datepicker-wrapper {
+             position: relative;
+         }
 
         .Home__booking-place {
             display: flex;
@@ -330,6 +336,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
+                    z-index: 0;
 
                     .Home__booking-select-open-btn {
                         background: transparent;
@@ -399,7 +406,8 @@
                             cursor: pointer;
 
                             img {
-                                height: 15px;
+                                height: 30px;
+                                aspect-ratio: 1/1;
                                 width: auto;
                                 pointer-events: none;
                                 user-select: none;

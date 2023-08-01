@@ -238,7 +238,7 @@
     box-shadow: 0 5px 15px rgba(20, 20, 20, 0.3137254902);
   }
   .Header:has(.Header__nav-open-btn_close) .Header__nav-open-btn .Header__nav-open-btn-visual {
-    background: #FFCB46;
+    background: #333333;
   }
   .Header .Header__logo {
     display: none;

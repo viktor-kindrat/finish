@@ -153,12 +153,12 @@ function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, pa
                 <div className="Home__booking-datepiacker-wrapper">
                     <DatePicker
                         id="myDateInput"
-                        selected={date} 
+                        selected={date}
                         dateFormat="dd.MM.yyyy"
                         placeholderText="дд.мм.рррр"
                         minDate={getCurrentDate()}
                         className="Home__booking-date"
-                        onChange={(selectedDate) => setDate(selectedDate)} 
+                        onChange={(selectedDate) => setDate(selectedDate)}
                         customInput={
                             <input
                                 type="text"
@@ -168,35 +168,42 @@ function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, pa
                         }
                         popperModifiers={{
                             offset: {
-                            enabled: true,
-                            offset: '0, 10px', // Adjust the offset as needed
+                                enabled: true,
+                                offset: '0, 10px', // Adjust the offset as needed to center vertically
+                            },
+                            preventOverflow: {
+                                enabled: true,
+                                boundariesElement: 'viewport', // Make sure the calendar stays within the viewport
                             },
                         }}
+                        appendToBody={true}
+                        portalId="home-select"
+                        popperPlacement="top-start"
                         locale="uk"
                     />
                 </div>
             </div>
-            <div className="Home__booking-group">
-                <p className="Home__booking-caption">Пасажири</p>
+            <div className="Home__booking-group" >
+                <p className="Home__booking-caption" id='home-select'>Пасажири</p>
                 <div className="Home__booking-passangers-select">
                     <div className="Home__booking-select-label" onClick={handleOpenPassanger}>{`${peoples.adults} дорослий ${peoples.children !== 0 ? `, ${peoples.children} дитячий` : ""}`} <button className="Home__booking-select-open-btn"><img src={selectIcon} alt="select" /></button></div>
                     <div className="Home__booking-select-options">
                         <div className="Home__booking-select-option" data-type="adults">
                             <button className="Home__booking-select-btn" onClick={handleDecrement}>
-                                <img src={removeIcon} alt="-" />
+                                <img height={30} width={30} src={removeIcon} alt="-" />
                             </button>
                             <p className="Home__booking-option-label">{peoples.adults} дорослий</p>
                             <button className="Home__booking-select-btn" onClick={handleIncrement}>
-                                <img src={addIcon} alt="+" />
+                                <img height={30} width={30} src={addIcon} alt="+" />
                             </button>
                         </div>
                         <div className="Home__booking-select-option" data-type="children">
                             <button className="Home__booking-select-btn" onClick={handleDecrement}>
-                                <img src={removeIcon} alt="-" />
+                                <img height={30} width={30} src={removeIcon} alt="-" />
                             </button>
                             <p className="Home__booking-option-label">{peoples.children} дитячий</p>
                             <button className="Home__booking-select-btn" onClick={handleIncrement}>
-                                <img src={addIcon} alt="+" />
+                                <img height={30} width={30} src={addIcon} alt="+" />
                             </button>
                         </div>
                         <div className="Home__booking-passangers-controll">

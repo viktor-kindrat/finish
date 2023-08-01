@@ -9,7 +9,7 @@
   .HeaderNavMobile {
     display: none;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
     align-items: center;
     justify-content: flex-start;
     position: fixed;
@@ -151,7 +151,7 @@
     justify-content: space-between;
     gap: 10px;
     padding: 15px;
-    margin-top: 10px;
+    margin-top: 5px;
   }
   .HeaderNavMobile .HeaderNavMobile__socials .HeaderNavMobile__socials-separator {
     width: 1px;
