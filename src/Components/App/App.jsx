@@ -9,7 +9,7 @@ import Authorization from '../Authorization/Authorization';
 import Loader from '../UI/Loader/Loader';
 import Alert from '../UI/Alert/Alert';
 
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useContext, useEffect } from "react";
 
 import hrefContext from "../../Context/ServerHostnameContext";
@@ -38,23 +38,25 @@ function getCookie(name) {
 
 function App() {
 	let location = useLocation();
+	let go = useNavigate();
 	let [change, triggerChange] = useState(false);
 	let [userData, setUserData] = useState(JSON.parse(sessionStorage.getItem("userData")) || undefined)
 	let [authUserData, setAuthUserData] = useState({ name: "", surname: "", email: "", phoneNumber: "", password: "", confirmPassword: "" });
-	let [loaderData, setLoaderData] = useState({shown: false, loaderText: "Завантаження"})
+	let [loaderData, setLoaderData] = useState({ shown: false, loaderText: "Завантаження" })
+	let [alertData, setAlertData] = useState({ show: false, message: "Успіх!", actionCaption: "закрити", action: () => { } })
 	let server = useContext(hrefContext).server;
 	let TOKEN = getCookie("userToken")
 
 	let SERVER = (loaderText, method, path, contentType, data, token) => {
-		setLoaderData({shown: true, loaderText: loaderText})
+		setLoaderData({ shown: true, loaderText: loaderText })
 		const options = { method, headers: { Authorization: token ? `Baerer ${token}` : "", } };
 		if (method === "POST") {
 			options.headers["Content-type"] = contentType;
 			options.body = JSON.stringify(data);
 		}
 
-		return fetch(`${server}${path}`, options).then((res) => res.json()).then((data)=>{
-			setLoaderData({...loaderData, shown: false}); 
+		return fetch(`${server}${path}`, options).then((res) => res.json()).then((data) => {
+			setLoaderData({ ...loaderData, shown: false });
 			return data
 		}).catch((e) => console.log(e))
 	};
@@ -95,6 +97,7 @@ function App() {
 				if (data.token) {
 					setUserDataAndToken(data.token)
 				}
+				setAlertData({ show: true, message: data.message, actionCaption: data.message === "Ви успішно увійшли" ? "Мій акаунт" : "Закрити", action: data.message === "Ви успішно увійшли" ? () => go("/account") : () => { } })
 			})
 		}
 	}
@@ -113,6 +116,7 @@ function App() {
 
 		if (notEmpty && passwordsMathces) {
 			SERVER("Реєструємо", "POST", "auth/sign-up", "application/json", data).then(data => {
+				setAlertData({ show: true, message: data.message, actionCaption: data.message === "Зареєстровано успішно!" ? "Мій акаунт" : "Закрити", action: data.message === "Зареєстровано успішно!" ? () => go("/account") : () => { } })
 				if (data.token) {
 					setUserDataAndToken(data.token)
 				}
@@ -128,13 +132,16 @@ function App() {
 		let notEmpty = Object.keys(data).map(key => data[key].length <= 0 ? "yes" : null).filter(item => item !== null).length === 0;
 
 		if (notEmpty) {
-			SERVER("Надсилаємо e-mail", "POST", "auth/reset-password", "application/json", data).then(data => { console.log(data) })
+			SERVER("Надсилаємо e-mail", "POST", "auth/reset-password", "application/json", data).then(data=>{
+				setAlertData({ show: true, message: data.message, actionCaption: "На головну", action: ()=>go("/")})
+			})
 		}
 	}
 
 	return (
 		<div className="App" style={{ backgroundColor: location.path === "/" ? "#FFFFFF" : "#ECECEC" }}>
-			<Loader {...{...loaderData}} />
+			<Loader {...{ ...loaderData }} />
+			<Alert {...{ ...alertData }} close={() => setAlertData({ ...alertData, show: false })} />
 			<Header />
 			<Routes>
 				<Route path='/*' element={<Home {...{ change, triggerChange }} />} />
