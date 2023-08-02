@@ -9,7 +9,6 @@ import APIkeysContext from "./Context/APIkeysContext"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// API KEY FOR GOOGLE MAPS IS:  AIzaSyA2w4bmkINSc8U15MEX543BLZmlSp5GPlI
 root.render(
   <React.StrictMode>
     <Router>

@@ -1,32 +1,47 @@
 import "./Styles/Authorization.css"
-import { useState, useRef } from "react"
+import { useState } from "react"
 
-import { useNavigate } from "react-router-dom"
+function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, isEdit, userData, setUserData }) {
+    let [state, setState] = useState(isEdit ? "edit" : "login");
 
-function Authorization() {
-    let [state, setState] = useState("login");
-    let navigate = useNavigate();
-    let input = useRef(null)
+    let handleChange = (e) => {
+        let fieldName = e.target.name;
+        let newUserData = {...userData}
+        newUserData[fieldName] = e.target.value
+        console.log(newUserData);
+        setUserData(newUserData)
+    }
 
     let actionHandler = (e) => {
-        if (input.current.value === "admin") {
-            localStorage.setItem("isAdmin", "true")
-            localStorage.setItem("logined", "true")
-            navigate("/account")
-        } else {
-            if (state === "login" || state === "signup") {
-                localStorage.setItem("logined", "true")
-                navigate("/account")
-            } else {
-                navigate("/")
-            }
+        switch (state) {
+            case "login":
+                handleLogin()
+                break;
+            case "signUp":
+                handleSignUp()
+                break;
+            case "recover":
+                handleRecover()
+                break;
+            case "edit":
+                handleEdit()
+                break;
+            default:
+                console.log("error of auth form")
+                break;
         }
     }
+
     return (
         <section className="Authorization" >
-            <div className="Authorization__container" style={state === "recover" ? { borderRadius: "20px" } : {}}>
+            <div className="Authorization__container" style={(state !== "recover" && state !== "edit") ? {} : { borderRadius: "20px" }}>
                 {
-                    state !== "recover" ?
+                    state === "edit" ? <>
+                        <h2 className="Authorization__hadline">{userData.name} {userData.surname}</h2>
+                    </> : ""
+                }
+                {
+                    (state !== "recover" && state !== "edit") ?
                         <div className="Authorization__select">
                             <div onClick={(e) => setState("login")} className={`Authorization__option ${state === "login" ? "Authorization__option_selected" : ""}`}>Вхід</div>
                             <div onClick={(e) => setState("signup")} className={`Authorization__option ${state === "signup" ? "Authorization__option_selected" : ""}`}>Реєстрація</div>
@@ -34,36 +49,42 @@ function Authorization() {
                 }
                 {state === "recover" ? <h2 className="Authorization__headline">Відновлення паролю</h2> : ""}
                 {
-                    state === "signup" ? <>
+                    (state === "signup" || state === "edit") ? <>
                         <div className="Authorization__input-wrap">
                             <div className="Authorization__input-label">Ім’я</div>
-                            <input type="text" className="Authorization__input" />
+                            <input value={userData.name} onChange={handleChange} name="name" type="text" className="Authorization__input" />
                         </div>
                         <div className="Authorization__input-wrap">
                             <div className="Authorization__input-label">Прізвище</div>
-                            <input type="text" className="Authorization__input" />
+                            <input value={userData.surname} onChange={handleChange} name="surname" type="text" className="Authorization__input" />
                         </div>
                     </> : ""
                 }
                 <div className="Authorization__input-wrap">
                     <div className="Authorization__input-label">E-Mail</div>
-                    <input ref={input} type="text" className="Authorization__input" />
+                    <input value={userData.email} onChange={handleChange} name="email" type="text" className="Authorization__input" />
                 </div>
                 {
-                    state !== "recover" ? <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">Пароль</div>
-                        <input type="password" className="Authorization__input" />
+                    (state === "signup" || state === "edit") ? <div className="Authorization__input-wrap">
+                        <div className="Authorization__input-label">Номер телефону</div>
+                        <input value={userData.phoneNumber} onChange={handleChange} name="phoneNumber" type="text" className="Authorization__input" />
                     </div> : ""
                 }
                 {
-                    state === "signup" ? <>
+                    state !== "recover" ? <div className="Authorization__input-wrap">
+                        <div className="Authorization__input-label">Пароль</div>
+                        <input value={userData.password} onChange={handleChange} name="password" type="password" className="Authorization__input" />
+                    </div> : "password"
+                }
+                {
+                    (state === "signup" || state === "edit") ? <>
                         <div className="Authorization__input-wrap">
                             <div className="Authorization__input-label">Пароль ще раз</div>
-                            <input type="password" className="Authorization__input" />
+                            <input value={userData.confirmPassword} onChange={handleChange} name="confirmPassword" type="password" className="Authorization__input" />
                         </div>
                     </> : ""
                 }
-                <button onClick={actionHandler} className="Authorization__action">{state === "login" ? "Вхід" : state === "signUp" ? "Зареєструватися" : "Відправити"}</button>
+                <button onClick={actionHandler} className="Authorization__action">{state === "login" ? "Вхід" : state === "signUp" ? "Зареєструватися" : state === "edit" ? "Зберегти" : "Відправити"}</button>
                 <div onClick={(e) => setState("recover")} className="Authorization__recover">Забули пароль?</div>
             </div>
         </section>
