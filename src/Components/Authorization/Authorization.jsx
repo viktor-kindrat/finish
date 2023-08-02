@@ -6,7 +6,7 @@ function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, i
 
     let handleChange = (e) => {
         let fieldName = e.target.name;
-        let newUserData = {...userData}
+        let newUserData = { ...userData }
         newUserData[fieldName] = e.target.value
         console.log(newUserData);
         setUserData(newUserData)
@@ -17,7 +17,7 @@ function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, i
             case "login":
                 handleLogin()
                 break;
-            case "signUp":
+            case "signup":
                 handleSignUp()
                 break;
             case "recover":
@@ -74,7 +74,7 @@ function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, i
                     state !== "recover" ? <div className="Authorization__input-wrap">
                         <div className="Authorization__input-label">Пароль</div>
                         <input value={userData.password} onChange={handleChange} name="password" type="password" className="Authorization__input" />
-                    </div> : "password"
+                    </div> : ""
                 }
                 {
                     (state === "signup" || state === "edit") ? <>
@@ -85,7 +85,7 @@ function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, i
                     </> : ""
                 }
                 <button onClick={actionHandler} className="Authorization__action">{state === "login" ? "Вхід" : state === "signUp" ? "Зареєструватися" : state === "edit" ? "Зберегти" : "Відправити"}</button>
-                <div onClick={(e) => setState("recover")} className="Authorization__recover">Забули пароль?</div>
+                {(state !== "recover" && state !== "edit") ? <div onClick={(e) => setState("recover")} className="Authorization__recover">Забули пароль?</div> : ""}
             </div>
         </section>
     )
