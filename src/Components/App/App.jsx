@@ -8,7 +8,7 @@ import Account from '../Account/Account';
 import Authorization from '../Authorization/Authorization';
 
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useState } from "react"
+import { useState } from "react";
 
 function App() {
   let [change, triggerChange] = useState(false);
