@@ -1,0 +1,372 @@
+@keyframes fade {
+
+    30% {
+        opacity: 0.3;
+        left: 7px;
+    }
+
+    50% {
+        opacity: 0.5;
+        left: 6px;
+    }
+
+    70% {
+        opacity: 0.1;
+        left: 4px;
+    }
+
+    90% {
+        opacity: 0.4;
+        left: 2px;
+    }
+}
+
+@keyframes bg {
+    from {
+        background-position-x: 0px;
+    }
+
+    to {
+        background-position-x: -400px;
+    }
+}
+
+@keyframes updown {
+    50% {
+        transform: translateY(-20%);
+    }
+
+    70% {
+        transform: translateY(-10%);
+    }
+}
+
+@keyframes updown-half {
+    50% {
+        transform: translateY(-10%);
+    }
+
+    70% {
+        transform: translateY(-5%);
+    }
+}
+
+@keyframes spin {
+    50% {
+        top: 76px;
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes container {
+
+    30% {
+        transform: rotate(1deg);
+    }
+
+    50% {
+        top: 11px;
+    }
+
+    70% {
+        top: 10px;
+        transform: rotate(-1deg);
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-25px);
+    }
+}
+
+@keyframes animloader {
+    0% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+.Loader {
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    opacity: 0;
+    flex-direction: column;
+    gap: 75px;
+    align-items: center;
+    justify-content: center;
+    background: #141414cf;
+    backdrop-filter: blur(2px);
+    padding: 25px;
+
+    .Loader__text {
+        position: relative;
+        display: inline-block;
+    }
+
+    .Loader__text::before {
+        content: attr(data-text);
+        color: #FFF;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        font-size: calc(25px + .2vw);
+        // letter-spacing: 2px;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: floating 1s ease-out infinite alternate;
+    }
+
+    .Loader__text::after {
+        content: '';
+        width: 100%;
+        height: 10px;
+        background: rgba(0, 0, 0, 0.15);
+        position: absolute;
+        left: 0;
+        top: 100%;
+        filter: blur(4px);
+        border-radius: 50%;
+        box-sizing: border-box;
+        animation: animloader 1s ease-out infinite alternate;
+    }
+
+    .loader-wrapper {
+        height: auto;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 35px;
+        background: #272727;
+        border: 5px solid #ffffff;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+
+    .truck-wrapper {
+        position: relative;
+    }
+
+    .truck {
+        height: 110px;
+        width: 150px;
+        transform: translateX(18px);
+        -webkit-transform: translateX(18px);
+        -moz-transform: translateX(18px);
+        -ms-transform: translateX(18px);
+        -o-transform: translateX(18px);
+    }
+
+    .truck>.glases {
+        background: rgb(40, 181, 245);
+        background: -moz-linear-gradient(-45deg, rgba(40, 181, 245, 1) 0%, rgba(40, 181, 245, 1) 50%, rgba(2, 153, 227, 1) 52%, rgba(2, 153, 227, 1) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(40, 181, 245, 1) 0%, rgba(40, 181, 245, 1) 50%, rgba(2, 153, 227, 1) 52%, rgba(2, 153, 227, 1) 100%);
+        background: linear-gradient(135deg, #514f4f 0%, #514f4f 50%, #333131 52%, #333131 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#28b5f5', endColorstr='#0299e3', GradientType=1);
+        position: absolute;
+        height: 25px;
+        width: 143.9px;
+        border: 4px solid #ffb246;
+        border-bottom: none;
+        top: 35.5px;
+        left: -19px;
+        border-top-right-radius: 6px;
+        animation: updown-half 0.4s linear infinite;
+    }
+
+    .truck>.glases:after {
+        content: '';
+        display: block;
+        background-color: #ffb246;
+        height: 6px;
+        width: 3px;
+        position: absolute;
+        right: -6px;
+        bottom: 0px;
+        border-radius: 10px / 15px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 0px;
+
+    }
+
+    .truck>.glases:before {
+        content: '';
+        display: block;
+        background-color: #ffb246;
+        height: 27px;
+        width: 3px;
+        position: absolute;
+        left: 102px;
+        bottom: -5px;
+        /*   border-top-right-radius:4px; */
+    }
+
+    .truck>.bonet {
+        background-color: #ffb246;
+        position: absolute;
+        width: 153.8px;
+        height: 15px;
+        top: 60px;
+        left: -19px;
+        z-index: -1;
+        animation: updown 0.4s linear infinite;
+    }
+
+    .truck>.bonet:after {
+        content: '';
+        display: block;
+        background: rgb(255, 255, 255);
+        background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(225, 225, 225, 1) 51%, rgba(246, 246, 246, 1) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(225, 225, 225, 1) 51%, rgba(246, 246, 246, 1) 100%);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(225, 225, 225, 1) 51%, rgba(246, 246, 246, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=1);
+        height: 10px;
+        width: 6px;
+        position: absolute;
+        right: 0px;
+        bottom: 2px;
+        border-top-left-radius: 4px;
+
+    }
+
+    .truck>.base {
+        position: absolute;
+        background-color: #445A64;
+        width: 134px;
+        height: 15px;
+        border-top-right-radius: 10px;
+        top: 70px;
+        left: -15px;
+        animation: updown 0.4s linear infinite;
+    }
+
+    .truck>.base:before {
+        content: '';
+        display: block;
+        background-color: #E54A18;
+        height: 20px;
+        width: 5px;
+        position: absolute;
+        left: -4px;
+        bottom: 0px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .truck>.base:after {
+        content: '';
+        display: block;
+        background-color: #445A64;
+        height: 10px;
+        width: 20px;
+        position: absolute;
+        right: -16px;
+        bottom: 0px;
+        border-bottom-right-radius: 4px;
+        z-index: -1;
+    }
+
+    .truck>.base-aux {
+        width: 3px;
+        height: 26px;
+        background-color: #ffb246;
+        position: absolute;
+        top: 38px;
+        left: 25px;
+        /*   border-bottom-right-radius:4px; */
+        animation: updown-half 0.4s linear infinite;
+    }
+
+    .truck>.wheel-back {
+        left: 20px
+    }
+
+    .truck>.wheel-front {
+        left: 95px;
+    }
+
+    .truck>.wheel-back,
+    .truck>.wheel-front {
+
+        border-radius: 100%;
+        position: absolute;
+        background: rgb(84, 110, 122);
+        background: -moz-linear-gradient(-45deg, rgba(84, 110, 122, 1) 0%, rgba(84, 110, 122, 1) 49%, rgba(68, 90, 100, 1) 52%, rgba(68, 90, 100, 1) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(84, 110, 122, 1) 0%, rgba(84, 110, 122, 1) 49%, rgba(68, 90, 100, 1) 52%, rgba(68, 90, 100, 1) 100%);
+        background: linear-gradient(135deg, rgba(84, 110, 122, 1) 0%, rgba(84, 110, 122, 1) 49%, rgba(68, 90, 100, 1) 52%, rgba(68, 90, 100, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#546e7a', endColorstr='#445a64', GradientType=1);
+        top: 75px;
+        height: 22px;
+        width: 22px;
+        animation: spin 0.6s linear infinite;
+    }
+
+    .truck>.wheel-back:before,
+    .truck>.wheel-front:before {
+        content: '';
+        border-radius: 100%;
+        left: 5px;
+        top: 5px;
+        position: absolute;
+        background: rgb(175, 189, 195);
+        background: -moz-linear-gradient(-45deg, rgba(175, 189, 195, 1) 0%, rgba(175, 189, 195, 1) 50%, rgba(143, 163, 173, 1) 51%, rgba(143, 163, 173, 1) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(175, 189, 195, 1) 0%, rgba(175, 189, 195, 1) 50%, rgba(143, 163, 173, 1) 51%, rgba(143, 163, 173, 1) 100%);
+        background: linear-gradient(135deg, rgba(175, 189, 195, 1) 0%, rgba(175, 189, 195, 1) 50%, rgba(143, 163, 173, 1) 51%, rgba(143, 163, 173, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#afbdc3', endColorstr='#8fa3ad', GradientType=1);
+        height: 12px;
+        width: 12px;
+    }
+
+    .truck>.smoke {
+        position: absolute;
+        background-color: #AFBDC3;
+        border-radius: 100%;
+        width: 8px;
+        height: 8px;
+        top: 90px;
+        left: 6px;
+        animation: fade 0.4s linear infinite;
+        opacity: 0;
+    }
+
+    .truck>.smoke:after {
+        content: '';
+        position: absolute;
+        background-color: RGB(143, 163, 173);
+        border-radius: 100%;
+        width: 6px;
+        height: 6px;
+        top: -4px;
+        left: 4px;
+    }
+
+    .truck>.smoke:before {
+        content: '';
+        position: absolute;
+        background-color: RGB(143, 163, 173);
+        border-radius: 100%;
+        width: 4px;
+        height: 4px;
+        top: -2px;
+        left: 0px;
+    }
+}

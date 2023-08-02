@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import PhoneMenu from '../PhoneMenu/PhoneMenu';
 import Account from '../Account/Account';
 import Authorization from '../Authorization/Authorization';
+import Loader from '../Loader/Loader';
 
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useContext, useEffect } from "react";
@@ -39,17 +40,22 @@ function App() {
 	let [change, triggerChange] = useState(false);
 	let [userData, setUserData] = useState(JSON.parse(sessionStorage.getItem("userData")) || undefined)
 	let [authUserData, setAuthUserData] = useState({ name: "", surname: "", email: "", phoneNumber: "", password: "", confirmPassword: "" });
+	let [loaderData, setLoaderData] = useState({shown: false, loaderText: "Завантаження"})
 	let server = useContext(hrefContext).server;
 	let TOKEN = getCookie("userToken")
 
-	let SERVER = (method, path, contentType, data, token) => {
+	let SERVER = (loaderText, method, path, contentType, data, token) => {
+		setLoaderData({shown: true, loaderText: loaderText})
 		const options = { method, headers: { Authorization: token ? `Baerer ${token}` : "", } };
 		if (method === "POST") {
 			options.headers["Content-type"] = contentType;
 			options.body = JSON.stringify(data);
 		}
 
-		return fetch(`${server}${path}`, options).then((res) => res.json()).catch((e) => console.log(e));
+		return fetch(`${server}${path}`, options).then((res) => res.json()).then((data)=>{
+			setLoaderData({...loaderData, shown: false}); 
+			return data
+		}).catch((e) => console.log(e))
 	};
 
 
@@ -67,7 +73,7 @@ function App() {
 	let setUserDataAndToken = (token) => {
 		setCookie("userToken", token, 1)
 
-		SERVER("GET", "auth/get-info", "application/json", "", token).then(data => {
+		SERVER("Завантажуємо дані", "GET", "auth/get-info", "application/json", "", token).then(data => {
 			if (data) {
 				setUserData(data.body)
 				sessionStorage.setItem("userData", JSON.stringify(data.body))
@@ -84,7 +90,7 @@ function App() {
 
 		let notEmpty = Object.keys(data).map(key => data[key].length <= 0 ? "yes" : null).filter(item => item !== null).length === 0;
 		if (notEmpty) {
-			SERVER("POST", "auth/login", "application/json", data).then(data => {
+			SERVER("Виконуємо вхід", "POST", "auth/login", "application/json", data).then(data => {
 				if (data.token) {
 					setUserDataAndToken(data.token)
 				}
@@ -105,7 +111,7 @@ function App() {
 		let notEmpty = Object.keys(data).map(key => data[key].length <= 0 ? "yes" : null).filter(item => item !== null).length === 0;
 
 		if (notEmpty && passwordsMathces) {
-			SERVER("POST", "auth/sign-up", "application/json", data).then(data => {
+			SERVER("Реєструємо", "POST", "auth/sign-up", "application/json", data).then(data => {
 				if (data.token) {
 					setUserDataAndToken(data.token)
 				}
@@ -121,12 +127,13 @@ function App() {
 		let notEmpty = Object.keys(data).map(key => data[key].length <= 0 ? "yes" : null).filter(item => item !== null).length === 0;
 
 		if (notEmpty) {
-			SERVER("POST", "auth/reset-password", "application/json", data).then(data => { console.log(data) })
+			SERVER("Надсилаємо e-mail", "POST", "auth/reset-password", "application/json", data).then(data => { console.log(data) })
 		}
 	}
 
 	return (
 		<div className="App" style={{ backgroundColor: location.path === "/" ? "#FFFFFF" : "#ECECEC" }}>
+			<Loader {...{...loaderData}} />
 			<Header />
 			<Routes>
 				<Route path='/*' element={<Home {...{ change, triggerChange }} />} />
