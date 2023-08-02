@@ -6,7 +6,8 @@ import Footer from '../Footer/Footer';
 import PhoneMenu from '../PhoneMenu/PhoneMenu';
 import Account from '../Account/Account';
 import Authorization from '../Authorization/Authorization';
-import Loader from '../Loader/Loader';
+import Loader from '../UI/Loader/Loader';
+import Alert from '../UI/Alert/Alert';
 
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useContext, useEffect } from "react";
