@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Group Alliance - Travel Tickets Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Group Alliance Travel Tickets Platform project! This repository contains a web page developed using React.js, designed for commercial usage. The platform serves as a ticketing system for traveling abroad, providing users with a seamless experience in booking their travel tickets.
 
-## Available Scripts
+## Website Link
 
-In the project directory, you can run:
+[https://group-aliance.space/](https://group-aliance.space/)
 
-### `npm start`
+## Main Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React.js
+- MongoDB
+- JWT (JSON Web Tokens)
+- Fetch API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Overview
 
-### `npm test`
+The Group Alliance Travel Tickets Platform aims to offer users a user-friendly and efficient platform for purchasing travel tickets to international destinations. The website utilizes the power of React.js to deliver a dynamic and interactive user interface, ensuring a smooth browsing experience.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- **User Registration**: Users can create an account to access the ticket booking functionalities.
+- **Authentication**: Secure user authentication using JSON Web Tokens (JWT).
+- **Ticket Booking**: Users can search for available travel tickets, view details, and book tickets for their desired destinations.
+- **Booking History**: Users can view their booking history, making it convenient to manage past and upcoming trips.
+- **Admin Panel**: An admin panel is available to manage ticket inventory, user data, and track bookings.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation and Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To set up the project locally, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository: `git clone https://github.com/viktor-kindrat/finish.git`
+2. Change directory to the project folder: `cd finish`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm start`
 
-### `npm run eject`
+## Contribution
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+We welcome contributions to enhance the project's features and fix issues. If you wish to contribute, please follow these steps:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/<feature_name>` or `git checkout -b bugfix/<issue_number>`
+3. Make your changes and commit them: `git commit -m "Description of changes"`
+4. Push to the branch: `git push origin feature/<feature_name>` or `git push origin bugfix/<issue_number>`
+5. Submit a pull request to the `main` branch.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## License
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This project is licensed under the [MIT License](LICENSE).
 
-## Learn More
+## Contact
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If you have any questions or need further assistance, please feel free to contact our team at [kindratvictor07@gmail.com](mailto:kindratvictor07@gmail.com). We'd be happy to help!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for using the Group Alliance Travel Tickets Platform. Happy traveling! 🌍✈️
