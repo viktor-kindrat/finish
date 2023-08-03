@@ -1,5 +1,7 @@
 # Group Alliance Travel Tickets Platform - React.js Project
 
+[![wakatime](https://wakatime.com/badge/github/viktor-kindrat/finish.svg)](https://wakatime.com/badge/github/viktor-kindrat/finish)
+
 ![image](https://github.com/viktor-kindrat/finish/assets/84918090/e5e2329a-d414-4494-8493-d03ea3d34b08)
 
 Welcome to the Group Alliance Travel Tickets Platform project! This repository contains a React.js web application designed for commercial usage, serving as a platform for booking tickets for traveling abroad.
