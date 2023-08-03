@@ -1,8 +1,17 @@
 import "./Styles/Authorization.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom";
 
-function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, isEdit, userData, setUserData }) {
+function Authorization({ logined, handleLogin, handleSignUp, handleRecover, handleEdit, isEdit, userData, setUserData }) {
     let [state, setState] = useState(isEdit ? "edit" : "login");
+
+    let go = useNavigate()
+
+    useEffect(()=>{
+        if (logined) {
+            go("/account")
+        }
+    }, [logined, go])
 
     const normalizeInput = (value) => {
         if (!value) return value;

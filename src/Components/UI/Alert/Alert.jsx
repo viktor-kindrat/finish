@@ -3,15 +3,15 @@ import "./Styles/Alert.css";
 import { useEffect } from "react";
 import { gsap } from "gsap";
 
-function Alert({ show, message, actionCaption, action, close }) {
+function Alert({delay, show, message, actionCaption, action, close }) {
     useEffect(() => {
         if (show) {
             let tl = gsap.timeline()
-            tl.set("body", { delay: 0.9, overflowY: "hidden" })
+            tl.set("body", { delay: delay, overflowY: "hidden" })
                 .set(".Alert", { display: "flex" })
                 .to(".Alert", { opacity: 1, duration: 0.3 })
         }
-    }, [show])
+    }, [show, delay])
     let handleClick = () => {
         let tl = gsap.timeline()
         tl.to(".Alert", { opacity: 0, duration: 0.3 })

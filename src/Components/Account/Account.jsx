@@ -7,6 +7,7 @@ import profileIcon from "./SVG/profile.svg"
 import ticketIcon from "./SVG/tickets.svg"
 import profileActiveIcon from "./SVG/profile-active.svg"
 import ticketActiveIcon from "./SVG/tickets-active.svg"
+import logoutIcon from "./SVG/logout.svg"
 
 import PersonalInfo from "../PersonalInfo/PersonalInfo"
 import Tickets from "../Tickets/Tickets"
@@ -14,15 +15,21 @@ import TripsControll from "../TripsControll/TripsControll"
 import UsersControll from "../UsersControll/UsersControll"
 import BackControll from "../BackControll/BackControll"
 
-function Account({ userData, setUserData, alertData, setAlertData, SERVER }) {
+function Account({ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }) {
     let location = useLocation();
     let go = useNavigate();
+
+    let logoutHandler = ()=>{
+        setUserData(undefined);
+        setCookie("userToken", "", 0)
+        go("/authorization")
+    }
 
     useEffect(() => {
         if (!userData) {
             go("/authorization")
         }
-    }, [])
+    }, [go, userData])
 
     return (
         <>
@@ -31,7 +38,8 @@ function Account({ userData, setUserData, alertData, setAlertData, SERVER }) {
                     <section className="Account">
                         <div className="Account__menu">
                             <div className="Account__menu-head">
-                                <h2 className="Account__menu-headline">{userData.name} <br /> {userData.surname}</h2>
+                                <h2 className="Account__menu-headline">{userData.name} {userData.surname}</h2>
+                                <button className="Account__logout-btn">Вихід <img src={logoutIcon} alt="log out" /></button>
                             </div>
                             <nav className="Account__menu-nav">
                                 <Link to="/account">
@@ -47,8 +55,8 @@ function Account({ userData, setUserData, alertData, setAlertData, SERVER }) {
                             </nav>
                         </div>
                         <Routes>
-                            <Route path="/" element={<PersonalInfo {...{ userData, setUserData, alertData, setAlertData, SERVER }} />} />
-                            <Route path="/tickets" element={<Tickets {...{ userData, setUserData, alertData, setAlertData, SERVER }} />} />
+                            <Route path="/" element={<PersonalInfo {...{ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
+                            <Route path="/tickets" element={<Tickets {...{ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
                         </Routes>
                     </section>
                     :
@@ -56,6 +64,7 @@ function Account({ userData, setUserData, alertData, setAlertData, SERVER }) {
                         <div className="Account__menu">
                             <div className="Account__menu-head">
                                 <h2 className="Account__menu-headline">Admin</h2>
+                                <button className="Account__logout-btn" onClick={logoutHandler}>Вихід <img src={logoutIcon} alt="log out" /></button>
                             </div>
                             <nav className="Account__menu-nav">
                                 <Link to="/account">

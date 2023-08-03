@@ -30,18 +30,48 @@
 .Account .Account__menu .Account__menu-head {
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
 }
 .Account .Account__menu .Account__menu-head .Account__menu-headline {
-  text-align: center;
+  text-align: left;
   color: #00274A;
   text-align: center;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
+}
+.Account .Account__menu .Account__menu-head .Account__logout-btn {
+  width: 100%;
+  height: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFCB46;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #353535;
+  font-size: calc(12px + 0.3vw);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.Account .Account__menu .Account__menu-head .Account__logout-btn img {
+  height: 25px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  pointer-events: none;
 }
 .Account .Account__menu .Account__menu-head::after {
   content: "";

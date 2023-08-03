@@ -43,7 +43,7 @@ function App() {
 	let [userData, setUserData] = useState(JSON.parse(sessionStorage.getItem("userData")) || undefined)
 	let [authUserData, setAuthUserData] = useState({ name: "", surname: "", email: "", phoneNumber: "", password: "", confirmPassword: "" });
 	let [loaderData, setLoaderData] = useState({ shown: false, loaderText: "Завантаження" })
-	let [alertData, setAlertData] = useState({ show: false, message: "Успіх!", actionCaption: "закрити", action: () => { } })
+	let [alertData, setAlertData] = useState({ delay: 0, show: false, message: "Успіх!", actionCaption: "закрити", action: () => { } })
 	let server = useContext(hrefContext).server;
 	let TOKEN = getCookie("userToken");
 
@@ -97,7 +97,7 @@ function App() {
 				if (data.token) {
 					setUserDataAndToken(data.token)
 				}
-				setAlertData({ show: true, message: data.message, actionCaption: data.message === "Ви успішно увійшли" ? "Мій акаунт" : "Закрити", action: data.message === "Ви успішно увійшли" ? () => go("/account") : () => { } })
+				setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: data.message === "Ви успішно увійшли" ? "Мій акаунт" : "Закрити", action: data.message === "Ви успішно увійшли" ? () => go("/account") : () => { } })
 			})
 		}
 	}
@@ -118,7 +118,7 @@ function App() {
 		if (notEmpty && passwordsMathces) {
 			setCookie("userToken", "", 0)
 			SERVER("Реєструємо", "POST", "auth/sign-up", "application/json", data).then(data => {
-				setAlertData({ show: true, message: data.message, actionCaption: data.message === "Зареєстровано успішно!" ? "Мій акаунт" : "Закрити", action: data.message === "Зареєстровано успішно!" ? () => go("/account") : () => { } })
+				setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: data.message === "Зареєстровано успішно!" ? "Мій акаунт" : "Закрити", action: data.message === "Зареєстровано успішно!" ? () => go("/account") : () => { } })
 				if (data.token) {
 					setUserDataAndToken(data.token)
 				}
@@ -135,7 +135,7 @@ function App() {
 
 		if (notEmpty) {
 			SERVER("Надсилаємо e-mail", "POST", "auth/reset-password", "application/json", data).then(data => {
-				setAlertData({ show: true, message: data.message, actionCaption: "На головну", action: () => go("/") })
+				setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "На головну", action: () => go("/") })
 			})
 		}
 	}
@@ -147,8 +147,8 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path='/*' element={<Home {...{ change, triggerChange }} />} />
-				<Route path='account/*' element={<Account {...{ userData, setUserData, alertData, setAlertData, SERVER }} />} />
-				<Route path='authorization/*' element={<Authorization {...{ handleLogin, handleSignUp, handleRecover }} userData={authUserData} setUserData={setAuthUserData} isEdit={false} />} />
+				<Route path='account/*' element={<Account {...{ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
+				<Route path='authorization/*' element={<Authorization logined={!(!userData)} {...{ handleLogin, handleSignUp, handleRecover }} userData={authUserData} setUserData={setAuthUserData} isEdit={false} />} />
 			</Routes>
 			<PhoneMenu />
 			<Footer />
