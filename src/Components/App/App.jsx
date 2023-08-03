@@ -56,7 +56,7 @@ function App() {
 		}
 
 		return fetch(`${server}${path}`, options).then((res) => res.json()).then((data) => {
-			setLoaderData({ ...loaderData, shown: false });
+			setLoaderData({ loaderText: loaderText, shown: false });
 			return data
 		}).catch((e) => console.log(e))
 	};
@@ -64,7 +64,7 @@ function App() {
 
 	useEffect(() => {
 		if (TOKEN.length > 0 && !userData) {
-			SERVER("GET", "auth/get-info", "application/json", "", TOKEN).then(data => {
+			SERVER("Завантажуємо дані про Вас", "GET", "auth/get-info", "application/json", "", TOKEN).then(data => {
 				if (data) {
 					setUserData(data.body)
 					sessionStorage.setItem("userData", JSON.stringify(data.body))
@@ -76,7 +76,7 @@ function App() {
 	let setUserDataAndToken = (token) => {
 		setCookie("userToken", token, 1)
 
-		SERVER("Завантажуємо дані", "GET", "auth/get-info", "application/json", "", token).then(data => {
+		SERVER("Отримуємо дані", "GET", "auth/get-info", "application/json", "", token).then(data => {
 			if (data) {
 				setUserData(data.body)
 				sessionStorage.setItem("userData", JSON.stringify(data.body))
@@ -93,6 +93,7 @@ function App() {
 
 		let notEmpty = Object.keys(data).map(key => data[key].length <= 0 ? "yes" : null).filter(item => item !== null).length === 0;
 		if (notEmpty) {
+			setCookie("userToken", "", 0)
 			SERVER("Виконуємо вхід", "POST", "auth/login", "application/json", data).then(data => {
 				if (data.token) {
 					setUserDataAndToken(data.token)
@@ -115,6 +116,7 @@ function App() {
 		let notEmpty = Object.keys(data).map(key => data[key].length <= 0 ? "yes" : null).filter(item => item !== null).length === 0;
 
 		if (notEmpty && passwordsMathces) {
+			setCookie("userToken", "", 0)
 			SERVER("Реєструємо", "POST", "auth/sign-up", "application/json", data).then(data => {
 				setAlertData({ show: true, message: data.message, actionCaption: data.message === "Зареєстровано успішно!" ? "Мій акаунт" : "Закрити", action: data.message === "Зареєстровано успішно!" ? () => go("/account") : () => { } })
 				if (data.token) {

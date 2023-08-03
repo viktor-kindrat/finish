@@ -8,7 +8,6 @@ function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, i
         let fieldName = e.target.name;
         let newUserData = { ...userData }
         newUserData[fieldName] = e.target.value
-        console.log(newUserData);
         setUserData(newUserData)
     }
 

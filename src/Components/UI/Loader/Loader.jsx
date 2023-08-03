@@ -19,6 +19,12 @@ function Loader({ loaderText, shown }) {
             }, 1000);
         }
     }, [shown])
+
+    useEffect(() => {
+        gsap.set(".Loader", { opacity: 0 })
+        gsap.set(".Loader", { display: "none" })
+        gsap.set("body", { overflowY: "auto" })
+    }, [])
     return (
         <div className="Loader">
             <div class="loader-wrapper">

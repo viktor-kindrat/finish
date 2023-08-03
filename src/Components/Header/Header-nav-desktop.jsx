@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom"
 
 function HeaderNavDesktop() {
     let location = useLocation();
-    console.log(location.pathname.includes("/account"))
+
     return (
         <div className="Header__nav-wrap">
             <nav className="Header__nav">
