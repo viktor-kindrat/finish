@@ -1,55 +1,74 @@
-# Group Alliance - Travel Tickets Platform
+# Group Alliance Travel Tickets Platform - React.js Project
 
-Welcome to the Group Alliance Travel Tickets Platform project! This repository contains a web page developed using React.js, designed for commercial usage. The platform serves as a ticketing system for traveling abroad, providing users with a seamless experience in booking their travel tickets.
+![Group Alliance Logo](https://example.com/path-to-logo.png)
 
-## Website Link
+Welcome to the Group Alliance Travel Tickets Platform project! This repository contains a React.js web application designed for commercial usage, serving as a platform for booking tickets for traveling abroad.
 
-[https://group-aliance.space/](https://group-aliance.space/)
+## Project Description
 
-## Main Technology Stack
+The Group Alliance Travel Tickets Platform addresses the client's challenge of managing seat reservations on their six buses. With people fighting for seats due to vague phone reservations, the platform aims to ensure passengers occupy pre-purchased seats without any conflicts. The main objective is to allow the client to manage routes, book and cancel reservations, update passenger profiles, and handle refund requests conveniently from their mobile phone.
 
-- React.js
-- MongoDB
-- JWT (JSON Web Tokens)
-- Fetch API
+## Functionality for Administrators
 
-## Project Overview
+### Adding and Managing Routes
 
-The Group Alliance Travel Tickets Platform aims to offer users a user-friendly and efficient platform for purchasing travel tickets to international destinations. The website utilizes the power of React.js to deliver a dynamic and interactive user interface, ensuring a smooth browsing experience.
+- Add new routes with details such as route name, driver name, and phone number.
+- Define departure locations, including country, city, gathering point, time, and date.
+- Add intermediate stops with relevant information like country, city, gathering point, time, date, and ticket prices for adults and children.
+- Specify arrival details, including country, city, gathering point, time, date, and ticket prices for adults and children.
+- After arrival, routes become inactive but can be edited and reactivated to avoid repetitive data entry. Two options are provided for changes in routes:
+  - Modify the route while keeping existing reservations active (to alert passengers of changes).
+  - Change the date and time, clearing all existing reservations to start anew.
 
-## Features
+### Route Management
 
-- **User Registration**: Users can create an account to access the ticket booking functionalities.
-- **Authentication**: Secure user authentication using JSON Web Tokens (JWT).
-- **Ticket Booking**: Users can search for available travel tickets, view details, and book tickets for their desired destinations.
-- **Booking History**: Users can view their booking history, making it convenient to manage past and upcoming trips.
-- **Admin Panel**: An admin panel is available to manage ticket inventory, user data, and track bookings.
+- View a list of created routes and select a route to manage.
+- Display a bus seat layout with seat numbers (e.g., 1, 2, 3), highlighting taken seats in red and available seats in white.
+- Two buttons, "Book" and "Cancel Reservation," appear below the seat layout to allow administrators to reserve or cancel seats as needed.
+- Reservation: Click on an available seat to book it, and the passenger details will show "Admin" instead of passenger information.
+- Cancel Reservation: Click on a reserved seat to remove the reservation, making the seat available for booking again.
+- Display a list of passengers who have booked tickets for a specific route, showing their names, surnames, phone numbers, and ticket numbers.
 
-## Installation and Setup
+### Client Management
 
-To set up the project locally, follow these steps:
+- Access a list of clients and edit their information as required.
 
-1. Clone the repository: `git clone https://github.com/viktor-kindrat/finish.git`
-2. Change directory to the project folder: `cd finish`
-3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
+### Refund Ticket List
 
-## Contribution
+- View a list of ticket refund requests, including the reserved ticket information and passenger data.
 
-We welcome contributions to enhance the project's features and fix issues. If you wish to contribute, please follow these steps:
+## Passenger Functionality
 
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature/<feature_name>` or `git checkout -b bugfix/<issue_number>`
-3. Make your changes and commit them: `git commit -m "Description of changes"`
-4. Push to the branch: `git push origin feature/<feature_name>` or `git push origin bugfix/<issue_number>`
-5. Submit a pull request to the `main` branch.
+### Client Registration and Login
 
-## License
+- Clients can register themselves using their email and log in to their accounts.
 
-This project is licensed under the [MIT License](LICENSE.mit).
+### Ticket Booking
+
+- Clients can browse and book tickets.
+- If booking multiple seats, they must provide the names and surnames of passengers for each seat.
+- During booking, clients can opt to create an account, which automatically generates a username (email) and password (phone number).
+- Clients receive an email confirmation with their booked trip details and access to their account.
+
+### My Reservations
+
+- Clients can view their booked tickets under "My Reservations" in their account.
+- Two buttons, "Contact the Driver" and "Cancel Reservation," appear below each reservation.
+- "Contact the Driver" initiates a call to the driver with the phone number +380.
+- "Cancel Reservation" allows clients to cancel their reservations, removing the seats from the route.
+- After completion of the route, reservations are marked as "Completed" and no longer allow contact or cancellations.
+- If a client cancels a reservation, the status displays as "Canceled."
+
+## Search Functionality
+
+- If the departure location is selected as Ukraine, only Italy or France will be offered as destination options, and vice versa.
+
+## Additional Details
+
+For further project specifications and a more detailed description, please refer to the [Figma Design](https://www.figma.com/file/LhxhTOJEiW7KIYU8AbR3xe/%D0%A4%D0%98%D0%9D%D0%98%D0%A8?type=design&node-id=0%3A1&mode=design&t=j0vK3dP8QXIjon04-1) provided by the client.
 
 ## Contact
 
-If you have any questions or need further assistance, please feel free to contact our team at [kindratvictor07@gmail.com](mailto:kindratvictor07@gmail.com). We'd be happy to help!
+For any inquiries or further information, please contact us at kindratvictor07@gmail.com.
 
-Thank you for using the Group Alliance Travel Tickets Platform. Happy traveling! 🌍✈️
+Thank you for your interest in the Group Alliance Travel Tickets Platform. Happy traveling! 🌍✈️
