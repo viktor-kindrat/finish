@@ -12,17 +12,12 @@ const places = {
     "Італія": ["Санремо", "Імперія", "Аласіо", "Альбенга", "Вентимілія неділя", "Лоано", "Петра", "Фінале", "Савона", "Верона", "Мілан"],
 };
 
-function Home({ change, triggerChange }) {
-    let location = useLocation();
+function Home() {
     let [peoples, setPeoples] = useState({ adults: 1, children: 0 })
     let [from, setFrom] = useState({ country: "Пункт відправлення", place: "" });
     let [to, setTo] = useState({ country: "Місце прибуття", place: "" });
     let [passangerOpened, setPassangerOpened] = useState(false);
-
-    useEffect(() => {
-        triggerChange(!change)
-        // eslint-disable-next-line
-    }, [location, triggerChange])
+    
     return (
         <section className="Home">
             <Routes>

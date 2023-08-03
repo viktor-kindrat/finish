@@ -15,15 +15,17 @@ import TripsControll from "../TripsControll/TripsControll"
 import UsersControll from "../UsersControll/UsersControll"
 import BackControll from "../BackControll/BackControll"
 
-function Account({ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }) {
+function Account({ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }) {
     let location = useLocation();
     let go = useNavigate();
 
     let logoutHandler = ()=>{
-        setUserData(undefined);
-        sessionStorage.clear()
-        setCookie("userToken", "", 0)
-        go("/authorization")
+        setModalData({ delay: 0, show: true, message: "Ви впевнені що хочете вийти?", confirmCaption: "Так", rejectCaption: "Ні", confirmAction: () => {
+            setUserData(undefined);
+            sessionStorage.clear()
+            setCookie("userToken", "", 0)
+            go("/authorization")
+        }, rejectAction: () => { } })
     }
 
     useEffect(() => {

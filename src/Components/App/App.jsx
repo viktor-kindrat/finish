@@ -8,6 +8,7 @@ import Account from '../Account/Account';
 import Authorization from '../Authorization/Authorization';
 import Loader from '../UI/Loader/Loader';
 import Alert from '../UI/Alert/Alert';
+import Modal from '../UI/Modal/Modal';
 
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useContext, useEffect, useCallback } from "react";
@@ -39,13 +40,16 @@ function getCookie(name) {
 function App() {
 	let location = useLocation();
 	let go = useNavigate();
-	let [change, triggerChange] = useState(false);
+
 	let [userData, setUserData] = useState(JSON.parse(sessionStorage.getItem("userData")) || undefined)
 	let [authUserData, setAuthUserData] = useState({ name: "", surname: "", email: "", phoneNumber: "", password: "", confirmPassword: "" });
-	let [loaderData, setLoaderData] = useState({ shown: false, loaderText: "Завантаження" })
-	let [alertData, setAlertData] = useState({ delay: 0, show: false, message: "Успіх!", actionCaption: "закрити", action: () => { } })
+
 	let server = useContext(hrefContext).server;
 	let TOKEN = getCookie("userToken");
+
+	let [loaderData, setLoaderData] = useState({ shown: false, loaderText: "Завантаження" })
+	let [alertData, setAlertData] = useState({ delay: 0, show: false, message: "Успіх!", actionCaption: "закрити", action: () => { } })
+	let [modalData, setModalData] = useState({ delay: 0, show: false, message: "Підтвердити?", confirmCaption: "Так", rejectCaption: "Ні", confirmAction: () => { }, rejectAction: () => { }, })
 
 	let SERVER = useCallback((loaderText, method, path, contentType, data, token) => {
 		setLoaderData({ shown: true, loaderText: loaderText })
@@ -137,7 +141,7 @@ function App() {
 
 		if (notEmpty) {
 			SERVER("Надсилаємо e-mail", "POST", "auth/reset-password", "application/json", data).then(data => {
-				setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "На головну", action: () => go("/") })
+				setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: data.message === "Посилання для скидання паролю було надіслано на ваш e-mail!" ? "На головну" : "Зрозуміло", action: data.message === "Посилання для скидання паролю було надіслано на ваш e-mail!" ? () => go("/") : () => { } })
 			})
 		}
 	}
@@ -146,10 +150,11 @@ function App() {
 		<div className="App" style={{ backgroundColor: location.path === "/" ? "#FFFFFF" : "#ECECEC" }}>
 			<Loader {...{ ...loaderData }} />
 			<Alert {...{ ...alertData }} close={() => setAlertData({ ...alertData, show: false })} />
+			<Modal {...{ ...modalData }} close={() => setModalData({ ...modalData, show: false })} />
 			<Header />
 			<Routes>
-				<Route path='/*' element={<Home {...{ change, triggerChange }} />} />
-				<Route path='account/*' element={<Account {...{ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
+				<Route path='/*' element={<Home />} />
+				<Route path='account/*' element={<Account {...{ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
 				<Route path='authorization/*' element={<Authorization logined={!(!userData)} {...{ handleLogin, handleSignUp, handleRecover }} userData={authUserData} setUserData={setAuthUserData} isEdit={false} />} />
 			</Routes>
 			<PhoneMenu />
