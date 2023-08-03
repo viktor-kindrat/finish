@@ -21,6 +21,7 @@ function Account({ getCookie, setCookie, userData, setUserData, alertData, setAl
 
     let logoutHandler = ()=>{
         setUserData(undefined);
+        sessionStorage.clear()
         setCookie("userToken", "", 0)
         go("/authorization")
     }
@@ -39,7 +40,7 @@ function Account({ getCookie, setCookie, userData, setUserData, alertData, setAl
                         <div className="Account__menu">
                             <div className="Account__menu-head">
                                 <h2 className="Account__menu-headline">{userData.name} {userData.surname}</h2>
-                                <button className="Account__logout-btn">Вихід <img src={logoutIcon} alt="log out" /></button>
+                                <button className="Account__logout-btn" onClick={logoutHandler}>Вихід <img src={logoutIcon} alt="log out" /></button>
                             </div>
                             <nav className="Account__menu-nav">
                                 <Link to="/account">

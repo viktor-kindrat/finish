@@ -10,7 +10,7 @@ import Loader from '../UI/Loader/Loader';
 import Alert from '../UI/Alert/Alert';
 
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 
 import hrefContext from "../../Context/ServerHostnameContext";
 
@@ -47,7 +47,7 @@ function App() {
 	let server = useContext(hrefContext).server;
 	let TOKEN = getCookie("userToken");
 
-	let SERVER = (loaderText, method, path, contentType, data, token) => {
+	let SERVER = useCallback((loaderText, method, path, contentType, data, token) => {
 		setLoaderData({ shown: true, loaderText: loaderText })
 		const options = { method, headers: { Authorization: token ? `Baerer ${token}` : "", } };
 		if (method === "POST") {
@@ -59,19 +59,21 @@ function App() {
 			setLoaderData({ loaderText: loaderText, shown: false });
 			return data
 		}).catch((e) => console.log(e))
-	};
+	}, [server]);
 
 
 	useEffect(() => {
 		if (TOKEN.length > 0 && !userData) {
 			SERVER("Завантажуємо дані про Вас", "GET", "auth/get-info", "application/json", "", TOKEN).then(data => {
-				if (data) {
+				if (data.body) {
 					setUserData(data.body)
 					sessionStorage.setItem("userData", JSON.stringify(data.body))
+				} else {
+					setCookie("userToken", "", 0)
 				}
 			});
 		}
-	})
+	}, [SERVER, TOKEN, userData])
 
 	let setUserDataAndToken = (token) => {
 		setCookie("userToken", token, 1)
