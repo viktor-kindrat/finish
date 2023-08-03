@@ -137,7 +137,11 @@
   .PersonalInfo .PersonalInfo__fields .PersonalInfo__raw .PersonalInfo__input-group .PersonalInfo__input {
     width: 100%;
   }
-  .PersonalInfo .PersonalInfo__btn {
+  .PersonalInfo .PersonalInfo__btn-container {
+    align-items: center;
+    justify-content: center;
+  }
+  .PersonalInfo .PersonalInfo__btn-container .PersonalInfo__btn {
     height: 35px;
     margin-top: 5px;
     font-size: 16px;

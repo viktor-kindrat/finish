@@ -99,6 +99,7 @@
 }
 .Loader .Loader__text::before {
   content: attr(data-text);
+  text-align: center;
   color: #FFF;
   text-transform: uppercase;
   font-weight: 500;

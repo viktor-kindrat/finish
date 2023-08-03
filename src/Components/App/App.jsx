@@ -70,8 +70,10 @@ function App() {
 		if (TOKEN.length > 0 && !userData) {
 			SERVER("Завантажуємо дані про Вас", "GET", "auth/get-info", "application/json", "", TOKEN).then(data => {
 				if (data.body) {
-					setUserData(data.body)
-					sessionStorage.setItem("userData", JSON.stringify(data.body))
+					if (data.body.userVerified) {
+						setUserData(data.body)
+						sessionStorage.setItem("userData", JSON.stringify(data.body))
+					}
 				} else {
 					setCookie("userToken", "", 0)
 				}
@@ -101,9 +103,33 @@ function App() {
 			setCookie("userToken", "", 0)
 			SERVER("Виконуємо вхід", "POST", "auth/login", "application/json", data).then(data => {
 				if (data.token) {
-					setUserDataAndToken(data.token)
+					setCookie("userToken", data.token, 1);
+					console.log(data)
+					if (data.userVerified) {
+						setUserDataAndToken(data.token)
+						setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: data.message === "Ви успішно увійшли" ? "Мій акаунт" : "Закрити", action: data.message === "Ви успішно увійшли" ? () => go("/account") : () => { } })
+					} else {
+						setModalData({
+							delay: 0.9,
+							show: true,
+							message: data.message,
+							confirmCaption: data.message.includes("не активовано") ? "Так" : "Зрозуміло",
+							rejectCaption: data.message.includes("не активовано") ? "Ні" : "Закрити",
+							confirmAction: data.message.includes("не активовано") ? () => {
+								SERVER("Надсилаємо лист", "POST", "auth/confirm-account", "application/json", {}, data.token).then(data => {
+									if (data.message) {
+										setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => go("/") })
+									} else {
+										setAlertData({ delay: 0.9, show: true, message: "Непередбачувана помилка! Спробуйте ще раз", actionCaption: "Добре", action: () => {} })
+									}
+								})
+							} : () => { },
+							rejectAction: () => { }
+						})
+					}
+				} else {
+					setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => { } })
 				}
-				setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: data.message === "Ви успішно увійшли" ? "Мій акаунт" : "Закрити", action: data.message === "Ви успішно увійшли" ? () => go("/account") : () => { } })
 			})
 		}
 	}

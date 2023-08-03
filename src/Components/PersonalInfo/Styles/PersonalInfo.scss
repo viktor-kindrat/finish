@@ -156,12 +156,17 @@
 
             }
         }
+        
+        .PersonalInfo__btn-container { 
+            align-items: center;
+            justify-content: center;
+            .PersonalInfo__btn {
+                height: 35px;
+                margin-top: 5px;
+                font-size: 16px;
+                font-weight: 600;
+            }
+         }
 
-        .PersonalInfo__btn {
-            height: 35px;
-            margin-top: 5px;
-            font-size: 16px;
-            font-weight: 600;
-        }
     }
 }

@@ -80,12 +80,19 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
 
         SERVER("Зберігаємо", "POST", "auth/change-user-data", "application/json", data, getCookie("userToken")).then(data => {
             console.log(data);
-            if (data.message === 'Дані змінено успішно') {
+            if (data.message.includes('Дані змінено успішно')) {
                 SERVER("Зберігаємо", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data=>{
                     if (data.body) {
-                        setUserData(data.body)
-                        setEditorData({ ...userData, password: "", confirmPassword: "" });
-                        sessionStorage.setItem("userData", JSON.stringify(data.body))
+                        console.log(data)
+                        if (data.body.verified) {
+                            setUserData(data.body)
+                            setEditorData({ ...data.body, password: "", confirmPassword: "" });
+                            sessionStorage.setItem("userData", JSON.stringify(data.body))
+                        } else {
+                            setUserData(undefined);
+                            sessionStorage.clear();
+                            setCookie("userToken", "", 0)
+                        }
                     }
                     setAlertData({
                         delay: 0.9,
