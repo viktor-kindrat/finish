@@ -4,12 +4,39 @@ import { useState } from "react"
 function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, isEdit, userData, setUserData }) {
     let [state, setState] = useState(isEdit ? "edit" : "login");
 
+    const normalizeInput = (value) => {
+        if (!value) return value;
+        let currentValue = value.replace(/[^\d]/g, '');
+        const cvLength = currentValue.length;
+        if (cvLength >= 12) currentValue = currentValue.slice(0, 12);
+        let formattedValue = '+';
+        if (cvLength < 5) {
+            formattedValue += currentValue;
+        } else if (cvLength < 6) {
+            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2)})`;
+        } else if (cvLength < 9) {
+            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5)}`;
+        } else if (cvLength < 11) {
+            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5, 8)}-${currentValue.slice(8)}`;
+        } else {
+            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5, 8)}-${currentValue.slice(8, 10)}-${currentValue.slice(10)}`;
+        }
+        return formattedValue;
+    };
+    
+    const handlePhoneChange = (event) => {
+        const { value } = event.target;
+        const normalizedValue = normalizeInput(value);
+        setUserData({...userData, phoneNumber: normalizedValue});
+    };
+
     let handleChange = (e) => {
         let fieldName = e.target.name;
         let newUserData = { ...userData }
         newUserData[fieldName] = e.target.value
         setUserData(newUserData)
     }
+
 
     let actionHandler = (e) => {
         switch (state) {
@@ -66,7 +93,7 @@ function Authorization({ handleLogin, handleSignUp, handleRecover, handleEdit, i
                 {
                     (state === "signup" || state === "edit") ? <div className="Authorization__input-wrap">
                         <div className="Authorization__input-label">Номер телефону</div>
-                        <input value={userData.phoneNumber} onChange={handleChange} name="phoneNumber" type="text" className="Authorization__input" />
+                        <input value={userData.phoneNumber} onChange={handlePhoneChange} name="phoneNumber" type="text" className="Authorization__input" />
                     </div> : ""
                 }
                 {

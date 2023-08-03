@@ -27,19 +27,20 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+
         .PersonalInfo__raw {
             display: flex;
             align-items: flex-start;
             justify-content: flex-start;
             column-gap: 30px;
-    
+
             .PersonalInfo__input-group {
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
                 align-items: flex-start;
                 justify-content: flex-start;
-    
+
                 .PersonalInfo__input-label {
                     color: #646464;
                     font-size: 16px;
@@ -47,7 +48,7 @@
                     font-weight: 400;
                     line-height: 16px;
                 }
-    
+
                 .PersonalInfo__input {
                     height: 40px;
                     padding: 10px 15px;
@@ -65,27 +66,42 @@
         }
     }
 
-
-    .PersonalInfo__btn {
-        width: 200px;
-        height: 44px;
+    .PersonalInfo__btn-container {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
         align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        border: 1px solid #FFCB46;
-        background: #FFCB46;
-        outline: none;
-        color: #353535;
-        text-align: center;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 36px;
-        text-transform: uppercase;
-        margin-top: 20px;
-        font-family: "Roboto", sans-serif;
+        gap: 20px;
+
+        .PersonalInfo__btn {
+            width: 200px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            border: 1px solid #FFCB46;
+            background: #FFCB46;
+            outline: none;
+            color: #353535;
+            text-align: center;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 36px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            font-family: "Roboto", sans-serif;
+            cursor: pointer;
+
+            &_outlined {
+                background: transparent;
+                border: 3px solid #FFCB46;
+                color: #FFCB46;
+            }
+        }
     }
+
 }
 
 @media screen and (max-width: 1370px) {
@@ -132,6 +148,7 @@
 
                 .PersonalInfo__input-group {
                     width: 100%;
+
                     .PersonalInfo__input {
                         width: 100%;
                     }
@@ -139,6 +156,7 @@
 
             }
         }
+
         .PersonalInfo__btn {
             height: 35px;
             margin-top: 5px;

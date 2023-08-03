@@ -45,7 +45,7 @@ function App() {
 	let [loaderData, setLoaderData] = useState({ shown: false, loaderText: "Завантаження" })
 	let [alertData, setAlertData] = useState({ show: false, message: "Успіх!", actionCaption: "закрити", action: () => { } })
 	let server = useContext(hrefContext).server;
-	let TOKEN = getCookie("userToken")
+	let TOKEN = getCookie("userToken");
 
 	let SERVER = (loaderText, method, path, contentType, data, token) => {
 		setLoaderData({ shown: true, loaderText: loaderText })
@@ -84,7 +84,6 @@ function App() {
 		});
 	}
 
-
 	let handleLogin = () => {
 		let data = {
 			email: authUserData.email,
@@ -102,6 +101,7 @@ function App() {
 			})
 		}
 	}
+
 
 	let handleSignUp = () => {
 		let data = {
@@ -134,8 +134,8 @@ function App() {
 		let notEmpty = Object.keys(data).map(key => data[key].length <= 0 ? "yes" : null).filter(item => item !== null).length === 0;
 
 		if (notEmpty) {
-			SERVER("Надсилаємо e-mail", "POST", "auth/reset-password", "application/json", data).then(data=>{
-				setAlertData({ show: true, message: data.message, actionCaption: "На головну", action: ()=>go("/")})
+			SERVER("Надсилаємо e-mail", "POST", "auth/reset-password", "application/json", data).then(data => {
+				setAlertData({ show: true, message: data.message, actionCaption: "На головну", action: () => go("/") })
 			})
 		}
 	}
@@ -147,7 +147,7 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path='/*' element={<Home {...{ change, triggerChange }} />} />
-				<Route path='account/*' element={<Account />} />
+				<Route path='account/*' element={<Account {...{ userData, setUserData, alertData, setAlertData, SERVER }} />} />
 				<Route path='authorization/*' element={<Authorization {...{ handleLogin, handleSignUp, handleRecover }} userData={authUserData} setUserData={setAuthUserData} isEdit={false} />} />
 			</Routes>
 			<PhoneMenu />

@@ -60,7 +60,14 @@
   font-weight: 600;
   line-height: normal;
 }
-.PersonalInfo .PersonalInfo__btn {
+.PersonalInfo .PersonalInfo__btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+.PersonalInfo .PersonalInfo__btn-container .PersonalInfo__btn {
   width: 200px;
   height: 44px;
   display: flex;
@@ -79,6 +86,12 @@
   text-transform: uppercase;
   margin-top: 20px;
   font-family: "Roboto", sans-serif;
+  cursor: pointer;
+}
+.PersonalInfo .PersonalInfo__btn-container .PersonalInfo__btn_outlined {
+  background: transparent;
+  border: 3px solid #FFCB46;
+  color: #FFCB46;
 }
 
 @media screen and (max-width: 1370px) {

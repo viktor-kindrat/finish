@@ -14,25 +14,24 @@ import TripsControll from "../TripsControll/TripsControll"
 import UsersControll from "../UsersControll/UsersControll"
 import BackControll from "../BackControll/BackControll"
 
-function Account() {
+function Account({ userData, setUserData, alertData, setAlertData, SERVER }) {
     let location = useLocation();
-    let navigate = useNavigate();
+    let go = useNavigate();
 
     useEffect(() => {
-        if ((localStorage.getItem("logined") || "") !== "true") {
-            navigate("/authorization")
+        if (!userData) {
+            go("/authorization")
         }
-    }, [navigate]);
+    }, [])
 
-    let isAdmin = localStorage.getItem("isAdmin") || "false";
     return (
         <>
             {
-                isAdmin !== "true" ?
+                userData ? userData.role !== "ADMIN" ?
                     <section className="Account">
                         <div className="Account__menu">
                             <div className="Account__menu-head">
-                                <h2 className="Account__menu-headline">Андрій <br /> Шевченко</h2>
+                                <h2 className="Account__menu-headline">{userData.name} <br /> {userData.surname}</h2>
                             </div>
                             <nav className="Account__menu-nav">
                                 <Link to="/account">
@@ -48,8 +47,8 @@ function Account() {
                             </nav>
                         </div>
                         <Routes>
-                            <Route path="/" element={<PersonalInfo />} />
-                            <Route path="/tickets" element={<Tickets />} />
+                            <Route path="/" element={<PersonalInfo {...{ userData, setUserData, alertData, setAlertData, SERVER }} />} />
+                            <Route path="/tickets" element={<Tickets {...{ userData, setUserData, alertData, setAlertData, SERVER }} />} />
                         </Routes>
                     </section>
                     :
@@ -81,7 +80,7 @@ function Account() {
                             <Route path="/users" element={<UsersControll />} />
                             <Route path="/back" element={<BackControll />} />
                         </Routes>
-                    </section>
+                    </section> : ""
             }
         </>
     )
