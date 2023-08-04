@@ -23,7 +23,7 @@ function UsersControll({ setModalData, modalData, getCookie, setCookie, userData
     let [query, setQuery] = useState("")
     let users = useRef(undefined);
     let pagesArray = useRef([]);
-    const abortControllerRef = useRef(new AbortController());
+    let abortControllerRef = useRef(new AbortController());
 
     useEffect(() => {
         const abortController = new AbortController();
