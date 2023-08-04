@@ -16,6 +16,7 @@
   position: static;
 }
 .UsersControl .Authorization .Authorization__container {
+  width: 100%;
   border-radius: 20px;
 }
 .UsersControl .Authorization .Authorization__container .Authorization__input-wrap {
@@ -37,7 +38,7 @@
   line-height: normal;
 }
 .UsersControl .UsersControll__search {
-  width: 100%;
+  width: 414px;
   padding: 8px 50px;
   background-size: 31px 23px;
   background-color: #FFF;
@@ -135,6 +136,9 @@
   .UsersControl .Authorization .Authorization__container {
     width: 100%;
     border-radius: 5px;
+  }
+  .UsersControl .UsersControll__search {
+    width: 100%;
   }
   .UsersControl .UsersControl__headline {
     display: none;

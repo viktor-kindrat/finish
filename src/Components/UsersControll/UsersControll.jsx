@@ -20,24 +20,33 @@ function UsersControll({ setModalData, modalData, getCookie, setCookie, userData
 
     let [pending, setPending] = useState(true);
     let [page, setPage] = useState(1);
+    let [query, setQuery] = useState("")
     let users = useRef(undefined);
     let pagesArray = useRef([]);
+    const abortControllerRef = useRef(new AbortController());
 
     useEffect(() => {
+        const abortController = new AbortController();
+        abortControllerRef.current = abortController;
         setPending(true);
         pagesArray.current = [];
-        users.current = []
-        fetch(`${server}auth/admin/get-all-user-data/?page=${page}`, { method: "GET", headers: { "Authorization": `Baerer ${getCookie("userToken")}` } })
-            .then(res => res.json())
-            .then(data => {
+        users.current = [];
+
+        fetch(`${server}auth/admin/get-all-user-data/?page=${page}&query=${query}`, { method: 'GET', headers: { Authorization: `Bearer ${getCookie('userToken')}` }, signal: abortController.signal, })
+            .then((res) => res.json())
+            .then((data) => {
                 users.current = data.data;
                 for (let i = 1; i <= data.pagesCount; i++) {
-                    pagesArray.current.push(i)
+                    pagesArray.current.push(i);
                 }
-                setPending(false)
+                setPending(false);
             })
-            .catch(e => console.log(e))
-    }, [page, openedEdit, getCookie, server])
+            .catch((e) => console.log(e));
+
+        return () => {
+            abortController.abort();
+        };
+    }, [page, query, openedEdit, getCookie, server])
 
     let handleChangePage = (e) => {
         setPage(parseInt(e.target.innerText));
@@ -124,60 +133,63 @@ function UsersControll({ setModalData, modalData, getCookie, setCookie, userData
             setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних. Паролі не співпадають або форма містить пусті поля.", actionCaption: "Зрозуміло", action: () => { } })
         }
     }
-    return (<section className="UsersControl">
-        {
-            !pending && users.current ? !openedEdit ? <>
-                <h2 className="UsersControl__headline">Користувачі</h2>
-                <input style={{ backgroundImage: `url(${searchIcon})` }} type="text" className="UsersControll__search"
-                    placeholder="Пошук" />
-                <div className="UsersControl__results">
-                    {
-                        users.current.map(user =>
-                            <div className="UsersControl__user" data-email={user.email} data-id={user._id}>
-                                {user.name} {user.surname}
-                                <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit" />
-                                </button>
-                            </div>)
-                    }
-                </div>
-                <div className="UsersControl__pagination">
-                    {pagesArray.current.map((item, index) => <><div onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div> {index !== pagesArray.current.length - 1 ? "," : ""}</>)}
-                </div>
-            </> : <>
-                <div className="Authorization">
-                    <div className="Authorization__container">
-                        <h2 className="UsersControl__headline">{`${editorData?.name} ${editorData?.surname}`}</h2>
-                        <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">Прізвище</div>
-                            <input onChange={handleChangeEditorInfo} name="surname" value={editorData?.surname} type="text" className="Authorization__input" />
-                        </div>
-                        <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">Ім’я</div>
-                            <input onChange={handleChangeEditorInfo} name="name" value={editorData?.name} type="text" className="Authorization__input" />
-                        </div>
-                        <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">E-Mail</div>
-                            <input onChange={handleChangeEditorInfo} name="email" value={editorData?.email} type="text" className="Authorization__input" />
-                        </div>
-                        <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">Номер телефону</div>
-                            <input name="phoneNumber" onChange={handlePhoneChange} value={editorData.phoneNumber} type="text" className="Authorization__input" />
-                        </div>
-                        <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">Пароль</div>
-                            <input onChange={handleChangeEditorInfo} name="password" value={editorData?.password} type="password" className="Authorization__input" />
-                        </div>
-                        <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">Пароль ще раз</div>
-                            <input onChange={handleChangeEditorInfo} name="confirmPassword" value={editorData?.confirmPassword} type="password" className="Authorization__input" />
-                        </div>
-                        <button onClick={handleSave} className="Authorization__action">Зберегти</button>
-                        <button onClick={() => setOpenedEdit(false)} className="Authorization__action Authorization__action_cancel">Скасувати</button>
+    return (
+        <section className="UsersControl">
+            <h2 className="UsersControl__headline">Користувачі</h2>
+            <input style={{ backgroundImage: `url(${searchIcon})` }} type="text" className="UsersControll__search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Пошук" />
+            {
+                !pending && users.current ? !openedEdit ? <>
+                    <div className="UsersControl__results">
+                        {
+                            users.current.map(user =>
+                                <div className="UsersControl__user" data-email={user.email} data-id={user._id}>
+                                    {user.name} {user.surname}
+                                    <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit" />
+                                    </button>
+                                </div>)
+                        }
                     </div>
-                </div>
-            </> : <BuiltInLoader />
-        }
-    </section>)
+                    <div className="UsersControl__pagination">
+                        {
+                            pagesArray.current.length === 0 ? "Користувачів немає" : pagesArray.current.map((item, index) => <><div onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div> {index !== pagesArray.current.length - 1 ? "," : ""}</>)
+                        }
+                    </div>
+                </> : <>
+                    <div className="Authorization">
+                        <div className="Authorization__container">
+                            <h2 className="UsersControl__headline">{`${editorData?.name} ${editorData?.surname}`}</h2>
+                            <div className="Authorization__input-wrap">
+                                <div className="Authorization__input-label">Прізвище</div>
+                                <input onChange={handleChangeEditorInfo} name="surname" value={editorData?.surname} type="text" className="Authorization__input" />
+                            </div>
+                            <div className="Authorization__input-wrap">
+                                <div className="Authorization__input-label">Ім’я</div>
+                                <input onChange={handleChangeEditorInfo} name="name" value={editorData?.name} type="text" className="Authorization__input" />
+                            </div>
+                            <div className="Authorization__input-wrap">
+                                <div className="Authorization__input-label">E-Mail</div>
+                                <input onChange={handleChangeEditorInfo} name="email" value={editorData?.email} type="text" className="Authorization__input" />
+                            </div>
+                            <div className="Authorization__input-wrap">
+                                <div className="Authorization__input-label">Номер телефону</div>
+                                <input name="phoneNumber" onChange={handlePhoneChange} value={editorData.phoneNumber} type="text" className="Authorization__input" />
+                            </div>
+                            <div className="Authorization__input-wrap">
+                                <div className="Authorization__input-label">Пароль</div>
+                                <input onChange={handleChangeEditorInfo} name="password" value={editorData?.password} type="password" className="Authorization__input" />
+                            </div>
+                            <div className="Authorization__input-wrap">
+                                <div className="Authorization__input-label">Пароль ще раз</div>
+                                <input onChange={handleChangeEditorInfo} name="confirmPassword" value={editorData?.confirmPassword} type="password" className="Authorization__input" />
+                            </div>
+                            <button onClick={handleSave} className="Authorization__action">Зберегти</button>
+                            <button onClick={() => setOpenedEdit(false)} className="Authorization__action Authorization__action_cancel">Скасувати</button>
+                        </div>
+                    </div>
+                </> : <BuiltInLoader />
+            }
+        </section>
+    )
 }
 
 export default UsersControll

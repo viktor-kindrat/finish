@@ -120,7 +120,7 @@ function App() {
 									if (data.message) {
 										setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => go("/") })
 									} else {
-										setAlertData({ delay: 0.9, show: true, message: "Непередбачувана помилка! Спробуйте ще раз", actionCaption: "Добре", action: () => {} })
+										setAlertData({ delay: 0.9, show: true, message: "Непередбачувана помилка! Спробуйте ще раз", actionCaption: "Добре", action: () => { } })
 									}
 								})
 							} : () => { },
@@ -149,12 +149,7 @@ function App() {
 
 		if (notEmpty && passwordsMathces) {
 			setCookie("userToken", "", 0)
-			SERVER("Реєструємо", "POST", "auth/sign-up", "application/json", data).then(data => {
-				setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: data.message === "Зареєстровано успішно!" ? "Мій акаунт" : "Закрити", action: data.message === "Зареєстровано успішно!" ? () => go("/account") : () => { } })
-				if (data.token) {
-					setUserDataAndToken(data.token)
-				}
-			})
+			SERVER("Реєструємо", "POST", "auth/sign-up", "application/json", data).then(data => { setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Закрити", action: () => { } }) })
 		}
 	}
 
