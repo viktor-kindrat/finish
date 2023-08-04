@@ -76,14 +76,11 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                 return
             }
         }
-        console.log(data)
 
         SERVER("Зберігаємо", "POST", "auth/change-user-data", "application/json", data, getCookie("userToken")).then(data => {
-            console.log(data);
             if (data.message.includes('Дані змінено успішно')) {
                 SERVER("Зберігаємо", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data=>{
                     if (data.body) {
-                        console.log(data)
                         if (data.body.verified) {
                             setUserData(data.body)
                             setEditorData({ ...data.body, password: "", confirmPassword: "" });
@@ -94,10 +91,13 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                             setCookie("userToken", "", 0)
                         }
                     }
+
+                    console.log(changedFields.includes("email"))
+                    console.log(changedFields)
                     setAlertData({
                         delay: 0.9,
                         show: true,
-                        message: data.message === "ok" ? "Дані змінено успішно!": (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Сплив час вашої авторизації. Увійдіть знову" : data.message,
+                        message: data.message === "ok" ? `Дані змінено успішно! ${changedFields.includes("email") ? "Після зміни email потрібно повторно підтвердити акаунт. Лист для підтвердження надіслано аз вказаною адресою." : ""}`: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Сплив час вашої авторизації. Увійдіть знову" : data.message,
                         actionCaption: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Увійти" : "Зрозуміло",
                         action: () => (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? () => {
                             setUserData(undefined);

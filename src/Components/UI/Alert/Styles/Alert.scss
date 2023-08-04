@@ -37,12 +37,12 @@
         }
 
         .Alert__message {
-            font-size: calc(20px + .5vw);
+            font-size: calc(18px + .5vw);
             font-weight: 700;
             color: #333333;
             line-height: 120%;
-            white-space: pre-wrap;
-            word-break: break-all;
+            // white-space: pre-wrap;
+            // word-break: normal;
             text-align: center;
         }
 
