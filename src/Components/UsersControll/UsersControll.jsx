@@ -13,7 +13,6 @@ import hostnames from "../../Context/ServerHostnameContext";
 
 function UsersControll({ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }) {
     let [openedEdit, setOpenedEdit] = useState(false);
-    let [phone, setPhone] = useState("+38");
     let [editorData, setEditorData] = useState({});
 
     let server = useContext(hostnames).server
@@ -45,7 +44,7 @@ function UsersControll({ setModalData, modalData, getCookie, setCookie, userData
     }
 
     let handleEdit = (e) => {
-        let { email, id } = e.target.parentElement.dataset;
+        let { id } = e.target.parentElement.dataset;
         let data = users.current.filter(item => item._id === id)[0];
         setEditorData({ ...data, password: "", confirmPassword: "" })
         setOpenedEdit(true)
@@ -82,7 +81,6 @@ function UsersControll({ setModalData, modalData, getCookie, setCookie, userData
     const handlePhoneChange = (event) => {
         const { value } = event.target;
         const normalizedValue = normalizeInput(value);
-        setPhone(normalizedValue);
         setEditorData({ ...editorData, phoneNumber: normalizedValue })
     };
 
