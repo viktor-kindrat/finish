@@ -4,20 +4,62 @@ import "../Authorization/Styles/Authorization.css"
 import searchIcon from "./SVG/search.svg"
 import editIcon from "./SVG/edit.svg"
 
-import {useState} from "react";
+import { useState, useRef, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-function UsersControll() {
-    let [currentPage, setCurrentPage] = useState(1);
+import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
+
+import hostnames from "../../Context/ServerHostnameContext";
+
+function UsersControll({ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }) {
     let [openedEdit, setOpenedEdit] = useState(false);
-    let [phone, setPhone] = useState("+38 (066) 699-03-01")
+    let [phone, setPhone] = useState("+38");
+    let [editorData, setEditorData] = useState({});
+
+    let server = useContext(hostnames).server
+    let go = useNavigate();
+
+    let [pending, setPending] = useState(true);
+    let [page, setPage] = useState(1);
+    let users = useRef(undefined);
+    let pagesArray = useRef([]);
+
+    useEffect(() => {
+        setPending(true);
+        pagesArray.current = [];
+        users.current = []
+        fetch(`${server}auth/admin/get-all-user-data/?page=${page}`, { method: "GET", headers: { "Authorization": `Baerer ${getCookie("userToken")}` } })
+            .then(res => res.json())
+            .then(data => {
+                users.current = data.data;
+                for (let i = 1; i <= data.pagesCount; i++) {
+                    pagesArray.current.push(i)
+                }
+                setPending(false)
+            })
+            .catch(e => console.log(e))
+    }, [page, openedEdit, getCookie, server])
+
     let handleChangePage = (e) => {
-        setCurrentPage(parseInt(e.target.innerText));
+        setPage(parseInt(e.target.innerText));
     }
+
     let handleEdit = (e) => {
+        let { email, id } = e.target.parentElement.dataset;
+        let data = users.current.filter(item => item._id === id)[0];
+        setEditorData({ ...data, password: "", confirmPassword: "" })
         setOpenedEdit(true)
     }
 
-    const normalizeInput = (value, previousValue) => {
+    let handleChangeEditorInfo = (e) => {
+        let field = e.target.name;
+        let value = e.target.value;
+        let data = { ...editorData };
+        data[field] = value;
+        setEditorData(data)
+    }
+
+    const normalizeInput = (value) => {
         if (!value) return value;
         let currentValue = value.replace(/[^\d]/g, '');
         const cvLength = currentValue.length;
@@ -38,67 +80,105 @@ function UsersControll() {
     };
 
     const handlePhoneChange = (event) => {
-        const {value} = event.target;
-        const normalizedValue = normalizeInput(value, phone);
+        const { value } = event.target;
+        const normalizedValue = normalizeInput(value);
         setPhone(normalizedValue);
+        setEditorData({ ...editorData, phoneNumber: normalizedValue })
     };
+
+    const handleSave = (e) => {
+        let { password, confirmPassword, email, phoneNumber, name, surname } = editorData;
+        let id = editorData._id;
+        let data = { email, phoneNumber, name, surname }
+        let passwordValid = password.length > 0 ? password === confirmPassword : true;
+        let areNotEmptyFields = Object.keys(data).map(key => data[key].length > 0 ? true : false).filter(item => !item).length === 0
+
+        if (passwordValid && areNotEmptyFields) {
+            let send = { id, email, phoneNumber, name, surname };
+            if (password.length > 0) send.password = password
+            SERVER("Зберігаємо дані користувача", "POST", "auth/admin/change-user-data", "application/json", send, getCookie("userToken")).then(data => {
+                if (data.message?.toLowerCase().includes("помилка")) {
+                    if (data.errorMessage?.includes("token")) {
+                        setAlertData({
+                            delay: 0.9, show: true, message: "Термін дії вашого входу сплив. Увійдіть повторно", actionCaption: "Увійти", action: () => {
+                                setUserData(undefined);
+                                setCookie("userToken", "", 0);
+                                go("/authorization")
+                            }
+                        })
+                    }
+                    if (data.errorMessage?.toLowerCase().includes("valid")) {
+                        console.log(data)
+                        setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних.", actionCaption: "Зрозуміло", action: () => { } })
+                    }
+                } else {
+                    setAlertData({
+                        delay: 0.9, show: true, message: data.message, actionCaption: "До користувачів", action: () => {
+                            setPage(1);
+                            setPending(true)
+                            setOpenedEdit(false)
+                            setEditorData({})
+                        }
+                    })
+                }
+            })
+        } else {
+            setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних. Паролі не співпадають або форма містить пусті поля.", actionCaption: "Зрозуміло", action: () => { } })
+        }
+    }
     return (<section className="UsersControl">
-        {!openedEdit ? <>
-            <h2 className="UsersControl__headline">Користувачі</h2>
-            <input style={{backgroundImage: `url(${searchIcon})`}} type="text" className="UsersControll__search"
-                   placeholder="Пошук"/>
-            <div className="UsersControl__results">
-                <div className="UsersControl__user">
-                    Добрий Володимир
-                    <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit"/>
-                    </button>
+        {
+            !pending && users.current ? !openedEdit ? <>
+                <h2 className="UsersControl__headline">Користувачі</h2>
+                <input style={{ backgroundImage: `url(${searchIcon})` }} type="text" className="UsersControll__search"
+                    placeholder="Пошук" />
+                <div className="UsersControl__results">
+                    {
+                        users.current.map(user =>
+                            <div className="UsersControl__user" data-email={user.email} data-id={user._id}>
+                                {user.name} {user.surname}
+                                <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit" />
+                                </button>
+                            </div>)
+                    }
                 </div>
-                <div className="UsersControl__user">
-                    Добрий Володимир
-                    <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit"/>
-                    </button>
+                <div className="UsersControl__pagination">
+                    {pagesArray.current.map((item, index) => <><div onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div> {index !== pagesArray.current.length - 1 ? "," : ""}</>)}
                 </div>
-            </div>
-            <div className="UsersControl__pagination">
-                <div onClick={handleChangePage}
-                     className={"UsersControl__pagination-btn " + (currentPage === 1 ? "UsersControl__pagination-btn_active" : "")}>1
+            </> : <>
+                <div className="Authorization">
+                    <div className="Authorization__container">
+                        <h2 className="UsersControl__headline">{`${editorData?.name} ${editorData?.surname}`}</h2>
+                        <div className="Authorization__input-wrap">
+                            <div className="Authorization__input-label">Прізвище</div>
+                            <input onChange={handleChangeEditorInfo} name="surname" value={editorData?.surname} type="text" className="Authorization__input" />
+                        </div>
+                        <div className="Authorization__input-wrap">
+                            <div className="Authorization__input-label">Ім’я</div>
+                            <input onChange={handleChangeEditorInfo} name="name" value={editorData?.name} type="text" className="Authorization__input" />
+                        </div>
+                        <div className="Authorization__input-wrap">
+                            <div className="Authorization__input-label">E-Mail</div>
+                            <input onChange={handleChangeEditorInfo} name="email" value={editorData?.email} type="text" className="Authorization__input" />
+                        </div>
+                        <div className="Authorization__input-wrap">
+                            <div className="Authorization__input-label">Номер телефону</div>
+                            <input name="phoneNumber" onChange={handlePhoneChange} value={editorData.phoneNumber} type="text" className="Authorization__input" />
+                        </div>
+                        <div className="Authorization__input-wrap">
+                            <div className="Authorization__input-label">Пароль</div>
+                            <input onChange={handleChangeEditorInfo} name="password" value={editorData?.password} type="password" className="Authorization__input" />
+                        </div>
+                        <div className="Authorization__input-wrap">
+                            <div className="Authorization__input-label">Пароль ще раз</div>
+                            <input onChange={handleChangeEditorInfo} name="confirmPassword" value={editorData?.confirmPassword} type="password" className="Authorization__input" />
+                        </div>
+                        <button onClick={handleSave} className="Authorization__action">Зберегти</button>
+                        <button onClick={() => setOpenedEdit(false)} className="Authorization__action Authorization__action_cancel">Скасувати</button>
+                    </div>
                 </div>
-                ,
-                <div onClick={handleChangePage}
-                     className={"UsersControl__pagination-btn " + (currentPage === 2 ? "UsersControl__pagination-btn_active" : "")}>2</div>
-            </div>
-        </> : <>
-            <div className="Authorization">
-                <div className="Authorization__container">
-                    <h2 className="UsersControl__headline">Добрий Володимир</h2>
-                    <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">Прізвище</div>
-                        <input defaultValue={"Володимир"} type="text" className="Authorization__input"/>
-                    </div>
-                    <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">Ім’я</div>
-                        <input defaultValue={"Добрий"} type="text" className="Authorization__input"/>
-                    </div>
-                    <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">E-Mail</div>
-                        <input defaultValue={"mail@gmail.com"} type="text" className="Authorization__input"/>
-                    </div>
-                    <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">Номер телефону</div>
-                        <input onChange={handlePhoneChange} value={phone} type="text" className="Authorization__input"/>
-                    </div>
-                    <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">Пароль</div>
-                        <input type="password" className="Authorization__input"/>
-                    </div>
-                    <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">Пароль ще раз</div>
-                        <input type="password" className="Authorization__input"/>
-                    </div>
-                    <button onClick={()=>setOpenedEdit(false)} className="Authorization__action">Зберегти</button>
-                </div>
-            </div>
-        </>}
+            </> : <BuiltInLoader />
+        }
     </section>)
 }
 

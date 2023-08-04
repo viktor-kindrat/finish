@@ -24,6 +24,9 @@
 .UsersControl .Authorization .Authorization__container .Authorization__input-wrap .Authorization__input {
   width: 100%;
 }
+.UsersControl .Authorization .Authorization__container .Authorization__action_cancel {
+  background: rgb(221, 32, 32);
+}
 .UsersControl .UsersControl__headline {
   width: 100%;
   color: #353535;
@@ -85,6 +88,8 @@
   height: 18px;
   width: auto;
   object-fit: contain;
+  pointer-events: none;
+  user-select: none;
 }
 .UsersControl .UsersControl__pagination {
   width: 100%;
