@@ -90,7 +90,7 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
                             </nav>
                         </div>
                         <Routes>
-                            <Route path="/" element={<TripsControll />} />
+                            <Route path="/" element={<TripsControll {...{ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
                             <Route path="/users" element={<UsersControll {...{ getCookie, setCookie, setUserData, setAlertData, SERVER }} />} />
                             <Route path="/back" element={<BackControll />} />
                         </Routes>
