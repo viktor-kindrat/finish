@@ -19,13 +19,15 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
     let location = useLocation();
     let go = useNavigate();
 
-    let logoutHandler = ()=>{
-        setModalData({ delay: 0, show: true, message: "Ви впевнені що хочете вийти?", confirmCaption: "Так", rejectCaption: "Ні", confirmAction: () => {
-            setUserData(undefined);
-            sessionStorage.clear()
-            setCookie("userToken", "", 0)
-            go("/authorization")
-        }, rejectAction: () => { } })
+    let logoutHandler = () => {
+        setModalData({
+            delay: 0, show: true, message: "Ви впевнені що хочете вийти?", confirmCaption: "Так", rejectCaption: "Ні", confirmAction: () => {
+                setUserData(undefined);
+                sessionStorage.clear()
+                setCookie("userToken", "", 0)
+                go("/authorization")
+            }, rejectAction: () => { }
+        })
     }
 
     useEffect(() => {
@@ -89,7 +91,7 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
                         </div>
                         <Routes>
                             <Route path="/" element={<TripsControll />} />
-                            <Route path="/users" element={<UsersControll {...{ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
+                            <Route path="/users" element={<UsersControll {...{ getCookie, setCookie, setUserData, setAlertData, SERVER }} />} />
                             <Route path="/back" element={<BackControll />} />
                         </Routes>
                     </section> : ""

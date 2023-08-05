@@ -11,7 +11,7 @@ import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
 
 import hostnames from "../../Context/ServerHostnameContext";
 
-function UsersControll({ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }) {
+function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER }) {
     let [openedEdit, setOpenedEdit] = useState(false);
     let [editorData, setEditorData] = useState({});
 
