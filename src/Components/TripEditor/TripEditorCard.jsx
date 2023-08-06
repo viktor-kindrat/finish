@@ -65,7 +65,7 @@ function TripEditorCard({ data, finish, editorData, setEditorData }) {
                     <input name="city" onChange={handleChange} data-field="city" value={data.city} type="text" className="TripEditor__input" />
                 </div>
                 <div className="TripEditor__input-conatiner">
-                    <div className="TripEditor__input-label">Локація </div>
+                    <div className="TripEditor__input-label">Локація (у полі введіть назву місця на мапі виберіть розташування) </div>
                     <div className="TripEditor__input-row">
                         <input name="location.caption" onChange={handleChange} data-field="location" value={data.location.caption} type="text" className="TripEditor__input" />
                         <button onClick={toggleCard} className="TripEditor__location-btn"><img src={mapIcon} alt="Додати локацію на мапі" /></button>

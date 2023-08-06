@@ -168,6 +168,11 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
 }
+.TripEditor .TripEditor__save-btn_outlined {
+  background: transparent;
+  border: 2px solid #FFCB46;
+  color: #FFCB46;
+}
 
 @media screen and (max-width: 919px) {
   .TripEditor {

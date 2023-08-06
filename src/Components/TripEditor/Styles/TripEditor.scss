@@ -182,6 +182,12 @@
         cursor: pointer;
         font-family: "Roboto", sans-serif;
         text-transform: uppercase;
+
+        &_outlined {
+            background: transparent;
+            border: 2px solid #FFCB46;
+            color: #FFCB46;
+        }
     }
 }
 

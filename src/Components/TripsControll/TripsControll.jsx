@@ -18,13 +18,13 @@ let emptyEditorData = {
         city: "",
         location: {
             caption: "",
-            longitude: 30.519707783342987,
-            latitude: 50.40651654819113
+            longitude: "",
+            latitude: ""
         },
         arrivalDate: "",
         price: {
-            adult: 0,
-            child: 0
+            adult: "0",
+            child: "0"
         },
     }, {
         id: 1,
@@ -32,13 +32,13 @@ let emptyEditorData = {
         city: "",
         location: {
             caption: "",
-            longitude: 30.519707783342987,
-            latitude: 50.40651654819113
+            longitude: "",
+            latitude: ""
         },
         arrivalDate: "",
         price: {
-            adult: 0,
-            child: 0
+            adult: "",
+            child: ""
         },
     }, {
         id: 2,
@@ -46,13 +46,13 @@ let emptyEditorData = {
         city: "",
         location: {
             caption: "",
-            longitude: 30.519707783342987,
-            latitude: 50.40651654819113
+            longitude: "",
+            latitude: ""
         },
         arrivalDate: "",
         price: {
-            adult: 0,
-            child: 0
+            adult: "",
+            child: ""
         },
     },],
     places: []
@@ -81,7 +81,7 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
                         <TripCard {...{ editorOpened, setEditorOpened, viewOpened, setViewOpened }} />
                         <TripCard {...{ editorOpened, setEditorOpened, viewOpened, setViewOpened }} />
                     </div>
-                </> : editorOpened ? <TripEditor {...{ editorOpened, setEditorOpened, editorData, setEditorData }} /> : viewOpened ? <ViewTrip {...{ viewOpened, setViewOpened }} /> : "ERROR"
+                </> : editorOpened ? <TripEditor {...{ alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, emptyEditorData, editorOpened, setEditorOpened, editorData, setEditorData }} /> : viewOpened ? <ViewTrip {...{ viewOpened, setViewOpened }} /> : "ERROR"
             }
         </section>
     )
