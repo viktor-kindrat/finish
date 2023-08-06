@@ -1,6 +1,7 @@
 import MapComponent from "../UI/MapComponent/MapComponent";
 import { useEffect, useState, useContext } from "react";
 import { gsap } from "gsap";
+import moment from "moment"
 
 import mapIcon from "./SVG/mapicon.svg"
 import APIkeyContext from "../../Context/APIkeysContext";
@@ -52,6 +53,8 @@ function TripEditorCard({ data, finish, editorData, setEditorData }) {
         setEditorData(newEditorData)
         console.log(newEditorData)
     };
+
+    let arrivalDate = new Date(data.arrivalDate).toISOString().slice(0, 16)
     return (
         <div className="TripEditor__card">
             <h2 className="TripEditor__headline">{finish ? "Прибуття" : data.id === 0 ? "Відправлення" : `${data.id} зупинка`}</h2>
@@ -76,7 +79,7 @@ function TripEditorCard({ data, finish, editorData, setEditorData }) {
                 </div>
                 <div className="TripEditor__input-conatiner">
                     <div className="TripEditor__input-label">Час та Дата {data.id === 0 ? "відправлення" : "прибуття"} </div>
-                    <input name="arrivalDate" onChange={handleChange} data-field="arrivalDate" value={data.arrivalDate} type="datetime-local" className="TripEditor__input" />
+                    <input name="arrivalDate" onChange={handleChange} data-field="arrivalDate" value={moment(new Date(data.arrivalDate)).format('YYYY-MM-DDTHH:mm')} type="datetime-local" className="TripEditor__input" />
                 </div>
                 {
                     data.id !== 0 ? <>

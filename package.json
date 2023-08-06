@@ -11,6 +11,7 @@
     "express": "^4.18.2",
     "google-maps-react": "^2.0.6",
     "gsap": "^3.12.2",
+    "moment": "^2.29.4",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-datepicker": "^4.16.0",
