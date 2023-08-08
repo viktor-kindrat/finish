@@ -1,6 +1,6 @@
 import "./Styles/TripCard.css"
 
-function TripCard({ setModalData, setUserData, setAlertData, trigger, setTrigger, SERVER, setCookie, getCookie, setEditorData, data, editorOpened, setEditorOpened, viewOpened, setViewOpened }) {
+function TripCard({ setViewData, setModalData, setUserData, setAlertData, trigger, setTrigger, SERVER, setCookie, getCookie, setEditorData, data, editorOpened, setEditorOpened, viewOpened, setViewOpened }) {
     let handleEdit = () => {
         setEditorOpened(true);
         setEditorData({
@@ -42,6 +42,11 @@ function TripCard({ setModalData, setUserData, setAlertData, trigger, setTrigger
             rejectAction: () => { },
         })
     }
+
+    let handleView = ()=>{
+        setViewData(data)
+        setViewOpened(true)
+    }
     return (
         <article className="TripCard">
             <div className="TripCard__locations">
@@ -61,7 +66,7 @@ function TripCard({ setModalData, setUserData, setAlertData, trigger, setTrigger
                 <h3 className="TripCard__headline">{data.name}</h3>
                 <div className="TripCard__places-info"><span className="TripCard__places-info_green">{data.places.length}</span>/<span className="TripCard__places-info_red">63</span></div>
                 <div className="TripCard__controll-btn-place">
-                    <button onClick={() => setViewOpened(true)} className="TripCard__controll-btn TripCard__controll-btn_green">Подробиці</button>
+                    <button onClick={handleView} className="TripCard__controll-btn TripCard__controll-btn_green">Подробиці</button>
                     <button onClick={handleEdit} className="TripCard__controll-btn TripCard__controll-btn_orange">Редагувати</button>
                     <button onClick={handleRemove} className="TripCard__controll-btn TripCard__controll-btn_red">Видалити</button>
                 </div>

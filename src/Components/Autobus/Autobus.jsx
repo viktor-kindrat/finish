@@ -1,17 +1,59 @@
 import "./Styles/Autobus.css";
 
-function Autobus() {
+import { useEffect } from "react";
+
+function Autobus({type, places, clickTrigger, setClickTrigger}) {
+    useEffect(()=>{
+        console.log(places)
+        let handleAdminClick = (e)=>{
+            let places = document.querySelectorAll(".Autobus__place");
+            places.forEach(el=>{
+                el.classList.remove("Autobus__place_selected")
+            })
+            e.target.classList.toggle("Autobus__place_selected")
+            setClickTrigger(e.target.innerText)
+        }
+        
+        let bookedPlaces = places.map(place=>`${place.placeNumber}`)
+        
+        if (type === "ADMIN") {
+            if (document.querySelector(".Autobus__place")){
+                let places = document.querySelectorAll(".Autobus__place");
+                places.forEach(el=>{
+                    el.classList.remove("Autobus__place_selected")
+                    el.classList.remove("Autobus__place_red")
+                    el.classList.remove("Autobus__place_green")
+                    if (bookedPlaces.indexOf(el.innerText) !== -1) {
+                        el.classList.add("Autobus__place_red")
+                    }
+                    el.addEventListener("click", handleAdminClick)
+                })
+            }
+        }
+        
+        return ()=>{
+            if (type === "ADMIN") {
+                if (document.querySelector(".Autobus__place")){
+                    let places = document.querySelectorAll(".Autobus__place");
+                    places.forEach(el=>{
+                        el.removeEventListener("click", handleAdminClick)
+                    })
+                }
+            }
+            
+        }
+    }, [type, places])
     return (
         <div className="Autobus">
             <div className="Autobus__container">
                 <div className="Autobus__column Autous__column_left">
                     <div className="Autobus__group">
-                        <div className="Autobus__place Autobus__place_red">1</div>
-                        <div className="Autobus__place Autobus__place_green">2</div>
+                        <div className="Autobus__place">1</div>
+                        <div className="Autobus__place">2</div>
                     </div>
                     <div className="Autobus__group">
-                        <div className="Autobus__place Autobus__place_green">5</div>
-                        <div className="Autobus__place Autobus__place_green">6</div>
+                        <div className="Autobus__place">5</div>
+                        <div className="Autobus__place">6</div>
                     </div>
                     <div className="Autobus__group">
                         <div className="Autobus__place">9</div>

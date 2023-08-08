@@ -58,6 +58,10 @@
                     &_green {
                         background: rgba(48, 184, 0, 0.59);
                     }
+
+                    &_selected {
+                        border: 3px solid #5200FF
+                    }
                 }
 
                 .Autobus__tech-space {

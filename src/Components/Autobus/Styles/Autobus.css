@@ -56,6 +56,9 @@
 .Autobus .Autobus__container .Autobus__column .Autobus__group .Autobus__place_green {
   background: rgba(48, 184, 0, 0.59);
 }
+.Autobus .Autobus__container .Autobus__column .Autobus__group .Autobus__place_selected {
+  border: 3px solid #5200FF;
+}
 .Autobus .Autobus__container .Autobus__column .Autobus__group .Autobus__tech-space {
   width: 80px;
   height: 30px;
