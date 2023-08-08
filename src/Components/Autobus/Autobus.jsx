@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 function Autobus({type, places, clickTrigger, setClickTrigger}) {
     useEffect(()=>{
-        console.log(places)
         let handleAdminClick = (e)=>{
             let places = document.querySelectorAll(".Autobus__place");
             places.forEach(el=>{
