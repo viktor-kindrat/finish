@@ -1,11 +1,45 @@
 import "./Styles/TripCard.css"
 
-function TripCard({ setEditorData, data, editorOpened, setEditorOpened, viewOpened, setViewOpened }) {
-    let handleEdit = ()=>{
+function TripCard({ setModalData, setUserData, setAlertData, trigger, setTrigger, SERVER, setCookie, getCookie, setEditorData, data, editorOpened, setEditorOpened, viewOpened, setViewOpened }) {
+    let handleEdit = () => {
         setEditorOpened(true);
         setEditorData({
             ...data,
             isNew: false
+        })
+    }
+
+    let handleRemove = () => {
+        setModalData({
+            delay: 0,
+            show: true,
+            message: "Ви впевнені що хочете видалити цей рейс?",
+            confirmCaption: "Так",
+            rejectCaption: "Ні",
+            confirmAction: () => {
+                let sendData = { id: data._id };
+                SERVER("Видаляємо", "POST", "book/admin/remove-trip", "application/json", sendData, getCookie("userToken"))
+                    .then(data => {
+                        if (data.errorMessage?.toLowerCase().includes("token")) {
+                            setAlertData({
+                                delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                                action: () => {
+                                    setUserData(undefined);
+                                    sessionStorage.clear()
+                                }
+                            })
+                            return
+                        }
+                        if (data.errorMessage?.toLowerCase().includes("validation")) {
+                            setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                            return
+                        }
+                        setAlertData({
+                            delay: 0.9, show: true, message: data.message, actionCaption: "Закрити", action: () => setTrigger(!trigger)
+                        })
+                    })
+            },
+            rejectAction: () => { },
         })
     }
     return (
@@ -29,7 +63,7 @@ function TripCard({ setEditorData, data, editorOpened, setEditorOpened, viewOpen
                 <div className="TripCard__controll-btn-place">
                     <button onClick={() => setViewOpened(true)} className="TripCard__controll-btn TripCard__controll-btn_green">Подробиці</button>
                     <button onClick={handleEdit} className="TripCard__controll-btn TripCard__controll-btn_orange">Редагувати</button>
-                    <button className="TripCard__controll-btn TripCard__controll-btn_red">Видалити</button>
+                    <button onClick={handleRemove} className="TripCard__controll-btn TripCard__controll-btn_red">Видалити</button>
                 </div>
             </div>
         </article>

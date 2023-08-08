@@ -79,6 +79,35 @@ function TripEditor({ setUserData, alertData, setAlertData, getCookie, SERVER, s
                     return
                 }
                 if (data.errorMessage?.toLowerCase().includes("validation")) {
+                    // setModalData({ ...modalData, show: false, delay: 0 })
+                    setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                    return
+                }
+                setAlertData({
+                    delay: 0.9, show: true, message: data.message, actionCaption: "До поїздок", action: () => {
+                        setEditorData(emptyEditorData);
+                        setEditorOpened(false)
+                    }
+                })
+                console.log(data)
+            })
+    }
+
+    let updateData = () => {
+        console.log(editorData)
+        SERVER("Зберігаємо поїздку", "POST", "book/admin/edit-trip", "application/json", { ...editorData, id: editorData._id }, getCookie("userToken"))
+            .then(data => {
+                if (data.errorMessage?.toLowerCase().includes("token")) {
+                    setAlertData({
+                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        action: () => {
+                            setUserData(undefined);
+                            sessionStorage.clear()
+                        }
+                    })
+                    return
+                }
+                if (data.errorMessage?.toLowerCase().includes("validation")) {
                     setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
                     return
                 }
@@ -93,6 +122,7 @@ function TripEditor({ setUserData, alertData, setAlertData, getCookie, SERVER, s
     }
 
     let handleSave = (e) => {
+        console.log(editorData)
         console.log("ok")
         setModalData({
             delay: 0,
@@ -102,9 +132,9 @@ function TripEditor({ setUserData, alertData, setAlertData, getCookie, SERVER, s
             rejectCaption: "Ні",
             confirmAction: () => {
                 setModalData({
-                    ...modalData, delay: 0.9, show: true, message: "Точно зеберегти поїдку?",
+                    delay: 0, show: true, message: "Точно зеберегти поїдку?",confirmCaption: "Так", rejectCaption: "Ні",
                     confirmAction: () => {
-                        saveData();
+                        editorData.isNew ? saveData() : updateData();
                         setModalData({ ...modalData, show: false, delay: 0 })
                     },
                     resetAction: () => {

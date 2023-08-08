@@ -35,6 +35,20 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
         fetch(`${server}auth/admin/get-all-user-data/?page=${page}&query=${query}`, { method: 'GET', headers: { Authorization: `Bearer ${getCookie('userToken')}` }, signal: abortController.signal, })
             .then((res) => res.json())
             .then((data) => {
+                if (data.errorMessage?.toLowerCase().includes("token")) {
+                    setAlertData({
+                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        action: () => {
+                            setUserData(undefined);
+                            sessionStorage.clear()
+                        }
+                    })
+                    return
+                }
+                if (data.errorMessage?.toLowerCase().includes("validation")) {
+                    setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                    return
+                }
                 users.current = data.data;
                 for (let i = 1; i <= data.pagesCount; i++) {
                     pagesArray.current.push(i);
@@ -141,8 +155,8 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                 !pending && users.current ? !openedEdit ? <>
                     <div className="UsersControl__results">
                         {
-                            users.current.map(user =>
-                                <div className="UsersControl__user" data-email={user.email} data-id={user._id}>
+                            users.current.map((user, index) =>
+                                <div key={`${user._id}-${index}`} className="UsersControl__user" data-email={user.email} data-id={user._id}>
                                     {user.name} {user.surname}
                                     <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit" />
                                     </button>
@@ -151,7 +165,7 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                     </div>
                     <div className="UsersControl__pagination">
                         {
-                            pagesArray.current.length === 0 ? "Користувачів немає" : pagesArray.current.map((item, index) => <><div onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div> {index !== pagesArray.current.length - 1 ? "," : ""}</>)
+                            pagesArray.current.length === 0 ? "Користувачів немає" : pagesArray.current.map((item, index) => <><div key={index} onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div> {index !== pagesArray.current.length - 1 ? "," : ""}</>)
                         }
                     </div>
                 </> : <>

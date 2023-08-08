@@ -39,8 +39,6 @@
   font-weight: 700;
   color: #333333;
   line-height: 120%;
-  white-space: pre-wrap;
-  word-break: break-all;
   text-align: center;
 }
 .Modal .Modal__card .Modal__btn-place {

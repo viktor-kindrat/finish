@@ -67,7 +67,7 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
     let [viewOpened, setViewOpened] = useState(false);
 
     let server = useContext(URLContext).server
-    console.log(server)
+    let [trigger, setTrigger] = useState(false)
 
     let [pending, setPending] = useState(true);
     let trips = useRef(undefined);
@@ -100,7 +100,7 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
             .catch(e => {
                 console.log(e)
             })
-    }, [server, setUserData, getCookie, setAlertData])
+    }, [trigger, server, setUserData, getCookie, setAlertData])
 
 
     let handleNewTrip = () => {
@@ -118,9 +118,9 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
                     </div>
                     <div className="TripsControll__container">
                         {
-                            (!pending && trips.current) ? trips.current.map(trip=>
-                                <TripCard data={trip} {...{ setEditorData, editorOpened, setEditorOpened, viewOpened, setViewOpened }} />    
-                            ) : <BuiltInLoader/>
+                            (!pending && trips.current) ? trips.current.map((trip, index) =>
+                                <TripCard key={index} data={trip} {...{ setModalData, setUserData, setAlertData, trigger, setTrigger, SERVER, setCookie, getCookie, setEditorData, editorOpened, setEditorOpened, viewOpened, setViewOpened }} />
+                            ) : <BuiltInLoader />
                         }
                     </div>
                 </> : editorOpened ? <TripEditor {...{ alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, emptyEditorData, editorOpened, setEditorOpened, editorData, setEditorData }} /> : viewOpened ? <ViewTrip {...{ viewOpened, setViewOpened }} /> : "ERROR"
