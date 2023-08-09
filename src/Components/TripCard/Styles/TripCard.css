@@ -1,5 +1,6 @@
 .TripCard {
   width: 100%;
+  max-width: 100%;
   display: flex;
   gap: 50px;
   align-items: center;
@@ -87,6 +88,7 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
+  flex-wrap: wrap;
 }
 .TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn {
   height: 40px;
@@ -114,6 +116,9 @@
 }
 .TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn_green {
   background: rgba(48, 184, 0, 0.59);
+}
+.TripCard .TripCard__controll .TripCard__controll-btn-place .TripCard__controll-btn_blue {
+  background: rgba(0, 6, 184, 0.59);
 }
 
 @media screen and (max-width: 919px) {

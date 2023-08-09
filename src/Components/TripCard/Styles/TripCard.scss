@@ -1,5 +1,6 @@
 .TripCard {
     width: 100%;
+    max-width: 100%;
     display: flex;
     gap: 50px;
     align-items: center;
@@ -98,6 +99,7 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
+            flex-wrap: wrap;
 
             .TripCard__controll-btn {
                 height: 40px;
@@ -127,6 +129,9 @@
 
                 &_green {
                     background: rgba(48, 184, 0, 0.59);
+                }
+                &_blue {
+                    background: rgba(0, 6, 184, 0.59);
                 }
             }
         }

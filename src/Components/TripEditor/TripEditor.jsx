@@ -4,7 +4,7 @@ import addIcon from "./SVG/plus.svg"
 
 import TripEditorCard from "./TripEditorCard"
 
-function TripEditor({ setUserData, alertData, setAlertData, getCookie, SERVER, setModalData, modalData, emptyEditorData, editorOpened, setEditorOpened, editorData, setEditorData }) {
+function TripEditor({ trigger, setTrigger, setUserData, alertData, setAlertData, getCookie, SERVER, setModalData, modalData, emptyEditorData, editorOpened, setEditorOpened, editorData, setEditorData }) {
     let handlePushNewStation = (e) => {
         let newEditorData = { ...editorData };
         let lastStation = newEditorData.stations.pop();
@@ -86,6 +86,7 @@ function TripEditor({ setUserData, alertData, setAlertData, getCookie, SERVER, s
                     delay: 0.9, show: true, message: data.message, actionCaption: "До поїздок", action: () => {
                         setEditorData(emptyEditorData);
                         setEditorOpened(false)
+                        setTrigger(!trigger)
                     }
                 })
                 console.log(data)
@@ -114,6 +115,7 @@ function TripEditor({ setUserData, alertData, setAlertData, getCookie, SERVER, s
                     delay: 0.9, show: true, message: data.message, actionCaption: "До поїздок", action: () => {
                         setEditorData(emptyEditorData);
                         setEditorOpened(false)
+                        setTrigger(!trigger)
                     }
                 })
                 console.log(data)

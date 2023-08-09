@@ -47,6 +47,15 @@ function TripCard({ setViewData, setModalData, setUserData, setAlertData, trigge
         setViewData(data)
         setViewOpened(true)
     }
+
+    let handleClone = ()=>{
+        setEditorOpened(true);
+        setEditorData({
+            ...data,
+            places: [],
+            isNew: true
+        })
+    }
     return (
         <article className="TripCard">
             <div className="TripCard__locations">
@@ -69,6 +78,7 @@ function TripCard({ setViewData, setModalData, setUserData, setAlertData, trigge
                     <button onClick={handleView} className="TripCard__controll-btn TripCard__controll-btn_green">Подробиці</button>
                     <button onClick={handleEdit} className="TripCard__controll-btn TripCard__controll-btn_orange">Редагувати</button>
                     <button onClick={handleRemove} className="TripCard__controll-btn TripCard__controll-btn_red">Видалити</button>
+                    <button onClick={handleClone} className="TripCard__controll-btn TripCard__controll-btn_blue">Клонувати</button>
                 </div>
             </div>
         </article>
