@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <APIkeysContext.Provider value={{ googleMaps: "AIzaSyA2w4bmkINSc8U15MEX543BLZmlSp5GPlI" }}>
-        <HostNameContext.Provider value={{server: "https://www.group-aliance.fun/"}}>
+        <HostNameContext.Provider value={{server: "http://localhost:5555/"}}>
           <App />
         </HostNameContext.Provider>
       </APIkeysContext.Provider>

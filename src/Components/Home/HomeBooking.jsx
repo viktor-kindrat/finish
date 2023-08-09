@@ -7,7 +7,6 @@ import selectIcon from "./SVG/select.svg";
 import addIcon from "./SVG/add.svg";
 import removeIcon from "./SVG/remove.svg"
 
-import { useState } from 'react';
 import { gsap } from "gsap";
 import { useNavigate } from "react-router-dom";
 
@@ -16,10 +15,8 @@ import uk from 'date-fns/locale/uk'; // Import the Ukrainian locale from date-fn
 
 registerLocale('uk', uk);
 
-function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }) {
+function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearchingData, date, setDate, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }) {
     let navigate = useNavigate();
-
-    let [date, setDate] = useState("")
 
     let handleOpenPassanger = (e) => {
         setPassangerOpened(!passangerOpened);
@@ -70,7 +67,16 @@ function HomeBooking({ places, peoples, setPeoples, from, setFrom, to, setTo, pa
         }
     }
 
-    let searchHandler = (e) => navigate("/search")
+    let searchHandler = (e) => {
+        setSearchingData({
+            from: from,
+            to: to,
+            arrivalDate: date,
+            passangers: peoples
+        })
+        navigate("/search")
+        setTriggerSearch(!triggerSearch)
+    }
 
     let passangersReadyHandler = () => {
         setPassangerOpened(false)

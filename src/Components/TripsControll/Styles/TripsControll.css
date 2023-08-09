@@ -10,6 +10,7 @@
 }
 .TripsControll:has(.TripEditor), .TripsControll:has(.ViewTrip) {
   min-width: auto;
+  width: auto;
 }
 .TripsControll .TripsControll__head {
   width: 100%;

@@ -16,8 +16,12 @@ function Home() {
     let [peoples, setPeoples] = useState({ adults: 1, children: 0 })
     let [from, setFrom] = useState({ country: "Пункт відправлення", place: "" });
     let [to, setTo] = useState({ country: "Місце прибуття", place: "" });
+    let [date, setDate] = useState("");
+
+    let [searchingData, setSearchingData] = useState(undefined)
+    let [triggerSearch, setTriggerSearch] = useState(undefined)
     let [passangerOpened, setPassangerOpened] = useState(false);
-    
+
     return (
         <section className="Home">
             <Routes>
@@ -27,13 +31,13 @@ function Home() {
                             <img className="Home__bgImage" src={mainImage} alt="main" />
                             <h1 className="Home__headline">Бронювання білетів</h1>
                         </div>
-                        <HomeBooking {...{ places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
+                        <HomeBooking {...{ triggerSearch, setTriggerSearch, searchingData, setSearchingData, date, setDate, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
                     </>
                 } />
                 <Route path="/search" element={
                     <>
-                        <HomeBooking {...{ places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
-                        <SearchingResult {...{ peoples }} />
+                        <HomeBooking {...{ triggerSearch, setTriggerSearch, searchingData, setSearchingData, date, setDate, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
+                        <SearchingResult data={{ ...searchingData }} {...{ setSearchingData, triggerSearch, setTriggerSearch }} />
                     </>
                 } />
             </Routes>

@@ -77,8 +77,8 @@ function TripCard({ setViewData, setModalData, setUserData, setAlertData, trigge
                 <div className="TripCard__controll-btn-place">
                     <button onClick={handleView} className="TripCard__controll-btn TripCard__controll-btn_green">Подробиці</button>
                     <button onClick={handleEdit} className="TripCard__controll-btn TripCard__controll-btn_orange">Редагувати</button>
-                    <button onClick={handleRemove} className="TripCard__controll-btn TripCard__controll-btn_red">Видалити</button>
                     <button onClick={handleClone} className="TripCard__controll-btn TripCard__controll-btn_blue">Клонувати</button>
+                    <button onClick={handleRemove} className="TripCard__controll-btn TripCard__controll-btn_red">Видалити</button>
                 </div>
             </div>
         </article>
