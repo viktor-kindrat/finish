@@ -115,6 +115,7 @@ function ViewTrip({ alertData, setUserData, setAlertData, getCookie, setCookie, 
     };
     return (
         <div className="ViewTrip">
+            <button onClick={() => setViewOpened(false)} className="ViewTrip__btn">&#8592; Назад</button>
             <Autobus type="ADMIN" places={data.places} {...{ clickTrigger, setClickTrigger }} />
             <div className="ViewTrip__actions">
                 <button className="ViewTrip__action ViewTrip__action_green" onClick={handleBook}>Бронювати</button>
@@ -132,7 +133,7 @@ function ViewTrip({ alertData, setUserData, setAlertData, getCookie, setCookie, 
 
                                 {
                                     data.places.map(item => {
-                                        if (item.invitatorId === moreData.invitatorId) {
+                                        if (item.invitatorId === moreData.invitatorId && moreData.placeNumber !== item.placeNumber) {
                                             return (
                                                 <div className="ViewTrip__sub-passanger">
                                                     <div className="ViewTrip__record-head">Місце {item.placeNumber}</div>

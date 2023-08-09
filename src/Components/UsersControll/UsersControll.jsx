@@ -60,7 +60,7 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
         return () => {
             abortController.abort();
         };
-    }, [page, query, openedEdit, getCookie, server])
+    }, [page, query, openedEdit, getCookie, server, setAlertData, setUserData])
 
     let handleChangePage = (e) => {
         setPage(parseInt(e.target.innerText));

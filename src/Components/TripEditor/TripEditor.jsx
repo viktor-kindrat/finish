@@ -79,7 +79,6 @@ function TripEditor({ setUserData, alertData, setAlertData, getCookie, SERVER, s
                     return
                 }
                 if (data.errorMessage?.toLowerCase().includes("validation")) {
-                    // setModalData({ ...modalData, show: false, delay: 0 })
                     setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
                     return
                 }
