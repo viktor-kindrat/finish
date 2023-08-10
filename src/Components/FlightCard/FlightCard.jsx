@@ -72,25 +72,25 @@ function FlightCard({ id, data, request }) {
             </article>
             <div className="FlightCard__opened" data-id={id}>
                 <div className="FlightCard__group">
-                    <div className="FlightCard__text">2 Дорослий</div>
-                    <div className="FlightCard__text FlightCard__text_bigBold">10 096 <span className="FlightCard__text_bold">грн</span></div>
+                    <div className="FlightCard__text">{request.passangers.adults} Дорослий</div>
+                    <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.adult - fromStation.price.adult) * request.passangers.adults} <span className="FlightCard__text_bold">грн</span></div>
                 </div>
                 <div className="FlightCard__group">
                     <div className="FlightCard__text FlightCard__text_mediumBold">+</div>
                 </div>
                 <div className="FlightCard__group">
-                    <div className="FlightCard__text">1 Дитячий</div>
-                    <div className="FlightCard__text FlightCard__text_bigBold">3 048 <span className="FlightCard__text_bold">грн</span></div>
+                    <div className="FlightCard__text">{request.passangers.children} Дитячий</div>
+                    <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.child - fromStation.price.child) * request.passangers.children} <span className="FlightCard__text_bold">грн</span></div>
                 </div>
                 <div className="FlightCard__group">
                     <div className="FlightCard__text FlightCard__text_mediumBold">=</div>
                 </div>
                 <div className="FlightCard__group">
                     <div className="FlightCard__text">Всього</div>
-                    <div className="FlightCard__text FlightCard__text_bigBold">13 114 <span className="FlightCard__text_bold">грн</span></div>
+                    <div className="FlightCard__text FlightCard__text_bigBold">{((toStation.price.adult - fromStation.price.adult) * request.passangers.adults) + ((toStation.price.child - fromStation.price.child) * request.passangers.children)} <span className="FlightCard__text_bold">грн</span></div>
                 </div>
             </div>
-            <BookingMenu id={id} />
+            <BookingMenu id={id} {...{data, request}} />
         </>
     )
 }
