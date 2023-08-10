@@ -1,15 +1,17 @@
 import "./Styles/SearchingResult.css"
 
-import { useEffect, useContext, useState } from "react"
+import { useEffect, useContext, useState, useRef } from "react"
 import urlContext from "../../Context/ServerHostnameContext"
 import { gsap } from "gsap"
 
 import FlightCard from "../FlightCard/FlightCard"
+import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
 
 function SearchingResult({ triggerSearch, setTriggerSearch, setSearchingData, data }) {
     let server = useContext(urlContext).server;
 
     let [pending, setPending] = useState(true)
+    let storage = useRef(undefined)
 
     useEffect(() => {
         let tl = gsap.timeline();
@@ -33,7 +35,7 @@ function SearchingResult({ triggerSearch, setTriggerSearch, setSearchingData, da
 
     useEffect(() => {
         setPending(true)
-        if (areAllFieldsDefined(data)) {
+        if (areAllFieldsDefined(data) && Object.keys(data).length > 0) {
             let obj = {
                 arrivalDate: data.arrivalDate,
                 from: {
@@ -46,26 +48,33 @@ function SearchingResult({ triggerSearch, setTriggerSearch, setSearchingData, da
                 }
             };
 
-            console.log(obj);
-
             fetch(`${server}book/get-actual-trips`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(obj) })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
+                    storage.current = data.data
                     setPending(false)
                 });
+        } else {
+            storage.current = false
+            setPending(false)
         }
     }, [triggerSearch, setPending])
-    console.log(data)
+
     return (
         <section className="SearchingResult">
-            <div className="SearchingResult__container">
-                <FlightCard id={0} />
-                <FlightCard id={1} />
-                <FlightCard id={2} />
-                <FlightCard id={3} />
-                <FlightCard id={4} />
-            </div>
+            {
+                !pending ?
+                    storage.current ?
+                        <div className="SearchingResult__container">
+                            {
+                                storage.current.map(item => {
+                                    return <FlightCard key={item._id} id={item._id} data={item} request={data}/>
+                                })
+                            }
+                        </div> : <h3 className="SearchingResult__info">Нічого не знайдено</h3>
+                    : <BuiltInLoader />
+            }
         </section>
     )
 }

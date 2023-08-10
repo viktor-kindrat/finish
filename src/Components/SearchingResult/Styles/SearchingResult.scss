@@ -6,6 +6,16 @@
     flex-direction: column;
     gap: 25px;
 
+    .SearchingResult__info {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-size: calc(25px + .3vw);
+        line-height: 125%;
+        font-family: "Montserrat";
+        color: #333333;
+    }
+
     .SearchingResult__container {
         width: 100%;
         display: flex;

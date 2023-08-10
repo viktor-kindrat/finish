@@ -19,7 +19,7 @@ function Home() {
     let [date, setDate] = useState("");
 
     let [searchingData, setSearchingData] = useState(undefined)
-    let [triggerSearch, setTriggerSearch] = useState(undefined)
+    let [triggerSearch, setTriggerSearch] = useState(false)
     let [passangerOpened, setPassangerOpened] = useState(false);
 
     return (
