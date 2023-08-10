@@ -62,7 +62,7 @@ function BookingMenu({ id, data, request }) {
     return (
         <div className="BookingMenu" data-id={id}>
             <PassangersList {...{ data, request, passangers, setPassangers }} />
-            <PlacesSet />
+            <PlacesSet places={data.places} />
             <ContactsField />
         </div>
     )
