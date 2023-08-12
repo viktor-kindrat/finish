@@ -76,15 +76,17 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
     }, [type, places, setClickTrigger, count, selected, setSelected])
 
     useEffect(() => {
-        let places = document.querySelectorAll(".Autobus__place");
-        places.forEach(el => {
-            if (selected.indexOf(el.innerText) !== -1) {
-                el.classList.add("Autobus__place_green")
-            } else {
-                el.classList.remove("Autobus__place_green")
-            }
-        })
-    }, [selected])
+        if (type === "USER") {
+            let places = document.querySelectorAll(".Autobus__place");
+            places.forEach(el => {
+                if (selected.indexOf(el.innerText) !== -1) {
+                    el.classList.add("Autobus__place_green")
+                } else {
+                    el.classList.remove("Autobus__place_green")
+                }
+            })
+        }
+    }, [selected, type])
 
     return (
         <div className="Autobus">
