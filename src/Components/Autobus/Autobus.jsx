@@ -56,7 +56,7 @@ function Autobus({type, places, clickTrigger, setClickTrigger}) {
             }
             
         }
-    }, [type, places])
+    }, [type, places, setClickTrigger])
     return (
         <div className="Autobus">
             <div className="Autobus__container">

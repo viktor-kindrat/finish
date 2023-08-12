@@ -5,7 +5,7 @@ import PlacesSet from "../PlacesSet/PlacesSet"
 import ContactsField from "../ContactsField/ContactsField"
 import { useEffect, useState } from "react"
 
-function BookingMenu({ id, data, request }) {
+function BookingMenu({ id, data, request, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }) {
     let [passangers, setPassangers] = useState([])
     useEffect(() => {
         let newPassangers = [];
@@ -58,12 +58,12 @@ function BookingMenu({ id, data, request }) {
             })
         }
         setPassangers(newPassangers)
-    }, [])
+    }, [setPassangers, request])
     return (
         <div className="BookingMenu" data-id={id}>
-            <PassangersList {...{ data, request, passangers, setPassangers }} />
+            <PassangersList {...{ data, request, passangers, setPassangers,userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />
             <PlacesSet places={data.places} />
-            <ContactsField />
+            <ContactsField {...{passangers, setPassangers, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER}} />
         </div>
     )
 }

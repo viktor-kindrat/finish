@@ -7,7 +7,7 @@ import BookingMenu from "../BookingMenu/BookingMenu"
 import { gsap } from "gsap"
 import { useEffect } from "react"
 
-function FlightCard({ id, data, request }) {
+function FlightCard({ id, data, request, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }) {
     useEffect(() => {
         gsap.set(".BookingMenu", { y: -100, opacity: 0, display: "none" })
         gsap.set(".FlightCard__opened", { y: -100, opacity: 0, display: "none" })
@@ -90,7 +90,7 @@ function FlightCard({ id, data, request }) {
                     <div className="FlightCard__text FlightCard__text_bigBold">{((toStation.price.adult - fromStation.price.adult) * request.passangers.adults) + ((toStation.price.child - fromStation.price.child) * request.passangers.children)} <span className="FlightCard__text_bold">грн</span></div>
                 </div>
             </div>
-            <BookingMenu id={id} {...{data, request}} />
+            <BookingMenu id={id} {...{data, request, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER}} />
         </>
     )
 }

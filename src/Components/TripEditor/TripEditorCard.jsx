@@ -54,7 +54,6 @@ function TripEditorCard({ data, finish, editorData, setEditorData }) {
         console.log(newEditorData)
     };
 
-    let arrivalDate = (data.arrivalDate) ? new Date(data.arrivalDate).toISOString().slice(0, 16) : ""
     return (
         <div className="TripEditor__card">
             <h2 className="TripEditor__headline">{finish ? "Прибуття" : data.id === 0 ? "Відправлення" : `${data.id} зупинка`}</h2>

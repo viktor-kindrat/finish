@@ -174,7 +174,7 @@ function App() {
 			<Modal {...{ ...modalData }} close={() => setModalData({ ...modalData, show: false })} />
 			<Header />
 			<Routes>
-				<Route path='/*' element={<Home />} />
+				<Route path='/*' element={<Home {...{userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER}} />} />
 				<Route path='account/*' element={<Account {...{ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
 				<Route path='authorization/*' element={<Authorization logined={!(!userData)} {...{ handleLogin, handleSignUp, handleRecover }} userData={authUserData} setUserData={setAuthUserData} isEdit={false} />} />
 			</Routes>

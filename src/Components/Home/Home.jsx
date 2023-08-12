@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Styles/Home.css";
 import mainImage from "./Images/main.webp";
 import HomeBooking from "./HomeBooking"
 import SearchingResult from "../SearchingResult/SearchingResult";
 
-import { Routes, Route, useLocation } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 
 const places = {
     "Україна": ["Київ", "Чернівці", "Коломия", "Франківськ", "Стрий", "Львів", "Мукачево"],
@@ -12,7 +12,7 @@ const places = {
     "Італія": ["Санремо", "Імперія", "Аласіо", "Альбенга", "Вентимілія неділя", "Лоано", "Петра", "Фінале", "Савона", "Верона", "Мілан"],
 };
 
-function Home() {
+function Home({userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER}) {
     let [peoples, setPeoples] = useState({ adults: 1, children: 0 })
     let [from, setFrom] = useState({ country: "Пункт відправлення", place: "" });
     let [to, setTo] = useState({ country: "Місце прибуття", place: "" });
@@ -37,7 +37,7 @@ function Home() {
                 <Route path="/search" element={
                     <>
                         <HomeBooking {...{ triggerSearch, setTriggerSearch, searchingData, setSearchingData, date, setDate, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
-                        <SearchingResult data={{ ...searchingData }} {...{ setSearchingData, triggerSearch, setTriggerSearch }} />
+                        <SearchingResult data={{ ...searchingData }} {...{ setSearchingData, triggerSearch, setTriggerSearch, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />
                     </>
                 } />
             </Routes>

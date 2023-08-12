@@ -143,6 +143,7 @@ function ViewTrip({ alertData, setUserData, setAlertData, getCookie, setCookie, 
                                                 </div>
                                             )
                                         }
+                                        return ""
                                     })
                                 }
                             </div>

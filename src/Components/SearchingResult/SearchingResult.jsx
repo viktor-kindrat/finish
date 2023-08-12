@@ -1,13 +1,13 @@
 import "./Styles/SearchingResult.css"
 
-import { useEffect, useContext, useState, useRef } from "react"
+import { useEffect, useContext, useState, useRef, useCallback } from "react"
 import urlContext from "../../Context/ServerHostnameContext"
 import { gsap } from "gsap"
 
 import FlightCard from "../FlightCard/FlightCard"
 import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
 
-function SearchingResult({ triggerSearch, setTriggerSearch, setSearchingData, data }) {
+function SearchingResult({ setSearchingData, triggerSearch, setTriggerSearch, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER, data }) {
     let server = useContext(urlContext).server;
 
     let [pending, setPending] = useState(true)
@@ -21,7 +21,7 @@ function SearchingResult({ triggerSearch, setTriggerSearch, setSearchingData, da
         }
     }, [])
 
-    function areAllFieldsDefined(obj) {
+    let areAllFieldsDefined = useCallback((obj)=> {
         for (const prop in obj) {
             if (obj[prop] === undefined) {
                 return false;
@@ -31,7 +31,7 @@ function SearchingResult({ triggerSearch, setTriggerSearch, setSearchingData, da
             }
         }
         return true;
-    }
+    }, [])
 
     useEffect(() => {
         setPending(true)
@@ -59,7 +59,7 @@ function SearchingResult({ triggerSearch, setTriggerSearch, setSearchingData, da
             storage.current = false
             setPending(false)
         }
-    }, [triggerSearch, setPending])
+    }, [triggerSearch, setPending, areAllFieldsDefined, data, server])
 
     return (
         <section className="SearchingResult">
@@ -69,7 +69,7 @@ function SearchingResult({ triggerSearch, setTriggerSearch, setSearchingData, da
                         <div className="SearchingResult__container">
                             {
                                 storage.current.map(item => {
-                                    return <FlightCard key={item._id} id={item._id} data={item} request={data}/>
+                                    return <FlightCard {...{ userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} key={item._id} id={item._id} data={item} request={data} />
                                 })
                             }
                         </div> : <h3 className="SearchingResult__info">Нічого не знайдено</h3>
