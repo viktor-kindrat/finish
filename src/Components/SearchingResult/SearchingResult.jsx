@@ -7,7 +7,7 @@ import { gsap } from "gsap"
 import FlightCard from "../FlightCard/FlightCard"
 import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
 
-function SearchingResult({ setSearchingData, triggerSearch, setTriggerSearch, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER, data }) {
+function SearchingResult({ setSearchingData, triggerSearch, setTriggerSearch, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER, searchingData }) {
     let server = useContext(urlContext).server;
 
     let [pending, setPending] = useState(true)
@@ -21,7 +21,7 @@ function SearchingResult({ setSearchingData, triggerSearch, setTriggerSearch, us
         }
     }, [])
 
-    let areAllFieldsDefined = useCallback((obj)=> {
+    let areAllFieldsDefined = useCallback((obj) => {
         for (const prop in obj) {
             if (obj[prop] === undefined) {
                 return false;
@@ -35,16 +35,19 @@ function SearchingResult({ setSearchingData, triggerSearch, setTriggerSearch, us
 
     useEffect(() => {
         setPending(true)
-        if (areAllFieldsDefined(data) && Object.keys(data).length > 0) {
+        storage.current = []
+        let keys = (typeof searchingData === "object") ? Object.keys(searchingData) : []
+        if (areAllFieldsDefined(searchingData) && keys.length > 0) {
+            storage.current = undefined
             let obj = {
-                arrivalDate: data.arrivalDate,
+                arrivalDate: searchingData.arrivalDate,
                 from: {
-                    country: data.from.country,
-                    city: data.from.place
+                    country: searchingData.from.country,
+                    city: searchingData.from.place
                 },
                 to: {
-                    country: data.to.country,
-                    city: data.to.place
+                    country: searchingData.to.country,
+                    city: searchingData.to.place
                 }
             };
 
@@ -53,24 +56,25 @@ function SearchingResult({ setSearchingData, triggerSearch, setTriggerSearch, us
                 .then(data => {
                     console.log(data);
                     storage.current = data.data
+
                     setPending(false)
                 });
         } else {
             storage.current = false
             setPending(false)
         }
-    }, [triggerSearch, setPending, areAllFieldsDefined, data, server])
+    }, [triggerSearch, setPending, areAllFieldsDefined, searchingData, server])
 
     return (
         <section className="SearchingResult">
             {
                 !pending ?
-                    storage.current ?
+                    (storage.current && storage.current.length > 0) ?
                         <div className="SearchingResult__container">
                             {
-                                storage.current.map(item => {
-                                    return <FlightCard {...{ userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} key={item._id} id={item._id} data={item} request={data} />
-                                })
+                                (storage.current.length > 0) ? storage.current.map(item => {
+                                    return <FlightCard {...{ userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER, searchingData }} key={item._id} id={item._id} data={item} />
+                                }) : <h3 className="SearchingResult__info">Нічого не знайдено</h3>
                             }
                         </div> : <h3 className="SearchingResult__info">Нічого не знайдено</h3>
                     : <BuiltInLoader />

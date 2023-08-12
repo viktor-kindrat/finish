@@ -5,23 +5,27 @@ import PlacesSet from "../PlacesSet/PlacesSet"
 import ContactsField from "../ContactsField/ContactsField"
 import { useEffect, useState } from "react"
 
-function BookingMenu({ id, data, request, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }) {
-    let [passangers, setPassangers] = useState([])
+function BookingMenu({ id, data, searchingData, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }) {
+    let [selected, setSelected] = useState([])
+    let [passangers, setPassangers] = useState([]);
+    let handlerOfsearchingData = searchingData;
+
     useEffect(() => {
+        console.log("here", handlerOfsearchingData)
         let newPassangers = [];
-        for (let i = 0; i < request.passangers.adults; i++) {
+        for (let i = 0; i < handlerOfsearchingData.passangers.adults; i++) {
             newPassangers.push({
                 isInitiator: false,
                 userDetails: {
                     name: "",
                     surname: "",
                     from: {
-                        country: request.from.country,
-                        city: request.from.place
+                        country: handlerOfsearchingData.from.country,
+                        city: handlerOfsearchingData.from.place
                     },
                     to: {
-                        country: request.to.country,
-                        city: request.to.place
+                        country: handlerOfsearchingData.to.country,
+                        city: handlerOfsearchingData.to.place
                     },
                 },
                 initiatorContacts: {
@@ -33,19 +37,19 @@ function BookingMenu({ id, data, request, userData, setUserData, alertData, setA
                 placeNumber: "",
             })
         }
-        for (let i = 0; i < request.passangers.children; i++) {
+        for (let i = 0; i < handlerOfsearchingData.passangers.children; i++) {
             newPassangers.push({
                 isInitiator: false,
                 userDetails: {
                     name: "",
                     surname: "",
                     from: {
-                        country: request.from.country,
-                        city: request.from.place
+                        country: handlerOfsearchingData.from.country,
+                        city: handlerOfsearchingData.from.place
                     },
                     to: {
-                        country: request.to.country,
-                        city: request.to.place
+                        country: handlerOfsearchingData.to.country,
+                        city: handlerOfsearchingData.to.place
                     },
                 },
                 initiatorContacts: {
@@ -58,12 +62,12 @@ function BookingMenu({ id, data, request, userData, setUserData, alertData, setA
             })
         }
         setPassangers(newPassangers)
-    }, [setPassangers, request])
+    }, [setPassangers, handlerOfsearchingData])
     return (
         <div className="BookingMenu" data-id={id}>
-            <PassangersList {...{ data, request, passangers, setPassangers,userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />
-            <PlacesSet count={request.passangers.adults + request.passangers.children} places={data.places} />
-            <ContactsField {...{passangers, setPassangers, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER}} />
+            <PassangersList {...{ data, searchingData, passangers, setPassangers,userData, setUserData, getCookie, setCookie, SERVER }} />
+            <PlacesSet count={searchingData.passangers.adults + searchingData.passangers.children} places={data.places} {...{selected, setSelected}} />
+            <ContactsField {...{passangers, setPassangers, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER, selected, setSelected}} />
         </div>
     )
 }

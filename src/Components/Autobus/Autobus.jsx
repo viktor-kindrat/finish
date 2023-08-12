@@ -1,9 +1,9 @@
 import "./Styles/Autobus.css";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-function Autobus({ type, places, clickTrigger, setClickTrigger, count }) {
-    let [selected, setSelected] = useState([])
+function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected, setSelected }) {
+
     useEffect(() => {
         let handleAdminClick = (e) => {
             let places = document.querySelectorAll(".Autobus__place");

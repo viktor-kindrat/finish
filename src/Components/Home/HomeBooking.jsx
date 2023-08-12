@@ -8,10 +8,11 @@ import addIcon from "./SVG/add.svg";
 import removeIcon from "./SVG/remove.svg"
 
 import { gsap } from "gsap";
+import { useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import DatePicker, { registerLocale } from 'react-datepicker';
-import uk from 'date-fns/locale/uk'; // Import the Ukrainian locale from date-fns library
+import uk from 'date-fns/locale/uk'; 
 
 registerLocale('uk', uk);
 
@@ -40,21 +41,21 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
         }
     }
 
-    let handleSwitch = async () => {
+    let handleSwitch = useCallback(async () => {
         await setTo(from)
         setFrom(to)
-    }
+    }, [setFrom, setTo, from, to])
 
-    let handleIncrement = (e) => {
+    let handleIncrement = useCallback((e) => {
         let type = e.target.parentElement.dataset.type;
         if (type === "children") {
             setPeoples({ ...peoples, children: peoples.children + 1 })
         } else {
             setPeoples({ ...peoples, adults: peoples.adults + 1 })
         }
-    }
+    }, [peoples, setPeoples])
 
-    let handleDecrement = (e) => {
+    let handleDecrement = useCallback((e) => {
         let type = e.target.parentElement.dataset.type;
         if (type === "children") {
             if (peoples.children > 0) {
@@ -65,9 +66,9 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
                 setPeoples({ ...peoples, adults: peoples.adults - 1 })
             }
         }
-    }
+    }, [peoples, setPeoples])
 
-    let searchHandler = (e) => {
+    let searchHandler = useCallback((e) => {
         setSearchingData({
             from: from,
             to: to,
@@ -76,9 +77,9 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
         })
         navigate("/search")
         setTriggerSearch(!triggerSearch)
-    }
+    }, [setTriggerSearch, navigate, setSearchingData, date, from, peoples, to, triggerSearch])
 
-    let passangersReadyHandler = () => {
+    let passangersReadyHandler = useCallback(() => {
         setPassangerOpened(false)
         let timeline = gsap.timeline();
         timeline.fromTo(".Home__booking-select-options", {
@@ -88,7 +89,7 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
             duration: 0.3
         })
         timeline.set(".Home__booking-select-options", { display: "none" })
-    }
+    }, [setPassangerOpened])
 
     const getCurrentDate = () => {
         return new Date();

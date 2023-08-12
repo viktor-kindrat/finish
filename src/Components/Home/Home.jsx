@@ -37,7 +37,7 @@ function Home({userData, setUserData, alertData, setAlertData, modalData, setMod
                 <Route path="/search" element={
                     <>
                         <HomeBooking {...{ triggerSearch, setTriggerSearch, searchingData, setSearchingData, date, setDate, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
-                        <SearchingResult data={{ ...searchingData }} {...{ setSearchingData, triggerSearch, setTriggerSearch, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />
+                        <SearchingResult{...{ searchingData, setSearchingData, triggerSearch, setTriggerSearch, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />
                     </>
                 } />
             </Routes>
