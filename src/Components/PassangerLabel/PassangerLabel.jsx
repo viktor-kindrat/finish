@@ -30,6 +30,7 @@ function PassangerLabel({ id, type, passangers, setPassangers, data, userData, s
                     email: userData.email
                 },
                 userDetails: {
+                    ...newPassangers[0].userDetails,
                     name: userData.name,
                     surname: userData.surname
                 },

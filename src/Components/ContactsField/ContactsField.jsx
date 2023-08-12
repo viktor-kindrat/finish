@@ -2,19 +2,23 @@ import { useEffect, useState, useCallback } from "react"
 import "./Styles/ContactsField.css"
 import checkIcon from "./SVG/check.svg"
 
-function ContactsField({ passangers, setPassangers, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER, selected, setSelected }) {
-    let [data, setData] = useState({
+import { useNavigate } from "react-router-dom"
+
+function ContactsField({ data, passangers, setPassangers, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER, selected, setSelected }) {
+    let [contact, setContact] = useState({
         name: "",
         surname: "",
         email: "",
         phoneNumber: ""
     })
 
+    let go = useNavigate()
+
     useEffect(() => {
         if (userData) {
-            setData({ ...userData })
+            setContact({ ...userData })
         }
-    }, [userData, setData])
+    }, [userData, setContact])
 
     let areAllFieldsDefined = useCallback((obj) => {
         for (const prop in obj) {
@@ -30,7 +34,35 @@ function ContactsField({ passangers, setPassangers, userData, setUserData, alert
     }, []);
 
     let booking = () => {
-        console.log(passangers)
+        let requestBody = {
+            passangers: passangers,
+            tripId: data._id
+        }
+        SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", requestBody, getCookie("userToken"))
+        .then(data=>{
+            console.log(data)
+            if (data.errorMessage?.toLowerCase().includes("token")) {
+                setAlertData({
+                    delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                    action: () => {
+                        setUserData(undefined);
+                        go("/authorization");
+                        sessionStorage.clear();
+                    }
+                })
+                return
+            }
+            if (data.errorMessage?.toLowerCase().includes("validation")) {
+                setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                return
+            }
+            setAlertData({
+                delay: 0.9, show: true, message: data.message, actionCaption: "ОК",
+                action: data.message === "Заброньовано успішно!" ? ()=>{
+                    go("/account/tickets")
+                } : ()=>{}
+            })
+        })
     }
 
     let setPlaces = () => {
@@ -69,19 +101,19 @@ function ContactsField({ passangers, setPassangers, userData, setUserData, alert
             <h3 className="ContactsField__headline"> <span className="ContactsField__headline_number">3</span> Контакти</h3>
             <div className="ContactsField__input-group">
                 <div className="ContactsField__input-label">Ім'я</div>
-                <input value={data.name} type="text" className="ContactsField__input" />
+                <input value={contact.name} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__input-group">
                 <div className="ContactsField__input-label">Прізвище</div>
-                <input value={data.surname} type="text" className="ContactsField__input" />
+                <input value={contact.surname} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__input-group">
                 <div className="ContactsField__input-label">E-mail</div>
-                <input value={data.email} type="text" className="ContactsField__input" />
+                <input value={contact.email} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__input-group">
                 <div className="ContactsField__input-label">Номер телефону</div>
-                <input value={data.phoneNumber} type="text" className="ContactsField__input" />
+                <input value={contact.phoneNumber} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__checkbox-group" style={{ display: (userData) ? "none" : "flex" }}>
                 <div className="ContactsField__checkbox-box-group">
