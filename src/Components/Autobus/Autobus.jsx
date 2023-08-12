@@ -1,26 +1,35 @@
 import "./Styles/Autobus.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function Autobus({type, places, clickTrigger, setClickTrigger}) {
-    useEffect(()=>{
-        let handleAdminClick = (e)=>{
+function Autobus({ type, places, clickTrigger, setClickTrigger, count }) {
+    let [selected, setSelected] = useState([])
+    useEffect(() => {
+        let handleAdminClick = (e) => {
             let places = document.querySelectorAll(".Autobus__place");
-            places.forEach(el=>{
+            places.forEach(el => {
                 el.classList.remove("Autobus__place_selected")
             })
             e.target.classList.toggle("Autobus__place_selected")
             setClickTrigger(e.target.innerText)
         }
+        let handleUserClick = (e) => {
+            let newSelected = [...selected, e.target.innerText];
+            if (selected.indexOf(e.target.innerText) !== -1) {
+                newSelected = newSelected.filter((item, index) => item !== e.target.innerText)
+            }
+            if (newSelected.length === count + 1) {
+                newSelected.shift()
+            }
+            setSelected(newSelected)
+        }
 
-        console.log(places)
-        
-        let bookedPlaces = places.map(place=>`${place.placeNumber}`)
-        
+        let bookedPlaces = places.map(place => `${place.placeNumber}`)
+
         if (type === "ADMIN") {
-            if (document.querySelector(".Autobus__place")){
+            if (document.querySelector(".Autobus__place")) {
                 let places = document.querySelectorAll(".Autobus__place");
-                places.forEach(el=>{
+                places.forEach(el => {
                     el.classList.remove("Autobus__place_selected")
                     el.classList.remove("Autobus__place_red")
                     el.classList.remove("Autobus__place_green")
@@ -31,32 +40,52 @@ function Autobus({type, places, clickTrigger, setClickTrigger}) {
                 })
             }
         } else {
-            if (document.querySelector(".Autobus__place")){
+            if (document.querySelector(".Autobus__place")) {
                 let places = document.querySelectorAll(".Autobus__place");
-                places.forEach(el=>{
+                places.forEach(el => {
                     el.classList.remove("Autobus__place_selected")
                     el.classList.remove("Autobus__place_red")
                     el.classList.remove("Autobus__place_green")
                     if (bookedPlaces.indexOf(el.innerText) !== -1) {
                         el.classList.add("Autobus__place_red")
                     }
-                    // el.addEventListener("click", handleAdminClick)
+                    el.addEventListener("click", handleUserClick)
                 })
             }
         }
-        
-        return ()=>{
+
+        return () => {
             if (type === "ADMIN") {
-                if (document.querySelector(".Autobus__place")){
+                if (document.querySelector(".Autobus__place")) {
                     let places = document.querySelectorAll(".Autobus__place");
-                    places.forEach(el=>{
+                    places.forEach(el => {
                         el.removeEventListener("click", handleAdminClick)
                     })
                 }
+            } else {
+                if (document.querySelector(".Autobus__place")) {
+                    let places = document.querySelectorAll(".Autobus__place");
+                    places.forEach(el => {
+                        el.removeEventListener("click", handleUserClick)
+                    })
+                }
             }
-            
+
         }
-    }, [type, places, setClickTrigger])
+        // eslint-disable-next-line
+    }, [type, places, setClickTrigger, count, selected, setSelected])
+
+    useEffect(() => {
+        let places = document.querySelectorAll(".Autobus__place");
+        places.forEach(el => {
+            if (selected.indexOf(el.innerText) !== -1) {
+                el.classList.add("Autobus__place_green")
+            } else {
+                el.classList.remove("Autobus__place_green")
+            }
+        })
+    }, [selected])
+
     return (
         <div className="Autobus">
             <div className="Autobus__container">

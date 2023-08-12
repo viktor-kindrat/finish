@@ -62,7 +62,7 @@ function BookingMenu({ id, data, request, userData, setUserData, alertData, setA
     return (
         <div className="BookingMenu" data-id={id}>
             <PassangersList {...{ data, request, passangers, setPassangers,userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />
-            <PlacesSet places={data.places} />
+            <PlacesSet count={request.passangers.adults + request.passangers.children} places={data.places} />
             <ContactsField {...{passangers, setPassangers, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER}} />
         </div>
     )
