@@ -29,7 +29,7 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 surname: passangers[0]?.userDetails.surname,
             })
         }// eslint-disable-next-line
-    }, [passangers, userData])
+    }, [passangers[0]?.userDetails.name, passangers[0]?.userDetails.surname, userData])
 
     let areAllFieldsDefined = useCallback((obj) => {
         for (const prop in obj) {
@@ -91,6 +91,102 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
         setPlaces() // eslint-disable-next-line
     }, [selected])
 
+    let bookUnauthorized = (checker) => {
+        if (checker) {
+            SERVER("Відбувається бронювання", "POST", "book/book-places/anauthorized", "application/json", { tripId: data._id, passangers: checker }, "")
+                .then(data => {
+                    console.log(data)
+                    if (data.errorMessage?.toLowerCase().includes("validation")) {
+                        setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                        return
+                    }
+                    setAlertData({
+                        delay: 0.9, show: true, message: data.message, actionCaption: "ОК",
+                        action: data.message === "Заброньовано успішно!" ? () => {
+                            go("/")
+                        } : () => { }
+                    })
+                })
+        }
+    }
+
+    const denormalizeInput = (formattedValue) => {
+        if (!formattedValue) return formattedValue;
+        const normalizedValue = formattedValue.replace(/[^\d]/g, '');
+        return normalizedValue;
+    }
+
+    let signUp = () => {
+        let validation = (passangers.length === selected.length) && areAllFieldsDefined(contact);
+        if (validation) {
+            SERVER("Реєстрація акаунта!", "POST", "auth/sign-up", "application/json", {
+                name: contact.name,
+                surname: contact.surname,
+                phoneNumber: contact.phoneNumber,
+                email: contact.email,
+                password: denormalizeInput(contact.phoneNumber)
+            })
+                .then(res => {
+                    console.log(res)
+                    if (res.errorMessage?.toLowerCase().includes("validation")) {
+                        setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                        return
+                    }
+                    setAlertData({
+                        delay: 0.9, show: true,
+                        message: res.message,
+                        actionCaption: "закрити",
+                        action: res.message === "Зареєстровано успішно. Лист для підтвердження акаунта надіслано!"
+                            ? () => {
+                                let checker = passangers.map(item => {
+                                    return {
+                                        ...item,
+                                        invitatorId: res._id
+                                    }
+                                })
+                                setPassangers(checker)
+                                let validate = areAllFieldsDefined(checker)
+
+                                if (validate) {
+                                    SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", { tripId: data._id, passangers: checker }, res.token)
+                                        .then(data => {
+                                            console.log(data)
+                                            if (data.errorMessage?.toLowerCase().includes("validation")) {
+                                                setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                                                return
+                                            }
+                                            setAlertData({
+                                                delay: 0.9, show: true, 
+                                                message: data.message === "Заброньовано успішно!" ? "Заброньовано успішно! Свої бронювання можете переглянути в акаунті після підтвердження використавши пароль: " + denormalizeInput(contact.phoneNumber) : data.message, 
+                                                actionCaption: "ОК",
+                                                action: data.message === "Заброньовано успішно!" ? () => {
+                                                    go("/")
+                                                } : () => {
+                                                    setUserData({
+                                                        name: contact.name,
+                                                        surname: contact.surname,
+                                                        email: contact.email,
+                                                        phoneNumber: contact.phoneNumber
+                                                    })
+                                                    setCookie("userToken", data.token)
+                                                }
+                                            })
+                                        })
+                                }
+                            } : () => { }
+                    })
+                })
+        } else {
+            setAlertData({
+                show: true,
+                delay: 0,
+                message: "Впевніться що було обрано всі місця та заповнено всі поля!",
+                actionCaption: "Добре",
+                action: () => { }
+            })
+        }
+    }
+
     let handleBookTicket = (e) => {
         console.log("handle booking", passangers, selected)
         if (userData) {
@@ -108,18 +204,29 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 })
             }
         } else {
-            let validation = (passangers.length === selected.length) && areAllFieldsDefined(passangers) && areAllFieldsDefined(contact);
-            if (validation) {
-                console.log("valid", passangers)
+            if (document.querySelector("#ContactField-create-account").checked) {
+                signUp();
             } else {
-                console.log("invalid", passangers)
-                setAlertData({
-                    show: true,
-                    delay: 0,
-                    message: "Впевніться що було обрано всі місця та заповнено всі поля!",
-                    actionCaption: "Добре",
-                    action: () => { }
+                let code = `UNATHORIZED${new Date().getTime()}R${Math.floor(Math.random() * 100000)}`;
+                let checker = passangers.map(item => {
+                    return {
+                        ...item,
+                        invitatorId: code
+                    }
                 })
+                let validation = (checker.length === selected.length) && areAllFieldsDefined(checker) && areAllFieldsDefined(contact);
+                if (validation) {
+                    bookUnauthorized(checker)
+                } else {
+                    console.log("invalid", checker)
+                    setAlertData({
+                        show: true,
+                        delay: 0,
+                        message: "Впевніться що було обрано всі місця та заповнено всі поля!",
+                        actionCaption: "Добре",
+                        action: () => { }
+                    })
+                }
             }
         }
     }
@@ -148,8 +255,16 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
         if (!userData) {
             if (e.target.name === "phoneNumber") {
                 setContact({ ...contact, [e.target.name]: normalizeInput(e.target.value) })
+                setPassangers(passangers.map(el => {
+                    return {
+                        ...el, isInitiator: (el.userDetails.name === contact.name && el.userDetails.surname === contact.surname)
+                    }
+                }))
             } else {
                 setContact({ ...contact, [e.target.name]: e.target.value })
+                setPassangers(passangers.map((el, index) => {
+                    return { ...el, isInitiator: (el.userDetails.name === (e.target.name === "name" ? e.target.value : contact.name) && el.userDetails.surname === (e.target.name === "surname" ? e.target.value : contact.surname)) }
+                }))
             }
 
             if (e.target.name === "phoneNumber" || e.target.name === "email") {
