@@ -36,7 +36,6 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
     let fromStation = data.stations.filter(item => (item.country === searchingData.from.country && item.city === searchingData.from.place))[0];
     let toStation = data.stations.filter(item => (item.country === searchingData.to.country && item.city === searchingData.to.place))[0];
 
-    console.log(searchingData)
     return (
         <>
             {
