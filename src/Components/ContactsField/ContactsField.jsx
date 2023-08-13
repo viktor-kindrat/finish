@@ -65,7 +65,7 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
         })
     }
 
-    let setPlaces = () => {
+    let setPlaces = useCallback(() => {
         if (passangers.length === selected.length) {
             setPassangers(passangers.map((item, index) => {
                 return {
@@ -73,11 +73,11 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 }
             }))
         }
-    }
+    }, [passangers, selected, setPassangers])
 
     useEffect(() => {
         setPlaces()
-    }, [selected])
+    }, [selected, setPlaces])
 
     let handleBookTicket = (e) => {
         console.log(passangers, selected)

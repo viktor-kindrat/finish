@@ -49,7 +49,7 @@ function PassangerLabel({ id, type, passangers, setPassangers, data, userData, s
                 }
             })
             setPassangers(changes)
-        }
+        }// eslint-disable-next-line
     }, [setFirstData, setPassangers, userData])
     return (
         <div className="PassangerLabel">
