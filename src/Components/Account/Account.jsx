@@ -30,11 +30,37 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
         })
     }
 
-    useEffect(() => {
-        if (!userData) {
+    useEffect(()=>{
+        if(userData) {
+            if (userData.role === "USER") {
+                SERVER("Оновлення даних", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
+                    if (data.errorMessage?.toLowerCase().includes("token")) {
+                        setAlertData({
+                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                            action: () => {
+                                setUserData(undefined);
+                                go("/authorization");
+                                sessionStorage.clear();
+                            }
+                        })
+                        return
+                    }
+                    if (data.body) {
+                        if (data.body.verified) {
+                            setUserData(data.body)
+                            sessionStorage.setItem("userData", JSON.stringify(data.body))
+                        } else {
+                            setUserData(undefined);
+                            sessionStorage.clear();
+                            setCookie("userToken", "", 0)
+                        }
+                    }
+                })
+            }
+        } else {
             go("/authorization")
-        }
-    }, [go, userData])
+        } // eslint-disable-next-line
+    }, [SERVER, getCookie, go, setAlertData, setCookie, setUserData])
 
     return (
         <>
@@ -61,7 +87,7 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
                         </div>
                         <Routes>
                             <Route path="/" element={<PersonalInfo {...{ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
-                            <Route path="/tickets" element={<Tickets {...{ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
+                            <Route path="/tickets" element={<Tickets {...{ modalData, setModalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
                         </Routes>
                     </section>
                     :

@@ -2,9 +2,11 @@ import "./Styles/Ticket.css"
 import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
 
 import { useEffect, useState, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import hrefContext from "../../Context/ServerHostnameContext";
 
-function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }) {
+function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, setAlertData, modalData, setModalData, SERVER }) {
+    let go = useNavigate();
     let [pending, setPending] = useState(true);
     let storage = useRef(undefined);
     let server = useContext(hrefContext).server;
@@ -65,6 +67,59 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
         }
     }, [setPending, data, getCookie, server, setAlertData, setUserData])
 
+    let handleRemoveBooking = (e) => {
+        setModalData({
+            delay: 0, show: true,
+            message: "Ви впевнені що хочете скасувати бронювання?",
+            confirmCaption: "Так", rejectCaption: "Ні",
+            confirmAction: () => {
+                SERVER("Скасовуємо бронювання", "POST", "book/cancel-booking", "application/json", { tripId: data.tripId, ticketId: data.id }, getCookie("userToken"))
+                    .then(data => {
+                        console.log(data)
+                        if (data.errorMessage?.toLowerCase().includes("token")) {
+                            setAlertData({
+                                delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                                action: () => {
+                                    setUserData(undefined);
+                                    sessionStorage.clear()
+                                }
+                            })
+                            return
+                        }
+                        setAlertData({
+                            delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => {
+                                SERVER("Оновлення даних", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
+                                    console.log("getting data res", data)
+                                    if (data.errorMessage?.toLowerCase().includes("token")) {
+                                        setAlertData({
+                                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                                            action: () => {
+                                                setUserData(undefined);
+                                                go("/authorization");
+                                                sessionStorage.clear();
+                                            }
+                                        })
+                                        return
+                                    }
+                                    if (data.body) {
+                                        if (data.body.verified) {
+                                            setUserData(data.body)
+                                            sessionStorage.setItem("userData", JSON.stringify(data.body))
+                                        } else {
+                                            setUserData(undefined);
+                                            sessionStorage.clear();
+                                            setCookie("userToken", "", 0)
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                    })
+            },
+            rejectAction: () => { },
+        })
+    }
+
 
     return (
         <>
@@ -88,7 +143,7 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                             <div className="Ticket__info_bigBold">{formatNumberWithSpaces((data.passangers.filter(item => item.age === "adult").length * (to.price.adult - from.price.adult)) + (data.passangers.filter(item => item.age === "child").length * (to.price.child - from.price.child)))} грн</div>
                             <div className="Ticket__info Ticket__info_small"> Дорослий: {data.passangers.filter(item => item.age === "adult").length}, Дитячий: {data.passangers.filter(item => item.age === "child").length}</div>
                         </div>
-                        <button disabled={status !== "active"} className="Ticket__action">{status === "canceled" ? "Скасовано" : status === "done" ? "Виконано" : status === "active" ? "Скасувати" : "Помилка"}</button>
+                        <button onClick={status === "active" ? handleRemoveBooking : () => { }} disabled={status !== "active"} className="Ticket__action">{status === "canceled" ? "Скасовано" : status === "done" ? "Виконано" : status === "active" ? "Скасувати" : "Помилка"}</button>
                     </article>
                     : <BuiltInLoader />
             }
