@@ -127,8 +127,6 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
         setTrigger(!trigger)
         setViewOpened(false)
     }
-
-    console.log(moreData)
     return (
         <div className="ViewTrip">
             <button onClick={backHandler} className="ViewTrip__btn">&#8592; Назад</button>

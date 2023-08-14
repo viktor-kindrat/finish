@@ -49,6 +49,8 @@
   line-height: 16px;
 }
 .TripCard .TripCard__controll {
+  width: 100%;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,6 +86,7 @@
   color: #19760A;
 }
 .TripCard .TripCard__controll .TripCard__controll-btn-place {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

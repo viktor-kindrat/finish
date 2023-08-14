@@ -4,6 +4,7 @@
   border-radius: 6px;
   background: #FBFBFB;
   display: flex;
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
 }
@@ -41,9 +42,16 @@
 .Ticket .Ticket__group {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 5px;
+}
+.Ticket .Ticket__group_arrow {
+  width: auto;
+}
+.Ticket .Ticket__group_location {
+  flex-basis: 450px;
+  align-items: flex-start;
 }
 .Ticket .Ticket__group .Ticket__info {
   color: #353535;
@@ -61,7 +69,7 @@
 }
 .Ticket .Ticket__group .Ticket__info_bigBold {
   color: #353535;
-  text-align: right;
+  text-align: center;
   font-family: "Arial", sans-serif;
   font-size: 24px;
   font-style: normal;
@@ -126,6 +134,9 @@
   .Ticket .Ticket__locations .Ticket__group {
     width: 100%;
     align-items: flex-start;
+  }
+  .Ticket .Ticket__locations .Ticket__group_location {
+    flex-basis: auto;
   }
   .Ticket .Ticket__locations .Ticket__sign {
     transform: rotate(90deg);

@@ -4,6 +4,7 @@
     border-radius: 6px;
     background: #FBFBFB;
     display: flex;
+    gap: 20px;
     align-items: center;
     justify-content: space-between;
 
@@ -48,9 +49,18 @@
     .Ticket__group {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         gap: 5px;
+        
+        &_arrow {
+            width: auto;
+        }
+        
+        &_location {
+            flex-basis: 450px;
+            align-items: flex-start;
+        }
 
         .Ticket__info {
             color: #353535;
@@ -69,7 +79,7 @@
 
             &_bigBold {
                 color: #353535;
-                text-align: right;
+                text-align: center;
                 font-family: 'Arial', sans-serif;
                 font-size: 24px;
                 font-style: normal;
@@ -141,6 +151,10 @@
             .Ticket__group {
                 width: 100%;
                 align-items: flex-start;
+
+                &_location {
+                    flex-basis: auto;
+                }
             }
 
             .Ticket__sign {

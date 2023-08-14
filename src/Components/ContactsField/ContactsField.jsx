@@ -70,6 +70,30 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 setAlertData({
                     delay: 0.9, show: true, message: data.message, actionCaption: "ОК",
                     action: data.message === "Заброньовано успішно!" ? () => {
+
+                        SERVER("Завантажуємо дані про вас", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
+                            if (data.errorMessage?.toLowerCase().includes("token")) {
+                                setAlertData({
+                                    delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                                    action: () => {
+                                        setUserData(undefined);
+                                        go("/authorization");
+                                        sessionStorage.clear();
+                                    }
+                                })
+                                return
+                            }
+                            if (data.body) {
+                                if (data.body.verified) {
+                                    setUserData(data.body)
+                                    sessionStorage.setItem("userData", JSON.stringify(data.body))
+                                } else {
+                                    setUserData(undefined);
+                                    sessionStorage.clear();
+                                    setCookie("userToken", "", 0)
+                                }
+                            }
+                        })
                         go("/account/tickets")
                     } : () => { }
                 })
@@ -156,8 +180,8 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                                                 return
                                             }
                                             setAlertData({
-                                                delay: 0.9, show: true, 
-                                                message: data.message === "Заброньовано успішно!" ? "Заброньовано успішно! Свої бронювання можете переглянути в акаунті після підтвердження використавши пароль: " + denormalizeInput(contact.phoneNumber) : data.message, 
+                                                delay: 0.9, show: true,
+                                                message: data.message === "Заброньовано успішно!" ? "Заброньовано успішно! Свої бронювання можете переглянути в акаунті після підтвердження використавши пароль: " + denormalizeInput(contact.phoneNumber) : data.message,
                                                 actionCaption: "ОК",
                                                 action: data.message === "Заброньовано успішно!" ? () => {
                                                     go("/")

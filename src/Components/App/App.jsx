@@ -70,7 +70,7 @@ function App() {
 		if (TOKEN.length > 0 && !userData) {
 			SERVER("Завантажуємо дані про Вас", "GET", "auth/get-info", "application/json", "", TOKEN).then(data => {
 				if (data.body) {
-					if (data.body.userVerified) {
+					if (data.body.verified) {
 						setUserData(data.body)
 						sessionStorage.setItem("userData", JSON.stringify(data.body))
 					}
