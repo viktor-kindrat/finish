@@ -13,7 +13,10 @@ import { Link, useLocation } from "react-router-dom"
 
 function PhoneMenu({userData}) {
     let location = useLocation();
-    let isAdmin = userData.role === "ADMIN"
+    let isAdmin;
+    if (userData) {
+        isAdmin = userData.role === "ADMIN"
+    }
     return (
         <nav className="PhoneMenu">
             {
