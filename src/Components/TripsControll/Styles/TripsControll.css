@@ -65,6 +65,9 @@
     background: transparent;
     box-shadow: none;
   }
+  .TripsControll .TripsControll__head {
+    margin-bottom: 50px;
+  }
   .TripsControll .TripsControll__head .TripsControll__headline {
     display: none;
   }
@@ -75,7 +78,7 @@
     justify-content: space-between;
   }
   .TripsControll .TripsControll__container {
-    gap: 54px;
-    margin-bottom: 34px;
+    gap: 85px;
+    margin-bottom: 35px;
   }
 }

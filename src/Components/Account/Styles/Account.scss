@@ -148,6 +148,15 @@
     }
 }
 
+@media screen and (max-width: 1210px) {
+    .Account {
+        flex-direction: column;
+        .Account__menu {
+            width: 100%;
+        }
+    }
+}
+
 @media screen and (max-width: 919px) {
     .Account {
         margin-top: 50px;

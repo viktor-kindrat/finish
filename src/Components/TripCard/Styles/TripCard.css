@@ -14,14 +14,14 @@
   font-family: "Roboto", sans-serif;
 }
 .TripCard .TripCard__locations {
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
 }
 .TripCard .TripCard__locations .TripCard__group {
-  max-width: 270px;
-  width: fit-content;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -42,6 +42,7 @@
   color: #353535;
 }
 .TripCard .TripCard__locations .TripCard__group .TripCard__sign {
+  width: auto;
   color: #000;
   font-size: 24px;
   font-style: normal;
@@ -160,10 +161,10 @@
     flex-wrap: wrap;
   }
   .TripCard .TripCard__controll .TripCard__headline {
-    height: 34px;
+    height: auto;
     width: 100%;
     position: absolute;
-    top: -33px;
+    top: 0;
     left: 0;
     right: 0;
     border-radius: 5px 5px 0px 0px;
@@ -179,6 +180,11 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
+    transform: translate(0, -100%);
+    -webkit-transform: translate(0, -100%);
+    -moz-transform: translate(0, -100%);
+    -ms-transform: translate(0, -100%);
+    -o-transform: translate(0, -100%);
   }
 }
 @media screen and (max-width: 364px) {

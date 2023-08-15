@@ -139,6 +139,7 @@
   color: #353535;
 }
 .FlightCard .FlightCard__group {
+  width: 33%;
   display: flex;
   gap: 15px;
   flex-direction: column;
@@ -156,6 +157,7 @@
   right: -25px;
 }
 .FlightCard .FlightCard__locations {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -170,7 +172,7 @@
   line-height: 16px;
 }
 .FlightCard .FlightCard__locations .FlightCard__location-column {
-  width: 270px;
+  width: 50%;
   display: flex;
   gap: 10px;
   flex-direction: column;

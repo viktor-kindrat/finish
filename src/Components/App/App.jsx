@@ -178,7 +178,7 @@ function App() {
 				<Route path='account/*' element={<Account {...{ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
 				<Route path='authorization/*' element={<Authorization logined={!(!userData)} {...{ handleLogin, handleSignUp, handleRecover }} userData={authUserData} setUserData={setAuthUserData} isEdit={false} />} />
 			</Routes>
-			<PhoneMenu />
+			<PhoneMenu {...{userData}} />
 			<Footer />
 		</div>
 	);

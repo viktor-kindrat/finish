@@ -11,9 +11,9 @@ import bookActiveIcon from "./SVG/book-active.svg"
 
 import { Link, useLocation } from "react-router-dom"
 
-function PhoneMenu() {
+function PhoneMenu({userData}) {
     let location = useLocation();
-    let isAdmin = localStorage.getItem("isAdmin") === "true"
+    let isAdmin = userData.role === "ADMIN"
     return (
         <nav className="PhoneMenu">
             {
