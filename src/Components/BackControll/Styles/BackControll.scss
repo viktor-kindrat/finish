@@ -21,12 +21,13 @@
 
   .BackControll__container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 20px;
     align-items: center;
     justify-content: center;
 
     .BackControll__item {
+      max-width: 450px;
       min-width: min(335px, calc(100vw - 50px));
       width: 100%;
       display: flex;
@@ -41,7 +42,7 @@
       .BackControll__item-head {
         width: 100%;
         position: relative;
-        padding: 5px;
+        padding: 5px 35px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -146,6 +147,12 @@
   }
 }
 
+@media screen and (max-width: 1210px) {
+  .BackControll {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 919px) {
   .BackControll {
     width: 100%;
@@ -154,6 +161,7 @@
       width: 100%;
       .BackControll__item {
         width: 100%;
+        max-width: none;
       }
     }
   }

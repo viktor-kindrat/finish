@@ -35,11 +35,33 @@
   font-family: "Montserrat", sans-serif;
 }
 .Modal .Modal__card .Modal__message {
+  width: 100%;
   font-size: calc(18px + 0.5vw);
   font-weight: 700;
   color: #333333;
   line-height: 120%;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Modal .Modal__card .Modal__message .Modal__map {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  margin: 15px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1450980392);
+  border-radius: 5px;
+  flex-grow: 1;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.Modal .Modal__card .Modal__message .Modal__map > div {
+  width: 100%;
+  height: 500px;
 }
 .Modal .Modal__card .Modal__btn-place {
   width: 100%;

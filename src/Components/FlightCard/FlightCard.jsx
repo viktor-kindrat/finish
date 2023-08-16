@@ -1,17 +1,23 @@
 import "./Styles/FlightCard.css"
 
 import detailsIcon from "./SVG/details.svg"
+import markerIcon from "./SVG/marker.svg"
 
 import BookingMenu from "../BookingMenu/BookingMenu"
+import VisualizeMap from "../UI/VisualizeMap/VisualizeMap"
 
 import { gsap } from "gsap"
-import { useEffect } from "react"
+import { useEffect, useContext } from "react"
+
+import APIkeyContext from "../../Context/APIkeysContext";
 
 function FlightCard({ id, data, searchingData, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }) {
     useEffect(() => {
         gsap.set(".BookingMenu", { y: -100, opacity: 0, display: "none" })
         gsap.set(".FlightCard__opened", { y: -100, opacity: 0, display: "none" })
     }, [])
+
+    let APIKEY = useContext(APIkeyContext).googleMaps;
 
     let handleOpenBookingMenu = (e) => {
         document.querySelectorAll(".FlightCard__book-btn").forEach(el => {
@@ -36,20 +42,45 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
     let fromStation = data.stations.filter(item => (item.country === searchingData.from.country && item.city === searchingData.from.place))[0];
     let toStation = data.stations.filter(item => (item.country === searchingData.to.country && item.city === searchingData.to.place))[0];
 
+
+    const redirectToGoogleMaps = (lat, lng) => {
+        // Create the URL for Google Maps with the specified latitude and longitude
+        const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+
+        // Open the URL in a new tab
+        window.open(mapsUrl, '_blank');
+    };
+
+    const setModalMap = (lng, lat)=>{
+        setModalData({
+            delay: 0, show: true,
+            message: <div className="Modal__map">
+                <VisualizeMap language="uk" apiKey={APIKEY} lat={lng} lng={lat} />
+            </div>,
+            confirmCaption: "До карт",
+            rejectCaption: "Закрити",
+            confirmAction: () => {
+                redirectToGoogleMaps(lng, lat)
+            },
+            rejectAction: () => { },
+        })
+    }
+
     return (
         <>
             {
                 (fromStation && toStation) ? <>
                     <article className="FlightCard">
+                        <div className="FlightCard__free-places">Вільних місць: {63 - data.places.length}</div>
                         <div className="FlightCard__locations FlightCard__group">
                             <div className="FlightCard__location-column">
                                 <p className="FlightCard__info FlightCard__info_bold">{new Date(fromStation.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
-                                <p className="FlightCard__info">{fromStation.country} - {fromStation.city} <br />({fromStation.location.caption})</p>
+                                <p className="FlightCard__info">{fromStation.country} - {fromStation.city} <br /><span onClick={(e)=>setModalMap(fromStation.location.longitude, fromStation.location.latitude)}>({fromStation.location.caption}) <img src={markerIcon} height={20} alt="marker" /></span></p>
                             </div>
                             <div className="FlightCard__arrow">&#8594;</div>
                             <div className="FlightCard__location-column">
                                 <p className="FlightCard__info FlightCard__info_bold">{new Date(toStation.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
-                                <p className="FlightCard__info">{toStation.country} - {toStation.city} <br />({toStation.location.caption})</p>
+                                <p className="FlightCard__info">{toStation.country} - {toStation.city} <br /><span onClick={(e)=>setModalMap(toStation.location.longitude, toStation.location.latitude)}>({toStation.location.caption}) <img src={markerIcon} width={20} alt="marker" /></span></p>
                             </div>
                         </div>
                         <div className="FlightCard__group">

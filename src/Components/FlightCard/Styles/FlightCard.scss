@@ -20,7 +20,7 @@
     * {
         font-family: "Roboto", sans-serif;
     }
-    
+
     &::before {
         content: "";
         height: 1px;
@@ -43,6 +43,7 @@
             &::after {
                 display: none;
             }
+
             &::before {
                 display: none;
             }
@@ -57,6 +58,7 @@
             position: absolute;
             right: -25px;
         }
+
         &::before {
             content: "";
             height: 80px;
@@ -116,6 +118,10 @@
     border: 1px solid #AEAEAE;
     background: #FBFBFB;
     z-index: 3;
+
+    .FlightCard__free-places {
+        display: none;
+    }
 
     &.FlightCard_opened {
         .FlightCard__group {
@@ -202,6 +208,25 @@
             flex-direction: column;
             align-items: flex-start;
             justify-content: center;
+
+            .FlightCard__info {
+                align-items: flex-start;
+                justify-content: flex-start;
+                text-align: left;
+
+                span {
+                    cursor: pointer;
+                    display: inline-flex;
+                    align-items: center;
+
+                    img {
+                        height: 20px;
+                        width: 20px;
+                        aspect-ratio: 1/1;
+                        user-select: none;
+                    }
+                }
+            }
         }
     }
 
@@ -289,6 +314,10 @@
                 -ms-transform: rotate(90deg);
                 -o-transform: rotate(90deg);
             }
+
+            .FlightCard__location-column {
+                width: 100%;
+            }
         }
 
         .FlightCard__book-btn {
@@ -363,6 +392,25 @@
                 line-height: 36px
             }
 
+        }
+    }
+}
+
+@media screen and (max-width: 919px) {
+    .FlightCard {
+        position: relative;
+
+        .FlightCard__free-places {
+            display: flex;
+            position: absolute;
+            top: 11px;
+            right: 13px;
+            color: #353535;
+            text-align: center;
+            font-family: Roboto;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
         }
     }
 }

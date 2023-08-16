@@ -30,8 +30,8 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
         })
     }
 
-    useEffect(()=>{
-        if(userData) {
+    useEffect(() => {
+        if (userData) {
             if (userData.role === "USER") {
                 SERVER("Оновлення даних", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
                     if (data.errorMessage?.toLowerCase().includes("token")) {
@@ -118,7 +118,7 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
                         <Routes>
                             <Route path="/" element={<TripsControll {...{ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
                             <Route path="/users" element={<UsersControll {...{ getCookie, setCookie, setUserData, setAlertData, SERVER }} />} />
-                            <Route path="/back" element={<BackControll />} />
+                            <Route path="/back" element={<BackControll {...{ getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
                         </Routes>
                     </section> : ""
             }
