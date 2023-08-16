@@ -20,9 +20,9 @@ const MapContainer = ({ google, lng, lat }) => {
                 }}
                 google={google}
                 zoom={18}
-                initialCenter={{ lat: finalLat, lng: finalLng }}>
+                initialCenter={{ lat: lat || defaultLat, lng: lng || defaultLng }}>
                 <Marker
-                    position={{ lat: finalLat, lng: finalLng }}
+                    position={{ lat: lat || defaultLat, lng: lng || defaultLng }}
                     draggable={false}
                 />
             </Map>
