@@ -60,6 +60,7 @@
   font-weight: 500;
   line-height: 100%;
   font-family: "Heebo", sans-serif;
+  letter-spacing: 0.5px;
 }
 .Header .Header__nav-wrap .Header__nav .Header__nav-list .Header__nav-list-item_selected {
   font-weight: 700;
