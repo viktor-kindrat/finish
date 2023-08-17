@@ -1,7 +1,7 @@
 import "./Styles/HeaderNavMobile.css"
-import tgIcon from "../Images/telegram.webp";
-import whatsappIcon from "../Images/whatsapp.webp";
-import viberIcon from "../Images/viber.webp"
+import tgIcon from "../SVG/telegram.svg";
+import whatsappIcon from "../SVG/whatsapp.svg";
+import viberIcon from "../SVG/viber.svg"
 
 import PhoneInput from "../../UI/PhoneInput/PhoneInput";
 

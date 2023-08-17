@@ -1,13 +1,8 @@
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const MapContainer = ({ google, lng, lat }) => {
-    // Add default values for lat and lng if they are not provided
-    const defaultLat = 0; // Change this to an appropriate default value
-    const defaultLng = 0; // Change this to an appropriate default value
-
-    // Use the provided lat and lng values, or use the default values if not provided
-    const finalLat = lat || defaultLat;
-    const finalLng = lng || defaultLng;
+    const defaultLat = 0; 
+    const defaultLng = 0; 
 
     return (
         <>

@@ -1,5 +1,5 @@
-import viberIcon from "./Images/viber.webp"
-import whatsappIcon from "./Images/whatsapp.webp"
+import viberIcon from "./SVG/viber.svg"
+import whatsappIcon from "./SVG/whatsapp.svg"
 import phoneIcon from "./SVG/phone.svg"
 
 import { Link, useLocation } from "react-router-dom"

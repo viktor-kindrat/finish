@@ -2,6 +2,7 @@ import "./Styles/FlightCard.css"
 
 import detailsIcon from "./SVG/details.svg"
 import markerIcon from "./SVG/marker.svg"
+import rightIcon from "./SVG/right.svg"
 
 import BookingMenu from "../BookingMenu/BookingMenu"
 import VisualizeMap from "../UI/VisualizeMap/VisualizeMap"
@@ -80,7 +81,9 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
                                 <p className="FlightCard__info FlightCard__info_bold">{new Date(fromStation.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
                                 <p className="FlightCard__info">{fromStation.country} - {fromStation.city} <br /><span onClick={(e) => setModalMap(fromStation.location.longitude, fromStation.location.latitude)}>({fromStation.location.caption}) <img src={markerIcon} height={20} alt="marker" /></span></p>
                             </div>
-                            <div className="FlightCard__arrow">&#8594;</div>
+                            <div className="FlightCard__arrow">
+                                <img src={rightIcon} height={20} alt="->" />
+                            </div>
                             <div className="FlightCard__location-column">
                                 <p className="FlightCard__info FlightCard__info_bold">{new Date(toStation.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
                                 <p className="FlightCard__info">{toStation.country} - {toStation.city} <br /><span onClick={(e) => setModalMap(toStation.location.longitude, toStation.location.latitude)}>({toStation.location.caption}) <img src={markerIcon} width={20} alt="marker" /></span></p>

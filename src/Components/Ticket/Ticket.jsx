@@ -1,6 +1,8 @@
 import "./Styles/Ticket.css"
 import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
 
+import rightIcon from "./SVG/right.svg"
+
 import { useEffect, useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import hrefContext from "../../Context/ServerHostnameContext";
@@ -132,7 +134,9 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                                 <div className="Ticket__info">{from.country} - {from.city} <br />({from.location.caption})</div>
                             </div>
                             <div className="Ticket__group Ticket__group_arrow">
-                                <div className="Ticket__sign">&#8594;</div>
+                                <div className="Ticket__sign">
+                                    <img src={rightIcon} height={20} alt="->" />
+                                </div>
                             </div>
                             <div className="Ticket__group Ticket__group_location">
                                 <div className="Ticket__info_bold Ticket__info">{new Date(to.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
