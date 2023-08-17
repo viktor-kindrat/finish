@@ -156,6 +156,11 @@
   outline: none;
   cursor: pointer;
 }
+.Authorization .Authorization__container .Authorization__action_outline {
+  background: transparent;
+  border: 3px solid #FFCB46;
+  color: #FFCB46;
+}
 .Authorization .Authorization__container .Authorization__recover {
   width: 100%;
   text-align: right;

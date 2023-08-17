@@ -1,223 +1,296 @@
 .HeaderNavMobile {
-  display: none;
+    display: none;
 
-  a {
-    text-decoration: none;
-  }
+    a {
+        text-decoration: none;
+    }
 }
 
 @media screen and (max-width: 919px) {
-  .HeaderNavMobile {
-    display: none;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    justify-content: flex-start;
-    position: fixed;
-    top: 50px;
-    left: 0;
-    background: #FFCB46;
-    width: 100%;
-    height: calc(100vh - 50px);
-    z-index: 10;
-    padding: 30px 20px 50px 20px;
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    .HeaderNavMobile__section {
-      width: 100%;
-      display: flex;
-      gap: 15px;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-      border-radius: 5px;
-      border: 0px solid #CECECE;
-      background: #F8F8F8;
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-      .HeaderNavMobile__headline {
-        color: #353535;
-        text-align: center;
-        font-family: 'CrimsonText', sans-serif;
-        font-size: 26px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        text-transform: uppercase;
-      }
-
-      .HeaderNavMobile__info {
-        width: 100%;
-        display: flex;
-        gap: 15px;
+    .HeaderNavMobile {
+        display: none;
         flex-direction: column;
+        gap: 15px;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        position: fixed;
+        top: 50px;
+        left: 0;
+        background: #FFCB46;
+        width: 100%;
+        height: calc(100vh - 50px);
+        z-index: 10;
+        padding: 30px 20px 50px 20px;
+        overflow-x: hidden;
+        overflow-y: auto;
 
-        .HeaderNavMobile__info-data {
-          color: #353535;
-          text-align: center;
-          font-family: Quando, serif;
-          font-size: 22px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-          letter-spacing: 0.77px;
-          transition: 0.3s;
-          cursor: pointer;
+        .HeaderNavMobile__section {
+            width: 100%;
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 5px;
+            border: 0px solid #CECECE;
+            background: #F8F8F8;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
-          &:hover {
-            color: #1E6FB8;
-            text-decoration: underline;
-          }
+            .HeaderNavMobile__headline {
+                color: #353535;
+                text-align: center;
+                font-family: 'CrimsonText', sans-serif;
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: uppercase;
+            }
 
-          &_bold {
+            .HeaderNavMobile__info {
+                width: 100%;
+                display: flex;
+                gap: 15px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .HeaderNavMobile__info-data {
+                    color: #353535;
+                    text-align: center;
+                    font-family: Quando, serif;
+                    font-size: 22px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 0.77px;
+                    transition: 0.3s;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #1E6FB8;
+                        text-decoration: underline;
+                    }
+
+                    &_bold {
+                        color: #353535;
+                        text-align: center;
+                        font-family: 'Mplus 1p', sans-serif;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
+                }
+
+                .HeaderNavMobile__info-caption {
+                    color: #353535;
+                    text-align: center;
+                    font-family: "Montserrat", sans-serif;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    margin-bottom: -5px;
+                }
+
+                .HeaderNavMobile__phone-input-wrapper {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    color: #646464;
+                    text-align: center;
+                    font-family: "Montserrat", sans-serif;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: normal;
+                    gap: 5px;
+                    padding: 10px 15px;
+                    border-radius: 5px;
+                    border: 1px solid #8B8B8B;
+                    background: rgba(255, 255, 255, 0.80);
+
+                    .HeaderNavMobile__phone-input {
+                        width: 50px;
+                        text-align: center;
+                        outline: none;
+                        border: none;
+                        font-family: "Montserrat", sans-serif;
+                        color: #353535;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                        letter-spacing: 6px;
+
+                        &::placeholder {
+                            text-align: center;
+                            width: 100%;
+                        }
+
+                        &:nth-child(1) {
+                            width: 30px;
+                            font-family: "Montserrat", sans-serif;
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 300;
+                            line-height: normal;
+                        }
+
+                        &:nth-child(4),
+                        &:nth-child(5) {
+                            width: 32px;
+                        }
+                    }
+                }
+
+                .HeaderNavMobile__input {
+                    height: 40px;
+                    width: 100%;
+                    outline: none;
+                    padding: 10px 15px;
+                    border-radius: 5px;
+                    border: 1px solid #8B8B8B;
+                    background: rgba(255, 255, 255, 0.80);
+                    color: #353535;
+                    font-family: Montserrat, sans-serif;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    text-align: center;
+                    letter-spacing: 6px;
+
+                    &::placeholder {
+                        color: #646464;
+                        text-align: center;
+                        font-family: Montserrat;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                        letter-spacing: 6px;
+                    }
+                }
+
+                .HeaderNavMobile__btn {
+                    width: 100%;
+                    padding: 10px 25px;
+                    border-radius: 5px;
+                    background: #8EBA43;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    color: #FFF;
+                    text-align: center;
+                    font-family: "Montserrat", sans-serif;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                    letter-spacing: 0.64px;
+                    text-transform: uppercase;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    -webkit-transition: 0.3s;
+                    -moz-transition: 0.3s;
+                    -ms-transition: 0.3s;
+                    -o-transition: 0.3s;
+
+                    &:hover {
+                        background: #4B7447;
+                    }
+                }
+            }
+        }
+
+        .HeaderNavMobile__socials {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 15px;
+            margin-top: 5px;
+
+            .HeaderNavMobile__socials-separator {
+                width: 1px;
+                height: 50px;
+                background: #909090;
+                display: block;
+                color: transparent;
+                user-select: none;
+            }
+
+            .HeaderNavMobile__socials-item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                transition: transform 0.3s;
+                -webkit-transition: transform 0.3s;
+                -moz-transition: transform 0.3s;
+                -ms-transition: transform 0.3s;
+                -o-transition: transform 0.3s;
+
+                &:hover {
+                    transform: translate(0, -3px);
+                    -webkit-transform: translate(0, -3px);
+                    -moz-transform: translate(0, -3px);
+                    -ms-transform: translate(0, -3px);
+                    -o-transform: translate(0, -3px);
+                }
+
+                .HeaderNavMobile__socials-icon {
+                    height: 80px;
+                    aspect-ratio: 1/1;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .HeaderNavMobile__footer {
+            width: 100%;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #353535;
             text-align: center;
-            font-family: 'Mplus 1p', sans-serif;
-            font-size: 16px;
+            font-family: "Nixie One", sans-serif;
+            font-size: 14px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
-          }
         }
-
-        .HeaderNavMobile__info-caption {
-          color: #353535;
-          text-align: center;
-          font-family: "Montserrat", sans-serif;
-          font-size: 12px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-          margin-bottom: -5px;
-        }
-
-        .HeaderNavMobile__input {
-          height: 40px;
-          width: 100%;
-          outline: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          border: 1px solid #8B8B8B;
-          background: rgba(255, 255, 255, 0.80);
-          color: #353535;
-          font-family: Montserrat, sans-serif;
-          font-size: 20px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: normal;
-          text-align: center;
-          letter-spacing: 6px;
-
-          &::placeholder {
-            color: #646464;
-            text-align: center;
-            font-family: Montserrat;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            letter-spacing: 6px;
-          }
-        }
-
-        .HeaderNavMobile__btn {
-          width: 100%;
-          padding: 10px 25px;
-          border-radius: 5px;
-          background: #8EBA43;
-          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-          color: #FFF;
-          text-align: center;
-          font-family: "Montserrat", sans-serif;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: normal;
-          letter-spacing: 0.64px;
-          text-transform: uppercase;
-          border: none;
-          outline: none;
-          cursor: pointer;
-          transition: 0.3s;
-          -webkit-transition: 0.3s;
-          -moz-transition: 0.3s;
-          -ms-transition: 0.3s;
-          -o-transition: 0.3s;
-
-          &:hover {
-            background: #4B7447;
-          }
-        }
-      }
     }
+}
 
-    .HeaderNavMobile__socials {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 15px;
-      margin-top: 5px;
+@media screen and (max-width: 397px) {
+    .HeaderNavMobile {
+        .HeaderNavMobile__section {
+            .HeaderNavMobile__info {
+                .HeaderNavMobile__phone-input-wrapper {
+                    letter-spacing: 1px;
+                    .HeaderNavMobile__phone-input {
+                        width: 40px;
+                        letter-spacing: 1px;
 
-      .HeaderNavMobile__socials-separator {
-        width: 1px;
-        height: 50px;
-        background: #909090;
-        display: block;
-        color: transparent;
-        user-select: none;
-      }
-
-      .HeaderNavMobile__socials-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        transition: transform 0.3s;
-        -webkit-transition: transform 0.3s;
-        -moz-transition: transform 0.3s;
-        -ms-transition: transform 0.3s;
-        -o-transition: transform 0.3s;
-
-        &:hover {
-          transform: translate(0, -3px);
-          -webkit-transform: translate(0, -3px);
-          -moz-transform: translate(0, -3px);
-          -ms-transform: translate(0, -3px);
-          -o-transform: translate(0, -3px);
+                        &:nth-child(1), &:nth-child(4), &:nth-child(5) {
+                            width: 25px;
+                        }
+                    }
+                }
+            }
         }
-
-        .HeaderNavMobile__socials-icon {
-          height: 80px;
-          aspect-ratio: 1/1;
-          object-fit: contain;
-        }
-      }
     }
-
-    .HeaderNavMobile__footer {
-      width: 100%;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      padding: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #353535;
-      text-align: center;
-      font-family: "Nixie One", sans-serif;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-    }
-  }
 }

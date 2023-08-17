@@ -3,38 +3,14 @@ import tgIcon from "../Images/telegram.webp";
 import whatsappIcon from "../Images/whatsapp.webp";
 import viberIcon from "../Images/viber.webp"
 
+import PhoneInput from "../../UI/PhoneInput/PhoneInput";
+
 import { useState } from "react";
 
 
 function HeaderNavMobile() {
     const [phone, setPhone] = useState('');
-
-    const normalizeInput = (value, previousValue) => {
-        if (!value) return value;
-        let currentValue = value.replace(/[^\d]/g, '');
-        const cvLength = currentValue.length;
-        if (cvLength >= 12) currentValue = currentValue.slice(0, 12);
-        let formattedValue = '+';
-        if (cvLength < 5) {
-            formattedValue += currentValue;
-        } else if (cvLength < 6) {
-            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2)})`;
-        } else if (cvLength < 9) {
-            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5)}`;
-        } else if (cvLength < 11) {
-            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5, 8)}-${currentValue.slice(8)}`;
-        } else {
-            formattedValue += `${currentValue.slice(0, 2)} (${currentValue.slice(2, 5)}) ${currentValue.slice(5, 8)}-${currentValue.slice(8, 10)}-${currentValue.slice(10)}`;
-        }
-        return formattedValue;
-    };
-
-
-    const handleChange = (event) => {
-        const { value } = event.target;
-        const normalizedValue = normalizeInput(value, phone);
-        setPhone(normalizedValue);
-    };
+    console.log(phone)
 
     return (
         <div className="HeaderNavMobile">
@@ -50,7 +26,7 @@ function HeaderNavMobile() {
                 <h2 className="HeaderNavMobile__headline">ПОТРІБНА ДОПОМОГА ?</h2>
                 <div className="HeaderNavMobile__info">
                     <div className="HeaderNavMobile__info-caption">Замовити зворотній дзвінок від менеджера</div>
-                    <input value={phone} onChange={handleChange} type="text" placeholder="+38(___)-___-__-__" className="HeaderNavMobile__input" />
+                    <PhoneInput boxClassSelector="HeaderNavMobile__phone-input-wrapper" inputClassSelector="HeaderNavMobile__phone-input" setPhoneNumber={setPhone} />
                     <button className="HeaderNavMobile__btn">Відправити</button>
                 </div>
             </div>

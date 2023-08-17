@@ -168,6 +168,12 @@
             border: none;
             outline: none;
             cursor: pointer;
+
+            &_outline {
+                background: transparent;
+                border: 3px solid #FFCB46;
+                color: #FFCB46;
+            }
         }
 
         .Authorization__recover {

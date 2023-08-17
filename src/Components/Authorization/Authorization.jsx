@@ -67,6 +67,10 @@ function Authorization({ logined, handleLogin, handleSignUp, handleRecover, hand
         }
     }
 
+    let backHandler = ()=>{
+        setState("login")
+    }
+
     return (
         <section className="Authorization" >
             <div className="Authorization__container" style={(state !== "recover" && state !== "edit") ? {} : { borderRadius: "20px" }}>
@@ -74,6 +78,9 @@ function Authorization({ logined, handleLogin, handleSignUp, handleRecover, hand
                     state === "edit" ? <>
                         <h2 className="Authorization__hadline">{userData.name} {userData.surname}</h2>
                     </> : ""
+                }
+                {
+                    state === "recover" ? <button onClick={backHandler} className="Authorization__action Authorization__action_outline">&#8592; Назад</button> : ""
                 }
                 {
                     (state !== "recover" && state !== "edit") ?

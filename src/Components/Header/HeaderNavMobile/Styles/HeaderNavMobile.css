@@ -89,6 +89,53 @@
     line-height: normal;
     margin-bottom: -5px;
   }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #646464;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    gap: 5px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #8B8B8B;
+    background: rgba(255, 255, 255, 0.8);
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input {
+    width: 50px;
+    text-align: center;
+    outline: none;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    color: #353535;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 6px;
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input::placeholder {
+    text-align: center;
+    width: 100%;
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(1) {
+    width: 30px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(4), .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(5) {
+    width: 32px;
+  }
   .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__input {
     height: 40px;
     width: 100%;
@@ -201,5 +248,17 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+  }
+}
+@media screen and (max-width: 397px) {
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper {
+    letter-spacing: 1px;
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input {
+    width: 40px;
+    letter-spacing: 1px;
+  }
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(1), .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(4), .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(5) {
+    width: 25px;
   }
 }
