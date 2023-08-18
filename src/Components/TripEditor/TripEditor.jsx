@@ -65,7 +65,6 @@ function TripEditor({ trigger, setTrigger, setUserData, alertData, setAlertData,
     }
 
     let saveData = () => {
-        console.log(editorData)
         SERVER("Зберігаємо поїздку", "POST", "book/admin/create-trip", "application/json", editorData, getCookie("userToken"))
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
@@ -89,12 +88,10 @@ function TripEditor({ trigger, setTrigger, setUserData, alertData, setAlertData,
                         setTrigger(!trigger)
                     }
                 })
-                console.log(data)
             })
     }
 
     let updateData = () => {
-        console.log(editorData)
         SERVER("Зберігаємо поїздку", "POST", "book/admin/edit-trip", "application/json", { ...editorData, id: editorData._id }, getCookie("userToken"))
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
@@ -118,13 +115,10 @@ function TripEditor({ trigger, setTrigger, setUserData, alertData, setAlertData,
                         setTrigger(!trigger)
                     }
                 })
-                console.log(data)
             })
     }
 
     let handleSave = (e) => {
-        console.log(editorData)
-        console.log("ok")
         setModalData({
             delay: 0,
             show: true,

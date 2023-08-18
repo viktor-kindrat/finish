@@ -51,7 +51,6 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                                 setMoreData(searchResult[0])
                             } else {
                                 setMoreData(undefined)
-                                console.log("new")
                             }
                         }
                     })

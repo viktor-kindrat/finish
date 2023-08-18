@@ -21,7 +21,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
     }, [userData, setContact])
 
     useEffect(() => {
-        console.log("called")
         if (!userData) {
             setContact({
                 ...contact,
@@ -34,7 +33,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
     let areAllFieldsDefined = useCallback((obj) => {
         for (const prop in obj) {
             if (obj[prop] === undefined || obj[prop] === "") {
-                console.log(`this is ${prop} with key ${obj[prop]}`)
                 return false;
             }
             if (typeof obj[prop] === 'object' && !areAllFieldsDefined(obj[prop])) {
@@ -51,7 +49,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
         }
         SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", requestBody, getCookie("userToken"))
             .then(data => {
-                console.log(data)
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
                         delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
@@ -111,7 +108,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
     }, [passangers, selected, setPassangers])
 
     useEffect(() => {
-        console.log("places ", selected)
         setPlaces() // eslint-disable-next-line
     }, [selected])
 
@@ -119,7 +115,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
         if (checker) {
             SERVER("Відбувається бронювання", "POST", "book/book-places/anauthorized", "application/json", { tripId: data._id, passangers: checker }, "")
                 .then(data => {
-                    console.log(data)
                     if (data.errorMessage?.toLowerCase().includes("validation")) {
                         setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
                         return
@@ -151,7 +146,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 password: denormalizeInput(contact.phoneNumber)
             })
                 .then(res => {
-                    console.log(res)
                     if (res.errorMessage?.toLowerCase().includes("validation")) {
                         setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
                         return
@@ -174,7 +168,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                                 if (validate) {
                                     SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", { tripId: data._id, passangers: checker }, res.token)
                                         .then(data => {
-                                            console.log(data)
                                             if (data.errorMessage?.toLowerCase().includes("validation")) {
                                                 setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
                                                 return
@@ -212,13 +205,11 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
     }
 
     let handleBookTicket = (e) => {
-        console.log("handle booking", passangers, selected)
         if (userData) {
             let validation = (passangers.length === selected.length) && areAllFieldsDefined(passangers);
             if (validation) {
                 booking()
             } else {
-                console.log(passangers)
                 setAlertData({
                     show: true,
                     delay: 0,
@@ -242,7 +233,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 if (validation) {
                     bookUnauthorized(checker)
                 } else {
-                    console.log("invalid", checker)
                     setAlertData({
                         show: true,
                         delay: 0,

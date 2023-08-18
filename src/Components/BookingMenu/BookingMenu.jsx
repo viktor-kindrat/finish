@@ -11,7 +11,6 @@ function BookingMenu({ id, data, searchingData, userData, setUserData, alertData
     let handlerOfsearchingData = searchingData;
 
     useEffect(() => {
-        console.log("here", handlerOfsearchingData)
         let newPassangers = [];
         for (let i = 0; i < handlerOfsearchingData.passangers.adults; i++) {
             newPassangers.push({

@@ -57,7 +57,7 @@ const PhoneInput = ({ boxClassSelector, inputClassSelector, setPhoneNumber }) =>
         <div className={boxClassSelector}>
             +
             {values.map((value, index) => (
-                <>
+                <span key={index}>
                     {index === 1 ? "(" : ""}<input
                         key={index}
                         className={inputClassSelector}
@@ -69,7 +69,7 @@ const PhoneInput = ({ boxClassSelector, inputClassSelector, setPhoneNumber }) =>
                         ref={(ref) => (inputRefs.current[index] = ref)}
                         placeholder={(index === 0 || index === 3 || index === 4) ? "__" : "___"}
                     />{index === 1 ? ")" : ""} {index !== values.length - 1 ? "-" : ""}
-                </>
+                </span>
             ))}
         </div>
     );

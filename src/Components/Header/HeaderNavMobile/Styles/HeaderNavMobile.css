@@ -108,7 +108,7 @@
     border: 1px solid #8B8B8B;
     background: rgba(255, 255, 255, 0.8);
   }
-  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input {
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper span .HeaderNavMobile__phone-input {
     width: 50px;
     text-align: center;
     outline: none;
@@ -121,11 +121,11 @@
     line-height: normal;
     letter-spacing: 6px;
   }
-  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input::placeholder {
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper span .HeaderNavMobile__phone-input::placeholder {
     text-align: center;
     width: 100%;
   }
-  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(1) {
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper span:nth-child(1) .HeaderNavMobile__phone-input {
     width: 30px;
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
@@ -133,7 +133,7 @@
     font-weight: 300;
     line-height: normal;
   }
-  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(4), .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper .HeaderNavMobile__phone-input:nth-child(5) {
+  .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper span:nth-child(4) .HeaderNavMobile__phone-input, .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__phone-input-wrapper span:nth-child(5) .HeaderNavMobile__phone-input {
     width: 32px;
   }
   .HeaderNavMobile .HeaderNavMobile__section .HeaderNavMobile__info .HeaderNavMobile__input {

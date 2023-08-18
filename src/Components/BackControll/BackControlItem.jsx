@@ -43,7 +43,6 @@ function BackControlItem({ data, getCookie, setAlertData, setUserData, SERVER, t
     }, [data.tripId, getCookie, go, server, setAlertData, setUserData])
 
     let handleRemoveCancelation = () => {
-        console.log(data._id)
         SERVER("Видалення", "POST", "book/admin/remove-cancelation", "application/json", { id: data._id }, getCookie("userToken"))
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {

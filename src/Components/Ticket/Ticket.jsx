@@ -10,6 +10,7 @@ import hrefContext from "../../Context/ServerHostnameContext";
 function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, setAlertData, modalData, setModalData, SERVER }) {
     let go = useNavigate();
     let [pending, setPending] = useState(true);
+    let [error, setError] = useState(undefined)
     let storage = useRef(undefined);
     let server = useContext(hrefContext).server;
 
@@ -37,12 +38,10 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
         from = storage.current.stations.filter(item => (item.city === data.passangers[0].userDetails.from.city && item.country === data.passangers[0].userDetails.from.country))[0]
         to = storage.current.stations.filter(item => (item.city === data.passangers[0].userDetails.to.city && item.country === data.passangers[0].userDetails.to.country))[0]
         status = data?.canceled ? "canceled" : getStatus(to.arrivalDate)
-        console.log(from, to)
     }
 
 
     useEffect(() => {
-        console.log(data)
         if (data) {
             setPending(true)
             fetch(`${server}book/get-trip-info/?tripId=${data.tripId}`, {
@@ -50,7 +49,6 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     if (data.errorMessage?.toLowerCase().includes("token")) {
                         setAlertData({
                             delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
@@ -62,8 +60,13 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                         return
                     }
 
-                    setPending(false);
-                    storage.current = data.data;
+                    if (data.message === "Дані отримано") {
+                        setPending(false);
+                        storage.current = data.data;
+                    } else {
+                        setError(data.message)
+                    }
+
                 })
                 .catch(e => console.log(e))
         }
@@ -77,7 +80,6 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
             confirmAction: () => {
                 SERVER("Скасовуємо бронювання", "POST", "book/cancel-booking", "application/json", { tripId: data.tripId, ticketId: data.id }, getCookie("userToken"))
                     .then(data => {
-                        console.log(data)
                         if (data.errorMessage?.toLowerCase().includes("token")) {
                             setAlertData({
                                 delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
@@ -91,7 +93,6 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                         setAlertData({
                             delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => {
                                 SERVER("Оновлення даних", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
-                                    console.log("getting data res", data)
                                     if (data.errorMessage?.toLowerCase().includes("token")) {
                                         setAlertData({
                                             delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
@@ -126,30 +127,30 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
     return (
         <>
             {
-                (!pending && storage.current) ?
-                    <article className={`Ticket Ticket_${status}`}>
-                        <div className="Ticket__locations">
-                            <div className="Ticket__group Ticket__group_location">
-                                <div className="Ticket__info_bold Ticket__info">{new Date(from.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
-                                <div className="Ticket__info">{from.country} - {from.city} <br />({from.location.caption})</div>
-                            </div>
-                            <div className="Ticket__group Ticket__group_arrow">
-                                <div className="Ticket__sign">
-                                    <img src={rightIcon} height={20} alt="->" />
+                error ? "" : (!pending && storage.current) ?
+                        <article className={`Ticket Ticket_${status}`}>
+                            <div className="Ticket__locations">
+                                <div className="Ticket__group Ticket__group_location">
+                                    <div className="Ticket__info_bold Ticket__info">{new Date(from.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
+                                    <div className="Ticket__info">{from.country} - {from.city} <br />({from.location.caption})</div>
+                                </div>
+                                <div className="Ticket__group Ticket__group_arrow">
+                                    <div className="Ticket__sign">
+                                        <img src={rightIcon} height={20} alt="->" />
+                                    </div>
+                                </div>
+                                <div className="Ticket__group Ticket__group_location">
+                                    <div className="Ticket__info_bold Ticket__info">{new Date(to.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
+                                    <div className="Ticket__info">{to.country} - {to.city} <br />({to.location.caption})</div>
                                 </div>
                             </div>
-                            <div className="Ticket__group Ticket__group_location">
-                                <div className="Ticket__info_bold Ticket__info">{new Date(to.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
-                                <div className="Ticket__info">{to.country} - {to.city} <br />({to.location.caption})</div>
+                            <div className="Ticket__group">
+                                <div className="Ticket__info_bigBold">{formatNumberWithSpaces((data.passangers.filter(item => item.age === "adult").length * (to.price.adult - from.price.adult)) + (data.passangers.filter(item => item.age === "child").length * (to.price.child - from.price.child)))} грн</div>
+                                <div className="Ticket__info Ticket__info_small"> Дорослий: {data.passangers.filter(item => item.age === "adult").length}, Дитячий: {data.passangers.filter(item => item.age === "child").length}</div>
                             </div>
-                        </div>
-                        <div className="Ticket__group">
-                            <div className="Ticket__info_bigBold">{formatNumberWithSpaces((data.passangers.filter(item => item.age === "adult").length * (to.price.adult - from.price.adult)) + (data.passangers.filter(item => item.age === "child").length * (to.price.child - from.price.child)))} грн</div>
-                            <div className="Ticket__info Ticket__info_small"> Дорослий: {data.passangers.filter(item => item.age === "adult").length}, Дитячий: {data.passangers.filter(item => item.age === "child").length}</div>
-                        </div>
-                        <button onClick={status === "active" ? handleRemoveBooking : () => { }} disabled={status !== "active"} className="Ticket__action">{status === "canceled" ? "Скасовано" : status === "done" ? "Виконано" : status === "active" ? "Скасувати" : "Помилка"}</button>
-                    </article>
-                    : <BuiltInLoader />
+                            <button onClick={status === "active" ? handleRemoveBooking : () => { }} disabled={status !== "active"} className="Ticket__action">{status === "canceled" ? "Скасовано" : status === "done" ? "Виконано" : status === "active" ? "Скасувати" : "Помилка"}</button>
+                        </article>
+                        : <BuiltInLoader />
             }
         </>
     )

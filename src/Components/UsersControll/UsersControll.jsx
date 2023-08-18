@@ -129,7 +129,6 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                         })
                     }
                     if (data.errorMessage?.toLowerCase().includes("valid")) {
-                        console.log(data)
                         setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних.", actionCaption: "Зрозуміло", action: () => { } })
                     }
                 } else {

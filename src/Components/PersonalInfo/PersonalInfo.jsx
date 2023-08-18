@@ -91,9 +91,7 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                             setCookie("userToken", "", 0)
                         }
                     }
-
-                    console.log(changedFields.includes("email"))
-                    console.log(changedFields)
+                    
                     setAlertData({
                         delay: 0.9,
                         show: true,

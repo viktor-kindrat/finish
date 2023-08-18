@@ -104,7 +104,6 @@ function App() {
 			SERVER("Виконуємо вхід", "POST", "auth/login", "application/json", data).then(data => {
 				if (data.token) {
 					setCookie("userToken", data.token, 1);
-					console.log(data)
 					if (data.userVerified) {
 						setUserDataAndToken(data.token)
 						setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: data.message === "Ви успішно увійшли" ? "Мій акаунт" : "Закрити", action: data.message === "Ви успішно увійшли" ? () => go("/account") : () => { } })

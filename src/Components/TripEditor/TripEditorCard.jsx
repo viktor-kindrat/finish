@@ -38,7 +38,6 @@ function TripEditorCard({ data, finish, editorData, setEditorData }) {
         let newEditorData = { ...editorData };
         newEditorData.stations[newData.id] = newData;
         setEditorData(newEditorData)
-        console.log(newEditorData)
     }
 
     const handleMarkerChange = (e) => {
@@ -51,7 +50,6 @@ function TripEditorCard({ data, finish, editorData, setEditorData }) {
         let newEditorData = {...editorData};
         newEditorData.stations[newStationData.id] = newStationData;
         setEditorData(newEditorData)
-        console.log(newEditorData)
     };
 
     return (
