@@ -126,7 +126,9 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
                         }
                     </div>
                 </> : editorOpened ? <TripEditor {...{ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, emptyEditorData, editorOpened, setEditorOpened, editorData, setEditorData }} />
-                    : viewOpened ? <ViewTrip {...{ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }} /> : "ERROR"
+                    : viewOpened ? <>
+                        <ViewTrip {...{ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }} />
+                    </> : "ERROR"
             }
         </section>
     )

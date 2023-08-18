@@ -3,6 +3,7 @@ import "../Authorization/Styles/Authorization.css"
 
 import searchIcon from "./SVG/search.svg"
 import editIcon from "./SVG/edit.svg"
+import removeIcon from "./SVG/trash.svg"
 
 import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -67,7 +68,7 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
     }
 
     let handleEdit = (e) => {
-        let { id } = e.target.parentElement.dataset;
+        let { id } = e.target.parentElement.parentElement.dataset;
         let data = users.current.filter(item => item._id === id)[0];
         setEditorData({ ...data, password: "", confirmPassword: "" })
         setOpenedEdit(true)
@@ -146,6 +147,12 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
             setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних. Паролі не співпадають або форма містить пусті поля.", actionCaption: "Зрозуміло", action: () => { } })
         }
     }
+
+    const handleRemove = () => {
+        setAlertData({
+            message: "Функція перебуває на стадії розробки!", action: () => { }, actionCaption: "OK", show: true, delay: 0
+        })
+    }
     return (
         <section className="UsersControl">
             <h2 className="UsersControl__headline">Користувачі</h2>
@@ -157,8 +164,10 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                             users.current.map((user, index) =>
                                 <div key={`${user._id}-${index}`} className="UsersControl__user" data-email={user.email} data-id={user._id}>
                                     {user.name} {user.surname}
-                                    <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit" />
-                                    </button>
+                                    <div className="UsersControll__user-btn-place">
+                                        <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit" /></button>
+                                        <button onClick={handleRemove} className="UsersControl__edit-button"><img src={removeIcon} alt="edit" /></button>
+                                    </div>
                                 </div>)
                         }
                     </div>

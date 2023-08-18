@@ -73,7 +73,13 @@
   border: 1px solid #8B8B8B;
   background: #FFF;
 }
-.UsersControl .UsersControl__results .UsersControl__edit-button {
+.UsersControl .UsersControl__results .UsersControll__user-btn-place {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.UsersControl .UsersControl__results .UsersControll__user-btn-place .UsersControl__edit-button {
   aspect-ratio: 1/1;
   width: 30px;
   display: flex;
@@ -85,7 +91,10 @@
   border-radius: 50%;
   cursor: pointer;
 }
-.UsersControl .UsersControl__results .UsersControl__edit-button img {
+.UsersControl .UsersControl__results .UsersControll__user-btn-place .UsersControl__edit-button:last-child {
+  background: #c3c3c3;
+}
+.UsersControl .UsersControl__results .UsersControll__user-btn-place .UsersControl__edit-button img {
   height: 18px;
   width: auto;
   object-fit: contain;

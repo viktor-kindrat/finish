@@ -7,6 +7,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
     let [data, setData] = useState(viewData);
     let [clickTrigger, setClickTrigger] = useState(false);
     let [moreData, setMoreData] = useState(undefined)
+    console.log(data.places)
 
     useEffect(() => {
         let searchResult = data.places.filter(item => parseInt(item.placeNumber) === parseInt(clickTrigger))

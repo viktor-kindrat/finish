@@ -16,7 +16,7 @@
       position: static;
 
       .Authorization__container {
-			width: 100%;
+         width: 100%;
          border-radius: 20px;
 
          .Authorization__input-wrap {
@@ -82,26 +82,38 @@
          background: #FFF;
       }
 
-      .UsersControl__edit-button {
-         aspect-ratio: 1/1;
-         width: 30px;
+      .UsersControll__user-btn-place {
          display: flex;
+         gap: 10px;
          align-items: center;
          justify-content: center;
-         background: #EFEFEF;
-         border: none;
-         outline: none;
-         border-radius: 50%;
-         cursor: pointer;
 
-         img {
-            height: 18px;
-            width: auto;
-            object-fit: contain;
-            pointer-events: none;
-            user-select: none;
+         .UsersControl__edit-button {
+            aspect-ratio: 1/1;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #EFEFEF;
+            border: none;
+            outline: none;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &:last-child {
+               background: #c3c3c3;
+            }
+
+            img {
+               height: 18px;
+               width: auto;
+               object-fit: contain;
+               pointer-events: none;
+               user-select: none;
+            }
          }
       }
+
    }
 
    .UsersControl__pagination {
@@ -154,9 +166,9 @@
          }
       }
 
-		.UsersControll__search {
-			width: 100%;
-		}
+      .UsersControll__search {
+         width: 100%;
+      }
 
       .UsersControl__headline {
          display: none;

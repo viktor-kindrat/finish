@@ -48,8 +48,9 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
                     el.classList.remove("Autobus__place_green")
                     if (bookedPlaces.indexOf(el.innerText) !== -1) {
                         el.classList.add("Autobus__place_red")
+                    } else {
+                        el.addEventListener("click", handleUserClick)
                     }
-                    el.addEventListener("click", handleUserClick)
                 })
             }
         }
