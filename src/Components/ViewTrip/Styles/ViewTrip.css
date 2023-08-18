@@ -19,6 +19,7 @@
   font-weight: 600;
   line-height: 100%;
   display: flex;
+  gap: 5px;
   align-items: center;
   justify-content: center;
   border: none;
@@ -29,6 +30,16 @@
   background: transparent;
   border: 2px solid #FFCB46;
   color: #FFCB46;
+}
+.ViewTrip .ViewTrip__btn_filled {
+  background: #FFCB46;
+  color: #ffffff;
+  border: none;
+}
+.ViewTrip .ViewTrip__btn_filled img {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
 }
 .ViewTrip .ViewTrip__actions {
   width: 100%;

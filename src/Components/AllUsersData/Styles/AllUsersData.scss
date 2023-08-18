@@ -1,0 +1,120 @@
+.AllUsersData {
+    width: 100%;
+    padding: 25px;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    * {
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .AllUsersData__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .AllUsersData__headline {
+            color: #353535;
+            text-align: left;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+
+        .AllUsersData__btn {
+            color: #FFF;
+            text-align: center;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background: #FFCB46;
+            border: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+
+            img {
+                height: 20px;
+                width: 20px;
+                object-fit: contain;
+            }
+        }
+    }
+
+
+    .AllUserData__container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 25px;
+
+        .AllUserData__info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 5px;
+
+        }
+
+        .AllUsersData__user {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: #ffffff;
+            border: 1px solid #bdbdbd;
+            border-radius: 7px;
+            -webkit-border-radius: 7px;
+            -moz-border-radius: 7px;
+            -ms-border-radius: 7px;
+            -o-border-radius: 7px;
+
+            .AllUserData__subheadline {
+                color: #353535;
+                text-align: left;
+                font-size: 22px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                text-transform: capitalize;
+            }
+
+            .AllUserData__user-field {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 10px;
+                font-weight: 700;
+
+                img {
+                    height: 20px;
+                    width: 20px;
+                    object-fit: contain;
+                }
+
+                .AllUserData__thin {
+                    font-weight: 400;
+                    color: #333333;
+                }
+            }
+        }
+    }
+
+
+}

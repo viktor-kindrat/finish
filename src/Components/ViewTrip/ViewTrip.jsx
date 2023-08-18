@@ -3,11 +3,12 @@ import "./Styles/ViewTrip.css"
 import Autobus from "../Autobus/Autobus"
 import { useState, useEffect } from "react";
 
+import clearIcon from "./SVG/clear.svg"
+
 function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }) {
     let [data, setData] = useState(viewData);
     let [clickTrigger, setClickTrigger] = useState(false);
     let [moreData, setMoreData] = useState(undefined)
-    console.log(data.places)
 
     useEffect(() => {
         let searchResult = data.places.filter(item => parseInt(item.placeNumber) === parseInt(clickTrigger))
@@ -127,9 +128,16 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
         setTrigger(!trigger)
         setViewOpened(false)
     }
+
+    const removeAllHandler = ()=>{
+        setAlertData({
+            show: true, delay: 0, message: "Функція у розробці", action: ()=>{}, actionCaption: "ОК"
+        })
+    }
     return (
         <div className="ViewTrip">
             <button onClick={backHandler} className="ViewTrip__btn">&#8592; Назад</button>
+            <button onClick={removeAllHandler} className="ViewTrip__btn ViewTrip__btn_filled"><img src={clearIcon} alt="clear" /> Очистити бронювання</button>
             <Autobus type="ADMIN" places={data.places} {...{ clickTrigger, setClickTrigger }} />
             <div className="ViewTrip__actions">
                 <button className="ViewTrip__action ViewTrip__action_green" onClick={handleBook}>Бронювати</button>

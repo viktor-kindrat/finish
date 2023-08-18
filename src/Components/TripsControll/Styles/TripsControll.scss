@@ -65,11 +65,17 @@
 
 @media screen and (max-width: 919px) {
     .TripsControll {
-        min-width: auto;
+        min-width: none;
         width: 100%;
         padding: 0;
         background: transparent;
         box-shadow: none;
+        
+        &:has(.ViewTrip) {
+            width: 100%;
+            padding: 25px;
+            background: #ffffff;
+        }
 
         .TripsControll__head {
             margin-bottom: 50px;

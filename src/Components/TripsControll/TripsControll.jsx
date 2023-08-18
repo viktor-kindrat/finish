@@ -9,6 +9,7 @@ import TripCard from '../TripCard/TripCard'
 import TripEditor from "../TripEditor/TripEditor"
 import ViewTrip from "../ViewTrip/ViewTrip"
 import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
+import AllUsersData from "../AllUsersData/AllUsersData"
 
 let emptyEditorData = {
     isNew: true,
@@ -111,26 +112,32 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
     }
 
     return (
-        <section className="TripsControll">
+        <>
+            <section className="TripsControll">
+                {
+                    !editorOpened && !viewOpened ? <>
+                        <div className="TripsControll__head">
+                            <div className="TripsControll__headline">Рейси</div>
+                            {(!pending && trips.current) ? <button onClick={handleNewTrip} className="TripsControll__head-btn">Додати рейс <img height={14} src={plusIcon} alt="" /></button> : ""}
+                        </div>
+                        <div className="TripsControll__container">
+                            {
+                                (!pending && trips.current) ? trips.current.map((trip, index) =>
+                                    <TripCard key={index} data={trip} {...{ setModalData, setUserData, setAlertData, trigger, setTrigger, SERVER, setCookie, getCookie, setEditorData, editorOpened, setEditorOpened, viewOpened, setViewOpened, setViewData }} />
+                                ) : <BuiltInLoader />
+                            }
+                        </div>
+                    </> : editorOpened ? <TripEditor {...{ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, emptyEditorData, editorOpened, setEditorOpened, editorData, setEditorData }} />
+                        : viewOpened ? <>
+                            <ViewTrip {...{ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }} />
+                            {/* <AllUsersData /> */}
+                        </> : "ERROR"
+                }
+            </section>
             {
-                !editorOpened && !viewOpened ? <>
-                    <div className="TripsControll__head">
-                        <div className="TripsControll__headline">Рейси</div>
-                        {(!pending && trips.current) ? <button onClick={handleNewTrip} className="TripsControll__head-btn">Додати рейс <img height={14} src={plusIcon} alt="" /></button> : ""}
-                    </div>
-                    <div className="TripsControll__container">
-                        {
-                            (!pending && trips.current) ? trips.current.map((trip, index) =>
-                                <TripCard key={index} data={trip} {...{ setModalData, setUserData, setAlertData, trigger, setTrigger, SERVER, setCookie, getCookie, setEditorData, editorOpened, setEditorOpened, viewOpened, setViewOpened, setViewData }} />
-                            ) : <BuiltInLoader />
-                        }
-                    </div>
-                </> : editorOpened ? <TripEditor {...{ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, emptyEditorData, editorOpened, setEditorOpened, editorData, setEditorData }} />
-                    : viewOpened ? <>
-                        <ViewTrip {...{ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }} />
-                    </> : "ERROR"
+                viewOpened ? <AllUsersData passangers={viewData.places} /> : ""
             }
-        </section>
+        </>
     )
 }
 
