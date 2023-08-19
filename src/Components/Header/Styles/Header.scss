@@ -27,6 +27,10 @@
         width: auto;
         object-fit: contain;
         user-select: none;
+
+        &_mobile {
+            display: none;
+        }
     }
 
     .Header__nav-wrap {
@@ -267,7 +271,7 @@
         height: 50px;
         padding: 25px;
         background: #FFCB46;
-        justify-content: flex-end;
+        justify-content: space-between;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         transition: background 0.3s, box-shadow 0.3s;
         -webkit-transition: background 0.3s, box-shadow 0.3s;
@@ -288,6 +292,13 @@
 
         .Header__logo {
             display: none;
+        }
+
+        .Header__logo_mobile {
+            height: 35px;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            display: block;
         }
 
         .Header__nav-wrap {

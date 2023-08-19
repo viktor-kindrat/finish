@@ -1,6 +1,7 @@
 import "./Styles/Header.css"
 
 import logo from "./SVG/logo.svg"
+import logoMobile from "./SVG/logoMobile.svg"
 import HeaderNavDesktop from "./Header-nav-desktop"
 import HeaderNavMobile from "./HeaderNavMobile/Header-nav-mobile"
 
@@ -76,6 +77,7 @@ function Header() {
             <header className="Header">
                 <Link to={"/"}>
                     <img height={50} src={logo} alt="logo" className="Header__logo" />
+                    <img height={35} width={35} src={logoMobile} alt="logo" className="Header__logo_mobile" />
                 </Link>
                 {(screenWidth <= 919) ? "" : <HeaderNavDesktop />}
                 <button onClick={openMenuMobileHandler} className="Header__nav-open-btn"><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div></button>
