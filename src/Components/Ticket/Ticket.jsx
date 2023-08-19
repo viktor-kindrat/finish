@@ -136,7 +136,7 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                                 </div>
                                 <div className="Ticket__group Ticket__group_arrow">
                                     <div className="Ticket__sign">
-                                        <img src={rightIcon} height={20} alt="->" />
+                                        <img src={rightIcon} height={20} width={20} alt="->" />
                                     </div>
                                 </div>
                                 <div className="Ticket__group Ticket__group_location">

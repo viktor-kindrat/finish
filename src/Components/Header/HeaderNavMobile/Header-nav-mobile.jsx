@@ -19,7 +19,7 @@ function HeaderNavMobile() {
                 <div className="HeaderNavMobile__info">
                     <a href="tel:+380508881234"><p className="HeaderNavMobile__info-data">+38 (050) 888 12 34</p></a>
                     <a href="tel:+380508881234"><p className="HeaderNavMobile__info-data">+38 (050) 888 12 34</p></a>
-                    <a href="mail:mail@group-alliance.com"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">mail@group-alliance.com</p></a>
+                    <a href="mailto:mail@group-alliance.com?subject=Допомога на сайті"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">mail@group-alliance.com</p></a>
                 </div>
             </div>
             <div className="HeaderNavMobile__section">

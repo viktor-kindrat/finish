@@ -16,21 +16,25 @@ function Header() {
     let [screenWidth, setScreenWidht] = useState(window.innerWidth);
 
     useEffect(() => {
-        let handle = () => {
-            setNavOpen(false);
-            document.body.style.overflowY = "auto";
-            document.querySelector(".Header__nav-open-btn").classList.remove("Header__nav-open-btn_close");
-            setScreenWidht(window.innerWidth);
-            let timeline = gsap.timeline();
-            timeline.fromTo(".HeaderNavMobile", {
-                yPercent: 0
-            }, {
-                yPercent: -150,
-                duration: 0.3
-            })
-            timeline.set(".HeaderNavMobile", {
-                display: "none"
-            })
+        let xWidth = window.innerWidth
+        let handle = (e) => {
+            if (xWidth !== e.target.innerWidth) {
+                xWidth = e.target.innerWidth
+                setNavOpen(false);
+                document.body.style.overflowY = "auto";
+                document.querySelector(".Header__nav-open-btn").classList.remove("Header__nav-open-btn_close");
+                setScreenWidht(window.innerWidth);
+                let timeline = gsap.timeline();
+                timeline.fromTo(".HeaderNavMobile", {
+                    yPercent: 0
+                }, {
+                    yPercent: -150,
+                    duration: 0.3
+                })
+                timeline.set(".HeaderNavMobile", {
+                    display: "none"
+                })
+            }
         }
         window.addEventListener("resize", handle)
         return (() => {

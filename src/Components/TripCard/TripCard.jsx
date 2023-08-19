@@ -66,7 +66,7 @@ function TripCard({ setViewData, setModalData, setUserData, setAlertData, trigge
                     <div className="TripCard__info">{data.stations[0].country} - {data.stations[0].city}<br />({data.stations[0].location.caption})</div>
                 </div>
                 <div className="TripCard__sign">
-                    <img height={20} src={rightArrow} alt="->" />
+                    <img height={20} width={20} src={rightArrow} alt="->" />
                 </div>
                 <div className="TripCard__group">
                     <div className="TripCard__info TripCard__info_bold">{new Date(data.stations[data.stations.length - 1].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>

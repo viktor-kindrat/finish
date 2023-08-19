@@ -82,7 +82,7 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
                                 <p className="FlightCard__info">{fromStation.country} - {fromStation.city} <br /><span onClick={(e) => setModalMap(fromStation.location.longitude, fromStation.location.latitude)}>({fromStation.location.caption}) <img src={markerIcon} height={20} alt="marker" /></span></p>
                             </div>
                             <div className="FlightCard__arrow">
-                                <img src={rightIcon} height={20} alt="->" />
+                                <img src={rightIcon} height={20} width={20} alt="->" />
                             </div>
                             <div className="FlightCard__location-column">
                                 <p className="FlightCard__info FlightCard__info_bold">{new Date(toStation.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
