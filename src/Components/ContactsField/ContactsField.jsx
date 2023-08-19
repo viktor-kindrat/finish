@@ -315,11 +315,11 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
             </div>
             <div className="ContactsField__input-group">
                 <div className="ContactsField__input-label">E-mail</div>
-                <input onChange={handleChange} name="email" value={contact.email} type="text" className="ContactsField__input" />
+                <input onChange={handleChange} inputmode="email" name="email" value={contact.email} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__input-group">
                 <div className="ContactsField__input-label">Номер телефону</div>
-                <input onChange={handleChange} name="phoneNumber" value={contact.phoneNumber} type="text" className="ContactsField__input" />
+                <input onChange={handleChange} inputmode="tel" name="phoneNumber" value={contact.phoneNumber} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__checkbox-group" style={{ display: (userData) ? "none" : "flex" }}>
                 <div className="ContactsField__checkbox-box-group">

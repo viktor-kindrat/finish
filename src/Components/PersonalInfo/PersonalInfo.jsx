@@ -136,13 +136,13 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                     </div>
                     <div className="PersonalInfo__input-group">
                         <p className="PersonalInfo__input-label">E-Mail</p>
-                        <input onChange={handleChange} name="email" value={editorData.email} type="text" className="PersonalInfo__input" />
+                        <input onChange={handleChange} name="email" inputmode="email" value={editorData.email} type="text" className="PersonalInfo__input" />
                     </div>
                 </div>
                 <div className="PersonalInfo__raw">
                     <div className="PersonalInfo__input-group">
                         <p className="PersonalInfo__input-label"> Номер телефону</p>
-                        <input name="phoneNumber" onChange={handlePhoneChange} value={phone} type="text" className="PersonalInfo__input" />
+                        <input name="phoneNumber" inputmode="tel" onChange={handlePhoneChange} value={phone} type="text" className="PersonalInfo__input" />
                     </div>
                     <div className="PersonalInfo__input-group">
                         <p className="PersonalInfo__input-label">Пароль</p>

@@ -104,12 +104,12 @@ function Authorization({ logined, handleLogin, handleSignUp, handleRecover, hand
                 }
                 <div className="Authorization__input-wrap">
                     <div className="Authorization__input-label">E-Mail</div>
-                    <input value={userData.email} onChange={handleChange} name="email" type="text" className="Authorization__input" />
+                    <input value={userData.email} inputmode="email" onChange={handleChange} name="email" type="text" className="Authorization__input" />
                 </div>
                 {
                     (state === "signup" || state === "edit") ? <div className="Authorization__input-wrap">
                         <div className="Authorization__input-label">Номер телефону</div>
-                        <input value={userData.phoneNumber} onChange={handlePhoneChange} name="phoneNumber" type="text" className="Authorization__input" />
+                        <input value={userData.phoneNumber} inputmode="tel" onChange={handlePhoneChange} name="phoneNumber" type="text" className="Authorization__input" />
                     </div> : ""
                 }
                 {
