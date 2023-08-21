@@ -148,9 +148,26 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
         }
     }
 
-    const handleRemove = () => {
-        setAlertData({
-            message: "Функція перебуває на стадії розробки!", action: () => { }, actionCaption: "OK", show: true, delay: 0
+    const handleRemove = (data) => {
+        SERVER("Видаляємо користувача", "POST", "auth/admin/delete-user", "application/json", { userId: data._id }, getCookie("userToken")).then(data => {
+            if (data.message?.toLowerCase().includes("помилка")) {
+                if (data.errorMessage?.includes("token")) {
+                    setAlertData({
+                        delay: 0.9, show: true, message: "Термін дії вашого входу сплив. Увійдіть повторно", actionCaption: "Увійти", action: () => {
+                            setUserData(undefined);
+                            setCookie("userToken", "", 0);
+                            go("/authorization")
+                        }
+                    })
+                }
+                if (data.errorMessage?.toLowerCase().includes("valid")) {
+                    setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних.", actionCaption: "Зрозуміло", action: () => { } })
+                }
+            } else {
+                setAlertData({
+                    delay: 0.9, show: true, message: data.message, actionCaption: "Добре", action: () => { }
+                })
+            }
         })
     }
     return (
@@ -166,7 +183,7 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                                     {user.name} {user.surname}
                                     <div className="UsersControll__user-btn-place">
                                         <button onClick={handleEdit} className="UsersControl__edit-button"><img src={editIcon} alt="edit" /></button>
-                                        <button onClick={handleRemove} className="UsersControl__edit-button"><img src={removeIcon} alt="edit" /></button>
+                                        <button onClick={() => { handleRemove(user) }} className="UsersControl__edit-button"><img src={removeIcon} alt="edit" /></button>
                                     </div>
                                 </div>)
                         }

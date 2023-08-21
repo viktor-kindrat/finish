@@ -15,7 +15,6 @@ function AllUsersData({ passangers }) {
             <div className="AllUserData__container">
                 {
                     passangers ? [...passangers].sort((a, b) => parseInt(a.placeNumber) - parseInt(b.placeNumber)).map(item => {
-                        console.log(item)
                         return (
                             <div className="AllUsersData__user">
                                 <div className="AllUserData__info">
