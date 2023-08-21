@@ -45,7 +45,7 @@
    }
 
    .UsersControll__search {
-      width: 414px;
+      width: 100%;
       padding: 8px 50px;
       background-size: 31px 23px;
       background-color: #FFF;
@@ -135,6 +135,18 @@
          font-style: normal;
          font-weight: 600;
          line-height: normal;
+
+         &::after{
+            content: ",";
+            color: #797979;
+            margin-right: 3px;
+         }
+
+         &:last-child {
+            &::after {
+               display: none;
+            }
+         }
 
          &_active {
             color: #FFCB46;

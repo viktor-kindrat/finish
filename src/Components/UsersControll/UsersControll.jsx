@@ -190,7 +190,7 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                     </div>
                     <div className="UsersControl__pagination">
                         {
-                            pagesArray.current.length === 0 ? "Користувачів немає" : pagesArray.current.map((item, index) => <><div key={index} onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div> {index !== pagesArray.current.length - 1 ? "," : ""}</>)
+                            pagesArray.current.length === 0 ? "Користувачів немає" : pagesArray.current.map((item, index) => <div key={index} onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div>)
                         }
                     </div>
                 </> : <>

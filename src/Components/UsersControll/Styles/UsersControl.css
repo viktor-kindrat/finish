@@ -38,7 +38,7 @@
   line-height: normal;
 }
 .UsersControl .UsersControll__search {
-  width: 414px;
+  width: 100%;
   padding: 8px 50px;
   background-size: 31px 23px;
   background-color: #FFF;
@@ -120,6 +120,14 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+}
+.UsersControl .UsersControl__pagination .UsersControl__pagination-btn::after {
+  content: ",";
+  color: #797979;
+  margin-right: 3px;
+}
+.UsersControl .UsersControl__pagination .UsersControl__pagination-btn:last-child::after {
+  display: none;
 }
 .UsersControl .UsersControl__pagination .UsersControl__pagination-btn_active {
   color: #FFCB46;
