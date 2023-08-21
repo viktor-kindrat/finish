@@ -1,6 +1,8 @@
 import "./Styles/ViewTrip.css"
 
 import Autobus from "../Autobus/Autobus"
+import InputModal from "../InputModal/InputModal";
+
 import { useState, useEffect } from "react";
 
 import clearIcon from "./SVG/clear.svg"
@@ -8,7 +10,16 @@ import clearIcon from "./SVG/clear.svg"
 function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }) {
     let [data, setData] = useState(viewData);
     let [clickTrigger, setClickTrigger] = useState(false);
-    let [moreData, setMoreData] = useState(undefined)
+    let [moreData, setMoreData] = useState(undefined);
+
+    let [passangerForm, setPassangerForm] = useState({
+        name: "Адміністратором",
+        surname: "Броньовано",
+        email: JSON.parse(sessionStorage.getItem("userData")).email,
+        phoneNumber: JSON.parse(sessionStorage.getItem("userData")).phoneNumber
+    });
+
+    let [inputModalShow, setInputModalShow] = useState(false)
 
     useEffect(() => {
         let searchResult = data.places.filter(item => parseInt(item.placeNumber) === parseInt(clickTrigger))
@@ -20,44 +31,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
     }, [clickTrigger, setMoreData, data])
 
     let handleBook = (e) => {
-        let selected = document.querySelector(".Autobus__place_selected")?.innerText;
-        if (selected) {
-            let tripId = viewData._id;
-            SERVER("Бронюємо", "POST", "book/admin/book-place", "application/json", {
-                tripId: tripId, place: selected
-            }, getCookie("userToken"))
-                .then(data => {
-                    if (data.errorMessage?.toLowerCase().includes("token")) {
-                        setAlertData({
-                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
-                            action: () => {
-                                setUserData(undefined);
-                                sessionStorage.clear()
-                            }
-                        })
-                        return
-                    }
-                    if (data.errorMessage?.toLowerCase().includes("validation")) {
-                        setAlertData({ delay: 0.9, show: true, message: "Помилка валідації, схоже ви обрали щось не те.", actionCaption: "закрити", action: () => { } })
-                        return
-                    }
-                    setAlertData({
-                        delay: 0.9,
-                        show: true,
-                        message: data.message,
-                        actionCaption: "закрити",
-                        action: () => {
-                            setData(data.data)
-                            let searchResult = data.data.places.filter(item => parseInt(item.placeNumber) === parseInt(clickTrigger))
-                            if (searchResult.length === 1) {
-                                setMoreData(searchResult[0])
-                            } else {
-                                setMoreData(undefined)
-                            }
-                        }
-                    })
-                })
-        }
+        setInputModalShow(true)
     }
     let handleRemove = (e) => {
         let selected = document.querySelector(".Autobus__place_selected")?.innerText;
@@ -129,13 +103,53 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
         setViewOpened(false)
     }
 
-    const removeAllHandler = ()=>{
-        setAlertData({
-            show: true, delay: 0, message: "Функція у розробці", action: ()=>{}, actionCaption: "ОК"
-        })
+    const removeAllHandler = () => setAlertData({ show: true, delay: 0, message: "Функція у розробці", action: () => { }, actionCaption: "ОК" })
+
+
+    const bookPlace = () => {
+        let selected = document.querySelector(".Autobus__place_selected")?.innerText;
+        if (selected) {
+            let tripId = viewData._id;
+            SERVER("Бронюємо", "POST", "book/admin/book-place", "application/json", {
+                tripId: tripId, place: selected
+            }, getCookie("userToken"))
+                .then(data => {
+                    if (data.errorMessage?.toLowerCase().includes("token")) {
+                        setAlertData({
+                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                            action: () => {
+                                setUserData(undefined);
+                                sessionStorage.clear()
+                            }
+                        })
+                        return
+                    }
+                    if (data.errorMessage?.toLowerCase().includes("validation")) {
+                        setAlertData({ delay: 0.9, show: true, message: "Помилка валідації, схоже ви обрали щось не те.", actionCaption: "закрити", action: () => { } })
+                        return
+                    }
+                    setAlertData({
+                        delay: 0.9,
+                        show: true,
+                        message: data.message,
+                        actionCaption: "закрити",
+                        action: () => {
+                            setInputModalShow(false)
+                            setData(data.data)
+                            let searchResult = data.data.places.filter(item => parseInt(item.placeNumber) === parseInt(clickTrigger))
+                            if (searchResult.length === 1) {
+                                setMoreData(searchResult[0])
+                            } else {
+                                setMoreData(undefined)
+                            }
+                        }
+                    })
+                })
+        }
     }
     return (
         <div className="ViewTrip">
+            <InputModal {...{ passangerForm, setPassangerForm, bookPlace, setInputModalShow }} show={inputModalShow} />
             <button onClick={backHandler} className="ViewTrip__btn">&#8592; Назад</button>
             <button onClick={removeAllHandler} className="ViewTrip__btn ViewTrip__btn_filled"><img src={clearIcon} alt="clear" /> Очистити бронювання</button>
             <Autobus type="ADMIN" places={data.places} {...{ clickTrigger, setClickTrigger }} />

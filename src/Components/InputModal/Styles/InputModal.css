@@ -1,0 +1,115 @@
+.InputModal {
+  width: 100%;
+  height: 100vh;
+  z-index: 49;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(20, 20, 20, 0.8117647059);
+  backdrop-filter: blur(2px);
+  padding: 25px;
+  display: none;
+  opacity: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.InputModal .InputModal__container {
+  max-width: 700px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.InputModal .InputModal__container * {
+  font-family: "Montserrat", sans-serif;
+}
+.InputModal .InputModal__container .InputModal__headline {
+  color: #353535;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.InputModal .InputModal__container .InputModal__form {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.InputModal .InputModal__container .InputModal__form .InputModal__input-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.InputModal .InputModal__container .InputModal__form .InputModal__input-container .InputModal__input {
+  width: 100%;
+  padding: 13px;
+  border-radius: 6px;
+  border: 1px solid #8B8B8B;
+  background: #FFF;
+  outline: none;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+.InputModal .InputModal__container .InputModal__form .InputModal__input-container .InputModal__label {
+  position: absolute;
+  bottom: calc(100% - 4px);
+  left: 13px;
+  padding: 0 5px;
+  color: #646464;
+  background: #ffffff;
+  font-size: 14.4px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+}
+.InputModal .InputModal__container .InputModal__btn-place {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.InputModal .InputModal__container .InputModal__btn-place .InputModal__btn {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  background: #FFCB46;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+}
+.InputModal .InputModal__container .InputModal__btn-place .InputModal__btn_confirm {
+  background: rgba(48, 184, 0, 0.59);
+}
+.InputModal .InputModal__container .InputModal__btn-place .InputModal__btn_reject {
+  background: rgba(255, 10, 10, 0.75);
+}
+
+@media screen and (max-width: 919px) {
+  .InputModal .InputModal__container .InputModal__btn-place {
+    flex-direction: column;
+  }
+}
