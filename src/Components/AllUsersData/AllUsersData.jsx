@@ -14,9 +14,9 @@ function AllUsersData({ passangers }) {
             </div>
             <div className="AllUserData__container">
                 {
-                    passangers ? [...passangers].sort((a, b) => parseInt(a.placeNumber) - parseInt(b.placeNumber)).map(item => {
+                    passangers ? [...passangers].sort((a, b) => parseInt(a.placeNumber) - parseInt(b.placeNumber)).map((item, index) => {
                         return (
-                            <div className="AllUsersData__user">
+                            <div key={index} className="AllUsersData__user">
                                 <div className="AllUserData__info">
                                     <h4 className="AllUserData__subheadline">{item.userDetails.name} {item.userDetails.surname}</h4>
                                     <div className="AllUserData__user-field">

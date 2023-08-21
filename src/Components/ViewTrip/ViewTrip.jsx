@@ -168,10 +168,10 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                                 <p className="ViewTrip__record-info">{normalizeInput(moreData.initiatorContacts.phone)}</p>
 
                                 {
-                                    data.places.map(item => {
+                                    data.places.map((item, index) => {
                                         if (item.invitatorId === moreData.invitatorId && moreData.placeNumber !== item.placeNumber) {
                                             return (
-                                                <div className={item.isInitiator ? `ViewTrip__sub-passanger ViewTrip__sub-passanger_initiator` : "ViewTrip__sub-passanger"}>
+                                                <div key={index} className={item.isInitiator ? `ViewTrip__sub-passanger ViewTrip__sub-passanger_initiator` : "ViewTrip__sub-passanger"}>
                                                     <div className="ViewTrip__record-head">Місце {item.placeNumber}</div>
                                                     <div className="ViewTrip__record-body">
                                                         <h4 className="ViewTrip__record-headline">{item.userDetails.name} {item.userDetails.surname}</h4>

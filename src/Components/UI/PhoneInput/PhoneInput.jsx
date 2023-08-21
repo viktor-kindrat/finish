@@ -59,7 +59,7 @@ const PhoneInput = ({ boxClassSelector, inputClassSelector, setPhoneNumber }) =>
             {values.map((value, index) => (
                 <span key={index}>
                     {index === 1 ? "(" : ""}<input
-                        inputmode="numeric"
+                        inputMode="numeric"
                         key={index}
                         className={inputClassSelector}
                         type="text"
