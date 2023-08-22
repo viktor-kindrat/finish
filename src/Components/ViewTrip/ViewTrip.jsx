@@ -3,21 +3,23 @@ import "./Styles/ViewTrip.css"
 import Autobus from "../Autobus/Autobus"
 import InputModal from "../InputModal/InputModal";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import clearIcon from "./SVG/clear.svg"
 
-function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }) {
-    let [data, setData] = useState(viewData);
-    let [clickTrigger, setClickTrigger] = useState(false);
-    let [moreData, setMoreData] = useState(undefined);
 
-    let [passangerForm, setPassangerForm] = useState({
+function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }) {
+    let defPassForm = {
         name: "Адміністратором",
         surname: "Броньовано",
         email: JSON.parse(sessionStorage.getItem("userData")).email,
         phoneNumber: JSON.parse(sessionStorage.getItem("userData")).phoneNumber
-    });
+    }
+    let [data, setData] = useState(viewData);
+    let [clickTrigger, setClickTrigger] = useState(false);
+    let [moreData, setMoreData] = useState(undefined);
+
+    let [passangerForm, setPassangerForm] = useState(defPassForm);
 
     let [inputModalShow, setInputModalShow] = useState(false)
 
@@ -29,6 +31,18 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
             setMoreData(undefined)
         }
     }, [clickTrigger, setMoreData, data])
+
+    let areAllFieldsDefined = useCallback((obj) => {
+        for (const prop in obj) {
+            if (obj[prop] === undefined || obj[prop] === "") {
+                return false;
+            }
+            if (typeof obj[prop] === 'object' && !areAllFieldsDefined(obj[prop])) {
+                return false;
+            }
+        }
+        return true;
+    }, []);
 
     let handleBook = (e) => {
         setInputModalShow(true)
@@ -124,6 +138,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                 if (data.data) {
                     setViewData(data.data)
                     setData(data.data)
+                    setPassangerForm(defPassForm)
                 }
                 setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => { } })
             })
@@ -143,10 +158,11 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
 
     const bookPlace = () => {
         let selected = document.querySelector(".Autobus__place_selected")?.innerText;
-        if (selected) {
+        let formFilled = areAllFieldsDefined(passangerForm);
+        if (selected && formFilled) {
             let tripId = viewData._id;
             SERVER("Бронюємо", "POST", "book/admin/book-place", "application/json", {
-                tripId: tripId, place: selected
+                tripId: tripId, place: selected, ...passangerForm
             }, getCookie("userToken"))
                 .then(data => {
                     if (data.errorMessage?.toLowerCase().includes("token")) {
@@ -172,6 +188,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                             setInputModalShow(false)
                             setData(data.data)
                             setViewData(data.data)
+                            setPassangerForm(defPassForm)
                             let searchResult = data.data.places.filter(item => parseInt(item.placeNumber) === parseInt(clickTrigger))
                             if (searchResult.length === 1) {
                                 setMoreData(searchResult[0])
@@ -181,6 +198,8 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                         }
                     })
                 })
+        } else {
+            setAlertData({ delay: 0, show: true, message: "Заповніть всі поля і впевніться що попередньо було вибрано місце на карті автобуса", actionCaption: "Зрозуміло", action: () => { } })
         }
     }
     return (

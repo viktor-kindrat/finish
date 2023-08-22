@@ -8,6 +8,14 @@
     flex-direction: column;
     gap: 15px;
 
+    .AllUsersData__eror-msg {
+        width: 100%;
+        font-weight: 700;
+        color: #bdbdbd;
+        text-align: center;
+        font-size: calc(16px + .3vw);
+    }
+
     * {
         font-family: "Montserrat", sans-serif;
     }

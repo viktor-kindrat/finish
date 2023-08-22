@@ -14,11 +14,11 @@ function AllUsersData({ passangers }) {
             </div>
             <div className="AllUserData__container">
                 {
-                    passangers ? [...passangers].sort((a, b) => parseInt(a.placeNumber) - parseInt(b.placeNumber)).map((item, index) => {
+                    (passangers && passangers?.length > 0) ? [...passangers].sort((a, b) => parseInt(a.placeNumber) - parseInt(b.placeNumber)).map((item, index) => {
                         return (
                             <div key={index} className="AllUsersData__user">
                                 <div className="AllUserData__info">
-                                    <h4 className="AllUserData__subheadline">{item.userDetails.name} {item.userDetails.surname}</h4>
+                                    <h4 className="AllUserData__subheadline">{item.userDetails.surname} {item.userDetails.name}</h4>
                                     <div className="AllUserData__user-field">
                                         <img height={20} width={20} src={placeNumberIcon} alt="Місце" />
                                         <span className="AllUserData__thin">Місце:</span> {item.placeNumber}
