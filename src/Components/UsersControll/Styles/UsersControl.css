@@ -1,4 +1,6 @@
 .UsersControl {
+  width: 100%;
+  max-width: 612px;
   padding: 15px;
   display: flex;
   gap: 10px;
