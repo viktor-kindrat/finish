@@ -63,6 +63,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                             actionCaption: "закрити",
                             action: () => {
                                 setData(data.data)
+                                setViewData(data.data)
                             }
                         })
                     } else {
@@ -103,7 +104,41 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
         setViewOpened(false)
     }
 
-    const removeAllHandler = () => setAlertData({ show: true, delay: 0, message: "Функція у розробці", action: () => { }, actionCaption: "ОК" })
+    const removeAction = () => {
+        SERVER("Видаляємо", "POST", "book/admin/cancel-all-booking", "application/json", { tripId: viewData._id }, getCookie("userToken"))
+            .then(data => {
+                if (data.errorMessage?.toLowerCase().includes("token")) {
+                    setAlertData({
+                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        action: () => {
+                            setUserData(undefined);
+                            sessionStorage.clear()
+                        }
+                    })
+                    return
+                }
+                if (data.errorMessage?.toLowerCase().includes("validation")) {
+                    setAlertData({ delay: 0.9, show: true, message: "Помилка валідації, схоже ви обрали щось не те.", actionCaption: "закрити", action: () => { } })
+                    return
+                }
+                if (data.data) {
+                    setViewData(data.data)
+                    setData(data.data)
+                }
+                setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => { } })
+            })
+    }
+
+    const removeAllHandler = () => {
+        setModalData({
+            delay: 0, show: true,
+            message: `Ви впевнені що хочете вилучити усіх пасажирів рейсу? Ця дія не відворотня, натискайте "Так" тільки якщо впевнені у своїх діях`,
+            confirmCaption: "Так",
+            rejectCaption: "Ні",
+            confirmAction: removeAction,
+            rejectAction: () => { },
+        })
+    }
 
 
     const bookPlace = () => {
@@ -136,6 +171,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                         action: () => {
                             setInputModalShow(false)
                             setData(data.data)
+                            setViewData(data.data)
                             let searchResult = data.data.places.filter(item => parseInt(item.placeNumber) === parseInt(clickTrigger))
                             if (searchResult.length === 1) {
                                 setMoreData(searchResult[0])
