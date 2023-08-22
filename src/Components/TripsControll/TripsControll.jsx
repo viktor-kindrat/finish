@@ -135,7 +135,7 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
                 }
             </section>
             {
-                viewOpened ? <AllUsersData passangers={viewData.places} /> : ""
+                viewOpened ? <AllUsersData tripId={viewData._id} passangers={viewData.places} allTrips={trips.current} /> : ""
             }
         </>
     )

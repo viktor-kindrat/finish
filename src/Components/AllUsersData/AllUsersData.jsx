@@ -5,8 +5,9 @@ import userIcon from "./SVG/user.svg"
 import placeNumberIcon from "./SVG/place.svg"
 import printIcon from "./SVG/print.svg"
 import phoneNumberIcon from "./SVG/phone.svg"
+import calendarIcon from "./SVG/calendar.svg"
 
-function AllUsersData({ passangers }) {
+function AllUsersData({ passangers, allTrips, tripId }) {
     return (
         <div className="AllUsersData">
             <div className="AllUsersData__head">
@@ -38,7 +39,15 @@ function AllUsersData({ passangers }) {
                                     </div>
                                     <div className="AllUserData__user-field">
                                         <img height={20} width={20} src={phoneNumberIcon} alt="Номер телефону" />
-                                        <span className="AllUserData__thin">Контактний номер:</span> {item.initiatorContacts.phone}
+                                        <span className="AllUserData__thin">Телефон:</span> {item.initiatorContacts.phone}
+                                    </div>
+                                    <div className="AllUserData__user-field">
+                                        <img height={20} width={20} src={calendarIcon} alt="Номер телефону" />
+                                        <span className="AllUserData__thin">Відправлення:</span> {new Date(allTrips.filter(item=>item._id === tripId)[0].stations.filter(station=>(station.city === item.userDetails.from.city && station.country === item.userDetails.from.country))[0].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}
+                                    </div>
+                                    <div className="AllUserData__user-field">
+                                        <img height={20} width={20} src={calendarIcon} alt="Номер телефону" />
+                                        <span className="AllUserData__thin">Прибуття:</span> {new Date(allTrips.filter(item=>item._id === tripId)[0].stations.filter(station=>(station.city === item.userDetails.to.city && station.country === item.userDetails.to.country))[0].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}
                                     </div>
                                 </div>
                             </div>

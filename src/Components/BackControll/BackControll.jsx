@@ -43,9 +43,9 @@ function BackControll({ getCookie, setCookie, userData, setUserData, alertData, 
             <div className="BackControll__container">
                 {
                     storage.current && !pending ?
-                        storage.current.map(item =>
+                        storage.current.length !== 0 ? storage.current.map(item =>
                             <BackControlItem key={item._id} data={item} {...{ getCookie, setAlertData, setUserData, SERVER, trigger, setTrigger }} />
-                        )
+                        ) : "Нових скасувань немає"
                         : <BuiltInLoader />
                 }
             </div>

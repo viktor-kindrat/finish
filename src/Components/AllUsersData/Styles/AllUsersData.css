@@ -94,7 +94,7 @@
   text-transform: capitalize;
 }
 .AllUsersData .AllUserData__container .AllUsersData__user .AllUserData__user-field {
-  display: flex;
+  display: inline;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
@@ -105,7 +105,26 @@
   width: 20px;
   object-fit: contain;
 }
+.AllUsersData .AllUserData__container .AllUsersData__user .AllUserData__user-field * {
+  display: inline-block;
+  vertical-align: middle;
+}
 .AllUsersData .AllUserData__container .AllUsersData__user .AllUserData__user-field .AllUserData__thin {
   font-weight: 400;
   color: #333333;
+}
+
+@media screen and (max-width: 919px) {
+  .AllUsersData .AllUsersData__head {
+    gap: 15px;
+  }
+  .AllUsersData .AllUsersData__head .AllUsersData__headline {
+    font-size: 25px;
+  }
+  .AllUsersData .AllUserData__container .AllUsersData__user .AllUserData__subheadline {
+    font-size: 18px;
+  }
+  .AllUsersData .AllUserData__container .AllUsersData__user .AllUserData__user-field {
+    font-size: 13px;
+  }
 }
