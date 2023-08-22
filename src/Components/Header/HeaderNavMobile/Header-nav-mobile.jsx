@@ -5,12 +5,22 @@ import viberIcon from "../SVG/viber.svg"
 
 import PhoneInput from "../../UI/PhoneInput/PhoneInput";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import linkContext from "../../../Context/ServerHostnameContext"
 
 
-function HeaderNavMobile() {
+function HeaderNavMobile({ alertData, setAlertData }) {
     const [phone, setPhone] = useState('');
-    console.log(phone)
+
+    let server = useContext("linkContext").server
+
+    let needHelpHandler = () => {
+        console.log(phone)
+        fetch(`${server}need-help`, { mehtod: "POST", headers: { "Content-type": "application/json" }, body: JSON.stringify({ phoneNumber: phone }) })
+            .then(res => res.json())
+            .then(data => setAlertData({ delay: 0, show: true, message: data.message, actionCaption: "закрити", action: () => { } }))
+            .catch(e => console.log(e))
+    }
 
     return (
         <div className="HeaderNavMobile">
@@ -27,7 +37,7 @@ function HeaderNavMobile() {
                 <div className="HeaderNavMobile__info">
                     <div className="HeaderNavMobile__info-caption">Замовити зворотній дзвінок від менеджера</div>
                     <PhoneInput boxClassSelector="HeaderNavMobile__phone-input-wrapper" inputClassSelector="HeaderNavMobile__phone-input" setPhoneNumber={setPhone} />
-                    <button className="HeaderNavMobile__btn">Відправити</button>
+                    <button onClick={needHelpHandler} className="HeaderNavMobile__btn">Відправити</button>
                 </div>
             </div>
             <div className="HeaderNavMobile__section HeaderNavMobile__socials">

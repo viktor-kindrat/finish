@@ -4,6 +4,7 @@ import locationIcon from "./SVG/from.svg"
 import userIcon from "./SVG/user.svg"
 import placeNumberIcon from "./SVG/place.svg"
 import printIcon from "./SVG/print.svg"
+import phoneNumberIcon from "./SVG/phone.svg"
 
 function AllUsersData({ passangers }) {
     return (
@@ -34,6 +35,10 @@ function AllUsersData({ passangers }) {
                                     <div className="AllUserData__user-field">
                                         <img height={20} width={20} src={locationIcon} alt="До" />
                                         <span className="AllUserData__thin">Місце висадки:</span> {item.userDetails.name === "броньовано" ? "невідомо" : item.userDetails.to.country} {item.userDetails.name === "броньовано" ? "" : "-"}  {item.userDetails.name === "броньовано" ? "" : item.userDetails.to.city}
+                                    </div>
+                                    <div className="AllUserData__user-field">
+                                        <img height={20} width={20} src={phoneNumberIcon} alt="Номер телефону" />
+                                        <span className="AllUserData__thin">Контактний номер:</span> {item.initiatorContacts.phone}
                                     </div>
                                 </div>
                             </div>

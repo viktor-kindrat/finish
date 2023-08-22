@@ -11,7 +11,7 @@ import { gsap } from "gsap"
 
 import { Link } from "react-router-dom"
 
-function Header() {
+function Header({ alertData, setAlertData }) {
     let [navOpen, setNavOpen] = useState(false);
     let [screenWidth, setScreenWidht] = useState(window.innerWidth);
 
@@ -57,7 +57,7 @@ function Header() {
                     yPercent: 0,
                     duration: 0.3
                 })
-                timeline.then(()=>{
+                timeline.then(() => {
                     document.body.style.overflowY = "hidden"
                 })
             } else {
@@ -70,7 +70,7 @@ function Header() {
                 timeline.set(".HeaderNavMobile", {
                     display: "none"
                 })
-                timeline.then(()=>{
+                timeline.then(() => {
                     document.body.style.overflowY = "auto"
                 })
             }
@@ -86,7 +86,7 @@ function Header() {
                 {(screenWidth <= 919) ? "" : <HeaderNavDesktop />}
                 <button onClick={openMenuMobileHandler} className="Header__nav-open-btn"><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div><div className="Header__nav-open-btn-visual"></div></button>
             </header>
-            <HeaderNavMobile />
+            <HeaderNavMobile {...{ alertData, setAlertData }} />
         </>
     )
 }

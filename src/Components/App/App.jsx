@@ -171,13 +171,13 @@ function App() {
 			<Loader {...{ ...loaderData }} />
 			<Alert {...{ ...alertData }} close={() => setAlertData({ ...alertData, show: false })} />
 			<Modal {...{ ...modalData }} close={() => setModalData({ ...modalData, show: false })} />
-			<Header />
+			<Header {...{ alertData, setAlertData }} />
 			<Routes>
-				<Route path='/*' element={<Home {...{userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER}} />} />
+				<Route path='/*' element={<Home {...{ userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />} />
 				<Route path='account/*' element={<Account {...{ setModalData, modalData, getCookie, setCookie, userData, setUserData, alertData, setAlertData, SERVER }} />} />
 				<Route path='authorization/*' element={<Authorization logined={!(!userData)} {...{ handleLogin, handleSignUp, handleRecover }} userData={authUserData} setUserData={setAuthUserData} isEdit={false} />} />
 			</Routes>
-			<PhoneMenu {...{userData}} />
+			<PhoneMenu {...{ userData }} />
 			<Footer />
 		</div>
 	);
