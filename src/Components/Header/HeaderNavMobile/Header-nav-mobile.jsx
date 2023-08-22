@@ -12,11 +12,10 @@ import linkContext from "../../../Context/ServerHostnameContext"
 function HeaderNavMobile({ alertData, setAlertData }) {
     const [phone, setPhone] = useState('');
 
-    let server = useContext("linkContext").server
+    let server = useContext(linkContext).server
 
     let needHelpHandler = () => {
-        console.log(phone)
-        fetch(`${server}need-help`, { mehtod: "POST", headers: { "Content-type": "application/json" }, body: JSON.stringify({ phoneNumber: phone }) })
+        fetch(`${server}need-help`, { method: "POST", headers: { "Content-type": "application/json" }, body: JSON.stringify({ phoneNumber: phone }) })
             .then(res => res.json())
             .then(data => setAlertData({ delay: 0, show: true, message: data.message, actionCaption: "закрити", action: () => { } }))
             .catch(e => console.log(e))
