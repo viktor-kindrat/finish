@@ -46,7 +46,7 @@ function Home({userData, setUserData, alertData, setAlertData, modalData, setMod
                     <>
                         <div className="Home__head-group">
                             <img loading="lazy" className="Home__bgImage" src={mainImage} alt="main" />
-                            <h1 className="Home__headline">Бронювання білетів</h1>
+                            <h1 className="Home__headline">Україна - Італія - Франція</h1>
                         </div>
                         <HomeBooking {...{ triggerSearch, setTriggerSearch, searchingData, setSearchingData, date, setDate, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }} />
                     </>

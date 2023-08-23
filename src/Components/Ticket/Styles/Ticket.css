@@ -8,6 +8,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.Ticket a {
+  text-decoration: none;
+}
 .Ticket_active {
   border: 1px solid #FFCB46;
 }
@@ -63,6 +66,19 @@
   font-style: normal;
   font-weight: 400;
   line-height: 133%;
+}
+.Ticket .Ticket__group .Ticket__info a {
+  color: #353535;
+  display: inline;
+}
+.Ticket .Ticket__group .Ticket__info a * {
+  display: inline-block;
+  vertical-align: middle;
+}
+.Ticket .Ticket__group .Ticket__info a img {
+  height: 25px;
+  width: 25px;
+  object-fit: contain;
 }
 .Ticket .Ticket__group .Ticket__info_bold {
   color: #000;

@@ -8,6 +8,10 @@
     align-items: center;
     justify-content: space-between;
 
+    a {
+        text-decoration: none;
+    }
+
     &_active {
         border: 1px solid #FFCB46;
 
@@ -72,6 +76,22 @@
             font-style: normal;
             font-weight: 400;
             line-height: 133%;
+
+            a {
+                color: #353535;
+                display: inline;
+
+                * {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+
+                img {
+                    height: 25px;
+                    width: 25px;
+                    object-fit: contain;
+                }
+            }
 
             &_bold {
                 color: #000;
@@ -176,7 +196,6 @@
             align-items: center;
 
             .Ticket__info {
-                &_bold {}
 
                 &_bigBold {
                     font-size: 36px;
@@ -186,12 +205,9 @@
                     top: -28px;
                 }
 
-                &_small {}
             }
 
-            .Ticket__sign {}
         }
 
-        .Ticket__action {}
     }
 }

@@ -2,6 +2,7 @@ import "./Styles/Ticket.css"
 import BuiltInLoader from "../UI/BuiltInLoader/BuiltInLoader"
 
 import rightIcon from "./SVG/right.svg"
+import markerIcon from "./SVG/marker.svg"
 
 import { useEffect, useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -132,7 +133,7 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                             <div className="Ticket__locations">
                                 <div className="Ticket__group Ticket__group_location">
                                     <div className="Ticket__info_bold Ticket__info">{new Date(from.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
-                                    <div className="Ticket__info">{from.country} - {from.city} <br />({from.location.caption})</div>
+                                    <div className="Ticket__info">{from.country} - {from.city} <br /><a href={`https://www.google.com/maps?q=${from.location.longitude},${from.location.latitude}`}>({from.location.caption}) <img src={markerIcon} alt="marker" /></a></div>
                                 </div>
                                 <div className="Ticket__group Ticket__group_arrow">
                                     <div className="Ticket__sign">
@@ -141,12 +142,13 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                                 </div>
                                 <div className="Ticket__group Ticket__group_location">
                                     <div className="Ticket__info_bold Ticket__info">{new Date(to.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
-                                    <div className="Ticket__info">{to.country} - {to.city} <br />({to.location.caption})</div>
+                                    <div className="Ticket__info">{to.country} - {to.city} <br /><a href={`https://www.google.com/maps?q=${to.location.longitude},${to.location.latitude}`}>({to.location.caption}) <img src={markerIcon} alt="marker" /></a></div>
                                 </div>
                             </div>
                             <div className="Ticket__group">
                                 <div className="Ticket__info_bigBold">{formatNumberWithSpaces((data.passangers.filter(item => item.age === "adult").length * (to.price.adult - from.price.adult)) + (data.passangers.filter(item => item.age === "child").length * (to.price.child - from.price.child)))} грн</div>
                                 <div className="Ticket__info Ticket__info_small"> Дорослий: {data.passangers.filter(item => item.age === "adult").length}, Дитячий: {data.passangers.filter(item => item.age === "child").length}</div>
+                                <div className="Ticket__info Ticket__info_small"> Місце(-я): {data.passangers.map(i=>i.placeNumber).join(", ")}</div>
                             </div>
                             <button onClick={status === "active" ? handleRemoveBooking : () => { }} disabled={status !== "active"} className="Ticket__action">{status === "canceled" ? "Скасовано" : status === "done" ? "Виконано" : status === "active" ? "Скасувати" : "Помилка"}</button>
                         </article>
