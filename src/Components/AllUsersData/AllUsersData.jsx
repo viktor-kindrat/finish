@@ -6,13 +6,14 @@ import placeNumberIcon from "./SVG/place.svg"
 import printIcon from "./SVG/print.svg"
 import phoneNumberIcon from "./SVG/phone.svg"
 import calendarIcon from "./SVG/calendar.svg"
+import aditionalInfoIcon from "./SVG/aditionalInfo.svg"
 
 function AllUsersData({ passangers, allTrips, tripId }) {
     return (
         <div className="AllUsersData">
             <div className="AllUsersData__head">
                 <h3 className="AllUsersData__headline">Пасажири</h3>
-                <button onClick={()=>window.print()} className="AllUsersData__btn"><img src={printIcon} alt="print" />Друкувати</button>
+                <button onClick={() => window.print()} className="AllUsersData__btn"><img src={printIcon} alt="print" />Друкувати</button>
             </div>
             <div className="AllUserData__container">
                 {
@@ -43,11 +44,15 @@ function AllUsersData({ passangers, allTrips, tripId }) {
                                     </div>
                                     <div className="AllUserData__user-field">
                                         <img height={20} width={20} src={calendarIcon} alt="Номер телефону" />
-                                        <span className="AllUserData__thin">Відправлення:</span> {new Date(allTrips.filter(item=>item._id === tripId)[0].stations.filter(station=>(station.city === item.userDetails.from.city && station.country === item.userDetails.from.country))[0].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}
+                                        <span className="AllUserData__thin">Відправлення:</span> {new Date(allTrips.filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.from.city && station.country === item.userDetails.from.country))[0].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}
                                     </div>
                                     <div className="AllUserData__user-field">
                                         <img height={20} width={20} src={calendarIcon} alt="Номер телефону" />
-                                        <span className="AllUserData__thin">Прибуття:</span> {new Date(allTrips.filter(item=>item._id === tripId)[0].stations.filter(station=>(station.city === item.userDetails.to.city && station.country === item.userDetails.to.country))[0].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}
+                                        <span className="AllUserData__thin">Прибуття:</span> {new Date(allTrips.filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.to.city && station.country === item.userDetails.to.country))[0].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}
+                                    </div>
+                                    <div className="AllUserData__user-field">
+                                        <img height={20} width={20} src={aditionalInfoIcon} alt="Додаткова інформація" />
+                                        <span className="AllUserData__thin">Додаткова інформація:</span> {item.additionalInformation ? item.additionalInformation : "-"}
                                     </div>
                                 </div>
                             </div>
