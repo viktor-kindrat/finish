@@ -13,9 +13,6 @@
 }
 
 @media print {
-    .App {
-        padding: 25px;
-    }
     .Header {
         display: none;
         opacity: 0;
@@ -50,50 +47,20 @@
             z-index: 10000;
             display: flex;
             box-shadow: none;
-            padding: 1.5cm;
             position: absolute;
             top: 0;
             left: 0;
 
             .AllUsersData__head {
-                .AllUsersData__btn {
-                    display: none;
-                    width: 0;
-                    height: 0;
-                    opacity: 0;
-                    visibility: hidden;
-                    position: absolute;
-                }
+                display: none;
+            }
+
+            .AllUsersData__search {
+                display: none;
             }
 
             .AllUserData__container {
-                gap: 0;
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: stretch;
-                .AllUsersData__user {
-                    width: 50%;
-                    gap: 3px;
-                    border-radius: 0;
-                    padding: 10px;
-                    -webkit-border-radius: 0;
-                    -moz-border-radius: 0;
-                    -ms-border-radius: 0;
-                    -o-border-radius: 0;
-                    page-break-before: auto;
-
-                    .AllUserData__subheadline {
-                        font-size: 18px;
-                    }
-
-                    .AllUserData__info {
-                        gap: 3px;
-                    }
-                }
-            }
-
-            .AllUsersData__user:nth-child(16n - 1), .AllUsersData__user:nth-child(16n) {
-                margin-top: 2.5cm;
+                display: none;
             }
 
             * {
@@ -101,8 +68,37 @@
             }
         }
 
-        * {
-            display: none;
+        .PrintingTable {
+            display: flex;
+            position: relative;
+            width: calc(100vw - 0.3cm);
+            left: -0.5cm;
+            // top: -0.5cm;
+
+        
+            .PrintingTable__table-body {
+                display: table;
+
+                * {
+                    position: static;
+                }
+        
+                // th {
+                //     display: table-header-group;
+                // }
+
+                tr {
+                    display: table-row;
+                }
+
+                tbody {
+                    display: table-row-group;
+                }
+                
+                td, th {
+                    display: table-cell;
+                }
+            }
         }
     }
 

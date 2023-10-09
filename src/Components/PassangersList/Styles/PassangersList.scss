@@ -57,7 +57,7 @@
         position: relative;
 
         .PassangerList__input-placeholder {
-            @extend %typicalLabelStyles;
+            @extend %typicalLabelStyle;
         }
 
         .PassangerList__input {

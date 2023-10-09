@@ -27,7 +27,7 @@
         }
 
         .PassangerLabel__input-label {
-            @extend %typicalLabelStyles;
+            @extend %typicalLabelStyle;
         }
     }
 }

@@ -12,9 +12,6 @@
   }
 }
 @media print {
-  .App {
-    padding: 25px;
-  }
   .Header {
     display: none;
     opacity: 0;
@@ -45,50 +42,42 @@
     z-index: 10000;
     display: flex;
     box-shadow: none;
-    padding: 1.5cm;
     position: absolute;
     top: 0;
     left: 0;
   }
-  .Account .AllUsersData .AllUsersData__head .AllUsersData__btn {
+  .Account .AllUsersData .AllUsersData__head {
     display: none;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
+  }
+  .Account .AllUsersData .AllUsersData__search {
+    display: none;
   }
   .Account .AllUsersData .AllUserData__container {
-    gap: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: stretch;
-  }
-  .Account .AllUsersData .AllUserData__container .AllUsersData__user {
-    width: 50%;
-    gap: 3px;
-    border-radius: 0;
-    padding: 10px;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -ms-border-radius: 0;
-    -o-border-radius: 0;
-    page-break-before: auto;
-  }
-  .Account .AllUsersData .AllUserData__container .AllUsersData__user .AllUserData__subheadline {
-    font-size: 18px;
-  }
-  .Account .AllUsersData .AllUserData__container .AllUsersData__user .AllUserData__info {
-    gap: 3px;
-  }
-  .Account .AllUsersData .AllUsersData__user:nth-child(16n-1), .Account .AllUsersData .AllUsersData__user:nth-child(16n) {
-    margin-top: 2.5cm;
+    display: none;
   }
   .Account .AllUsersData * {
     display: flex;
   }
-  .Account * {
-    display: none;
+  .Account .PrintingTable {
+    display: flex;
+    position: relative;
+    width: calc(100vw - 0.3cm);
+    left: -0.5cm;
+  }
+  .Account .PrintingTable .PrintingTable__table-body {
+    display: table;
+  }
+  .Account .PrintingTable .PrintingTable__table-body * {
+    position: static;
+  }
+  .Account .PrintingTable .PrintingTable__table-body tr {
+    display: table-row;
+  }
+  .Account .PrintingTable .PrintingTable__table-body tbody {
+    display: table-row-group;
+  }
+  .Account .PrintingTable .PrintingTable__table-body td, .Account .PrintingTable .PrintingTable__table-body th {
+    display: table-cell;
   }
   .Footer {
     display: none;
