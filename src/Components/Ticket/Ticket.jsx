@@ -146,7 +146,7 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                                 </div>
                             </div>
                             <div className="Ticket__group">
-                                <div className="Ticket__info_bigBold">{formatNumberWithSpaces((data.passangers.filter(item => item.age === "adult").length * (to.price.adult - from.price.adult)) + (data.passangers.filter(item => item.age === "child").length * (to.price.child - from.price.child)))} грн</div>
+                                <div className="Ticket__info_bigBold">{formatNumberWithSpaces((data.passangers.filter(item => item.age === "adult").length * (to.price.adult - from.price.adult)) + (data.passangers.filter(item => item.age === "child").length * (to.price.child - from.price.child)))} &#8364;</div>
                                 <div className="Ticket__info Ticket__info_small"> Дорослий: {data.passangers.filter(item => item.age === "adult").length}, Дитячий: {data.passangers.filter(item => item.age === "child").length}</div>
                                 <div className="Ticket__info Ticket__info_small"> Місце(-я): {data.passangers.map(i=>i.placeNumber).join(", ")}</div>
                             </div>

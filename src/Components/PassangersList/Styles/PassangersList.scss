@@ -1,3 +1,5 @@
+@import "../../../CoreStyles/mixin.scss";
+
 .PassangersList {
     display: flex;
     flex-direction: column;
@@ -43,5 +45,23 @@
         align-items: flex-start;
         justify-content: flex-start;
         gap: 20px;
+    }
+
+    .PassangerList__input-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+
+        .PassangerList__input-placeholder {
+            @extend %typicalLabelStyles;
+        }
+
+        .PassangerList__input {
+            @extend %typicalInputStyle;
+        }
     }
 }

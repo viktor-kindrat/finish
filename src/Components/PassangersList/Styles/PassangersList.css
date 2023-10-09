@@ -1,3 +1,36 @@
+.PassangersList .PassangerList__input-container .PassangerList__input {
+  width: 100%;
+  height: 42px;
+  padding: 10px 15px;
+  color: #353535;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  border-radius: 6px;
+  border: 1px solid #8B8B8B;
+  background: #FFF;
+  outline: none;
+}
+
+.PassangersList .PassangerList__input-container .PassangerList__input-placeholder {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  background: #ffffff;
+  padding: 0 5px;
+  transform: translate(0, -50%);
+  color: #646464;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+}
+
 .PassangersList {
   display: flex;
   flex-direction: column;
@@ -40,4 +73,13 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 20px;
+}
+.PassangersList .PassangerList__input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
 }

@@ -45,7 +45,8 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
     let booking = () => {
         let requestBody = {
             passangers: passangers,
-            tripId: data._id
+            tripId: data._id,
+            additionalInformation: additionalInfoInput.value ? additionalInfoInput.value : undefined,
         }
         SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", requestBody, getCookie("userToken"))
             .then(data => {
@@ -112,9 +113,17 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
         setPlaces() // eslint-disable-next-line
     }, [selected])
 
+    let additionalInfoInput = document.querySelector(".PassangerList__input")
+
     let bookUnauthorized = (checker) => {
         if (checker) {
-            SERVER("Відбувається бронювання", "POST", "book/book-places/anauthorized", "application/json", { tripId: data._id, passangers: checker }, "")
+            SERVER("Відбувається бронювання", "POST", "book/book-places/anauthorized", "application/json",
+                { 
+                    tripId: data._id, 
+                    passangers: checker,
+                    additionalInformation: additionalInfoInput.value ? additionalInfoInput.value : undefined,
+                },
+                "")
                 .then(data => {
                     if (data.errorMessage?.toLowerCase().includes("validation")) {
                         setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
@@ -167,7 +176,11 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                                 let validate = areAllFieldsDefined(checker)
 
                                 if (validate) {
-                                    SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", { tripId: data._id, passangers: checker }, res.token)
+                                    SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", { 
+                                        tripId: data._id, 
+                                        passangers: checker,
+                                        additionalInformation: additionalInfoInput.value ? additionalInfoInput.value : undefined,
+                                    }, res.token)
                                         .then(data => {
                                             if (data.errorMessage?.toLowerCase().includes("validation")) {
                                                 setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })

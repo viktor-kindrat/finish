@@ -91,16 +91,16 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
                         </div>
                         <div className="FlightCard__group">
                             <p className="FlightCard__info">Доросилий</p>
-                            <p className="FlightCard__info FlightCard__info_bigBold">{toStation.price.adult - fromStation.price.adult} <span className="FlightCard__info_bold">грн</span></p>
+                            <p className="FlightCard__info FlightCard__info_bigBold">{toStation.price.adult - fromStation.price.adult} <span className="FlightCard__info_bold">&#8364;</span></p>
                         </div>
                         <div className="FlightCard__group FlightCard__group_uderlineonmobile">
                             <p className="FlightCard__info">Дитячий</p>
-                            <p className="FlightCard__info FlightCard__info_bigBold">{toStation.price.child - fromStation.price.child} <span className="FlightCard__info_bold">грн</span></p>
+                            <p className="FlightCard__info FlightCard__info_bigBold">{toStation.price.child - fromStation.price.child} <span className="FlightCard__info_bold">&#8364;</span></p>
                         </div>
                         <div className="FlightCard__summary">
                             <div className="FlightCard__summary-raw">
                                 <div className="FlightCard__summary-sum">{((toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults) + ((toStation.price.child - fromStation.price.child) * searchingData.passangers.children)}</div>
-                                <div className="FlightCard__summary-currency">грн</div>
+                                <div className="FlightCard__summary-currency">&#8364;</div>
                             </div>
                             <div className="FlightCard__summary-info">
                                 Доросилий: {searchingData.passangers.adults}, Дитячий: {searchingData.passangers.children}
@@ -111,21 +111,21 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
                     <div className="FlightCard__opened" data-id={id}>
                         <div className="FlightCard__group">
                             <div className="FlightCard__text">{searchingData.passangers.adults} Дорослий</div>
-                            <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults} <span className="FlightCard__text_bold">грн</span></div>
+                            <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults} <span className="FlightCard__text_bold">&#8364;</span></div>
                         </div>
                         <div className="FlightCard__group">
                             <div className="FlightCard__text FlightCard__text_mediumBold">+</div>
                         </div>
                         <div className="FlightCard__group">
                             <div className="FlightCard__text">{searchingData.passangers.children} Дитячий</div>
-                            <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.child - fromStation.price.child) * searchingData.passangers.children} <span className="FlightCard__text_bold">грн</span></div>
+                            <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.child - fromStation.price.child) * searchingData.passangers.children} <span className="FlightCard__text_bold">&#8364;</span></div>
                         </div>
                         <div className="FlightCard__group">
                             <div className="FlightCard__text FlightCard__text_mediumBold">=</div>
                         </div>
                         <div className="FlightCard__group">
                             <div className="FlightCard__text">Всього</div>
-                            <div className="FlightCard__text FlightCard__text_bigBold">{((toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults) + ((toStation.price.child - fromStation.price.child) * searchingData.passangers.children)} <span className="FlightCard__text_bold">грн</span></div>
+                            <div className="FlightCard__text FlightCard__text_bigBold">{((toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults) + ((toStation.price.child - fromStation.price.child) * searchingData.passangers.children)} <span className="FlightCard__text_bold">&#8364;</span></div>
                         </div>
                     </div>
                     <BookingMenu id={id} {...{ data, searchingData, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />
