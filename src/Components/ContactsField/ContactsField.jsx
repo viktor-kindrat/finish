@@ -50,7 +50,6 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
         }
         SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", requestBody, getCookie("userToken"))
             .then(data => {
-                console.log(data)
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
                         delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",

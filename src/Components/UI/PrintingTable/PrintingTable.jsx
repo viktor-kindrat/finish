@@ -21,7 +21,6 @@ function PrintingTable({passangers, allTrips, tripId}){
         return formattedValue;
     };
 
-    console.log("printing log", passangers, allTrips, tripId)
 
     return (
         <div className="PrintingTable">

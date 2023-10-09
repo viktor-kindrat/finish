@@ -70,8 +70,6 @@ function AllUsersData({ passangers, allTrips, tripId }) {
         setResultingPassangers(filteredPassangers)
     }
 
-    console.log("sorted current", sortedPassangers.current)
-
     return (
         <div className="AllUsersData">
             <div className="AllUsersData__head">
