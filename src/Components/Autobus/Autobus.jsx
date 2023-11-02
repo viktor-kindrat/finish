@@ -1,12 +1,16 @@
 import "./Styles/Autobus.css";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected, setSelected }) {
 
+    let id = useMemo(()=>{
+        return Math.floor(Date.now() + Math.random() * 10000)
+    }, [])
+
     useEffect(() => {
         let handleAdminClick = (e) => {
-            let places = document.querySelectorAll(".Autobus__place");
+            let places = document.querySelectorAll(`.Autobus_${id} .Autobus__place`);
             places.forEach(el => {
                 el.classList.remove("Autobus__place_selected")
             })
@@ -27,8 +31,8 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
         let bookedPlaces = places.map(place => `${place.placeNumber}`)
 
         if (type === "ADMIN") {
-            if (document.querySelector(".Autobus__place")) {
-                let places = document.querySelectorAll(".Autobus__place");
+            if (document.querySelector(`.Autobus_${id} .Autobus__place`)) {
+                let places = document.querySelectorAll(`.Autobus_${id} .Autobus__place`);
                 places.forEach(el => {
                     el.classList.remove("Autobus__place_selected")
                     el.classList.remove("Autobus__place_red")
@@ -40,14 +44,16 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
                 })
             }
         } else {
-            if (document.querySelector(".Autobus__place")) {
-                let places = document.querySelectorAll(".Autobus__place");
+            if (document.querySelector(`.Autobus_${id} .Autobus__place`)) {
+                let places = document.querySelectorAll(`.Autobus_${id} .Autobus__place`);
+                console.log(places)
                 places.forEach(el => {
                     el.classList.remove("Autobus__place_selected")
                     el.classList.remove("Autobus__place_red")
                     el.classList.remove("Autobus__place_green")
                     if (bookedPlaces.indexOf(el.innerText) !== -1) {
                         el.classList.add("Autobus__place_red")
+                        console.log(el)
                     } else {
                         el.addEventListener("click", handleUserClick)
                     }
@@ -57,15 +63,15 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
 
         return () => {
             if (type === "ADMIN") {
-                if (document.querySelector(".Autobus__place")) {
-                    let places = document.querySelectorAll(".Autobus__place");
+                if (document.querySelector(`.Autobus_${id} .Autobus__place`)) {
+                    let places = document.querySelectorAll(`.Autobus_${id} .Autobus__place`);
                     places.forEach(el => {
                         el.removeEventListener("click", handleAdminClick)
                     })
                 }
             } else {
-                if (document.querySelector(".Autobus__place")) {
-                    let places = document.querySelectorAll(".Autobus__place");
+                if (document.querySelector(`.Autobus_${id} .Autobus__place`)) {
+                    let places = document.querySelectorAll(`.Autobus_${id} .Autobus__place`);
                     places.forEach(el => {
                         el.removeEventListener("click", handleUserClick)
                     })
@@ -74,11 +80,11 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
 
         }
         // eslint-disable-next-line
-    }, [type, places, setClickTrigger, count, selected, setSelected])
+    }, [type, places, setClickTrigger, count, selected, setSelected, id])
 
     useEffect(() => {
         if (type === "USER") {
-            let places = document.querySelectorAll(".Autobus__place");
+            let places = document.querySelectorAll(`.Autobus_${id} .Autobus__place`);
             places.forEach(el => {
                 if (selected.indexOf(el.innerText) !== -1) {
                     el.classList.add("Autobus__place_green")
@@ -87,10 +93,10 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
                 }
             })
         }
-    }, [selected, type])
+    }, [selected, type, id])
 
     return (
-        <div className="Autobus">
+        <div className={`Autobus Autobus_${id}`}>
             <div className="Autobus__container">
                 <div className="Autobus__column Autous__column_left">
                     <div className="Autobus__group">
