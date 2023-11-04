@@ -7,11 +7,7 @@ import SearchingResult from "../SearchingResult/SearchingResult";
 
 import { Routes, Route, useLocation } from "react-router-dom"
 
-const places = {
-    "Україна": ["Київ", "Чернівці", "Коломия", "Франківськ", "Стрий", "Львів", "Мукачево"],
-    "Франція": ["Канни", "Ніцці", "Антіб", "Монако", "Ментон"],
-    "Італія": ["Санремо", "Імперія", "Аласіо", "Альбенга", "Вентимілія неділя", "Лоано", "Петра", "Фінале", "Савона", "Верона", "Мілан"],
-};
+import places from "../../places.json";
 
 function Home({userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER}) {
     let [peoples, setPeoples] = useState({ adults: 1, children: 0 })
