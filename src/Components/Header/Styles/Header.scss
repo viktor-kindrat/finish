@@ -266,6 +266,34 @@
     }
 }
 
+@media screen and (max-width: 1057px) {
+  .Header {
+    padding: 5px 240px 5px 15px;
+    gap: 15px;
+
+    .Header__nav-wrap {
+      gap: 15px;
+
+      .Header__nav {
+        .Header__nav-list {
+          gap: 10px;
+        }
+      }
+
+      .Header__contacts {
+        gap: 15px;
+        .Header__phone {
+          padding-right: 5px;
+
+          .Header__phone-info-wrapper {
+            margin-left: -70px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 919px) {
     .Header {
         height: 50px;
