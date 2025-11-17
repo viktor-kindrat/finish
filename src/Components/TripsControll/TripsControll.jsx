@@ -82,7 +82,7 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
-                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                         action: () => {
                             setUserData(undefined);
                             sessionStorage.clear()
@@ -91,7 +91,7 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
                     return
                 }
                 if (data.errorMessage?.toLowerCase().includes("validation")) {
-                    setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                    setAlertData({ delay: 0.9, show: true, message: "It seems some fields are empty or filled incorrectly! Please check again.", actionCaption: "Close", action: () => { } })
                     return
                 }
                 if (data.data) {
@@ -117,8 +117,8 @@ function TripsControll({ setModalData, modalData, getCookie, setCookie, userData
                 {
                     !editorOpened && !viewOpened ? <>
                         <div className="TripsControll__head">
-                            <div className="TripsControll__headline">Рейси</div>
-                            {(!pending && trips.current) ? <button onClick={handleNewTrip} className="TripsControll__head-btn">Додати рейс <img height={14} src={plusIcon} alt="" /></button> : ""}
+                            <div className="TripsControll__headline">Trips</div>
+                            {(!pending && trips.current) ? <button onClick={handleNewTrip} className="TripsControll__head-btn">Add Trip <img height={14} src={plusIcon} alt="" /></button> : ""}
                         </div>
                         <div className="TripsControll__container">
                             {

@@ -52,7 +52,7 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                 .then(data => {
                     if (data.errorMessage?.toLowerCase().includes("token")) {
                         setAlertData({
-                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                            delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                             action: () => {
                                 setUserData(undefined);
                                 sessionStorage.clear()
@@ -61,6 +61,7 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                         return
                     }
 
+                    // Checking server response in Ukrainian
                     if (data.message === "Дані отримано") {
                         setPending(false);
                         storage.current = data.data;
@@ -76,14 +77,14 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
     let handleRemoveBooking = (e) => {
         setModalData({
             delay: 0, show: true,
-            message: "Ви впевнені що хочете скасувати бронювання?",
-            confirmCaption: "Так", rejectCaption: "Ні",
+            message: "Are you sure you want to cancel this booking?",
+            confirmCaption: "Yes", rejectCaption: "No",
             confirmAction: () => {
-                SERVER("Скасовуємо бронювання", "POST", "book/cancel-booking", "application/json", { tripId: data.tripId, ticketId: data.id }, getCookie("userToken"))
+                SERVER("Cancelling booking...", "POST", "book/cancel-booking", "application/json", { tripId: data.tripId, ticketId: data.id }, getCookie("userToken"))
                     .then(data => {
                         if (data.errorMessage?.toLowerCase().includes("token")) {
                             setAlertData({
-                                delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                                delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                                 action: () => {
                                     setUserData(undefined);
                                     sessionStorage.clear()
@@ -92,11 +93,12 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                             return
                         }
                         setAlertData({
-                            delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => {
-                                SERVER("Оновлення даних", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
+                            // Translation of server response message logic
+                            delay: 0.9, show: true, message: data.message === "Скасовано успішно" ? "Cancelled successfully" : data.message, actionCaption: "Got it", action: () => {
+                                SERVER("Updating data...", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
                                     if (data.errorMessage?.toLowerCase().includes("token")) {
                                         setAlertData({
-                                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                                            delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                                             action: () => {
                                                 setUserData(undefined);
                                                 go("/authorization");
@@ -132,7 +134,7 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                         <article className={`Ticket Ticket_${status}`}>
                             <div className="Ticket__locations">
                                 <div className="Ticket__group Ticket__group_location">
-                                    <div className="Ticket__info_bold Ticket__info">{new Date(from.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
+                                    <div className="Ticket__info_bold Ticket__info">{new Date(from.arrivalDate).toLocaleString("en-GB", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
                                     <div className="Ticket__info">{from.country} - {from.city} <br /><a href={`https://www.google.com/maps?q=${from.location.longitude},${from.location.latitude}`}>({from.location.caption}) <img src={markerIcon} alt="marker" /></a></div>
                                 </div>
                                 <div className="Ticket__group Ticket__group_arrow">
@@ -141,16 +143,16 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                                     </div>
                                 </div>
                                 <div className="Ticket__group Ticket__group_location">
-                                    <div className="Ticket__info_bold Ticket__info">{new Date(to.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
+                                    <div className="Ticket__info_bold Ticket__info">{new Date(to.arrivalDate).toLocaleString("en-GB", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</div>
                                     <div className="Ticket__info">{to.country} - {to.city} <br /><a href={`https://www.google.com/maps?q=${to.location.longitude},${to.location.latitude}`}>({to.location.caption}) <img src={markerIcon} alt="marker" /></a></div>
                                 </div>
                             </div>
                             <div className="Ticket__group">
-                                <div className="Ticket__info_bigBold">{formatNumberWithSpaces((data.passangers.filter(item => item.age === "adult").length * (to.price.adult - from.price.adult)) + (data.passangers.filter(item => item.age === "child").length * (to.price.child - from.price.child)))} &#8364;</div>
-                                <div className="Ticket__info Ticket__info_small"> Дорослий: {data.passangers.filter(item => item.age === "adult").length}, Дитячий: {data.passangers.filter(item => item.age === "child").length}</div>
-                                <div className="Ticket__info Ticket__info_small"> Місце(-я): {data.passangers.map(i=>i.placeNumber).join(", ")}</div>
+                                <div className="Ticket__info_bigBold">{formatNumberWithSpaces((data.passangers.filter(item => item.age === "adult").length * (to.price.adult - from.price.adult)) + (data.passangers.filter(item => item.age === "child").length * (to.price.child - from.price.child)))} €</div>
+                                <div className="Ticket__info Ticket__info_small"> Adult: {data.passangers.filter(item => item.age === "adult").length}, Child: {data.passangers.filter(item => item.age === "child").length}</div>
+                                <div className="Ticket__info Ticket__info_small"> Seat(s): {data.passangers.map(i=>i.placeNumber).join(", ")}</div>
                             </div>
-                            <button onClick={status === "active" ? handleRemoveBooking : () => { }} disabled={status !== "active"} className="Ticket__action">{status === "canceled" ? "Скасовано" : status === "done" ? "Виконано" : status === "active" ? "Скасувати" : "Помилка"}</button>
+                            <button onClick={status === "active" ? handleRemoveBooking : () => { }} disabled={status !== "active"} className="Ticket__action">{status === "canceled" ? "Canceled" : status === "done" ? "Completed" : status === "active" ? "Cancel" : "Error"}</button>
                         </article>
                         : <BuiltInLoader />
             }

@@ -59,7 +59,7 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                 if (editorData.password === editorData.confirmPassword) {
                     data.password = editorData.password
                 } else {
-                    setAlertData({ delay: 0, show: true, message: "Пароль повинен збігатись із полем підтвердити пароль!", actionCaption: "Зрозуміло", action: () => { }, close: () => setAlertData({ ...alertData, show: false }) })
+                    setAlertData({ delay: 0, show: true, message: "Passwords do not match!", actionCaption: "Close", action: () => { }, close: () => setAlertData({ ...alertData, show: false }) })
                     return
                 }
             }
@@ -68,18 +68,19 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                 if (editorData.password === editorData.confirmPassword) {
                     data.password = editorData.password
                 } else {
-                    setAlertData({ delay: 0, show: true, message: "Пароль повинен збігатись із полем повторити пароль!", actionCaption: "Зрозуміло", action: () => { }, close: () => setAlertData({ ...alertData, show: false }) })
+                    setAlertData({ delay: 0, show: true, message: "Passwords do not match!", actionCaption: "Close", action: () => { }, close: () => setAlertData({ ...alertData, show: false }) })
                     return
                 }
             } else {
-                setAlertData({ delay: 0, show: true, message: "Неможливо зберегти інформацію \nЗмін не зафіксовано", actionCaption: "Зрозуміло", action: () => { }, close: () => setAlertData({ ...alertData, show: false }) })
+                setAlertData({ delay: 0, show: true, message: "Cannot save information.\nNo changes detected.", actionCaption: "Close", action: () => { }, close: () => setAlertData({ ...alertData, show: false }) })
                 return
             }
         }
 
-        SERVER("Зберігаємо", "POST", "auth/change-user-data", "application/json", data, getCookie("userToken")).then(data => {
+        SERVER("Saving...", "POST", "auth/change-user-data", "application/json", data, getCookie("userToken")).then(data => {
+            // KEEP THIS STRING IN UKRAINIAN (It comes from the server)
             if (data.message.includes('Дані змінено успішно')) {
-                SERVER("Зберігаємо", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data=>{
+                SERVER("Saving...", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
                     if (data.body) {
                         if (data.body.verified) {
                             setUserData(data.body)
@@ -91,12 +92,13 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                             setCookie("userToken", "", 0)
                         }
                     }
-                    
+
                     setAlertData({
                         delay: 0.9,
                         show: true,
-                        message: data.message === "ok" ? `Дані змінено успішно! ${changedFields.includes("email") ? "Після зміни email потрібно повторно підтвердити акаунт. Лист для підтвердження надіслано аз вказаною адресою." : ""}`: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Сплив час вашої авторизації. Увійдіть знову" : data.message,
-                        actionCaption: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Увійти" : "Зрозуміло",
+                        // Translation of success message
+                        message: data.message === "ok" ? `Data updated successfully! ${changedFields.includes("email") ? "Please verify your new email address. A confirmation email has been sent." : ""}` : (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Your session has expired. Please log in again." : data.message,
+                        actionCaption: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Log in" : "OK",
                         action: () => (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? () => {
                             setUserData(undefined);
                             sessionStorage.removeItem("userData")
@@ -110,8 +112,8 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                 setAlertData({
                     delay: 0.9,
                     show: true,
-                    message: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Сплив час вашої авторизації. Увійдіть знову" : data.message,
-                    actionCaption: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Увійти" : "Зрозуміло",
+                    message: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Your session has expired. Please log in again." : data.message,
+                    actionCaption: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Log in" : "Close",
                     action: () => (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? () => {
                         setUserData(undefined);
                         go("/authorization")
@@ -123,15 +125,15 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
     }
     return (
         <div className="PersonalInfo">
-            <h2 className="PersonalInfo__headline">Персональні дані</h2>
+            <h2 className="PersonalInfo__headline">Personal Information</h2>
             <div className="PersonalInfo__fields">
                 <div className="PersonalInfo__raw">
                     <div className="PersonalInfo__input-group">
-                        <p className="PersonalInfo__input-label">Прізвище</p>
+                        <p className="PersonalInfo__input-label">Last Name</p>
                         <input onChange={handleChange} name="surname" value={editorData.surname} type="text" className="PersonalInfo__input" />
                     </div>
                     <div className="PersonalInfo__input-group">
-                        <p className="PersonalInfo__input-label">Ім’я</p>
+                        <p className="PersonalInfo__input-label">First Name</p>
                         <input onChange={handleChange} name="name" value={editorData.name} type="text" className="PersonalInfo__input" />
                     </div>
                     <div className="PersonalInfo__input-group">
@@ -141,22 +143,22 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                 </div>
                 <div className="PersonalInfo__raw">
                     <div className="PersonalInfo__input-group">
-                        <p className="PersonalInfo__input-label"> Номер телефону</p>
+                        <p className="PersonalInfo__input-label">Phone Number</p>
                         <input name="phoneNumber" inputMode="tel" onChange={handlePhoneChange} value={phone} type="text" className="PersonalInfo__input" />
                     </div>
                     <div className="PersonalInfo__input-group">
-                        <p className="PersonalInfo__input-label">Пароль</p>
+                        <p className="PersonalInfo__input-label">New Password</p>
                         <input autoComplete="false" onChange={handleChange} name="password" value={editorData.password} type="password" className="PersonalInfo__input" />
                     </div>
                     <div className="PersonalInfo__input-group">
-                        <p className="PersonalInfo__input-label">Повторити пароль</p>
+                        <p className="PersonalInfo__input-label">Confirm Password</p>
                         <input autoComplete="false" onChange={handleChange} name="confirmPassword" value={editorData.confirmPassword} type="password" className="PersonalInfo__input" />
                     </div>
                 </div>
             </div>
             <div className="PersonalInfo__btn-container">
-                <button className="PersonalInfo__btn" onClick={handleSave}>Зберегти</button>
-                {isDataChanged && <button onClick={resetHandler} className="PersonalInfo__btn PersonalInfo__btn_outlined">Скинути</button>}
+                <button className="PersonalInfo__btn" onClick={handleSave}>Save</button>
+                {isDataChanged && <button onClick={resetHandler} className="PersonalInfo__btn PersonalInfo__btn_outlined">Reset</button>}
             </div>
         </div>
     )

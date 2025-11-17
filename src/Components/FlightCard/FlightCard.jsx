@@ -56,10 +56,10 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
         setModalData({
             delay: 0, show: true,
             message: <div className="Modal__map">
-                <VisualizeMap language="uk" apiKey={APIKEY} lat={lng} lng={lat} />
+                <VisualizeMap language="en" apiKey={APIKEY} lat={lng} lng={lat} />
             </div>,
-            confirmCaption: "До карт",
-            rejectCaption: "Закрити",
+            confirmCaption: "Open Maps",
+            rejectCaption: "Close",
             confirmAction: () => {
                 redirectToGoogleMaps(lng, lat)
                 setModalData({ ...modalData, message: "ok" })
@@ -75,57 +75,57 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
             {
                 (fromStation && toStation) ? <>
                     <article className="FlightCard">
-                        <div className="FlightCard__free-places">Вільних місць: {63 - data.places.length}</div>
+                        <div className="FlightCard__free-places">Seats available: {63 - data.places.length}</div>
                         <div className="FlightCard__locations FlightCard__group">
                             <div className="FlightCard__location-column">
-                                <p className="FlightCard__info FlightCard__info_bold">{new Date(fromStation.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
+                                <p className="FlightCard__info FlightCard__info_bold">{new Date(fromStation.arrivalDate).toLocaleString("en-GB", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
                                 <p className="FlightCard__info">{fromStation.country} - {fromStation.city} <br /><span onClick={(e) => setModalMap(fromStation.location.longitude, fromStation.location.latitude)}>({fromStation.location.caption}) <img src={markerIcon} height={20} alt="marker" /></span></p>
                             </div>
                             <div className="FlightCard__arrow">
                                 <img src={rightIcon} height={20} width={20} alt="->" />
                             </div>
                             <div className="FlightCard__location-column">
-                                <p className="FlightCard__info FlightCard__info_bold">{new Date(toStation.arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
+                                <p className="FlightCard__info FlightCard__info_bold">{new Date(toStation.arrivalDate).toLocaleString("en-GB", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}</p>
                                 <p className="FlightCard__info">{toStation.country} - {toStation.city} <br /><span onClick={(e) => setModalMap(toStation.location.longitude, toStation.location.latitude)}>({toStation.location.caption}) <img src={markerIcon} width={20} alt="marker" /></span></p>
                             </div>
                         </div>
                         <div className="FlightCard__group">
-                            <p className="FlightCard__info">Доросилий</p>
-                            <p className="FlightCard__info FlightCard__info_bigBold">{toStation.price.adult - fromStation.price.adult} <span className="FlightCard__info_bold">&#8364;</span></p>
+                            <p className="FlightCard__info">Adult</p>
+                            <p className="FlightCard__info FlightCard__info_bigBold">{toStation.price.adult - fromStation.price.adult} <span className="FlightCard__info_bold">€</span></p>
                         </div>
                         <div className="FlightCard__group FlightCard__group_uderlineonmobile">
-                            <p className="FlightCard__info">Дитячий</p>
-                            <p className="FlightCard__info FlightCard__info_bigBold">{toStation.price.child - fromStation.price.child} <span className="FlightCard__info_bold">&#8364;</span></p>
+                            <p className="FlightCard__info">Child</p>
+                            <p className="FlightCard__info FlightCard__info_bigBold">{toStation.price.child - fromStation.price.child} <span className="FlightCard__info_bold">€</span></p>
                         </div>
                         <div className="FlightCard__summary">
                             <div className="FlightCard__summary-raw">
                                 <div className="FlightCard__summary-sum">{((toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults) + ((toStation.price.child - fromStation.price.child) * searchingData.passangers.children)}</div>
-                                <div className="FlightCard__summary-currency">&#8364;</div>
+                                <div className="FlightCard__summary-currency">€</div>
                             </div>
                             <div className="FlightCard__summary-info">
-                                Доросилий: {searchingData.passangers.adults}, Дитячий: {searchingData.passangers.children}
+                                Adults: {searchingData.passangers.adults}, Children: {searchingData.passangers.children}
                             </div>
                         </div>
-                        <button onClick={handleOpenBookingMenu} className="FlightCard__book-btn"><p>Забронювати</p><img src={detailsIcon} alt="details" /></button>
+                        <button onClick={handleOpenBookingMenu} className="FlightCard__book-btn"><p>Book</p><img src={detailsIcon} alt="details" /></button>
                     </article>
                     <div className="FlightCard__opened" data-id={id}>
                         <div className="FlightCard__group">
-                            <div className="FlightCard__text">{searchingData.passangers.adults} Дорослий</div>
-                            <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults} <span className="FlightCard__text_bold">&#8364;</span></div>
+                            <div className="FlightCard__text">{searchingData.passangers.adults} Adult</div>
+                            <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults} <span className="FlightCard__text_bold">€</span></div>
                         </div>
                         <div className="FlightCard__group">
                             <div className="FlightCard__text FlightCard__text_mediumBold">+</div>
                         </div>
                         <div className="FlightCard__group">
-                            <div className="FlightCard__text">{searchingData.passangers.children} Дитячий</div>
-                            <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.child - fromStation.price.child) * searchingData.passangers.children} <span className="FlightCard__text_bold">&#8364;</span></div>
+                            <div className="FlightCard__text">{searchingData.passangers.children} Child</div>
+                            <div className="FlightCard__text FlightCard__text_bigBold">{(toStation.price.child - fromStation.price.child) * searchingData.passangers.children} <span className="FlightCard__text_bold">€</span></div>
                         </div>
                         <div className="FlightCard__group">
                             <div className="FlightCard__text FlightCard__text_mediumBold">=</div>
                         </div>
                         <div className="FlightCard__group">
-                            <div className="FlightCard__text">Всього</div>
-                            <div className="FlightCard__text FlightCard__text_bigBold">{((toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults) + ((toStation.price.child - fromStation.price.child) * searchingData.passangers.children)} <span className="FlightCard__text_bold">&#8364;</span></div>
+                            <div className="FlightCard__text">Total</div>
+                            <div className="FlightCard__text FlightCard__text_bigBold">{((toStation.price.adult - fromStation.price.adult) * searchingData.passangers.adults) + ((toStation.price.child - fromStation.price.child) * searchingData.passangers.children)} <span className="FlightCard__text_bold">€</span></div>
                         </div>
                     </div>
                     <BookingMenu id={id} {...{ data, searchingData, userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER }} />

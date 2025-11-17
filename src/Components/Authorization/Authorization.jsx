@@ -62,7 +62,7 @@ function Authorization({ logined, handleLogin, handleSignUp, handleRecover, hand
                 handleEdit()
                 break;
             default:
-                console.log("error of auth form")
+                console.log("Auth form error")
                 break;
         }
     }
@@ -80,24 +80,24 @@ function Authorization({ logined, handleLogin, handleSignUp, handleRecover, hand
                     </> : ""
                 }
                 {
-                    state === "recover" ? <button onClick={backHandler} className="Authorization__action Authorization__action_outline">&#8592; Назад</button> : ""
+                    state === "recover" ? <button onClick={backHandler} className="Authorization__action Authorization__action_outline">&#8592; Back</button> : ""
                 }
                 {
                     (state !== "recover" && state !== "edit") ?
                         <div className="Authorization__select">
-                            <div onClick={(e) => setState("login")} className={`Authorization__option ${state === "login" ? "Authorization__option_selected" : ""}`}>Вхід</div>
-                            <div onClick={(e) => setState("signup")} className={`Authorization__option ${state === "signup" ? "Authorization__option_selected" : ""}`}>Реєстрація</div>
+                            <div onClick={(e) => setState("login")} className={`Authorization__option ${state === "login" ? "Authorization__option_selected" : ""}`}>Log in</div>
+                            <div onClick={(e) => setState("signup")} className={`Authorization__option ${state === "signup" ? "Authorization__option_selected" : ""}`}>Sign up</div>
                         </div> : ""
                 }
-                {state === "recover" ? <h2 className="Authorization__headline">Відновлення паролю</h2> : ""}
+                {state === "recover" ? <h2 className="Authorization__headline">Password recovery</h2> : ""}
                 {
                     (state === "signup" || state === "edit") ? <>
                         <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">Ім’я</div>
+                            <div className="Authorization__input-label">First Name</div>
                             <input value={userData.name} onChange={handleChange} name="name" type="text" className="Authorization__input" />
                         </div>
                         <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">Прізвище</div>
+                            <div className="Authorization__input-label">Last Name</div>
                             <input value={userData.surname} onChange={handleChange} name="surname" type="text" className="Authorization__input" />
                         </div>
                     </> : ""
@@ -108,26 +108,26 @@ function Authorization({ logined, handleLogin, handleSignUp, handleRecover, hand
                 </div>
                 {
                     (state === "signup" || state === "edit") ? <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">Номер телефону</div>
+                        <div className="Authorization__input-label">Phone Number</div>
                         <input value={userData.phoneNumber} inputMode="tel" onChange={handlePhoneChange} name="phoneNumber" type="text" className="Authorization__input" />
                     </div> : ""
                 }
                 {
                     state !== "recover" ? <div className="Authorization__input-wrap">
-                        <div className="Authorization__input-label">Пароль</div>
+                        <div className="Authorization__input-label">Password</div>
                         <input value={userData.password} onChange={handleChange} name="password" type="password" className="Authorization__input" />
                     </div> : ""
                 }
                 {
                     (state === "signup" || state === "edit") ? <>
                         <div className="Authorization__input-wrap">
-                            <div className="Authorization__input-label">Пароль ще раз</div>
+                            <div className="Authorization__input-label">Confirm Password</div>
                             <input value={userData.confirmPassword} onChange={handleChange} name="confirmPassword" type="password" className="Authorization__input" />
                         </div>
                     </> : ""
                 }
-                <button onClick={actionHandler} className="Authorization__action">{state === "login" ? "Вхід" : state === "signUp" ? "Зареєструватися" : state === "edit" ? "Зберегти" : "Відправити"}</button>
-                {(state !== "recover" && state !== "edit") ? <div onClick={(e) => setState("recover")} className="Authorization__recover">Забули пароль?</div> : ""}
+                <button onClick={actionHandler} className="Authorization__action">{state === "login" ? "Log in" : state === "signup" ? "Sign up" : state === "edit" ? "Save" : "Send"}</button>
+                {(state !== "recover" && state !== "edit") ? <div onClick={(e) => setState("recover")} className="Authorization__recover">Forgot password?</div> : ""}
             </div>
         </section>
     )

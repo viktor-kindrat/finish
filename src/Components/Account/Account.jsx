@@ -21,7 +21,7 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
 
     let logoutHandler = () => {
         setModalData({
-            delay: 0, show: true, message: "Ви впевнені що хочете вийти?", confirmCaption: "Так", rejectCaption: "Ні", confirmAction: () => {
+            delay: 0, show: true, message: "Are you sure you want to log out?", confirmCaption: "Yes", rejectCaption: "No", confirmAction: () => {
                 setUserData(undefined);
                 sessionStorage.clear()
                 setCookie("userToken", "", 0)
@@ -33,10 +33,10 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
     useEffect(() => {
         if (userData) {
             if (userData.role === "USER") {
-                SERVER("Оновлення даних", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
+                SERVER("Data update", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
                     if (data.errorMessage?.toLowerCase().includes("token")) {
                         setAlertData({
-                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                            delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                             action: () => {
                                 setUserData(undefined);
                                 go("/authorization");
@@ -70,17 +70,17 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
                         <div className="Account__menu">
                             <div className="Account__menu-head">
                                 <h2 className="Account__menu-headline">{userData.name} {userData.surname}</h2>
-                                <button className="Account__logout-btn" onClick={logoutHandler}>Вихід <img src={logoutIcon} alt="log out" /></button>
+                                <button className="Account__logout-btn" onClick={logoutHandler}>Log out <img src={logoutIcon} alt="log out" /></button>
                             </div>
                             <nav className="Account__menu-nav">
                                 <Link to="/account">
                                     <button className={`Account__menu-btn ${location.pathname === "/account" ? "Account__menu-btn_selected" : ""}`}>
-                                        <img height={30} src={location.pathname === "/account" ? profileActiveIcon : profileIcon} alt="Профіль" /> Профіль
+                                        <img height={30} src={location.pathname === "/account" ? profileActiveIcon : profileIcon} alt="Profile" /> Profile
                                     </button>
                                 </Link>
                                 <Link to="/account/tickets">
                                     <button className={`Account__menu-btn ${location.pathname === "/account/tickets" ? "Account__menu-btn_selected" : ""}`}>
-                                        <img height={30} src={location.pathname === "/account/tickets" ? ticketActiveIcon : ticketIcon} alt="Мої білети" /> Мої білети
+                                        <img height={30} src={location.pathname === "/account/tickets" ? ticketActiveIcon : ticketIcon} alt="My tickets" /> My Tickets
                                     </button>
                                 </Link>
                             </nav>
@@ -95,22 +95,22 @@ function Account({ setModalData, modalData, getCookie, setCookie, userData, setU
                         <div className="Account__menu">
                             <div className="Account__menu-head">
                                 <h2 className="Account__menu-headline">Admin</h2>
-                                <button className="Account__logout-btn" onClick={logoutHandler}>Вихід <img src={logoutIcon} alt="log out" /></button>
+                                <button className="Account__logout-btn" onClick={logoutHandler}>Log out <img src={logoutIcon} alt="log out" /></button>
                             </div>
                             <nav className="Account__menu-nav">
                                 <Link to="/account">
                                     <button className={`Account__menu-btn ${location.pathname === "/account" ? "Account__menu-btn_selected" : ""}`}>
-                                        Рейси
+                                        Trips
                                     </button>
                                 </Link>
                                 <Link to="/account/users">
                                     <button className={`Account__menu-btn ${location.pathname === "/account/users" ? "Account__menu-btn_selected" : ""}`}>
-                                        Користувачі
+                                        Users
                                     </button>
                                 </Link>
                                 <Link to="/account/back">
                                     <button className={`Account__menu-btn ${location.pathname === "/account/back" ? "Account__menu-btn_selected" : ""}`}>
-                                        Повернення
+                                        Refunds
                                     </button>
                                 </Link>
                             </nav>

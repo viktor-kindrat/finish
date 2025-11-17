@@ -24,44 +24,44 @@ function PhoneMenu({userData}) {
                     <Link to={"/"}>
                         <button className={`PhoneMenu-btn ${location.pathname === "/" ? "PhoneMenu-btn_selected" : ""}`}>
                             <img src={location.pathname === "/" ? homeActiveIcon : homeIcon} alt="home" className="PhoneMenu-icon" height={25} />
-                            <p className="PhoneMenu-text">Головна</p>
+                            <p className="PhoneMenu-text">Home</p>
                         </button>
                     </Link>
                     <Link to={"/search"}>
                         <button className={`PhoneMenu-btn ${location.pathname === "/search" ? "PhoneMenu-btn_selected" : ""}`}>
                             <img src={location.pathname === "/search" ? bookActiveIcon : bookIcon} alt="home" className="PhoneMenu-icon" height={25} />
-                            <p className="PhoneMenu-text">Бронювати</p>
+                            <p className="PhoneMenu-text">Book</p>
                         </button>
                     </Link>
                     <Link to={"/account/tickets"}>
                         <button className={`PhoneMenu-btn ${location.pathname === "/account/tickets" ? "PhoneMenu-btn_selected" : ""}`}>
                             <img src={location.pathname === "/account/tickets" ? ticketsActiveIcon : ticketsIcon} alt="home" className="PhoneMenu-icon" height={25} />
-                            <p className="PhoneMenu-text">Мої білети</p>
+                            <p className="PhoneMenu-text">My Tickets</p>
                         </button>
                     </Link>
                     <Link to={"/account"}>
                         <button className={`PhoneMenu-btn ${location.pathname === "/account" ? "PhoneMenu-btn_selected" : ""}`}>
                             <img src={location.pathname === "/account" ? profileActiveIcon : profileIcon} alt="home" className="PhoneMenu-icon" height={25} />
-                            <p className="PhoneMenu-text">Профіль</p>
+                            <p className="PhoneMenu-text">Profile</p>
                         </button>
                     </Link>
                 </> : <>
                     <Link to={"/account"}>
                         <button className={`PhoneMenu-btn ${location.pathname === "/account" ? "PhoneMenu-btn_selected" : ""}`}>
                             <img src={location.pathname === "/account" ? bookActiveIcon : bookIcon} alt="home" className="PhoneMenu-icon" height={25} />
-                            <p className="PhoneMenu-text">Рейси</p>
+                            <p className="PhoneMenu-text">Trips</p>
                         </button>
                     </Link>
                     <Link to={"/account/users"}>
                         <button className={`PhoneMenu-btn ${location.pathname === "/account/users" ? "PhoneMenu-btn_selected" : ""}`}>
                             <img src={location.pathname === "/account/users" ? profileActiveIcon : profileIcon} alt="home" className="PhoneMenu-icon" height={25} />
-                            <p className="PhoneMenu-text">Користувачі</p>
+                            <p className="PhoneMenu-text">Users</p>
                         </button>
                     </Link>
                     <Link to={"/account/back"}>
                         <button className={`PhoneMenu-btn ${location.pathname === "/account/back" ? "PhoneMenu-btn_selected" : ""}`}>
                             <img src={location.pathname === "/account/back" ? ticketsActiveIcon : ticketsIcon} alt="home" className="PhoneMenu-icon" height={25} />
-                            <p className="PhoneMenu-text">Повернення</p>
+                            <p className="PhoneMenu-text">Refunds</p>
                         </button>
                     </Link>
                 </>

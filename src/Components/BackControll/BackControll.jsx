@@ -22,7 +22,7 @@ function BackControll({ getCookie, setCookie, userData, setUserData, alertData, 
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
-                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                         action: () => {
                             setUserData(undefined);
                             go("/authorization");
@@ -39,13 +39,13 @@ function BackControll({ getCookie, setCookie, userData, setUserData, alertData, 
 
     return (
         <section className="BackControll">
-            <h2 className="BackControll__headline">Повернення</h2>
+            <h2 className="BackControll__headline">Refunds</h2>
             <div className="BackControll__container">
                 {
                     storage.current && !pending ?
                         storage.current.length !== 0 ? storage.current.map(item =>
                             <BackControlItem key={item._id} data={item} {...{ getCookie, setAlertData, setUserData, SERVER, trigger, setTrigger }} />
-                        ) : "Нових скасувань немає"
+                        ) : "No new cancellations"
                         : <BuiltInLoader />
                 }
             </div>

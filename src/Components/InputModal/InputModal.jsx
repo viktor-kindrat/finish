@@ -44,28 +44,28 @@ function InputModal({ passangerForm, setPassangerForm, show, setInputModalShow, 
     return (
         <div className="InputModal">
             <div className="InputModal__container">
-                <h2 className="InputModal__headline">Укажіть дані пасажира</h2>
+                <h2 className="InputModal__headline">Enter passenger details</h2>
                 <div className="InputModal__form">
                     <div className="InputModal__input-container">
-                        <label htmlFor="modalUserSurname" className="InputModal__label">Прізвище</label>
+                        <div className="InputModal__input-container">
+                            <label htmlFor="modalUserName" className="InputModal__label">First Name</label>
+                            <input onChange={handleChange} value={passangerForm.name} id="modalUserName" name="name" type="text" className="InputModal__input" />
+                        </div>
+                        <label htmlFor="modalUserSurname" className="InputModal__label">Last Name</label>
                         <input onChange={handleChange} value={passangerForm.surname} id="modalUserSurname" name="surname" type="text" className="InputModal__input" />
-                    </div>
-                    <div className="InputModal__input-container">
-                        <label htmlFor="modalUserName" className="InputModal__label">Ім'я</label>
-                        <input onChange={handleChange} value={passangerForm.name} id="modalUserName" name="name" type="text" className="InputModal__input" />
                     </div>
                     <div className="InputModal__input-container">
                         <label htmlFor="modalUserEmail" className="InputModal__label">E-mail</label>
                         <input onChange={handleChange} value={passangerForm.email} inputMode="email" id="modalUserEmail" name="email" type="text" className="InputModal__input" />
                     </div>
                     <div className="InputModal__input-container">
-                        <label htmlFor="modalUserPhoneNumber" className="InputModal__label">Номер телефону</label>
+                        <label htmlFor="modalUserPhoneNumber" className="InputModal__label">Phone Number</label>
                         <input onChange={handleChange} value={normalizeInput(passangerForm.phoneNumber)} inputMode="tel" id="modalUserPhoneNumber" name="phoneNumber" type="text" className="InputModal__input" />
                     </div>
                 </div>
                 <div className="InputModal__btn-place">
-                    <button onClick={() => setInputModalShow(false)} className="InputModal__btn InputModal__btn_reject">Скасувати</button>
-                    <button onClick={bookPlace} className="InputModal__btn InputModal__btn_confirm">Підтвердити</button>
+                    <button onClick={() => setInputModalShow(false)} className="InputModal__btn InputModal__btn_reject">Cancel</button>
+                    <button onClick={bookPlace} className="InputModal__btn InputModal__btn_confirm">Confirm</button>
                 </div>
             </div>
         </div>

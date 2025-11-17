@@ -10,8 +10,8 @@ import clearIcon from "./SVG/clear.svg"
 
 function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, getCookie, setCookie, SERVER, setModalData, modalData, viewData, setViewData, viewOpened, setViewOpened }) {
     let defPassForm = {
-        name: "Адміністратором",
-        surname: "Броньовано",
+        name: "Admin",
+        surname: "Booked",
         email: JSON.parse(sessionStorage.getItem("userData")).email,
         phoneNumber: JSON.parse(sessionStorage.getItem("userData")).phoneNumber
     }
@@ -51,13 +51,13 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
         let selected = document.querySelector(".Autobus__place_selected")?.innerText;
         if (selected) {
             let tripId = viewData._id;
-            SERVER("Скасовуємо бронювання", "POST", "book/admin/cancel-book-place", "application/json", {
+            SERVER("Cancelling seat booking...", "POST", "book/admin/cancel-book-place", "application/json", {
                 tripId: tripId, place: selected
             }, getCookie("userToken"))
                 .then(data => {
                     if (data.errorMessage?.toLowerCase().includes("token")) {
                         setAlertData({
-                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                            delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in",
                             action: () => {
                                 setUserData(undefined);
                                 sessionStorage.clear()
@@ -66,15 +66,15 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                         return
                     }
                     if (data.errorMessage?.toLowerCase().includes("validation")) {
-                        setAlertData({ delay: 0.9, show: true, message: "Помилка валідації, схоже ви обрали щось не те.", actionCaption: "закрити", action: () => { } })
+                        setAlertData({ delay: 0.9, show: true, message: "Validation error, selection seems invalid.", actionCaption: "Close", action: () => { } })
                         return
                     }
                     if (data.message === 'Скасовано успішно') {
                         setAlertData({
                             delay: 0.9,
                             show: true,
-                            message: data.message,
-                            actionCaption: "закрити",
+                            message: "Cancelled successfully",
+                            actionCaption: "Close",
                             action: () => {
                                 setData(data.data)
                                 setViewData(data.data)
@@ -85,7 +85,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                             delay: 0.9,
                             show: true,
                             message: data.message,
-                            actionCaption: "закрити",
+                            actionCaption: "Close",
                             action: () => { }
                         })
                     }
@@ -119,11 +119,11 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
     }
 
     const removeAction = () => {
-        SERVER("Видаляємо", "POST", "book/admin/cancel-all-booking", "application/json", { tripId: viewData._id }, getCookie("userToken"))
+        SERVER("Deleting...", "POST", "book/admin/cancel-all-booking", "application/json", { tripId: viewData._id }, getCookie("userToken"))
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
-                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in",
                         action: () => {
                             setUserData(undefined);
                             sessionStorage.clear()
@@ -132,7 +132,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                     return
                 }
                 if (data.errorMessage?.toLowerCase().includes("validation")) {
-                    setAlertData({ delay: 0.9, show: true, message: "Помилка валідації, схоже ви обрали щось не те.", actionCaption: "закрити", action: () => { } })
+                    setAlertData({ delay: 0.9, show: true, message: "Validation error, selection seems invalid.", actionCaption: "Close", action: () => { } })
                     return
                 }
                 if (data.data) {
@@ -140,16 +140,16 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                     setData(data.data)
                     setPassangerForm(defPassForm)
                 }
-                setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Зрозуміло", action: () => { } })
+                setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Got it", action: () => { } })
             })
     }
 
     const removeAllHandler = () => {
         setModalData({
             delay: 0, show: true,
-            message: `Ви впевнені що хочете вилучити усіх пасажирів рейсу? Ця дія не відворотня, натискайте "Так" тільки якщо впевнені у своїх діях`,
-            confirmCaption: "Так",
-            rejectCaption: "Ні",
+            message: `Are you sure you want to remove all passengers? This action is irreversible, press "Yes" only if you are sure.`,
+            confirmCaption: "Yes",
+            rejectCaption: "No",
             confirmAction: removeAction,
             rejectAction: () => { },
         })
@@ -161,13 +161,13 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
         let formFilled = areAllFieldsDefined(passangerForm);
         if (selected && formFilled) {
             let tripId = viewData._id;
-            SERVER("Бронюємо", "POST", "book/admin/book-place", "application/json", {
+            SERVER("Booking...", "POST", "book/admin/book-place", "application/json", {
                 tripId: tripId, place: selected, ...passangerForm
             }, getCookie("userToken"))
                 .then(data => {
                     if (data.errorMessage?.toLowerCase().includes("token")) {
                         setAlertData({
-                            delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                            delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in",
                             action: () => {
                                 setUserData(undefined);
                                 sessionStorage.clear()
@@ -176,14 +176,14 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                         return
                     }
                     if (data.errorMessage?.toLowerCase().includes("validation")) {
-                        setAlertData({ delay: 0.9, show: true, message: "Помилка валідації, схоже ви обрали щось не те.", actionCaption: "закрити", action: () => { } })
+                        setAlertData({ delay: 0.9, show: true, message: "Validation error, selection seems invalid.", actionCaption: "Close", action: () => { } })
                         return
                     }
                     setAlertData({
                         delay: 0.9,
                         show: true,
                         message: data.message,
-                        actionCaption: "закрити",
+                        actionCaption: "Close",
                         action: () => {
                             setInputModalShow(false)
                             setData(data.data)
@@ -199,25 +199,25 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                     })
                 })
         } else {
-            setAlertData({ delay: 0, show: true, message: "Заповніть всі поля і впевніться що попередньо було вибрано місце на карті автобуса", actionCaption: "Зрозуміло", action: () => { } })
+            setAlertData({ delay: 0, show: true, message: "Please fill in all fields and make sure a seat is selected on the bus map.", actionCaption: "Got it", action: () => { } })
         }
     }
     return (
         <div className="ViewTrip">
             <InputModal {...{ passangerForm, setPassangerForm, bookPlace, setInputModalShow }} show={inputModalShow} />
-            <button onClick={backHandler} className="ViewTrip__btn">&#8592; Назад</button>
-            <button onClick={removeAllHandler} className="ViewTrip__btn ViewTrip__btn_filled"><img src={clearIcon} alt="clear" /> Очистити бронювання</button>
+            <button onClick={backHandler} className="ViewTrip__btn">&#8592; Back</button>
+            <button onClick={removeAllHandler} className="ViewTrip__btn ViewTrip__btn_filled"><img src={clearIcon} alt="clear" /> Clear bookings</button>
             <Autobus type="ADMIN" places={data.places} {...{ clickTrigger, setClickTrigger }} />
             <div className="ViewTrip__actions">
-                <button className="ViewTrip__action ViewTrip__action_green" onClick={handleBook}>Бронювати</button>
-                <button className="ViewTrip__action ViewTrip__action_red" onClick={handleRemove}>Звільнити</button>
+                <button className="ViewTrip__action ViewTrip__action_green" onClick={handleBook}>Book</button>
+                <button className="ViewTrip__action ViewTrip__action_red" onClick={handleRemove}>Release</button>
             </div>
             {
                 (moreData) ? <>
-                    <h2 className="ViewTrip__headline">Заброньовано</h2>
+                    <h2 className="ViewTrip__headline">Booked</h2>
                     <div className="ViewTrip__records">
                         <div className={`ViewTrip__record ${moreData.isInitiator ? `ViewTrip__record_initiator` : ""}`}>
-                            <div className="ViewTrip__record-head">місце {moreData.placeNumber}</div>
+                            <div className="ViewTrip__record-head">Seat {moreData.placeNumber}</div>
                             <div className="ViewTrip__record-body">
                                 <h3 className="ViewTrip__record-headline">{moreData.userDetails.name} {moreData.userDetails.surname}</h3>
                                 <p className="ViewTrip__record-info">{normalizeInput(moreData.initiatorContacts.phone)}</p>
@@ -227,7 +227,7 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                                         if (item.invitatorId === moreData.invitatorId && moreData.placeNumber !== item.placeNumber) {
                                             return (
                                                 <div key={index} className={item.isInitiator ? `ViewTrip__sub-passanger ViewTrip__sub-passanger_initiator` : "ViewTrip__sub-passanger"}>
-                                                    <div className="ViewTrip__record-head">Місце {item.placeNumber}</div>
+                                                    <div className="ViewTrip__record-head">Seat {item.placeNumber}</div>
                                                     <div className="ViewTrip__record-body">
                                                         <h4 className="ViewTrip__record-headline">{item.userDetails.name} {item.userDetails.surname}</h4>
                                                     </div>

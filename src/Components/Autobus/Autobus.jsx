@@ -124,7 +124,7 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
                         <div className="Autobus__place">20</div>
                     </div>
                     <div className="Autobus__group">
-                        <div className="Autobus__tech-space">Столик</div>
+                        <div className="Autobus__tech-space">Table</div>
                     </div>
                     <div className="Autobus__group">
                         <div className="Autobus__place">23</div>
@@ -151,7 +151,7 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
                         <div className="Autobus__place">40</div>
                     </div>
                     <div className="Autobus__group">
-                        <div className="Autobus__tech-space">Столик</div>
+                        <div className="Autobus__tech-space">Table</div>
                     </div>
                     <div className="Autobus__group">
                         <div className="Autobus__place">43</div>
@@ -189,14 +189,14 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
                         <div className="Autobus__place">8</div>
                     </div>
                     <div className="Autobus__group">
-                        <div className="Autobus__entrance">Вхід</div>
+                        <div className="Autobus__entrance">Entrance</div>
                     </div>
                     <div className="Autobus__group">
                         <div className="Autobus__place">13</div>
                         <div className="Autobus__place">14</div>
                     </div>
                     <div className="Autobus__group">
-                        <div className="Autobus__tech-space">Столик</div>
+                        <div className="Autobus__tech-space">Table</div>
                     </div>
                     <div className="Autobus__group">
                         <div className="Autobus__place">17</div>
@@ -215,17 +215,17 @@ function Autobus({ type, places, clickTrigger, setClickTrigger, count, selected,
                         <div className="Autobus__place">30</div>
                     </div>
                     <div className="Autobus__group">
-                        <div className="Autobus__tech-space">Туалет</div>
+                        <div className="Autobus__tech-space">WC</div>
                     </div>
                     <div className="Autobus__group">
                         <div className="Autobus__place">37</div>
                         <div className="Autobus__place">38</div>
                     </div>
                     <div className="Autobus__group">
-                        <div className="Autobus__entrance">Вихід</div>
+                        <div className="Autobus__entrance">Exit</div>
                     </div>
                     <div className="Autobus__group">
-                        <div className="Autobus__tech-space">Столик</div>
+                        <div className="Autobus__tech-space">Table</div>
                     </div>
                     <div className="Autobus__group">
                         <div className="Autobus__place">41</div>

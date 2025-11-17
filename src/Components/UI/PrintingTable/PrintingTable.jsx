@@ -27,29 +27,29 @@ function PrintingTable({passangers, allTrips, tripId}){
             <table cellspaceing="0" className="PrintingTable__table-body">
                 <thead>
                     <tr>
-                        <th>Дата</th>
-                        <th>звідки</th>
-                        <th>куди</th>
-                        <th>номер місця</th>
-                        <th>ПІБ</th>
-                        <th>номер телефону</th>
+                        <th>Date</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Seat</th>
+                        <th>Full Name</th>
+                        <th>Phone</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     {
                         (passangers && passangers?.length > 0) ? [...passangers].sort((a, b) => {
-                            if (`${a.userDetails.name === "броньовано" ? "невідомо" : a.userDetails.from.country} ${a.userDetails.name === "броньовано" ? "" : "-"} ${a.userDetails.name === "броньовано" ? "" : a.userDetails.from.city}` < 
-                                `${b.userDetails.name === "броньовано" ? "невідомо" : b.userDetails.from.country} ${b.userDetails.name === "броньовано" ? "" : "-"} ${b.userDetails.name === "броньовано" ? "" : b.userDetails.from.city}`) return -1;
-                            if (`${a.userDetails.name === "броньовано" ? "невідомо" : a.userDetails.from.country} ${a.userDetails.name === "броньовано" ? "" : "-"} ${a.userDetails.name === "броньовано" ? "" : a.userDetails.from.city}` > 
-                                `${b.userDetails.name === "броньовано" ? "невідомо" : b.userDetails.from.country} ${b.userDetails.name === "броньовано" ? "" : "-"} ${b.userDetails.name === "броньовано" ? "" : b.userDetails.from.city}`) return 1;
+                            if (`${a.userDetails.name === "броньовано" ? "unknown" : a.userDetails.from.country} ${a.userDetails.name === "броньовано" ? "" : "-"} ${a.userDetails.name === "броньовано" ? "" : a.userDetails.from.city}` < 
+                                `${b.userDetails.name === "броньовано" ? "unknown" : b.userDetails.from.country} ${b.userDetails.name === "броньовано" ? "" : "-"} ${b.userDetails.name === "броньовано" ? "" : b.userDetails.from.city}`) return -1;
+                            if (`${a.userDetails.name === "броньовано" ? "unknown" : a.userDetails.from.country} ${a.userDetails.name === "броньовано" ? "" : "-"} ${a.userDetails.name === "броньовано" ? "" : a.userDetails.from.city}` > 
+                                `${b.userDetails.name === "броньовано" ? "unknown" : b.userDetails.from.country} ${b.userDetails.name === "броньовано" ? "" : "-"} ${b.userDetails.name === "броньовано" ? "" : b.userDetails.from.city}`) return 1;
                             return 0;
                           }).map((item, index) => {
                             return (
                                 <tr>
-                                    <td>{new Date([...allTrips].filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.to.city && station.country === item.userDetails.to.country))[0].arrivalDate).toLocaleString()}</td>
-                                    <td>{item.userDetails.name === "броньовано" ? "невідомо" : item.userDetails.from.country} {item.userDetails.name === "броньовано" ? "" : "-"} {item.userDetails.name === "броньовано" ? "" : item.userDetails.from.city}</td>
-                                    <td>{item.userDetails.name === "броньовано" ? "невідомо" : item.userDetails.to.country} {item.userDetails.name === "броньовано" ? "" : "-"}  {item.userDetails.name === "броньовано" ? "" : item.userDetails.to.city}</td>
+                                    <td>{new Date([...allTrips].filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.to.city && station.country === item.userDetails.to.country))[0].arrivalDate).toLocaleString("en-GB")}</td>
+                                    <td>{item.userDetails.name === "броньовано" ? "unknown" : item.userDetails.from.country} {item.userDetails.name === "броньовано" ? "" : "-"} {item.userDetails.name === "броньовано" ? "" : item.userDetails.from.city}</td>
+                                    <td>{item.userDetails.name === "броньовано" ? "unknown" : item.userDetails.to.country} {item.userDetails.name === "броньовано" ? "" : "-"}  {item.userDetails.name === "броньовано" ? "" : item.userDetails.to.city}</td>
                                     <td>{item.placeNumber}</td>
                                     <td>{item.userDetails.surname} {item.userDetails.name}</td>
                                     <td>{normalizeInput(item.initiatorContacts.phone)}</td>

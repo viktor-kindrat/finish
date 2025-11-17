@@ -21,7 +21,7 @@ function BackControlItem({ data, getCookie, setAlertData, setUserData, SERVER, t
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
-                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                         action: () => {
                             setUserData(undefined);
                             go("/authorization");
@@ -36,18 +36,18 @@ function BackControlItem({ data, getCookie, setAlertData, setUserData, SERVER, t
                 } else {
                     storage.current = data.message;
                     setPending(false)
-                    setError({ msg: "Схоже із цим поверненням щось не так. Скоріш за все поїздку якої стосується повернення було видалено! Натисніть на хрестик щоб видалити повернення" })
+                    setError({ msg: "It seems there is an issue with this refund. The trip associated with this refund was likely deleted! Click the cross to remove this request." })
                 }
             })
             .catch(e => console.log(e))
     }, [data.tripId, getCookie, go, server, setAlertData, setUserData])
 
     let handleRemoveCancelation = () => {
-        SERVER("Видалення", "POST", "book/admin/remove-cancelation", "application/json", { id: data._id }, getCookie("userToken"))
+        SERVER("Deletion...", "POST", "book/admin/remove-cancelation", "application/json", { id: data._id }, getCookie("userToken"))
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
-                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                         action: () => {
                             setUserData(undefined);
                             go("/authorization");
@@ -56,13 +56,14 @@ function BackControlItem({ data, getCookie, setAlertData, setUserData, SERVER, t
                     })
                     return
                 }
-                setAlertData({ delay: 0.9, show: true, message: "Видалено успішно", actionCaption: "Ок", action: () => { } })
+                setAlertData({ delay: 0.9, show: true, message: "Deleted successfully", actionCaption: "OK", action: () => { } })
                 setTrigger(!trigger);
             })
     }
 
-    let from = data.passangers[0].userDetails.from
-    let to = data.passangers[0].userDetails.to
+    let from = data.passangers[0]?.userDetails.from
+    let to = data.passangers[0]?.userDetails.to
+    
     return (
         <div className="BackControll__item">
             {
@@ -71,26 +72,26 @@ function BackControlItem({ data, getCookie, setAlertData, setUserData, SERVER, t
                     <div className="BackControll__item-content">
                         <div className="BackControll__item-content-row">
                             <div className="BackControll__item-column">
-                                <div className="BackControll__item-info BackControll__item-info_bigBold">{from.city}</div>
+                                <div className="BackControll__item-info BackControll__item-info_bigBold">{from?.city}</div>
                                 <div className="BackControll__item-info">{
-                                    new Date(storage.current.stations.filter(item => item.city === from.city && item.country === from.country)[0].arrivalDate).toLocaleTimeString("uk-UA", { hour: "numeric", minute: "numeric" })
+                                    new Date(storage.current.stations.filter(item => item.city === from?.city && item.country === from?.country)[0].arrivalDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })
                                 }</div>
                                 <div className="BackControll__item-info">{
-                                    new Date(storage.current.stations.filter(item => item.city === from.city && item.country === from.country)[0].arrivalDate).toLocaleDateString("uk-UA")
+                                    new Date(storage.current.stations.filter(item => item.city === from?.city && item.country === from?.country)[0].arrivalDate).toLocaleDateString("en-GB")
                                 }</div>
                             </div>
                             <div className="BackControll__item-sign">&gt;</div>
                             <div className="BackControll__item-column">
-                                <div className="BackControll__item-info BackControll__item-info_bigBold">{to.city}</div>
+                                <div className="BackControll__item-info BackControll__item-info_bigBold">{to?.city}</div>
                                 <div className="BackControll__item-info">{
-                                    new Date(storage.current.stations.filter(item => item.city === to.city && item.country === to.country)[0].arrivalDate).toLocaleTimeString("uk-UA", { hour: "numeric", minute: "numeric" })
+                                    new Date(storage.current.stations.filter(item => item.city === to?.city && item.country === to?.country)[0].arrivalDate).toLocaleTimeString("en-GB", { hour: "numeric", minute: "numeric" })
                                 }</div>
                                 <div className="BackControll__item-info">{
-                                    new Date(storage.current.stations.filter(item => item.city === to.city && item.country === to.country)[0].arrivalDate).toLocaleDateString("uk-UA")
+                                    new Date(storage.current.stations.filter(item => item.city === to?.city && item.country === to?.country)[0].arrivalDate).toLocaleDateString("en-GB")
                                 }</div>
                             </div>
                             <div className="BackControll__item-column">
-                                <div className="BackControll__item-info">Місце:</div>
+                                <div className="BackControll__item-info">Seat:</div>
                                 <div className="BackControll__item-info">{data.passangers.map((item, index) => `${item.placeNumber}${data.passangers.length - 1 === index ? "" : ","} `)}</div>
                             </div>
                         </div>
@@ -98,7 +99,7 @@ function BackControlItem({ data, getCookie, setAlertData, setUserData, SERVER, t
                         <p className="BackControll__item-subheadline">{data.passangers.filter(item => item.isInitiator)[0].initiatorContacts.phone}</p>
                     </div>
                 </> : <BuiltInLoader /> : <>
-                    <div className="BackControll__item-head">Помилка <button onClick={handleRemoveCancelation} className="BackControll__item-close-btn"><img src={closeIcon} alt="close" /></button></div>
+                    <div className="BackControll__item-head">Error <button onClick={handleRemoveCancelation} className="BackControll__item-close-btn"><img src={closeIcon} alt="close" /></button></div>
                     <div className="BackControll__item-content">
                         {error.msg}
                     </div>
