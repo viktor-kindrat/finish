@@ -23,7 +23,7 @@
     }
 
     .Header__logo {
-        height: 50px;
+        height: 200px;
         width: auto;
         object-fit: contain;
         user-select: none;
@@ -323,7 +323,8 @@
         }
 
         .Header__logo_mobile {
-            height: 35px;
+            height: 55px;
+            width: 55px;
             aspect-ratio: 1/1;
             object-fit: contain;
             display: block;
