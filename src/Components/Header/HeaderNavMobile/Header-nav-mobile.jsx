@@ -28,7 +28,7 @@ function HeaderNavMobile({ alertData, setAlertData }) {
                 <div className="HeaderNavMobile__info">
                     <a href="tel:+380123356789"><p className="HeaderNavMobile__info-data">+380 (123) 356 78 9</p></a>
                     <a href="tel:+380123356789"><p className="HeaderNavMobile__info-data">+380 (123) 356 78 9</p></a>
-                    <a href="mailto:tot.viktor.kindrat@gmail.com?subject=Допомога на сайті"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">tot.viktor.kindrat@gmail.com</p></a>
+                    <a href="mailto:alliance.platform.khvis@gmail.com?subject=Допомога на сайті"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">alliance.platform.khvis@gmail.com</p></a>
                 </div>
             </div>
             <div className="HeaderNavMobile__section">
