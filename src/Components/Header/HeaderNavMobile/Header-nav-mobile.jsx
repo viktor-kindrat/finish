@@ -17,26 +17,28 @@ function HeaderNavMobile({ alertData, setAlertData }) {
     let needHelpHandler = () => {
         fetch(`${server}need-help`, { method: "POST", headers: { "Content-type": "application/json" }, body: JSON.stringify({ phoneNumber: phone }) })
             .then(res => res.json())
-            .then(data => setAlertData({ delay: 0, show: true, message: data.message, actionCaption: "закрити", action: () => { } }))
+            // TRANSLATION UPDATE: "закрити" -> "Close"
+            .then(data => setAlertData({ delay: 0, show: true, message: data.message, actionCaption: "Close", action: () => { } }))
             .catch(e => console.log(e))
     }
 
     return (
         <div className="HeaderNavMobile">
             <div className="HeaderNavMobile__section">
-                <h2 className="HeaderNavMobile__headline">Контакти</h2>
+                <h2 className="HeaderNavMobile__headline">Contacts</h2>
                 <div className="HeaderNavMobile__info">
                     <a href="tel:+380508881234"><p className="HeaderNavMobile__info-data">+38 (050) 888 12 34</p></a>
                     <a href="tel:+380508881234"><p className="HeaderNavMobile__info-data">+38 (050) 888 12 34</p></a>
-                    <a href="mailto:mail@group-alliance.com?subject=Допомога на сайті"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">mail@group-alliance.com</p></a>
+                    {/* TRANSLATION UPDATE: email subject */}
+                    <a href="mailto:mail@group-alliance.com?subject=Website Help"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">mail@group-alliance.com</p></a>
                 </div>
             </div>
             <div className="HeaderNavMobile__section">
-                <h2 className="HeaderNavMobile__headline">ПОТРІБНА ДОПОМОГА ?</h2>
+                <h2 className="HeaderNavMobile__headline">NEED HELP?</h2>
                 <div className="HeaderNavMobile__info">
-                    <div className="HeaderNavMobile__info-caption">Замовити зворотній дзвінок від менеджера</div>
+                    <div className="HeaderNavMobile__info-caption">Request a callback from a manager</div>
                     <PhoneInput boxClassSelector="HeaderNavMobile__phone-input-wrapper" inputClassSelector="HeaderNavMobile__phone-input" setPhoneNumber={setPhone} />
-                    <button onClick={needHelpHandler} className="HeaderNavMobile__btn">Відправити</button>
+                    <button onClick={needHelpHandler} className="HeaderNavMobile__btn">Send</button>
                 </div>
             </div>
             <div className="HeaderNavMobile__section HeaderNavMobile__socials">

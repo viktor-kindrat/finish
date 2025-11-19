@@ -24,7 +24,7 @@ function PrintingTable({passangers, allTrips, tripId}){
 
     return (
         <div className="PrintingTable">
-            <table cellspaceing="0" className="PrintingTable__table-body">
+            <table cellSpacing="0" className="PrintingTable__table-body">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -39,17 +39,19 @@ function PrintingTable({passangers, allTrips, tripId}){
 
                     {
                         (passangers && passangers?.length > 0) ? [...passangers].sort((a, b) => {
-                            if (`${a.userDetails.name === "броньовано" ? "unknown" : a.userDetails.from.country} ${a.userDetails.name === "броньовано" ? "" : "-"} ${a.userDetails.name === "броньовано" ? "" : a.userDetails.from.city}` < 
-                                `${b.userDetails.name === "броньовано" ? "unknown" : b.userDetails.from.country} ${b.userDetails.name === "броньовано" ? "" : "-"} ${b.userDetails.name === "броньовано" ? "" : b.userDetails.from.city}`) return -1;
-                            if (`${a.userDetails.name === "броньовано" ? "unknown" : a.userDetails.from.country} ${a.userDetails.name === "броньовано" ? "" : "-"} ${a.userDetails.name === "броньовано" ? "" : a.userDetails.from.city}` > 
-                                `${b.userDetails.name === "броньовано" ? "unknown" : b.userDetails.from.country} ${b.userDetails.name === "броньовано" ? "" : "-"} ${b.userDetails.name === "броньовано" ? "" : b.userDetails.from.city}`) return 1;
+                            // TRANSLATION UPDATE: "броньовано" -> "Booked"
+                            if (`${a.userDetails.name === "Booked" ? "unknown" : a.userDetails.from.country} ${a.userDetails.name === "Booked" ? "" : "-"} ${a.userDetails.name === "Booked" ? "" : a.userDetails.from.city}` < 
+                                `${b.userDetails.name === "Booked" ? "unknown" : b.userDetails.from.country} ${b.userDetails.name === "Booked" ? "" : "-"} ${b.userDetails.name === "Booked" ? "" : b.userDetails.from.city}`) return -1;
+                            if (`${a.userDetails.name === "Booked" ? "unknown" : a.userDetails.from.country} ${a.userDetails.name === "Booked" ? "" : "-"} ${a.userDetails.name === "Booked" ? "" : a.userDetails.from.city}` > 
+                                `${b.userDetails.name === "Booked" ? "unknown" : b.userDetails.from.country} ${b.userDetails.name === "Booked" ? "" : "-"} ${b.userDetails.name === "Booked" ? "" : b.userDetails.from.city}`) return 1;
                             return 0;
                           }).map((item, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td>{new Date([...allTrips].filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.to.city && station.country === item.userDetails.to.country))[0].arrivalDate).toLocaleString("en-GB")}</td>
-                                    <td>{item.userDetails.name === "броньовано" ? "unknown" : item.userDetails.from.country} {item.userDetails.name === "броньовано" ? "" : "-"} {item.userDetails.name === "броньовано" ? "" : item.userDetails.from.city}</td>
-                                    <td>{item.userDetails.name === "броньовано" ? "unknown" : item.userDetails.to.country} {item.userDetails.name === "броньовано" ? "" : "-"}  {item.userDetails.name === "броньовано" ? "" : item.userDetails.to.city}</td>
+                                    {/* TRANSLATION UPDATE: "броньовано" -> "Booked" */}
+                                    <td>{item.userDetails.name === "Booked" ? "unknown" : item.userDetails.from.country} {item.userDetails.name === "Booked" ? "" : "-"} {item.userDetails.name === "Booked" ? "" : item.userDetails.from.city}</td>
+                                    <td>{item.userDetails.name === "Booked" ? "unknown" : item.userDetails.to.country} {item.userDetails.name === "Booked" ? "" : "-"}  {item.userDetails.name === "Booked" ? "" : item.userDetails.to.city}</td>
                                     <td>{item.placeNumber}</td>
                                     <td>{item.userDetails.surname} {item.userDetails.name}</td>
                                     <td>{normalizeInput(item.initiatorContacts.phone)}</td>

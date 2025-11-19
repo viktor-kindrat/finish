@@ -78,8 +78,8 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
         }
 
         SERVER("Saving...", "POST", "auth/change-user-data", "application/json", data, getCookie("userToken")).then(data => {
-            // KEEP THIS STRING IN UKRAINIAN (It comes from the server)
-            if (data.message.includes('Дані змінено успішно')) {
+            // TRANSLATION UPDATE: Check for English success message
+            if (data.message.includes('Data changed successfully')) {
                 SERVER("Saving...", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
                     if (data.body) {
                         if (data.body.verified) {
@@ -96,10 +96,10 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                     setAlertData({
                         delay: 0.9,
                         show: true,
-                        // Translation of success message
-                        message: data.message === "ok" ? `Data updated successfully! ${changedFields.includes("email") ? "Please verify your new email address. A confirmation email has been sent." : ""}` : (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Your session has expired. Please log in again." : data.message,
-                        actionCaption: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Log in" : "OK",
-                        action: () => (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? () => {
+                        // TRANSLATION UPDATE: Check for English server error
+                        message: data.message === "ok" ? `Data updated successfully! ${changedFields.includes("email") ? "Please verify your new email address. A confirmation email has been sent." : ""}` : (data.message === "Server error" && data.errorMessage === "Invalid token") ? "Your session has expired. Please log in again." : data.message,
+                        actionCaption: (data.message === "Server error" && data.errorMessage === "Invalid token") ? "Log in" : "OK",
+                        action: () => (data.message === "Server error" && data.errorMessage === "Invalid token") ? () => {
                             setUserData(undefined);
                             sessionStorage.removeItem("userData")
                             setCookie("userToken", "", 0)
@@ -112,9 +112,10 @@ function PersonalInfo({ getCookie, setCookie, userData, setUserData, alertData, 
                 setAlertData({
                     delay: 0.9,
                     show: true,
-                    message: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Your session has expired. Please log in again." : data.message,
-                    actionCaption: (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? "Log in" : "Close",
-                    action: () => (data.message === "Серверна помилка" && data.errorMessage === "Invalid token") ? () => {
+                    // TRANSLATION UPDATE: Check for English server error
+                    message: (data.message === "Server error" && data.errorMessage === "Invalid token") ? "Your session has expired. Please log in again." : data.message,
+                    actionCaption: (data.message === "Server error" && data.errorMessage === "Invalid token") ? "Log in" : "Close",
+                    action: () => (data.message === "Server error" && data.errorMessage === "Invalid token") ? () => {
                         setUserData(undefined);
                         go("/authorization")
                     } : () => { },

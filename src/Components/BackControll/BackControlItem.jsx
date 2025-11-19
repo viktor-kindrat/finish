@@ -30,7 +30,8 @@ function BackControlItem({ data, getCookie, setAlertData, setUserData, SERVER, t
                     })
                     return
                 }
-                if (data.message === "Дані отримано") {
+                // TRANSLATION UPDATE: "Дані отримано" -> "Data received"
+                if (data.message === "Data received") {
                     storage.current = data.data;
                     setPending(false)
                 } else {

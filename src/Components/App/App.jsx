@@ -110,17 +110,19 @@ function App() {
                             delay: 0.9, 
                             show: true, 
                             message: data.message,
-                            actionCaption: data.message === "Ви успішно увійшли" ? "My Account" : "Close", 
-                            action: data.message === "Ви успішно увійшли" ? () => go("/account") : () => { } 
+                            // TRANSLATION LOGIC UPDATE:
+                            actionCaption: data.message === "Logged in successfully" ? "My Account" : "Close", 
+                            action: data.message === "Logged in successfully" ? () => go("/account") : () => { } 
                         })
                     } else {
                         setModalData({
                             delay: 0.9,
                             show: true,
                             message: data.message,
-                            confirmCaption: data.message.includes("не активовано") ? "Yes" : "Got it",
-                            rejectCaption: data.message.includes("не активовано") ? "No" : "Close",
-                            confirmAction: data.message.includes("не активовано") ? () => {
+                            // TRANSLATION LOGIC UPDATE ("not activated"):
+                            confirmCaption: data.message.includes("not activated") ? "Yes" : "Got it",
+                            rejectCaption: data.message.includes("not activated") ? "No" : "Close",
+                            confirmAction: data.message.includes("not activated") ? () => {
                                 SERVER("Sending email...", "POST", "auth/confirm-account", "application/json", {}, data.token).then(data => {
                                     if (data.message) {
                                         setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Got it", action: () => go("/") })
@@ -173,8 +175,9 @@ function App() {
                     delay: 0.9, 
                     show: true, 
                     message: data.message, 
-                    actionCaption: data.message === "Посилання для скидання паролю було надіслано на ваш e-mail!" ? "Home" : "Got it", 
-                    action: data.message === "Посилання для скидання паролю було надіслано на ваш e-mail!" ? () => go("/") : () => { } 
+                    // TRANSLATION LOGIC UPDATE:
+                    actionCaption: data.message === "Password reset link has been sent to your email!" ? "Home" : "Got it", 
+                    action: data.message === "Password reset link has been sent to your email!" ? () => go("/") : () => { } 
                 })
             })
         }

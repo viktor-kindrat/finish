@@ -69,7 +69,8 @@ function ViewTrip({ trigger, setTrigger, alertData, setUserData, setAlertData, g
                         setAlertData({ delay: 0.9, show: true, message: "Validation error, selection seems invalid.", actionCaption: "Close", action: () => { } })
                         return
                     }
-                    if (data.message === 'Скасовано успішно') {
+                    // TRANSLATION UPDATE: "Скасовано успішно" -> "Canceled successfully"
+                    if (data.message === 'Canceled successfully') {
                         setAlertData({
                             delay: 0.9,
                             show: true,

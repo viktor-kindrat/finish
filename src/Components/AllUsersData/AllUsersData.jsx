@@ -99,11 +99,13 @@ function AllUsersData({ passangers, allTrips, tripId }) {
                                     </div>
                                     <div className="AllUserData__user-field">
                                         <img height={20} width={20} src={locationIcon} alt="From" />
-                                        <span className="AllUserData__thin">Boarding:</span> {item.userDetails.name === "броньовано" ? "unknown" : item.userDetails.from.country} {item.userDetails.name === "броньовано" ? "" : "-"} {item.userDetails.name === "броньовано" ? "" : item.userDetails.from.city}
+                                        {/* ЗМІНЕНО ЛОГІКУ: "броньовано" -> "Booked" */}
+                                        <span className="AllUserData__thin">Boarding:</span> {item.userDetails.name === "Booked" ? "unknown" : item.userDetails.from.country} {item.userDetails.name === "Booked" ? "" : "-"} {item.userDetails.name === "Booked" ? "" : item.userDetails.from.city}
                                     </div>
                                     <div className="AllUserData__user-field">
                                         <img height={20} width={20} src={locationIcon} alt="To" />
-                                        <span className="AllUserData__thin">Drop-off:</span> {item.userDetails.name === "броньовано" ? "unknown" : item.userDetails.to.country} {item.userDetails.name === "броньовано" ? "" : "-"}  {item.userDetails.name === "броньовано" ? "" : item.userDetails.to.city}
+                                        {/* ЗМІНЕНО ЛОГІКУ: "броньовано" -> "Booked" */}
+                                        <span className="AllUserData__thin">Drop-off:</span> {item.userDetails.name === "Booked" ? "unknown" : item.userDetails.to.country} {item.userDetails.name === "Booked" ? "" : "-"}  {item.userDetails.name === "Booked" ? "" : item.userDetails.to.city}
                                     </div>
                                     <div className="AllUserData__user-field">
                                         <img height={20} width={20} src={phoneNumberIcon} alt="Phone" />

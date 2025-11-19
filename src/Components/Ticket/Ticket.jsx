@@ -61,8 +61,8 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                         return
                     }
 
-                    // Checking server response in Ukrainian
-                    if (data.message === "Дані отримано") {
+                    // TRANSLATION UPDATE: "Дані отримано" -> "Data received"
+                    if (data.message === "Data received") {
                         setPending(false);
                         storage.current = data.data;
                     } else {
@@ -93,8 +93,8 @@ function Ticket({ data, getCookie, setCookie, userData, setUserData, alertData, 
                             return
                         }
                         setAlertData({
-                            // Translation of server response message logic
-                            delay: 0.9, show: true, message: data.message === "Скасовано успішно" ? "Cancelled successfully" : data.message, actionCaption: "Got it", action: () => {
+                            // TRANSLATION UPDATE: "Скасовано успішно!" -> "Canceled successfully!"
+                            delay: 0.9, show: true, message: data.message === "Canceled successfully!" ? "Cancelled successfully" : data.message, actionCaption: "Got it", action: () => {
                                 SERVER("Updating data...", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
                                     if (data.errorMessage?.toLowerCase().includes("token")) {
                                         setAlertData({

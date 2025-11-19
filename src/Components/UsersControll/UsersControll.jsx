@@ -119,7 +119,8 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
             let send = { id, email, phoneNumber, name, surname };
             if (password.length > 0) send.password = password
             SERVER("Saving user data...", "POST", "auth/admin/change-user-data", "application/json", send, getCookie("userToken")).then(data => {
-                if (data.message?.toLowerCase().includes("помилка")) {
+                // TRANSLATION UPDATE: "помилка" -> "error"
+                if (data.message?.toLowerCase().includes("error")) {
                     if (data.errorMessage?.includes("token")) {
                         setAlertData({
                             delay: 0.9, show: true, message: "Your session has expired. Please log in again.", actionCaption: "Log in", action: () => {
@@ -150,7 +151,8 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
 
     const handleRemove = (data) => {
         SERVER("Deleting user...", "POST", "auth/admin/delete-user", "application/json", { userId: data._id }, getCookie("userToken")).then(data => {
-            if (data.message?.toLowerCase().includes("помилка")) {
+            // TRANSLATION UPDATE: "помилка" -> "error"
+            if (data.message?.toLowerCase().includes("error")) {
                 if (data.errorMessage?.includes("token")) {
                     setAlertData({
                         delay: 0.9, show: true, message: "Your session has expired. Please log in again.", actionCaption: "Log in", action: () => {

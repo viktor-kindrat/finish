@@ -67,7 +67,8 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 }
                 setAlertData({
                     delay: 0.9, show: true, message: data.message, actionCaption: "OK",
-                    action: data.message === "Заброньовано успішно!" ? () => {
+                    // TRANSLATION UPDATE:
+                    action: data.message === "Booked successfully!" ? () => {
 
                         SERVER("Loading your data...", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
                             if (data.errorMessage?.toLowerCase().includes("token")) {
@@ -130,7 +131,8 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                     }
                     setAlertData({
                         delay: 0.9, show: true, message: data.message, actionCaption: "OK",
-                        action: data.message === "Заброньовано успішно!" ? () => {
+                        // TRANSLATION UPDATE:
+                        action: data.message === "Booked successfully!" ? () => {
                             go("/")
                         } : () => { }
                     })
@@ -163,7 +165,8 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                         delay: 0.9, show: true,
                         message: res.message,
                         actionCaption: "Close",
-                        action: res.message === "Зареєстровано успішно. Лист для підтвердження акаунта надіслано!"
+                        // TRANSLATION UPDATE:
+                        action: res.message === "Registered successfully. Account confirmation email sent!"
                             ? () => {
                                 let checker = passangers.map(item => {
                                     return {
@@ -187,9 +190,11 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                                             }
                                             setAlertData({
                                                 delay: 0.9, show: true,
-                                                message: data.message === "Заброньовано успішно!" ? "Booking successful! You can view your bookings in your account after confirmation using the password: " + denormalizeInput(contact.phoneNumber) : data.message,
+                                                // TRANSLATION UPDATE:
+                                                message: data.message === "Booked successfully!" ? "Booking successful! You can view your bookings in your account after confirmation using the password: " + denormalizeInput(contact.phoneNumber) : data.message,
                                                 actionCaption: "OK",
-                                                action: data.message === "Заброньовано успішно!" ? () => {
+                                                // TRANSLATION UPDATE:
+                                                action: data.message === "Booked successfully!" ? () => {
                                                     go("/")
                                                 } : () => {
                                                     setUserData({
