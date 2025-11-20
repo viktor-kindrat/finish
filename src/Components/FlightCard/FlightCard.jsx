@@ -58,7 +58,7 @@ function FlightCard({ id, data, searchingData, userData, setUserData, alertData,
             message: <div className="Modal__map">
                 <VisualizeMap language="en" apiKey={APIKEY} lat={lng} lng={lat} />
             </div>,
-            confirmCaption: "Open Maps",
+            confirmCaption: "Maps",
             rejectCaption: "Close",
             confirmAction: () => {
                 redirectToGoogleMaps(lng, lat)
