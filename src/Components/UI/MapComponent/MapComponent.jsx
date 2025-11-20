@@ -50,6 +50,6 @@ const MapContainer = ({ google, stationId, handleMarkerChange }) => {
 };
 
 export default GoogleApiWrapper({
-    apiKey: "AIzaSyA2w4bmkINSc8U15MEX543BLZmlSp5GPlI", // Replace with your API key
+    apiKey: "AIzaSyA2w4bmkINSc8U15MEX543BLZmlSp5GPlI", 
     language: "uk"
 })(MapContainer);

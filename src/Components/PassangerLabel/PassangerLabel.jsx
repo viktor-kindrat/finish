@@ -53,13 +53,13 @@ function PassangerLabel({ id, type, passangers, setPassangers, data, userData, s
     }, [setFirstData, setPassangers, userData])
     return (
         <div className="PassangerLabel">
-            <div className="PassangerLabel__head">{id}. {type === "child" ? "Дитячий" : "Дорослий"}</div>
+            <div className="PassangerLabel__head">{id}. {type === "child" ? "Child" : "Adult"}</div>
             <div className="PassangerLabel__input-group">
-                <div className="PassangerLabel__input-label">Ім'я</div>
+                <div className="PassangerLabel__input-label">First Name</div>
                 <input name="name" onChange={handleChange} type="text" className="PassangerLabel__input" value={id === 1 && userData ? firstData.name : data.userDetails.name} />
             </div>
             <div className="PassangerLabel__input-group">
-                <div className="PassangerLabel__input-label">Прізвище</div>
+                <div className="PassangerLabel__input-label">Last Name</div>
                 <input name="surname" onChange={handleChange} type="text" className="PassangerLabel__input" value={id === 1 && userData ? firstData.surname : data.userDetails.surname} />
             </div>
         </div>

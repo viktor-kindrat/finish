@@ -48,11 +48,11 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
             tripId: data._id,
             additionalInformation: additionalInfoInput.value ? additionalInfoInput.value : undefined,
         }
-        SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", requestBody, getCookie("userToken"))
+        SERVER("Booking in progress...", "POST", "book/book-places", "application/json", requestBody, getCookie("userToken"))
             .then(data => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
-                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                         action: () => {
                             setUserData(undefined);
                             go("/authorization");
@@ -62,17 +62,18 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                     return
                 }
                 if (data.errorMessage?.toLowerCase().includes("validation")) {
-                    setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                    setAlertData({ delay: 0.9, show: true, message: "It seems some fields are empty or filled incorrectly! Please check again.", actionCaption: "Close", action: () => { } })
                     return
                 }
                 setAlertData({
-                    delay: 0.9, show: true, message: data.message, actionCaption: "ОК",
-                    action: data.message === "Заброньовано успішно!" ? () => {
+                    delay: 0.9, show: true, message: data.message, actionCaption: "OK",
+                    // TRANSLATION UPDATE:
+                    action: data.message === "Booked successfully!" ? () => {
 
-                        SERVER("Завантажуємо дані про вас", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
+                        SERVER("Loading your data...", "GET", "auth/get-info", "application/json", "", getCookie("userToken")).then(data => {
                             if (data.errorMessage?.toLowerCase().includes("token")) {
                                 setAlertData({
-                                    delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                                    delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                                     action: () => {
                                         setUserData(undefined);
                                         go("/authorization");
@@ -116,7 +117,7 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
 
     let bookUnauthorized = (checker) => {
         if (checker) {
-            SERVER("Відбувається бронювання", "POST", "book/book-places/anauthorized", "application/json",
+            SERVER("Booking in progress...", "POST", "book/book-places/anauthorized", "application/json",
                 { 
                     tripId: data._id, 
                     passangers: checker,
@@ -125,12 +126,13 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 "")
                 .then(data => {
                     if (data.errorMessage?.toLowerCase().includes("validation")) {
-                        setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                        setAlertData({ delay: 0.9, show: true, message: "It seems some fields are empty or filled incorrectly! Please check again.", actionCaption: "Close", action: () => { } })
                         return
                     }
                     setAlertData({
-                        delay: 0.9, show: true, message: data.message, actionCaption: "ОК",
-                        action: data.message === "Заброньовано успішно!" ? () => {
+                        delay: 0.9, show: true, message: data.message, actionCaption: "OK",
+                        // TRANSLATION UPDATE:
+                        action: data.message === "Booked successfully!" ? () => {
                             go("/")
                         } : () => { }
                     })
@@ -147,7 +149,7 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
     let signUp = () => {
         let validation = (passangers.length === selected.length) && areAllFieldsDefined(contact);
         if (validation) {
-            SERVER("Реєстрація акаунта!", "POST", "auth/sign-up", "application/json", {
+            SERVER("Registering account...", "POST", "auth/sign-up", "application/json", {
                 name: contact.name,
                 surname: contact.surname,
                 phoneNumber: contact.phoneNumber,
@@ -156,14 +158,15 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
             })
                 .then(res => {
                     if (res.errorMessage?.toLowerCase().includes("validation")) {
-                        setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                        setAlertData({ delay: 0.9, show: true, message: "It seems some fields are empty or filled incorrectly! Please check again.", actionCaption: "Close", action: () => { } })
                         return
                     }
                     setAlertData({
                         delay: 0.9, show: true,
                         message: res.message,
-                        actionCaption: "закрити",
-                        action: res.message === "Зареєстровано успішно. Лист для підтвердження акаунта надіслано!"
+                        actionCaption: "Close",
+                        // TRANSLATION UPDATE:
+                        action: res.message === "Registered successfully. Account confirmation email sent!"
                             ? () => {
                                 let checker = passangers.map(item => {
                                     return {
@@ -175,21 +178,23 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                                 let validate = areAllFieldsDefined(checker)
 
                                 if (validate) {
-                                    SERVER("Відбувається бронювання", "POST", "book/book-places", "application/json", { 
+                                    SERVER("Booking in progress...", "POST", "book/book-places", "application/json", { 
                                         tripId: data._id, 
                                         passangers: checker,
                                         additionalInformation: additionalInfoInput.value ? additionalInfoInput.value : undefined,
                                     }, res.token)
                                         .then(data => {
                                             if (data.errorMessage?.toLowerCase().includes("validation")) {
-                                                setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                                                setAlertData({ delay: 0.9, show: true, message: "It seems some fields are empty or filled incorrectly! Please check again.", actionCaption: "Close", action: () => { } })
                                                 return
                                             }
                                             setAlertData({
                                                 delay: 0.9, show: true,
-                                                message: data.message === "Заброньовано успішно!" ? "Заброньовано успішно! Свої бронювання можете переглянути в акаунті після підтвердження використавши пароль: " + denormalizeInput(contact.phoneNumber) : data.message,
-                                                actionCaption: "ОК",
-                                                action: data.message === "Заброньовано успішно!" ? () => {
+                                                // TRANSLATION UPDATE:
+                                                message: data.message === "Booked successfully!" ? "Booking successful! You can view your bookings in your account after confirmation using the password: " + denormalizeInput(contact.phoneNumber) : data.message,
+                                                actionCaption: "OK",
+                                                // TRANSLATION UPDATE:
+                                                action: data.message === "Booked successfully!" ? () => {
                                                     go("/")
                                                 } : () => {
                                                     setUserData({
@@ -210,8 +215,8 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
             setAlertData({
                 show: true,
                 delay: 0,
-                message: "Впевніться що було обрано всі місця та заповнено всі поля!",
-                actionCaption: "Добре",
+                message: "Make sure all seats are selected and all fields are filled!",
+                actionCaption: "OK",
                 action: () => { }
             })
         }
@@ -226,8 +231,8 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 setAlertData({
                     show: true,
                     delay: 0,
-                    message: "Впевніться що було обрано всі місця та заповнено всі поля!",
-                    actionCaption: "Добре",
+                    message: "Make sure all seats are selected and all fields are filled!",
+                    actionCaption: "OK",
                     action: () => { }
                 })
             }
@@ -249,8 +254,8 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                     setAlertData({
                         show: true,
                         delay: 0,
-                        message: "Впевніться що було обрано всі місця та заповнено всі поля!",
-                        actionCaption: "Добре",
+                        message: "Make sure all seats are selected and all fields are filled!",
+                        actionCaption: "OK",
                         action: () => { }
                     })
                 }
@@ -317,13 +322,13 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
 
     return (
         <div className="ContactsField">
-            <h3 className="ContactsField__headline"> <span className="ContactsField__headline_number">3</span> Контакти</h3>
+            <h3 className="ContactsField__headline"> <span className="ContactsField__headline_number">3</span> Contacts</h3>
             <div className="ContactsField__input-group">
-                <div className="ContactsField__input-label">Ім'я</div>
+                <div className="ContactsField__input-label">First Name</div>
                 <input onChange={handleChange} name="name" value={contact.name} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__input-group">
-                <div className="ContactsField__input-label">Прізвище</div>
+                <div className="ContactsField__input-label">Last Name</div>
                 <input onChange={handleChange} name="surname" value={contact.surname} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__input-group">
@@ -331,7 +336,7 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                 <input onChange={handleChange} inputMode="email" name="email" value={contact.email} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__input-group">
-                <div className="ContactsField__input-label">Номер телефону</div>
+                <div className="ContactsField__input-label">Phone Number</div>
                 <input onChange={handleChange} inputMode="tel" name="phoneNumber" value={contact.phoneNumber} type="text" className="ContactsField__input" />
             </div>
             <div className="ContactsField__checkbox-group" style={{ display: (userData) ? "none" : "flex" }}>
@@ -339,9 +344,9 @@ function ContactsField({ data, passangers, setPassangers, userData, setUserData,
                     <input className="ContactField__origin-checkbox" type="checkbox" id="ContactField-create-account" />
                     <label htmlFor="ContactField-create-account" className="ContactField__custom-checkbox"><img src={checkIcon} alt="check" /></label>
                 </div>
-                <div className="ContactsField__checkbox-label">Зарееструвати аккаунт </div>
+                <div className="ContactsField__checkbox-label">Create an account</div>
             </div>
-            <button onClick={handleBookTicket} className="ContactsField__btn">Забронювати</button>
+            <button onClick={handleBookTicket} className="ContactsField__btn">Book now</button>
         </div>
     )
 }

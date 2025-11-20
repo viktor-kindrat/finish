@@ -12,9 +12,9 @@ import { useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import DatePicker, { registerLocale } from 'react-datepicker';
-import uk from 'date-fns/locale/uk'; 
+import { enGB } from 'date-fns/locale'; 
 
-registerLocale('uk', uk);
+registerLocale('en-GB', enGB);
 
 function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearchingData, date, setDate, places, peoples, setPeoples, from, setFrom, to, setTo, passangerOpened, setPassangerOpened }) {
     let navigate = useNavigate();
@@ -96,13 +96,17 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
     };
 
     let passangersResetHandler = () => setPeoples({ adults: 1, children: 0 })
+
+    const adultLabel = peoples.adults === 1 ? "Adult" : "Adults";
+    const childLabel = peoples.children === 1 ? "Child" : "Children";
+
     return (
         <div className={"Home__booking" + (window.location.href.includes("/search") ? " Home__booking_full" : "")}>
             <div className="Home__booking-place">
                 <div className="Home__booking-place-item">
-                    <p className="Home__booking-caption">Звідки</p>
+                    <p className="Home__booking-caption">From</p>
                     <select style={{ backgroundImage: `url(${placeIcon}), url(${selectIcon})` }} name="from" id="Home__from-select" className="Home__booking-select" onChange={(e) => setFrom({ place: e.target.value.split("-")[1], country: e.target.value.split("-")[0] })} value={`${from.country}-${from.place}`}>
-                        <option value="Пункт відправлення" hidden>Пункт відправлення</option>
+                        <option value="Departure" hidden>Departure</option>
                         {Object.keys(places).map((placeGroup) => (
                             <optgroup key={placeGroup} label={placeGroup}>
                                 {places[placeGroup].map((place) => (
@@ -114,15 +118,15 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
                         ))}
                     </select>
                 </div>
-                <button onClick={((from !== "Пункт відправлення" && from.country !== "Пункт відправлення") && (to.country !== "Місце прибуття" && to !== "Місце прибуття")) ? handleSwitch : () => { return false }} className="Home__booking-places-switch">
+                <button onClick={((from.country !== "Departure") && (to.country !== "Destination")) ? handleSwitch : () => { return false }} className="Home__booking-places-switch">
                     <img src={switchIcon} alt="switch" className="Home__booking-switch-icon" />
                 </button>
                 <div className="Home__booking-place-item">
-                    <p className="Home__booking-caption">Куди</p>
-                    <select disabled={from === "Пункт відправлення" || from.country === "Пункт відправлення"} style={{ backgroundImage: `url(${placeIcon}), url(${selectIcon})` }} name="to" id="Home__to-select" className="Home__booking-select" onChange={(e) => setTo({ place: e.target.value.split("-")[1], country: e.target.value.split("-")[0] })}>
-                        <option value="Місце прибуття" hidden>Місце прибуття</option>
+                    <p className="Home__booking-caption">To</p>
+                    <select disabled={from.country === "Departure"} style={{ backgroundImage: `url(${placeIcon}), url(${selectIcon})` }} name="to" id="Home__to-select" className="Home__booking-select" onChange={(e) => setTo({ place: e.target.value.split("-")[1], country: e.target.value.split("-")[0] })}>
+                        <option value="Destination" hidden>Destination</option>
                         {Object.keys(places).map((placeGroup) => {
-                            if (from.country === "Україна") {
+                            if (from.country === "Ukraine") {
                                 if (placeGroup !== from.country) {
                                     return (
                                         <optgroup key={placeGroup} label={placeGroup}>
@@ -137,7 +141,7 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
                                     return ""
                                 }
                             } else {
-                                if (placeGroup === "Україна") {
+                                if (placeGroup === "Ukraine") {
                                     return (
                                         <optgroup key={placeGroup} label={placeGroup}>
                                             {places[placeGroup].map((place) => (
@@ -156,13 +160,13 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
                 </div>
             </div>
             <div className="Home__booking-group">
-                <p className="Home__booking-caption">Відправлення</p>
+                <p className="Home__booking-caption">Departure Date</p>
                 <div className="Home__booking-datepiacker-wrapper">
                     <DatePicker
                         id="myDateInput"
                         selected={date}
                         dateFormat="dd.MM.yyyy"
-                        placeholderText="дд.мм.рррр"
+                        placeholderText="dd.mm.yyyy"
                         minDate={getCurrentDate()}
                         className="Home__booking-date"
                         onChange={(selectedDate) => setDate(selectedDate)}
@@ -176,30 +180,34 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
                         popperModifiers={{
                             offset: {
                                 enabled: true,
-                                offset: '0, 10px', // Adjust the offset as needed to center vertically
+                                offset: '0, 10px', 
                             },
                             preventOverflow: {
                                 enabled: true,
-                                boundariesElement: 'viewport', // Make sure the calendar stays within the viewport
+                                boundariesElement: 'viewport', 
                             },
                         }}
                         appendToBody={true}
                         portalId="home-select"
                         popperPlacement="top-start"
-                        locale="uk"
+                        locale="en-GB"
                     />
                 </div>
             </div>
             <div className="Home__booking-group" >
-                <p className="Home__booking-caption" id='home-select'>Пасажири</p>
+                <p className="Home__booking-caption" id='home-select'>Passengers</p>
                 <div className="Home__booking-passangers-select">
-                    <div className="Home__booking-select-label" onClick={handleOpenPassanger}>{`${peoples.adults} дорослий ${peoples.children !== 0 ? `, ${peoples.children} дитячий` : ""}`} <button className="Home__booking-select-open-btn"><img src={selectIcon} alt="select" /></button></div>
+                    <div className="Home__booking-select-label" onClick={handleOpenPassanger}>
+                        {`${peoples.adults} ${adultLabel}`}
+                        {peoples.children !== 0 ? `, ${peoples.children} ${childLabel}` : ""}
+                        <button className="Home__booking-select-open-btn"><img src={selectIcon} alt="select" /></button>
+                    </div>
                     <div className="Home__booking-select-options">
                         <div className="Home__booking-select-option" data-type="adults">
                             <button className="Home__booking-select-btn" onClick={handleDecrement}>
                                 <img height={30} width={30} src={removeIcon} alt="-" />
                             </button>
-                            <p className="Home__booking-option-label">{peoples.adults} дорослий</p>
+                            <p className="Home__booking-option-label">{peoples.adults} {adultLabel}</p>
                             <button className="Home__booking-select-btn" onClick={handleIncrement}>
                                 <img height={30} width={30} src={addIcon} alt="+" />
                             </button>
@@ -208,19 +216,19 @@ function HomeBooking({ triggerSearch, setTriggerSearch, searchingData, setSearch
                             <button className="Home__booking-select-btn" onClick={handleDecrement}>
                                 <img height={30} width={30} src={removeIcon} alt="-" />
                             </button>
-                            <p className="Home__booking-option-label">{peoples.children} дитячий</p>
+                            <p className="Home__booking-option-label">{peoples.children} {childLabel}</p>
                             <button className="Home__booking-select-btn" onClick={handleIncrement}>
                                 <img height={30} width={30} src={addIcon} alt="+" />
                             </button>
                         </div>
                         <div className="Home__booking-passangers-controll">
-                            <button onClick={passangersResetHandler} className="Home__booking-passangers-controll-btn">Скинути</button>
-                            <button onClick={passangersReadyHandler} className="Home__booking-passangers-controll-btn">Готово</button>
+                            <button onClick={passangersResetHandler} className="Home__booking-passangers-controll-btn">Reset</button>
+                            <button onClick={passangersReadyHandler} className="Home__booking-passangers-controll-btn">Done</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <button onClick={searchHandler} className="Home__booking-search">Пошук</button>
+            <button onClick={searchHandler} className="Home__booking-search">Search</button>
         </div>
     )
 }

@@ -1,5 +1,31 @@
 {
-    "Україна": ["Київ", "Чернівці", "Коломия", "Франківськ", "Стрий", "Львів", "Мукачево"],
-    "Франція": ["Канни", "Ніцца", "Антіб", "Монако", "Ментон"],
-    "Італія": ["Санремо", "Імперія", "Аласіо", "Альбенга", "Вентимілія", "Лоано", "Петра", "Фінале", "Савона", "Верона", "Мілан"]
+    "Ukraine": [
+        "Kyiv",
+        "Chernivtsi",
+        "Kolomyia",
+        "Ivano-Frankivsk",
+        "Stryi",
+        "Lviv",
+        "Mukachevo"
+    ],
+    "France": [
+        "Cannes",
+        "Nice",
+        "Antibes",
+        "Monaco",
+        "Menton"
+    ],
+    "Italy": [
+        "Sanremo",
+        "Imperia",
+        "Alassio",
+        "Albenga",
+        "Ventimiglia",
+        "Loano",
+        "Pietra Ligure",
+        "Finale Ligure",
+        "Savona",
+        "Verona",
+        "Milan"
+    ]
 }

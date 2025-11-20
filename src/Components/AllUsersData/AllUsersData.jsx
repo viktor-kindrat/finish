@@ -73,12 +73,12 @@ function AllUsersData({ passangers, allTrips, tripId }) {
     return (
         <div className="AllUsersData">
             <div className="AllUsersData__head">
-                <h3 className="AllUsersData__headline">Пасажири</h3>
-                <button onClick={() => window.print()} className="AllUsersData__btn"><img src={printIcon} alt="print" />Друкувати</button>
+                <h3 className="AllUsersData__headline">Passengers</h3>
+                <button onClick={() => window.print()} className="AllUsersData__btn"><img src={printIcon} alt="print" />Print</button>
             </div>
             <div className="AllUsersData__search">
                 <div className="AllUsersData__search-input-container">
-                    <label htmlFor="searchUserInAllUserList" className="AllUsersData__search-input-label">Пошук пасажира</label>
+                    <label htmlFor="searchUserInAllUserList" className="AllUsersData__search-input-label">Search passenger</label>
                     <input onChange={handleSearch} type="text" id="searchUserInAllUserList" className="AllUsersData__search-input" />
                 </div>
             </div>
@@ -90,41 +90,43 @@ function AllUsersData({ passangers, allTrips, tripId }) {
                                 <div className="AllUserData__info">
                                     <h4 className="AllUserData__subheadline">{item.userDetails.surname} {item.userDetails.name}</h4>
                                     <div className="AllUserData__user-field">
-                                        <img height={20} width={20} src={placeNumberIcon} alt="Місце" />
-                                        <span className="AllUserData__thin">Місце:</span> {item.placeNumber}
+                                        <img height={20} width={20} src={placeNumberIcon} alt="Seat" />
+                                        <span className="AllUserData__thin">Seat:</span> {item.placeNumber}
                                     </div>
                                     <div className="AllUserData__user-field">
-                                        <img height={20} width={20} src={userIcon} alt="Тип" />
-                                        <span className="AllUserData__thin">Тип білету:</span> {item.age === "adult" ? "Дорослий" : "Дитячий"}
+                                        <img height={20} width={20} src={userIcon} alt="Type" />
+                                        <span className="AllUserData__thin">Ticket type:</span> {item.age === "adult" ? "Adult" : "Child"}
                                     </div>
                                     <div className="AllUserData__user-field">
-                                        <img height={20} width={20} src={locationIcon} alt="З" />
-                                        <span className="AllUserData__thin">Місце посадки:</span> {item.userDetails.name === "броньовано" ? "невідомо" : item.userDetails.from.country} {item.userDetails.name === "броньовано" ? "" : "-"} {item.userDetails.name === "броньовано" ? "" : item.userDetails.from.city}
+                                        <img height={20} width={20} src={locationIcon} alt="From" />
+                                        {/* ЗМІНЕНО ЛОГІКУ: "броньовано" -> "Booked" */}
+                                        <span className="AllUserData__thin">Boarding:</span> {item.userDetails.name === "Booked" ? "unknown" : item.userDetails.from.country} {item.userDetails.name === "Booked" ? "" : "-"} {item.userDetails.name === "Booked" ? "" : item.userDetails.from.city}
                                     </div>
                                     <div className="AllUserData__user-field">
-                                        <img height={20} width={20} src={locationIcon} alt="До" />
-                                        <span className="AllUserData__thin">Місце висадки:</span> {item.userDetails.name === "броньовано" ? "невідомо" : item.userDetails.to.country} {item.userDetails.name === "броньовано" ? "" : "-"}  {item.userDetails.name === "броньовано" ? "" : item.userDetails.to.city}
+                                        <img height={20} width={20} src={locationIcon} alt="To" />
+                                        {/* ЗМІНЕНО ЛОГІКУ: "броньовано" -> "Booked" */}
+                                        <span className="AllUserData__thin">Drop-off:</span> {item.userDetails.name === "Booked" ? "unknown" : item.userDetails.to.country} {item.userDetails.name === "Booked" ? "" : "-"}  {item.userDetails.name === "Booked" ? "" : item.userDetails.to.city}
                                     </div>
                                     <div className="AllUserData__user-field">
-                                        <img height={20} width={20} src={phoneNumberIcon} alt="Номер телефону" />
-                                        <span className="AllUserData__thin">Телефон:</span> {normalizeInput(item.initiatorContacts.phone)}
+                                        <img height={20} width={20} src={phoneNumberIcon} alt="Phone" />
+                                        <span className="AllUserData__thin">Phone:</span> {normalizeInput(item.initiatorContacts.phone)}
                                     </div>
                                     <div className="AllUserData__user-field">
-                                        <img height={20} width={20} src={calendarIcon} alt="Номер телефону" />
-                                        <span className="AllUserData__thin">Відправлення:</span> {new Date([...allTrips].filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.from.city && station.country === item.userDetails.from.country))[0].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}
+                                        <img height={20} width={20} src={calendarIcon} alt="Departure" />
+                                        <span className="AllUserData__thin">Departure:</span> {new Date([...allTrips].filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.from.city && station.country === item.userDetails.from.country))[0].arrivalDate).toLocaleString("en-GB", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" })}
                                     </div>
                                     <div className="AllUserData__user-field">
-                                        <img height={20} width={20} src={calendarIcon} alt="Номер телефону" />
-                                        <span className="AllUserData__thin">Прибуття:</span> {new Date([...allTrips].filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.to.city && station.country === item.userDetails.to.country))[0].arrivalDate).toLocaleString("uk-UA", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" }).replace(/(.*), (\d+) (.*), (\d+:\d+)/, "$4 $1, $2 $3")}
+                                        <img height={20} width={20} src={calendarIcon} alt="Arrival" />
+                                        <span className="AllUserData__thin">Arrival:</span> {new Date([...allTrips].filter(item => item._id === tripId)[0].stations.filter(station => (station.city === item.userDetails.to.city && station.country === item.userDetails.to.country))[0].arrivalDate).toLocaleString("en-GB", { hour: "2-digit", minute: "2-digit", weekday: "short", day: "numeric", month: "short" })}
                                     </div>
                                     <div className="AllUserData__user-field">
-                                        <img height={20} width={20} src={aditionalInfoIcon} alt="Додаткова інформація" />
-                                        <span className="AllUserData__thin">Додаткова інформація:</span> {item.additionalInformation ? item.additionalInformation : "-"}
+                                        <img height={20} width={20} src={aditionalInfoIcon} alt="Info" />
+                                        <span className="AllUserData__thin">Additional info:</span> {item.additionalInformation ? item.additionalInformation : "-"}
                                     </div>
                                 </div>
                             </div>
                         )
-                    }) : <p className="AllUsersData__eror-msg">Ніхто ще не забронював жодного місця</p>
+                    }) : <p className="AllUsersData__eror-msg">No seats have been booked yet</p>
                 }
             </div>
             <PrintingTable passangers={sortedPassangers.current} allTrips={allTrips} tripId={tripId} />

@@ -73,9 +73,9 @@ function SearchingResult({ setSearchingData, triggerSearch, setTriggerSearch, us
                             {
                                 (storage.current.length > 0) ? storage.current.map(item => {
                                     return <FlightCard {...{ userData, setUserData, alertData, setAlertData, modalData, setModalData, getCookie, setCookie, SERVER, searchingData }} key={item._id} id={item._id} data={item} />
-                                }) : <h3 className="SearchingResult__info">Нічого не знайдено</h3>
+                                }) : <h3 className="SearchingResult__info">No results found</h3>
                             }
-                        </div> : <h3 className="SearchingResult__info">Нічого не знайдено</h3>
+                        </div> : <h3 className="SearchingResult__info">No results found</h3>
                     : <BuiltInLoader />
             }
         </section>

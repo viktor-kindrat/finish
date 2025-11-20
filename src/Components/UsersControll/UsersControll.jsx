@@ -38,7 +38,7 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
             .then((data) => {
                 if (data.errorMessage?.toLowerCase().includes("token")) {
                     setAlertData({
-                        delay: 0.9, show: true, message: "Схоже термін дії вашого входу минув. Увійдіть знову!", actionCaption: "Увійти знову",
+                        delay: 0.9, show: true, message: "Your session has expired. Please log in again!", actionCaption: "Log in again",
                         action: () => {
                             setUserData(undefined);
                             sessionStorage.clear()
@@ -47,7 +47,7 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                     return
                 }
                 if (data.errorMessage?.toLowerCase().includes("validation")) {
-                    setAlertData({ delay: 0.9, show: true, message: "Схоже деякі поля залишились порожніми, або заповнені некоректно! Перевірте все ще раз та спробуйте знову.", actionCaption: "закрити", action: () => { } })
+                    setAlertData({ delay: 0.9, show: true, message: "It seems some fields are empty or filled incorrectly! Please check again.", actionCaption: "Close", action: () => { } })
                     return
                 }
                 users.current = data.data;
@@ -118,11 +118,12 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
         if (passwordValid && areNotEmptyFields) {
             let send = { id, email, phoneNumber, name, surname };
             if (password.length > 0) send.password = password
-            SERVER("Зберігаємо дані користувача", "POST", "auth/admin/change-user-data", "application/json", send, getCookie("userToken")).then(data => {
-                if (data.message?.toLowerCase().includes("помилка")) {
+            SERVER("Saving user data...", "POST", "auth/admin/change-user-data", "application/json", send, getCookie("userToken")).then(data => {
+                // TRANSLATION UPDATE: "помилка" -> "error"
+                if (data.message?.toLowerCase().includes("error")) {
                     if (data.errorMessage?.includes("token")) {
                         setAlertData({
-                            delay: 0.9, show: true, message: "Термін дії вашого входу сплив. Увійдіть повторно", actionCaption: "Увійти", action: () => {
+                            delay: 0.9, show: true, message: "Your session has expired. Please log in again.", actionCaption: "Log in", action: () => {
                                 setUserData(undefined);
                                 setCookie("userToken", "", 0);
                                 go("/authorization")
@@ -130,11 +131,11 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                         })
                     }
                     if (data.errorMessage?.toLowerCase().includes("valid")) {
-                        setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних.", actionCaption: "Зрозуміло", action: () => { } })
+                        setAlertData({ delay: 0, show: true, message: "Please check the entered data.", actionCaption: "Close", action: () => { } })
                     }
                 } else {
                     setAlertData({
-                        delay: 0.9, show: true, message: data.message, actionCaption: "До користувачів", action: () => {
+                        delay: 0.9, show: true, message: data.message, actionCaption: "To Users", action: () => {
                             setPage(1);
                             setPending(true)
                             setOpenedEdit(false)
@@ -144,16 +145,17 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                 }
             })
         } else {
-            setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних. Паролі не співпадають або форма містить пусті поля.", actionCaption: "Зрозуміло", action: () => { } })
+            setAlertData({ delay: 0, show: true, message: "Please check the entered data. Passwords do not match or fields are empty.", actionCaption: "Close", action: () => { } })
         }
     }
 
     const handleRemove = (data) => {
-        SERVER("Видаляємо користувача", "POST", "auth/admin/delete-user", "application/json", { userId: data._id }, getCookie("userToken")).then(data => {
-            if (data.message?.toLowerCase().includes("помилка")) {
+        SERVER("Deleting user...", "POST", "auth/admin/delete-user", "application/json", { userId: data._id }, getCookie("userToken")).then(data => {
+            // TRANSLATION UPDATE: "помилка" -> "error"
+            if (data.message?.toLowerCase().includes("error")) {
                 if (data.errorMessage?.includes("token")) {
                     setAlertData({
-                        delay: 0.9, show: true, message: "Термін дії вашого входу сплив. Увійдіть повторно", actionCaption: "Увійти", action: () => {
+                        delay: 0.9, show: true, message: "Your session has expired. Please log in again.", actionCaption: "Log in", action: () => {
                             setUserData(undefined);
                             setCookie("userToken", "", 0);
                             go("/authorization")
@@ -161,19 +163,19 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                     })
                 }
                 if (data.errorMessage?.toLowerCase().includes("valid")) {
-                    setAlertData({ delay: 0, show: true, message: "Перевірте правильність введених даних.", actionCaption: "Зрозуміло", action: () => { } })
+                    setAlertData({ delay: 0, show: true, message: "Please check the entered data.", actionCaption: "Close", action: () => { } })
                 }
             } else {
                 setAlertData({
-                    delay: 0.9, show: true, message: data.message, actionCaption: "Добре", action: () => { }
+                    delay: 0.9, show: true, message: data.message, actionCaption: "OK", action: () => { }
                 })
             }
         })
     }
     return (
         <section className="UsersControl">
-            <h2 className="UsersControl__headline">Користувачі</h2>
-            <input style={{ backgroundImage: `url(${searchIcon})` }} type="text" className="UsersControll__search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Пошук" />
+            <h2 className="UsersControl__headline">Users</h2>
+            <input style={{ backgroundImage: `url(${searchIcon})` }} type="text" className="UsersControll__search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search" />
             {
                 !pending && users.current ? !openedEdit ? <>
                     <div className="UsersControl__results">
@@ -190,7 +192,7 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                     </div>
                     <div className="UsersControl__pagination">
                         {
-                            pagesArray.current.length === 0 ? "Користувачів немає" : pagesArray.current.map((item, index) => <div key={index} onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div>)
+                            pagesArray.current.length === 0 ? "No users found" : pagesArray.current.map((item, index) => <div key={index} onClick={handleChangePage} className={"UsersControl__pagination-btn " + (page === item ? "UsersControl__pagination-btn_active" : "")}>{item}</div>)
                         }
                     </div>
                 </> : <>
@@ -198,11 +200,11 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                         <div className="Authorization__container">
                             <h2 className="UsersControl__headline">{`${editorData?.name} ${editorData?.surname}`}</h2>
                             <div className="Authorization__input-wrap">
-                                <div className="Authorization__input-label">Прізвище</div>
+                                <div className="Authorization__input-label">Last Name</div>
                                 <input onChange={handleChangeEditorInfo} name="surname" value={editorData?.surname} type="text" className="Authorization__input" />
                             </div>
                             <div className="Authorization__input-wrap">
-                                <div className="Authorization__input-label">Ім’я</div>
+                                <div className="Authorization__input-label">First Name</div>
                                 <input onChange={handleChangeEditorInfo} name="name" value={editorData?.name} type="text" className="Authorization__input" />
                             </div>
                             <div className="Authorization__input-wrap">
@@ -210,19 +212,19 @@ function UsersControll({ getCookie, setCookie, setUserData, setAlertData, SERVER
                                 <input onChange={handleChangeEditorInfo} name="email" value={editorData?.email} type="text" className="Authorization__input" />
                             </div>
                             <div className="Authorization__input-wrap">
-                                <div className="Authorization__input-label">Номер телефону</div>
+                                <div className="Authorization__input-label">Phone Number</div>
                                 <input name="phoneNumber" onChange={handlePhoneChange} value={editorData.phoneNumber} type="text" className="Authorization__input" />
                             </div>
                             <div className="Authorization__input-wrap">
-                                <div className="Authorization__input-label">Пароль</div>
+                                <div className="Authorization__input-label">Password</div>
                                 <input onChange={handleChangeEditorInfo} name="password" value={editorData?.password} type="password" className="Authorization__input" />
                             </div>
                             <div className="Authorization__input-wrap">
-                                <div className="Authorization__input-label">Пароль ще раз</div>
+                                <div className="Authorization__input-label">Confirm Password</div>
                                 <input onChange={handleChangeEditorInfo} name="confirmPassword" value={editorData?.confirmPassword} type="password" className="Authorization__input" />
                             </div>
-                            <button onClick={handleSave} className="Authorization__action">Зберегти</button>
-                            <button onClick={() => setOpenedEdit(false)} className="Authorization__action Authorization__action_cancel">Скасувати</button>
+                            <button onClick={handleSave} className="Authorization__action">Save</button>
+                            <button onClick={() => setOpenedEdit(false)} className="Authorization__action Authorization__action_cancel">Cancel</button>
                         </div>
                     </div>
                 </> : <BuiltInLoader />

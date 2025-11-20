@@ -12,16 +12,16 @@ function HeaderNavDesktop() {
             <nav className="Header__nav">
                 <ul className="Header__nav-list">
                     <li className={`Header__nav-list-item ${location.pathname === "/" ? "Header__nav-list-item_selected" : ""}`}>
-                        <Link to={"/"}>Головна</Link>
+                        <Link to={"/"}>Home</Link>
                     </li>
                     <li className={`Header__nav-list-item ${location.pathname === "/search" ? "Header__nav-list-item_selected" : ""}`}>
-                        <Link to={"/search"}>Пошук</Link>
+                        <Link to={"/search"}>Search</Link>
                     </li>
                     <li className={`Header__nav-list-item ${location.pathname === "/instructions" ? "Header__nav-list-item_selected" : ""}`}>
-                        <Link to={"/instructions"}>Як забронювати?</Link>
+                        <Link to={"/instructions"}>How to book?</Link>
                     </li>
                     <li className={`Header__nav-list-item ${location.pathname.includes("/account") ? "Header__nav-list-item_selected" : ""}`}>
-                        <Link to={"/account"}>Мій акаунт</Link>
+                        <Link to={"/account"}>My Account</Link>
                     </li>
                 </ul>
             </nav>
@@ -33,7 +33,7 @@ function HeaderNavDesktop() {
                         <img height={15} src={phoneIcon} alt="" className="Header__phone-icon" />
                     </div>
                     <div className="Header__phone-info-wrapper">
-                        <h3 className="Header__headline">Допомога</h3>
+                        <h3 className="Header__headline">Help</h3>
                         <p className="Header__phone-text">+380 (123) 356 78 9</p>
                     </div>
                 </a>

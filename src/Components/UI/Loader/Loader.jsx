@@ -45,7 +45,7 @@ function Loader({ loaderText, shown }) {
                 </div>
             </div>
 
-            <span className="Loader__text" data-text={loaderText ? loaderText : "Завантаження"}></span>
+            <span className="Loader__text" data-text={loaderText ? loaderText : "Loading"}></span>
         </div>
     )
 }
