@@ -26,15 +26,15 @@ function HeaderNavDesktop() {
                 </ul>
             </nav>
             <div className="Header__contacts">
-                <a href="viber://chat/?number=%2B380508881234" className="Header__contacts-item"><img height={38} src={viberIcon} alt="viber" className="Header__contacts-item-image" /></a>
-                <a href="https://wa.me/380508881234" className="Header__contacts-item"><img height={38} src={whatsappIcon} alt="whatsapp" /></a>
-                <a href="tel:+380508881234" className="Header__phone">
+                <a href="viber://chat/?number=%2B380123356789" className="Header__contacts-item"><img height={38} src={viberIcon} alt="viber" className="Header__contacts-item-image" /></a>
+                <a href="https://wa.me/380123356789" className="Header__contacts-item"><img height={38} src={whatsappIcon} alt="whatsapp" /></a>
+                <a href="tel:+380123356789" className="Header__phone">
                     <div className="Header__phone-icon-wrapper">
                         <img height={15} src={phoneIcon} alt="" className="Header__phone-icon" />
                     </div>
                     <div className="Header__phone-info-wrapper">
                         <h3 className="Header__headline">Help</h3>
-                        <p className="Header__phone-text">+38 (050) 888 12 34</p>
+                        <p className="Header__phone-text">+380 (123) 356 78 9</p>
                     </div>
                 </a>
             </div>

@@ -8,13 +8,6 @@
   justify-content: flex-start;
   padding: 25px;
   /* Style the calendar container */
-  /* Style the calendar header */
-  /* Style the month and year dropdowns */
-  /* Style the days of the week */
-  /* Style the individual days in the calendar */
-  /* Style the selected day */
-  /* Style the date input icon */
-  /* Additional styles for better alignment of the date input icon */
 }
 .Home .react-datepicker__month-container {
   z-index: 11;
@@ -28,18 +21,30 @@
 .Home .react-datepicker__month-container * {
   font-family: "Montserrat", sans-serif;
 }
+.Home {
+  /* Style the calendar header */
+}
 .Home .react-datepicker__header {
   background-color: #ffffff;
   padding: 10px;
+}
+.Home {
+  /* Style the month and year dropdowns */
 }
 .Home .react-datepicker__current-month,
 .Home .react-datepicker__navigation {
   font-size: 16px;
   color: #333;
 }
+.Home {
+  /* Style the days of the week */
+}
 .Home .react-datepicker__day-name {
   color: #666;
   font-weight: 700;
+}
+.Home {
+  /* Style the individual days in the calendar */
 }
 .Home .react-datepicker__day {
   color: #333;
@@ -52,6 +57,9 @@
 .Home .react-datepicker__day--today {
   font-weight: bold;
 }
+.Home {
+  /* Style the selected day */
+}
 .Home .react-datepicker__day--selected {
   background-color: transparent;
   border: 3px solid #FFCB46;
@@ -61,8 +69,14 @@
   -ms-border-radius: 0;
   -o-border-radius: 0;
 }
+.Home {
+  /* Style the date input icon */
+}
 .Home .react-datepicker-wrapper > .react-datepicker__input-container {
   position: relative;
+}
+.Home {
+  /* Additional styles for better alignment of the date input icon */
 }
 .Home .react-datepicker__input-container > input {
   padding-right: 30px;
@@ -491,9 +505,6 @@
     justify-content: center;
     gap: 15px;
   }
-  .Home .Home__booking .Home__booking-place .Home__booking-place-item {
-    width: 100%;
-  }
   .Home .Home__booking .Home__booking-place .Home__booking-place-item .Home__booking-caption {
     margin-bottom: -13px;
     z-index: 1;
@@ -504,6 +515,9 @@
     font-weight: 400;
     line-height: 100%;
     padding: 0 5px;
+  }
+  .Home .Home__booking .Home__booking-place .Home__booking-place-item {
+    width: 100%;
   }
   .Home .Home__booking .Home__booking-place .Home__booking-place-item .Home__booking-select {
     height: 44px;

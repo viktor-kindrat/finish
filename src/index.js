@@ -8,12 +8,14 @@ import HostNameContext from './Context/ServerHostnameContext';
 import APIkeysContext from "./Context/APIkeysContext"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+const googleMapsKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 root.render(
   <React.StrictMode>
     <Router>
-      <APIkeysContext.Provider value={{ googleMaps: "AIzaSyA2w4bmkINSc8U15MEX543BLZmlSp5GPlI" }}>
-        <HostNameContext.Provider value={{server: "http://localhost:5555/"}}>
+      <APIkeysContext.Provider value={{ googleMaps:googleMapsKey }}>
+        <HostNameContext.Provider value={{server: serverUrl}}>
           <App />
         </HostNameContext.Provider>
       </APIkeysContext.Provider>

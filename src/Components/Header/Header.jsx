@@ -1,7 +1,7 @@
 import "./Styles/Header.css"
 
-import logo from "./SVG/logo.svg"
-import logoMobile from "./SVG/logoMobile.svg"
+import logo from "./SVG/logo1.svg"
+import logoMobile from "./SVG/logo_mob.svg"
 import HeaderNavDesktop from "./Header-nav-desktop"
 import HeaderNavMobile from "./HeaderNavMobile/Header-nav-mobile"
 

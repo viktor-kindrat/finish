@@ -90,7 +90,7 @@
   clip-path: polygon(100% 0, 0 0, 0 100%);
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option:last-child {
-  width: 60%;
+  width: 75%;
   justify-content: flex-end;
 }
 .Authorization .Authorization__container .Authorization__select .Authorization__option:last-child.Authorization__option_selected {

@@ -27,10 +27,9 @@ function HeaderNavMobile({ alertData, setAlertData }) {
             <div className="HeaderNavMobile__section">
                 <h2 className="HeaderNavMobile__headline">Contacts</h2>
                 <div className="HeaderNavMobile__info">
-                    <a href="tel:+380508881234"><p className="HeaderNavMobile__info-data">+38 (050) 888 12 34</p></a>
-                    <a href="tel:+380508881234"><p className="HeaderNavMobile__info-data">+38 (050) 888 12 34</p></a>
-                    {/* TRANSLATION UPDATE: email subject */}
-                    <a href="mailto:mail@group-alliance.com?subject=Website Help"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">mail@group-alliance.com</p></a>
+                    <a href="tel:+380123356789"><p className="HeaderNavMobile__info-data">+380 (123) 356 78 9</p></a>
+                    <a href="tel:+380123356789"><p className="HeaderNavMobile__info-data">+380 (123) 356 78 9</p></a>
+                    <a href="mailto:alliance.platform.khvis@gmail.com?subject=Website Help"><p className="HeaderNavMobile__info-data HeaderNavMobile__info-data_bold">alliance.platform.khvis@gmail.com</p></a>
                 </div>
             </div>
             <div className="HeaderNavMobile__section">
@@ -42,15 +41,15 @@ function HeaderNavMobile({ alertData, setAlertData }) {
                 </div>
             </div>
             <div className="HeaderNavMobile__section HeaderNavMobile__socials">
-                <a href="https://t.me/+380508881234" className="HeaderNavMobile__socials-item">
+                <a href="https://t.me/+380123356789" className="HeaderNavMobile__socials-item">
                     <img height={80} className="HeaderNavMobile__socials-icon" src={tgIcon} alt="telegram" />
                 </a>
                 <div className="HeaderNavMobile__socials-separator">|</div>
-                <a href="https://wa.me/380508881234" className="HeaderNavMobile__socials-item">
+                <a href="https://wa.me/380123356789" className="HeaderNavMobile__socials-item">
                     <img height={80} className="HeaderNavMobile__socials-icon" src={whatsappIcon} alt="whatsapp" />
                 </a>
                 <div className="HeaderNavMobile__socials-separator">|</div>
-                <a href="viber://chat/?number=%2B380508881234" className="HeaderNavMobile__socials-item">
+                <a href="viber://chat/?number=%2B380123356789" className="HeaderNavMobile__socials-item">
                     <img height={80} className="HeaderNavMobile__socials-icon" src={viberIcon} alt="viber" />
                 </a>
             </div>
