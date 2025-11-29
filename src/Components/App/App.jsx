@@ -138,6 +138,16 @@ function App() {
                     setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Got it", action: () => { } })
                 }
             })
+                .catch((err) => {
+                console.error(err);
+                setAlertData({
+                    delay: 0.9,
+                    show: true,
+                    message: "Server error (405/500). Please try again later.",
+                    actionCaption: "OK",
+                    action: () => {},
+                });
+            });
         }
     }
 
@@ -159,6 +169,16 @@ function App() {
             SERVER("Registering...", "POST", "auth/sign-up", "application/json", data).then(data => { 
                 setAlertData({ delay: 0.9, show: true, message: data.message, actionCaption: "Close", action: () => { } }) 
             })
+                .catch(err => {
+                console.error(err);
+                setAlertData({
+                    delay: 0.9,
+                    show: true,
+                    message: "Registration failed. Please try again later.",
+                    actionCaption: "OK",
+                    action: () => {},
+                });
+            });
         }
     }
 
@@ -180,6 +200,16 @@ function App() {
                     action: data.message === "Password reset link has been sent to your email!" ? () => go("/") : () => { } 
                 })
             })
+                .catch(err => {
+                console.error(err);
+                setAlertData({
+                    delay: 0.9,
+                    show: true,
+                    message: "Registration failed. Please try again later.",
+                    actionCaption: "OK",
+                    action: () => {},
+                });
+            });
         }
     }
 
