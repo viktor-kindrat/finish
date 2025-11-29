@@ -17,9 +17,7 @@ function HeaderNavDesktop() {
                     <li className={`Header__nav-list-item ${location.pathname === "/search" ? "Header__nav-list-item_selected" : ""}`}>
                         <Link to={"/search"}>Search</Link>
                     </li>
-                    <li className={`Header__nav-list-item ${location.pathname === "/instructions" ? "Header__nav-list-item_selected" : ""}`}>
-                        <Link to={"/instructions"}>How to book?</Link>
-                    </li>
+
                     <li className={`Header__nav-list-item ${location.pathname.includes("/account") ? "Header__nav-list-item_selected" : ""}`}>
                         <Link to={"/account"}>My Account</Link>
                     </li>
